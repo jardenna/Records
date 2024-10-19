@@ -6,10 +6,13 @@ import mongoose from 'mongoose';
 import path from 'path';
 import RecordRoutes from './routes/RecordRoutes.js';
 import userRoutes from './routes/UserRoutes.js';
+import dbConnect from './utils/dbConnect.js';
 dotenv.config();
 
 const app = express();
 const __dirname = path.resolve();
+
+dbConnect();
 
 const PORT = process.env.PORT || 5000;
 
@@ -25,17 +28,15 @@ app.use('/records', RecordRoutes);
 app.use('/user', userRoutes);
 app.use('/', RecordRoutes);
 
-mongoose
-  .connect(
-    `mongodb+srv://${process.env.USER_PASSWORD}:${process.env.MONGO_URI}@cluster0-pimzw.mongodb.net/${process.env.PROJECT_NAME}?retryWrites=true&w=majority` || {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    },
-  )
-  .then(() => {
-    console.log('Mongo has conneced');
-    return app.listen(PORT);
-  });
-mongoose.connection.on('connected', () => {
+mongoose.connection.once('open', () => {
   console.log('Connected to MongoDB');
+  app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+});
+
+mongoose.connection.on('error', (err) => {
+  console.error(err);
+  logEvents(
+    `${err.no}: ${err.code}\t${err.syscall}\t${err.hostname}`,
+    'mongoErrLog.log',
+  );
 });
