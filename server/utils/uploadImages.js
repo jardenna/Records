@@ -1,5 +1,5 @@
-const path = require('path');
-const multer = require('multer');
+import multer from 'multer';
+import path from 'path';
 
 //Global error message
 const errorMsg = (error, res) => {

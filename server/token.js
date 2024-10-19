@@ -1,4 +1,4 @@
-const { sign, verify } = require('jsonwebtoken');
+import { sign } from 'jsonwebtoken';
 
 const createAccessToken = (userId) => {
   return sign({ userId }, process.env.ACCESS_TOKEN_SECRET, {
@@ -27,7 +27,7 @@ const sendRefreshToken = (res, refreshToken) => {
     path: '/refresh_token',
   });
 };
-module.exports = {
+export {
   createAccessToken,
   createRefreshToken,
   sendAccessToken,

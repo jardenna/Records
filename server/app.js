@@ -1,14 +1,16 @@
-require('dotenv').config();
-const express = require('express');
-const cookieParser = require('cookie-parser');
-const cors = require('cors');
+dotenv.config({ path: path.join('..', '.env') });
+import cookieParser from 'cookie-parser';
+import cors from 'cors';
+import dotenv from 'dotenv';
+import express from 'express';
+import mongoose from 'mongoose';
+import path from 'path';
+import RecordRoutes from './routes/RecordRoutes';
+import userRoutes from './routes/UserRoutes';
+
 const app = express();
 
-const mongoose = require('mongoose');
-
-const path = require('path');
-
-const { PORT } = require('./config');
+const PORT = process.env.PORT || 5000;
 
 app.use(cookieParser());
 app.use(cors());
@@ -16,11 +18,6 @@ app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static(path.join(__dirname, './', 'public')));
-
-//import routes
-
-const RecordRoutes = require('./routes/RecordRoutes');
-const userRoutes = require('./routes/UserRoutes');
 
 //Custom routes middleware
 app.use('/records', RecordRoutes);
