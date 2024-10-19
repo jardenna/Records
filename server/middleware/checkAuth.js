@@ -1,6 +1,6 @@
 import jwt from 'jsonwebtoken';
 
-module.exports = (req, res, next) => {
+const checkAuth = (req, res, next) => {
   //Protect routes if not loged in
   try {
     const token = '';
@@ -16,3 +16,4 @@ module.exports = (req, res, next) => {
 
   next();
 };
+export { checkAuth };

@@ -1,4 +1,4 @@
-const { verify } = require('jsonwebtoken');
+import { verify } from 'jsonwebtoken';
 
 const isAuth = (req) => {
   const authorization = req.headers['authorization'];
@@ -10,6 +10,4 @@ const isAuth = (req) => {
   return userId;
 };
 
-module.exports = {
-  isAuth,
-};
+export { isAuth };

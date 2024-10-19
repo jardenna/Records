@@ -1,16 +1,16 @@
-const express = require('express');
+import express from 'express';
+import utils from '../utils/uploadImages';
 const router = express.Router();
 
-const {
+import {
+  deleteRecord,
   getAllRecords,
-  getRecordById,
   getNumOfRecords,
+  getRecordById,
   postCreateRecord,
   postPhoto,
   postUpdateRecord,
-  deleteRecord,
-} = require('../controllers/recordControllers');
-const utils = require('../utils/uploadImages');
+} from '../controllers/recordControllers';
 
 //Get the first 6 records
 router.get('/', getNumOfRecords);
@@ -32,4 +32,4 @@ router.delete('/delete/:recordId', deleteRecord);
 
 //Update record
 router.put('/:recordId', postUpdateRecord);
-module.exports = router;
+export default router;

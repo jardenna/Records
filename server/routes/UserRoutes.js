@@ -1,15 +1,17 @@
-const express = require('express');
-const { compare, hash } = require('bcrypt');
-const { verify } = require('jsonwebtoken');
-const User = require('../models/UserModel');
+import { compare, hash } from 'bcrypt';
+import express from 'express';
+import { verify } from 'jsonwebtoken';
+import User from '../models/UserModel';
 
-const { isAuth } = require('../middleware/isAuth');
-const {
+import { isAuth } from '../middleware/isAuth';
+
+import {
   createAccessToken,
   createRefreshToken,
   sendAccessToken,
   sendRefreshToken,
-} = require('../token');
+} from '../token';
+
 const router = express.Router();
 
 //Delete User by Id
@@ -201,4 +203,4 @@ router.post('/protected', async (req, res) => {
   }
 });
 
-module.exports = router;
+export default router;

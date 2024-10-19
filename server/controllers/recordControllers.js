@@ -1,15 +1,8 @@
-const Record = require('../models/RecordsModel');
-
-const constants = require('../utils/constants');
-
-const { NUMBER_OF_RECORDS } = constants;
-//Get requests
+import Record from '../models/RecordsModel';
 
 const getNumOfRecords = async (_, res) => {
   try {
-    const latestRecords = await Record.find()
-      .sort({ _id: -1 })
-      .limit(NUMBER_OF_RECORDS);
+    const latestRecords = await Record.find().sort({ _id: -1 }).limit(6);
     res.json(latestRecords);
   } catch (error) {
     res.status(201).json({ message: error });
@@ -139,12 +132,12 @@ const deleteRecord = async (req, res) => {
   }
 };
 
-module.exports = {
+export {
+  deleteRecord,
   getAllRecords,
-  getRecordById,
   getNumOfRecords,
+  getRecordById,
   postCreateRecord,
   postPhoto,
   postUpdateRecord,
-  deleteRecord,
 };

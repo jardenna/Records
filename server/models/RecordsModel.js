@@ -1,9 +1,6 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
-const regex = require('../utils/regex');
-const { YEAR_REGEX } = regex;
-
-const a = /^(18|19|20)\d{2}$/;
+const yearRegex = /^(18|19|20)\d{2}$/;
 
 const RecordSchema = mongoose.Schema(
   {
@@ -19,7 +16,7 @@ const RecordSchema = mongoose.Schema(
       type: Number,
       validate: {
         validator: function (v) {
-          return YEAR_REGEX.test(v);
+          return yearRegex.test(v);
         },
         message: (props) => `${props.value} is not a valid Year!`,
       },
@@ -43,4 +40,6 @@ const RecordSchema = mongoose.Schema(
   { timestamps: true },
 );
 
-module.exports = mongoose.model('Records', RecordSchema);
+const Records = mongoose.model('Records', RecordSchema);
+
+export default Records;

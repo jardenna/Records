@@ -43,8 +43,4 @@ function checkFileType(file, cb) {
   }
 }
 
-module.exports = {
-  errorMsg,
-  checkFileType,
-  upload,
-};
+export { checkFileType, errorMsg, upload };
