@@ -1,16 +1,16 @@
 import { compare, hash } from 'bcrypt';
 import express from 'express';
-import { verify } from 'jsonwebtoken';
-import User from '../models/UserModel';
+import jwt from 'jsonwebtoken';
+import User from '../models/UserModel.js';
 
-import { isAuth } from '../middleware/isAuth';
+import { isAuth } from '../middleware/isAuth.js';
 
 import {
   createAccessToken,
   createRefreshToken,
   sendAccessToken,
   sendRefreshToken,
-} from '../token';
+} from '../token.js';
 
 const router = express.Router();
 
@@ -167,7 +167,7 @@ router.post('/refresh_token', async (req, res) => {
   // We have a token, let's verify it!
   let payload = null;
   try {
-    payload = verify(token, process.env.REFRESH_TOKEN_SECRET);
+    payload = jwt.verify(token, process.env.REFRESH_TOKEN_SECRET);
   } catch (err) {
     return res.send({ accesstoken: '' });
   }

@@ -1,4 +1,4 @@
-import Record from '../models/RecordsModel';
+import Record from '../models/RecordsModel.js';
 
 const getNumOfRecords = async (_, res) => {
   try {

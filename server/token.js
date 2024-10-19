@@ -1,13 +1,13 @@
-import { sign } from 'jsonwebtoken';
+import jwt from 'jsonwebtoken';
 
 const createAccessToken = (userId) => {
-  return sign({ userId }, process.env.ACCESS_TOKEN_SECRET, {
+  return jwt.sign({ userId }, process.env.ACCESS_TOKEN_SECRET, {
     expiresIn: '15min',
   });
 };
 
 const createRefreshToken = (userId) => {
-  return sign({ userId }, process.env.REFRESH_TOKEN_SECRET, {
+  return jwt.sign({ userId }, process.env.REFRESH_TOKEN_SECRET, {
     expiresIn: '7d',
   });
 };
