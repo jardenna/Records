@@ -17,6 +17,7 @@ build
 
 request.rest
 .env
+.eslintcache
 
 
 # Editor directories and files
