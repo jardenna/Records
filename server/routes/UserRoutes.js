@@ -17,13 +17,19 @@ const router = express.Router();
 router.delete('/:userId', async (req, res) => {
   const { userId } = req.params;
   try {
-    await User.deleteOne({ _id: userId });
+    const result = await User.deleteOne({ _id: userId });
+    if (result.deletedCount === 0) {
+      return res.status(404).json({
+        message: 'User not found',
+      });
+    }
     res.status(200).json({
       message: 'User was deleted successfully',
     });
   } catch (error) {
     res.status(500).json({
-      error,
+      message: 'An error occurred while deleting the user',
+      error: error.message,
     });
   }
 });
@@ -40,6 +46,8 @@ router.get('/', async (req, res) => {
 
 // Get user by id
 router.get('/:userId', async (req, res) => {
+  console.log(req.params.userId);
+
   try {
     const user = await User.findById(req.params.userId);
     res.json(user);
