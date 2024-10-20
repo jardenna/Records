@@ -20,12 +20,4 @@ const dbConnect = async () => {
   }
 };
 
-// mongoose.connect(db).then(() => {
-//   console.log('Mongo has conneced');
-//   return app.listen(PORT);
-// });
-// mongoose.connection.on('connected', () => {
-//   console.log('Connected to MongoDB');
-// });
-
 export default dbConnect;
