@@ -13,50 +13,9 @@ import {
 
 const router = express.Router();
 
-// Delete User by Id
-router.delete('/:userId', async (req, res) => {
-  const { userId } = req.params;
-  try {
-    const result = await User.deleteOne({ _id: userId });
-    if (result.deletedCount === 0) {
-      return res.status(404).json({
-        message: 'User not found',
-      });
-    }
-    res.status(200).json({
-      message: 'User was deleted successfully',
-    });
-  } catch (error) {
-    res.status(500).json({
-      message: 'An error occurred while deleting the user',
-      error: error.message,
-    });
-  }
-});
-
-// Get all users
-router.get('/', async (req, res) => {
-  try {
-    const users = await User.find();
-    res.json(users);
-  } catch (error) {
-    res.status(500).json({ message: error.message });
-  }
-});
-
-// Get user by id
-router.get('/:userId', async (req, res) => {
-  console.log(req.params.userId);
-
-  try {
-    const user = await User.findById(req.params.userId);
-    res.json(user);
-  } catch (error) {
-    res.status(500).json({ message: error.message });
-  }
-});
-
-// Add new user (Signup)
+// @desc    Signup a new user
+// @route   POST /user/signup
+// @access  Public
 router.post('/signup', async (req, res) => {
   const { name, email, password } = req.body;
 
@@ -101,7 +60,9 @@ router.post('/signup', async (req, res) => {
   }
 });
 
-// User login
+// @desc    Login user
+// @route   POST /user/login
+// @access  Public
 router.post('/login', async (req, res) => {
   const { email, password } = req.body;
 
@@ -137,12 +98,61 @@ router.post('/login', async (req, res) => {
   }
 });
 
-// Logout user
+// @desc    Logout user / clear cookie
+// @route   POST user/logout
+// @access  Public
 router.post('/logout', (req, res) => {
   res.clearCookie('refreshtoken', { path: '/refresh_token' });
   return res.send({
     message: 'Logged out successfully',
   });
+});
+
+// @desc    Logout user / clear cookie
+// @route   DELETE /user/userId
+// @access  Public
+router.delete('/:userId', async (req, res) => {
+  const { userId } = req.params;
+  try {
+    const result = await User.deleteOne({ _id: userId });
+    if (result.deletedCount === 0) {
+      return res.status(404).json({
+        message: 'User not found',
+      });
+    }
+    res.status(200).json({
+      message: 'User was deleted successfully',
+    });
+  } catch (error) {
+    res.status(500).json({
+      message: 'An error occurred while deleting the user',
+      error: error.message,
+    });
+  }
+});
+
+// @desc    Get All users
+// @route   Get /user
+// @access  Public
+router.get('/', async (req, res) => {
+  try {
+    const users = await User.find();
+    res.json(users);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
+// @desc    Get user by id
+// @route   Get  /user/userId
+// @access  Public
+router.get('/:userId', async (req, res) => {
+  try {
+    const user = await User.findById(req.params.userId);
+    res.json(user);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
 });
 
 // Refresh token endpoint
@@ -179,7 +189,9 @@ router.post('/refresh_token', async (req, res) => {
   return res.send({ accesstoken: accessToken });
 });
 
-// Protected route
+// @desc    Protected route
+// @route   Post  /user/protected
+// @access  Public
 router.post('/protected', (req, res) => {
   try {
     const userId = isAuth(req);
