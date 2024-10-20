@@ -15,7 +15,7 @@ const ErrorPage: FC = () => {
 
   return (
     <main className={`error-page ${isWrongUrl ? 'error-url' : ''}`}>
-      <PageTitle title="Title.Error" />
+      <PageTitle title="Error page" />
       <header aria-label="Error page">
         <img
           className="emoji"
@@ -23,7 +23,7 @@ const ErrorPage: FC = () => {
           alt="Really guilty emoji"
         />
 
-        <h1>CommonText.ErrorText</h1>
+        <h1>ErrorText</h1>
       </header>
 
       <h2>{error.data}</h2>
