@@ -1,10 +1,9 @@
-import { compare, hash } from 'bcrypt';
+import bcrypt from 'bcrypt';
 import express from 'express';
 import jwt from 'jsonwebtoken';
 import User from '../models/UserModel.js';
 
 import { isAuth } from '../middleware/isAuth.js';
-
 import {
   createAccessToken,
   createRefreshToken,
@@ -14,13 +13,13 @@ import {
 
 const router = express.Router();
 
-//Delete User by Id
+// Delete User by Id
 router.delete('/:userId', async (req, res) => {
   const { userId } = req.params;
   try {
     await User.deleteOne({ _id: userId });
     res.status(200).json({
-      message: 'User was deleted succesfully',
+      message: 'User was deleted successfully',
     });
   } catch (error) {
     res.status(500).json({
@@ -29,177 +28,160 @@ router.delete('/:userId', async (req, res) => {
   }
 });
 
-//Get all users
+// Get all users
 router.get('/', async (req, res) => {
   try {
-    const user = await User.find();
-
-    res.json(user);
+    const users = await User.find();
+    res.json(users);
   } catch (error) {
-    res.json({ message: error });
+    res.status(500).json({ message: error.message });
   }
 });
 
-//Get user by id
+// Get user by id
 router.get('/:userId', async (req, res) => {
   try {
     const user = await User.findById(req.params.userId);
     res.json(user);
   } catch (error) {
-    res.json({ message: error });
+    res.status(500).json({ message: error.message });
   }
 });
 
-//Add new user
+// Add new user (Signup)
 router.post('/signup', async (req, res) => {
   const { name, email, password } = req.body;
 
-  const hashedPassword = await hash(password, 10);
-
   try {
-    const user = await User.find({ email });
-
-    if (user.length > 0) {
+    // Check if the user already exists
+    const existingUser = await User.findOne({ email });
+    if (existingUser) {
       return res.status(409).json({
         message: 'User already exists',
       });
-    } else {
-      const user = new User({
-        name,
-        email,
-        password: hashedPassword,
-      });
-      await user.save();
-
-      const signedUpUser = user && user._id;
-      const accesstoken = createAccessToken(signedUpUser);
-      const refreshtoken = createRefreshToken(signedUpUser);
-
-      user.refreshtoken = refreshtoken;
-
-      sendRefreshToken(res, refreshtoken);
-      sendAccessToken(res, req, accesstoken);
     }
 
-    res.status(200).json({
-      message: 'User was created succesfully',
+    // Hash the password
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    // Create a new user
+    const newUser = new User({
       name,
+      email,
+      password: hashedPassword,
     });
+
+    // Save the user
+    await newUser.save();
+
+    // Generate tokens
+    const userId = newUser._id;
+    const accessToken = createAccessToken(userId);
+    const refreshToken = createRefreshToken(userId);
+
+    // Store refresh token in user record
+    newUser.refreshtoken = refreshToken;
+    await newUser.save();
+
+    // Send tokens and response
+    sendRefreshToken(res, refreshToken); // Set refresh token in cookies
+    sendAccessToken(res, req, accessToken, newUser.name); // Send access token as response
   } catch (error) {
     res.status(500).json({
-      message: `Signup failed ${error.message}`,
-      error,
+      message: `Signup failed: ${error.message}`,
     });
   }
 });
 
-//Login
+// User login
 router.post('/login', async (req, res) => {
   const { email, password } = req.body;
-  const validEmail = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
 
   try {
-    const user = await User.find({ email });
-    // console.log(user[0].name);
-    if (!email) {
-      return res.status(401).json({
-        message: 'Email must be provided',
-      });
+    // Check if user exists
+    const user = await User.findOne({ email });
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
     }
 
-    if (!validEmail.test(email)) {
-      return res.status(422).json({
-        message: 'Invalid email address',
-      });
+    // Verify password
+    const isPasswordValid = await bcrypt.compare(password, user.password);
+    if (!isPasswordValid) {
+      return res.status(401).json({ message: 'Invalid password' });
     }
 
-    if (!password) {
-      return res.status(401).json({
-        message: 'Password must be provided',
-      });
-    }
+    // Generate tokens
+    const userId = user._id;
+    const accessToken = createAccessToken(userId);
+    const refreshToken = createRefreshToken(userId);
 
-    //Does the user exist
-    if (user.length === 0) {
-      return res.status(401).json({
-        message: 'User does not exist',
-      });
-    }
-    const valid = await compare(password, user[0].password);
-    //Wrong password
-    if (!valid) {
-      return res.status(401).json({
-        message: 'Invalid password',
-      });
-    }
+    // Store refresh token in user record
+    user.refreshtoken = refreshToken;
+    await user.save();
 
-    const accesstoken = createAccessToken(user[0]._id);
-    const refreshtoken = createRefreshToken(user[0]._id);
-
-    user[0].refreshtoken = refreshtoken;
-
-    sendRefreshToken(res, refreshtoken);
-    sendAccessToken(res, req, accesstoken, user[0].name);
+    // Send tokens
+    sendRefreshToken(res, refreshToken); // Set refresh token in cookies
+    sendAccessToken(res, req, accessToken, user.name); // Send access token as response
   } catch (error) {
-    res.status(401).json({
-      message: 'Auth failed',
+    res.status(500).json({
+      message: `Login failed: ${error.message}`,
     });
   }
 });
 
-// 3. Logout a user
-router.post('/logout', (_req, res) => {
+// Logout user
+router.post('/logout', (req, res) => {
   res.clearCookie('refreshtoken', { path: '/refresh_token' });
-
   return res.send({
-    message: 'Logged out',
+    message: 'Logged out successfully',
   });
 });
 
+// Refresh token endpoint
 router.post('/refresh_token', async (req, res) => {
   const token = req.cookies.refreshtoken;
-  // token is valid, check if user exist
-  const { email } = req.body;
-  const user = await User.find({ email });
 
-  // If we don't have a token in our request
+  // If no token is provided
   if (!token) return res.send({ accesstoken: '' });
-  // We have a token, let's verify it!
+
   let payload = null;
   try {
+    // Verify the refresh token
     payload = jwt.verify(token, process.env.REFRESH_TOKEN_SECRET);
   } catch (err) {
     return res.send({ accesstoken: '' });
   }
 
-  if (user.length === 0) return res.send({ accesstoken: '' });
-  // user exist, check if refreshtoken exist on user
-  if (user.refreshtoken !== token) return res.send({ accesstoken: '' });
-  // token exist, create new Refresh- and accesstoken
-  const accesstoken = createAccessToken(user.id);
-  const refreshtoken = createRefreshToken(user.id);
-  // update refreshtoken on user in db
-  // Could have different versions instead!
-  user.refreshtoken = refreshtoken;
-  // All good to go, send new refreshtoken and accesstoken
-  sendRefreshToken(res, refreshtoken);
-  return res.send({ accesstoken });
+  // Find the user in the database
+  const user = await User.findById(payload.userId);
+  if (!user || user.refreshtoken !== token) {
+    return res.send({ accesstoken: '' });
+  }
+
+  // Generate new tokens
+  const accessToken = createAccessToken(user._id);
+  const refreshToken = createRefreshToken(user._id);
+
+  // Update the refresh token in the user's record
+  user.refreshtoken = refreshToken;
+  await user.save();
+
+  // Send new tokens
+  sendRefreshToken(res, refreshToken);
+  return res.send({ accesstoken: accessToken });
 });
 
-// 4. Protected route
-router.post('/protected', async (req, res) => {
+// Protected route
+router.post('/protected', (req, res) => {
   try {
     const userId = isAuth(req);
-
-    if (userId !== null) {
-      res.send({
-        data: 'This is protected data.',
-      });
+    if (userId) {
+      res.send({ data: 'This is protected data.' });
+    } else {
+      res.status(401).send({ error: 'Unauthorized' });
     }
   } catch (err) {
-    res.send({
-      error: `${err.message}`,
-    });
+    res.status(500).send({ error: err.message });
   }
 });
 
