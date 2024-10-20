@@ -4,7 +4,8 @@
   "version": "1.0.0",
   "description": "A Vite config including esLint/Prettier/airbnbEslint",
   "scripts": {
-    "start": "vite",
+    "dev": "vite",
+    "start": "concurrently -n 'server/app,dev' -c 'green,blue' \"nodemon  server/app\" \"npm run dev\"",
     "build": "tsc && vite build",
     "preview": "vite preview 5000 --strictPort",
     "format": "prettier --write .",
