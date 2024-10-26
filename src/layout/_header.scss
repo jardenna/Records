@@ -1,0 +1,23 @@
+@use '../scss/globals/' as *;
+
+.main-header {
+  background-image: url('images/hero.jpg');
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-position: bottom center;
+  height: 200px;
+  color: $color-white;
+  font-family: $font-secondary;
+  font-size: 40px;
+
+  a {
+    color: $color-white;
+  }
+
+  h1 {
+    font-size: 70px;
+    position: absolute;
+    top: 20px;
+    text-transform: uppercase;
+  }
+}

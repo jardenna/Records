@@ -15,6 +15,7 @@ body,
 body {
   margin: 0;
   font-size: rem(16px);
+  color: $color-primary-text;
 }
 
 h1 {
@@ -26,4 +27,8 @@ h1 {
   height: 100%;
   display: grid;
   grid-template-rows: max-content 1fr;
+}
+
+a {
+  text-decoration: none;
 }
