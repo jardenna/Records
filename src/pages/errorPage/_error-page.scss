@@ -1,4 +1,4 @@
-@import '../../scss/functions';
+@use '../../scss/globals' as *;
 
 .error-page {
   display: flex;
