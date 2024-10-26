@@ -2,7 +2,6 @@
 
 * {
   box-sizing: border-box;
-  font-family: $font-primary;
 }
 
 html,
@@ -16,6 +15,7 @@ body {
   margin: 0;
   font-size: rem(16px);
   color: $color-primary-text;
+  font-family: $font-primary;
 }
 
 h1 {
