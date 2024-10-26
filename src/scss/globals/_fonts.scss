@@ -16,17 +16,15 @@
   font-style: normal;
 }
 
-// @font-face {
-//   font-family: walkway;
-//   src: url('/fonts/walkway_expand_bold-webfont.eot');
-//   src:
-//     url('/fonts/walkway_expand_bold-webfont.eot')
-//       format('embedded-opentype'),
-//     url('/fonts/walkway_expand_bold-webfont.svg#walkway_expand_boldregular')
-//       format('svg');
-//   font-weight: normal;
-//   font-style: normal;
-// }
+@font-face {
+  font-family: 'walkway_expand';
+  src:
+    url('/fonts/walkway_expand_bold-webfont.woff2') format('woff2'),
+    url('/fonts/walkway_expand_bold-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
 
 $font-primary: open_sansregular, sans-serif;
 $font-secondary: walkway, sans-serif;
+$font-secondary-expand: walkway_expand, sans-serif;
