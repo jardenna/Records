@@ -7,7 +7,9 @@ export default defineConfig({
   plugins: [
     react(),
     checker({
-      typescript: true,
+      typescript: {
+        tsconfigPath: './tsconfig.app.json',
+      },
     }),
     eslint(),
   ],
@@ -15,6 +17,11 @@ export default defineConfig({
     port: 3000,
   },
   css: {
+    preprocessorOptions: {
+      scss: {
+        api: 'modern-compiler',
+      },
+    },
     devSourcemap: true,
   },
   build: {
