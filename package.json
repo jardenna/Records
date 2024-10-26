@@ -1,5 +1,5 @@
 {
-  "name": "start-vite",
+  "name": "records",
   "type": "module",
   "version": "1.0.0",
   "description": "A Vite config including esLint/Prettier/airbnbEslint",
