@@ -1,14 +1,9 @@
 export enum MainPath {
+  Details = 'details',
   Login = 'login',
+  Records = 'records',
   Root = '/',
-}
-
-export enum SubPath {
-  NewUser = 'users/new',
-  NoteForm = 'noteform',
-  Notes = 'notes',
-  UserForm = 'userForm',
-  Users = 'users',
+  Update = 'update',
 }
 
 export enum KeyCode {
