@@ -24,9 +24,9 @@ app.use(express.json());
 app.use('/', express.static(path.join(__dirname, 'public')));
 
 //Custom routes middleware
-app.use('/records', RecordRoutes);
-app.use('/user', userRoutes);
-app.use('/', RecordRoutes);
+app.use('/api/records', RecordRoutes);
+app.use('/api/user', userRoutes);
+app.use('/api', RecordRoutes);
 
 mongoose.connection.once('open', () => {
   console.log('Connected to MongoDB');

@@ -1,7 +1,13 @@
 import { FC } from 'react';
+import { useGetAllRecordsQuery } from '../features/records/recordsApiSlice';
 
 interface RecordsProps {}
 
-const Records: FC<RecordsProps> = () => <section>Records</section>;
+const Records: FC<RecordsProps> = () => {
+  const { data: records } = useGetAllRecordsQuery();
+  console.log(records);
+
+  return <section>Records</section>;
+};
 
 export default Records;
