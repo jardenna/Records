@@ -1,14 +1,23 @@
 import { FC } from 'react';
 import { Link } from 'react-router-dom';
+import { MainPath } from '../types/enums';
+import Nav from './nav/Nav';
+
 import './_header.scss';
 
 const Header: FC = () => (
   <header className="main-header" aria-label="main">
-    <div className="container">
-      <h1>
-        <Link to="/">Pladesamling</Link>
-      </h1>
-    </div>
+    <article className="hero">
+      <div className="container">
+        <div className="logo">
+          <Link to={MainPath.Root}>
+            <span>Plade</span>
+            <span>samling</span>
+          </Link>
+        </div>
+      </div>
+    </article>
+    <Nav />
   </header>
 );
 

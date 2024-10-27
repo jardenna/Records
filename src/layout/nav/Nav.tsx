@@ -1,22 +1,23 @@
 import { FC } from 'react';
 import { NavLink } from 'react-router-dom';
 import { MainPath } from '../../types/enums';
+import './_nav.scss';
 
-interface NavProps {}
-
-const Nav: FC<NavProps> = () => (
-  <nav>
-    <ul>
-      <li>
-        <NavLink to={MainPath.Records}>Records</NavLink>
-      </li>
-      <li>
-        <NavLink to={MainPath.Details}>Details</NavLink>
-      </li>
-      <li>
-        <NavLink to={MainPath.Update}>Update</NavLink>
-      </li>
-    </ul>
+const Nav: FC = () => (
+  <nav className="main-nav" aria-label="main">
+    <div className="container">
+      <ul className="main-nav-container">
+        <li className="main-nav-items">
+          <NavLink to={MainPath.Records}>Records</NavLink>
+        </li>
+        <li className="main-nav-items">
+          <NavLink to={MainPath.Details}>Details</NavLink>
+        </li>
+        <li className="main-nav-items">
+          <NavLink to={MainPath.Update}>Update</NavLink>
+        </li>
+      </ul>
+    </div>
   </nav>
 );
 

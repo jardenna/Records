@@ -1,23 +1,37 @@
 @use '../scss/globals/' as *;
 
 .main-header {
-  background-image: url('images/hero.jpg');
-  background-size: 100%;
-  background-repeat: no-repeat;
-  background-position: bottom center;
-  height: 200px;
-  color: $color-white;
-  font-family: $font-secondary;
-  font-size: 40px;
+  .hero {
+    background-image: url('images/hero.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: bottom center;
+    height: rem(320px);
+    display: flex;
+    align-items: center;
 
-  a {
-    color: $color-white;
+    @include max-size($medium) {
+      height: rem(200px);
+    }
   }
 
-  h1 {
-    font-size: 70px;
-    position: absolute;
-    top: 20px;
+  .logo {
+    font-family: $font-secondary;
+    font-size: rem(70px);
     text-transform: uppercase;
+
+    @include max-size($medium) {
+      display: flex;
+      justify-content: center;
+      font-size: rem(40px);
+
+      span {
+        display: flex;
+      }
+    }
+
+    a {
+      color: $color-white;
+    }
   }
 }

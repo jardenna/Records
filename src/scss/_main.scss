@@ -32,3 +32,10 @@ h1 {
 a {
   text-decoration: none;
 }
+
+.container {
+  max-width: rem(1400px);
+  margin: 0 auto;
+  padding: 30px;
+  width: 100%;
+}
