@@ -12,11 +12,11 @@ import {
   postUpdateRecord,
 } from '../controllers/recordControllers.js';
 
-//Get the first 6 records
-router.get('/', getNumOfRecords);
-
 // Get all records
 router.get('/', getAllRecords);
+
+//Get the first 6 records
+router.get('/firstSix/', getNumOfRecords);
 
 //Get record by Id
 router.get('/:recordId', getRecordById);
