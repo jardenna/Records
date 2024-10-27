@@ -29,7 +29,6 @@ const getRecordById = async (req, res) => {
 };
 
 //Post requests
-
 const postCreateRecord = async (req, res) => {
   const {
     artist,
@@ -67,6 +66,7 @@ const postCreateRecord = async (req, res) => {
       res.json({ message: err });
     });
 };
+
 const postPhoto = async (req, res) => {
   const file = req.file ? req.file.filename : req.body.photo;
 
