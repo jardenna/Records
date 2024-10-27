@@ -5,12 +5,8 @@ import endpoints from '../../app/endpoints';
 export const recordsApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     getAllRecords: builder.query<any, void>({
-      query: () => `${endpoints.records}?page=4&limit=2`,
-      transformResponse: (responseData: any) => {
-        const transformedData = transformId(responseData);
-
-        return transformedData;
-      },
+      query: () => `${endpoints.records}?page=11&limit=8`,
+      transformResponse: (responseData: any) => transformId(responseData),
     }),
   }),
 });
