@@ -1,47 +1,25 @@
-export type Roles = 'Admin' | 'Employee' | 'Manager';
-
-export interface User {
+export interface Record {
+  artist: string;
   id: string;
-  username: string;
-  active?: boolean;
-  password?: string;
-  roles?: Roles[];
-}
-
-export interface UpdateUserRequest {
-  id: string;
-  roles: Roles[];
-  username: string;
-  active?: boolean;
-}
-export interface CreateUserRequest {
-  password: string;
-  roles: string[] | Roles[];
-  username: string;
-  active?: boolean;
-}
-
-export interface UserRequest {
-  _id: string;
-  username: string;
-  active?: boolean;
-  roles?: Roles[];
-}
-
-export interface NotesRequest {
-  ticket: number;
+  label: string;
+  numOfRecords: number;
+  prodYear: number;
+  recordNo: string;
   title: string;
-  user: string;
+  cover?: string;
+  info?: string;
+  origin?: string;
+  price?: number;
+  released?: number;
 }
 
-export interface NotesResponse {
-  _id: string;
-  completed: boolean;
-  createdAt: Date;
-  text: string;
-  ticket: number;
-  title: string;
-  updatedAt: Date;
-  user: string;
-  username: string;
+export interface Pagination {
+  limit: string;
+  pageNo: string;
+}
+
+export interface RecordsResponse {
+  next: Pagination;
+  previous: Pagination;
+  result: Record[];
 }
