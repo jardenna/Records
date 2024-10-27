@@ -11,9 +11,11 @@ import {
   postPhoto,
   postUpdateRecord,
 } from '../controllers/recordControllers.js';
+import paginatedResults from '../middleware/paginatedResults.js';
+import Record from '../models/RecordsModel.js';
 
 // Get all records
-router.get('/', getAllRecords);
+router.get('/', paginatedResults(Record), getAllRecords);
 
 //Get the first 6 records
 router.get('/firstSix/', getNumOfRecords);

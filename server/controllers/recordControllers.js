@@ -11,8 +11,9 @@ const getNumOfRecords = async (_, res) => {
 
 const getAllRecords = async (req, res) => {
   try {
-    const sortedRecords = await Record.find().sort([['date', -1]]);
-    res.json(sortedRecords);
+    // const sortedRecords = await Record.find().sort([['date', -1]]);
+    // res.json(sortedRecords);
+    res.json(res.paginatedResults);
   } catch (error) {
     res.json({ message: error });
   }
