@@ -6,7 +6,7 @@ import { useGetPaginatedRecordsQuery } from '../features/records/recordsApiSlice
 interface RecordsProps {}
 
 const Records: FC<RecordsProps> = () => {
-  const [selectedOption, setSelectedOption] = useState(10);
+  const [selectedOption, setSelectedOption] = useState(50);
   const [currentPage, setCurrentPage] = useState(1);
 
   const { data: records } = useGetPaginatedRecordsQuery({
@@ -22,16 +22,31 @@ const Records: FC<RecordsProps> = () => {
   ];
   const paginationCount = records ? records.recordsCount / selectedOption : 1;
 
-  const roundedPaginationCount = Math.floor(paginationCount);
+  const roundedPaginationCount = Math.ceil(paginationCount);
   console.log(records);
 
   return (
     <section>
       <h1>Records</h1>
+      <button
+        type="button"
+        onClick={() => setCurrentPage(currentPage - 1)}
+        disabled={currentPage === 1}
+      >
+        Prev
+      </button>
       <Pagination
         onSetCurrentPage={setCurrentPage}
         roundedPaginationCount={roundedPaginationCount}
+        currentPage={currentPage}
       />
+      <button
+        type="button"
+        onClick={() => setCurrentPage(currentPage + 1)}
+        disabled={currentPage === roundedPaginationCount}
+      >
+        Next
+      </button>
       <Select
         options={options}
         onChange={(e: any) => setSelectedOption(e.value)}

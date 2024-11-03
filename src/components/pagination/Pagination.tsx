@@ -1,7 +1,9 @@
 import { FC } from 'react';
 import './_pagination.scss';
+import PaginationItems from './PaginationItems';
 
-interface PaginationProps {
+export interface PaginationProps {
+  currentPage: number;
   onSetCurrentPage: (pageNo: number) => void;
   roundedPaginationCount: number;
 }
@@ -9,6 +11,7 @@ interface PaginationProps {
 const Pagination: FC<PaginationProps> = ({
   onSetCurrentPage,
   roundedPaginationCount,
+  currentPage,
 }) => {
   const pageRange = Array.from(
     { length: roundedPaginationCount },
@@ -19,14 +22,12 @@ const Pagination: FC<PaginationProps> = ({
     <article>
       <ul className="pagination">
         {pageRange.map((paginationCount) => (
-          <li className="pagination-item" key={paginationCount}>
-            <button
-              type="button"
-              onClick={() => onSetCurrentPage(paginationCount)}
-            >
-              {paginationCount}
-            </button>
-          </li>
+          <PaginationItems
+            key={paginationCount}
+            onSetCurrentPage={onSetCurrentPage}
+            paginationCount={paginationCount}
+            currentPage={currentPage}
+          />
         ))}
       </ul>
     </article>

@@ -24,9 +24,9 @@
         padding: 9px;
       }
 
-      &:focus {
-        border: var(--focus);
-        outline: none;
+      &:focus-visible {
+        background-color: $color-blue;
+        color: $color-white;
       }
 
       &.last-of-type {
