@@ -5,7 +5,7 @@ const getFirstSixRecords = async (_, res) => {
     const latestRecords = await Record.find().sort({ _id: -1 }).limit(6);
     res.json(latestRecords);
   } catch (error) {
-    res.status(201).json({ message: error });
+    res.status(500).json({ message: error.message });
   }
 };
 
@@ -13,7 +13,7 @@ const getPaginatedRecords = async (req, res) => {
   try {
     res.json(res.paginatedResults);
   } catch (error) {
-    res.json({ message: error });
+    res.status(500).json({ message: error.message });
   }
 };
 
@@ -23,47 +23,24 @@ const getRecordById = async (req, res) => {
     const record = await Record.findById(recordId);
     res.json(record);
   } catch (error) {
-    res.json({ message: error });
+    res.status(500).json({ message: error.message });
   }
 };
 
-//Post requests
+// Post requests
 const postCreateRecord = async (req, res) => {
-  const {
-    artist,
-    title,
-    prodYear,
-    label,
-    origin,
-    price,
-    recordNo,
-    numOfRecords,
-    released,
-    info,
-  } = req.body;
-  const file = req.file ? req.file.filename : '';
-  const record = new Record({
-    artist,
-    title,
-    prodYear,
-    label,
-    origin,
-    price,
-    recordNo,
-    numOfRecords,
-    released,
-    info,
-    photo: file,
-  });
+  const recordData = {
+    ...req.body,
+    photo: req.file ? req.file.filename : '',
+  };
 
-  await record
-    .save()
-    .then((data) => {
-      res.json(data);
-    })
-    .catch((err) => {
-      res.json({ message: err });
-    });
+  try {
+    const record = new Record(recordData);
+    const savedRecord = await record.save();
+    res.json(savedRecord);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
 };
 
 const postPhoto = async (req, res) => {
@@ -72,62 +49,34 @@ const postPhoto = async (req, res) => {
   try {
     const record = await Record.updateOne(
       { _id: req.params.recordId },
-
-      {
-        $set: {
-          photo: file,
-        },
-      },
+      { $set: { photo: file } },
     );
     res.json(record);
   } catch (error) {
-    res.json({ message: error });
+    res.status(500).json({ message: error.message });
   }
 };
 
 const postUpdateRecord = async (req, res) => {
+  const updatedData = { ...req.body };
+
   try {
-    const {
-      artist,
-      title,
-      prodYear,
-      label,
-      origin,
-      price,
-      recordNo,
-      numOfRecords,
-      released,
-      info,
-    } = req.body;
-    const updatedPost = await Record.updateOne(
+    const updatedRecord = await Record.updateOne(
       { _id: req.params.recordId },
-      {
-        $set: {
-          artist,
-          title,
-          prodYear,
-          label,
-          origin,
-          price,
-          recordNo,
-          numOfRecords,
-          released,
-          info,
-        },
-      },
+      { $set: updatedData },
     );
-    res.json(updatedPost);
+    res.json(updatedRecord);
   } catch (error) {
-    res.json({ message: error });
+    res.status(500).json({ message: error.message });
   }
 };
 
 const deleteRecord = async (req, res) => {
   try {
-    const removedPost = await Record.deleteOne({ _id: req.params.recordId });
-    res.json(removedPost);
+    const removedRecord = await Record.deleteOne({ _id: req.params.recordId });
+    res.json(removedRecord);
   } catch (error) {
-    res.json({ message: error });
+    res.status(500).json({ message: error.message });
   }
 };
 
