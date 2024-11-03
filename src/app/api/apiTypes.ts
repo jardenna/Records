@@ -14,8 +14,8 @@ export interface Record {
 }
 
 export interface Pagination {
-  limit: string;
-  pageNo: string;
+  limit: number;
+  pageNo: number;
 }
 
 export interface RecordsResponse {

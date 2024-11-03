@@ -27,7 +27,7 @@ const paginatedResults = (model) => {
     } catch (error) {
       res.status(500).json({ message: error.message });
     }
-    // recordCount
+
     try {
       results.results = await model
         .find()

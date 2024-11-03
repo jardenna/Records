@@ -1,23 +1,33 @@
 import { FC } from 'react';
 import './_pagination.scss';
 
-interface PaginationProps {}
+interface PaginationProps {
+  onSetCurrentPage: (pageNo: number) => void;
+  roundedPaginationCount: number;
+}
 
-const Pagination: FC<PaginationProps> = () => {
-  console.log(123);
+const Pagination: FC<PaginationProps> = ({
+  onSetCurrentPage,
+  roundedPaginationCount,
+}) => {
+  const pageRange = Array.from(
+    { length: roundedPaginationCount },
+    (_, i) => i + 1,
+  );
 
   return (
     <article>
       <ul className="pagination">
-        <li className="pagination-item">
-          <button type="button">1</button>
-        </li>
-        <li className="pagination-item">
-          <button type="button">2</button>
-        </li>
-        <li className="pagination-item">
-          <button type="button">3</button>
-        </li>
+        {pageRange.map((paginationCount) => (
+          <li className="pagination-item" key={paginationCount}>
+            <button
+              type="button"
+              onClick={() => onSetCurrentPage(paginationCount)}
+            >
+              {paginationCount}
+            </button>
+          </li>
+        ))}
       </ul>
     </article>
   );
