@@ -6,8 +6,8 @@ import endpoints from '../../app/endpoints';
 export const recordsApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     getPaginatedRecords: builder.query<RecordsResponse, Pagination>({
-      query: ({ pageNo, limit }) =>
-        `${endpoints.records}?page=${pageNo}&limit=${limit}`,
+      query: ({ page, limit }) =>
+        `${endpoints.records}?page=${page}&limit=${limit}`,
       transformResponse: (responseData: any) => transformId(responseData),
       providesTags: ['Records'],
     }),

@@ -15,7 +15,7 @@ export interface Record {
 
 export interface Pagination {
   limit: number;
-  pageNo: number;
+  page: number;
 }
 
 export interface RecordsResponse {
