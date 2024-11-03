@@ -21,5 +21,6 @@ export interface Pagination {
 export interface RecordsResponse {
   next: Pagination;
   previous: Pagination;
+  recordsCount: number;
   results: Record[];
 }
