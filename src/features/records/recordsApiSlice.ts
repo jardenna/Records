@@ -9,6 +9,7 @@ export const recordsApiSlice = apiSlice.injectEndpoints({
       query: ({ pageNo, limit }) =>
         `${endpoints.records}?page=${pageNo}&limit=${limit}`,
       transformResponse: (responseData: any) => transformId(responseData),
+      providesTags: ['Records'],
     }),
   }),
 });

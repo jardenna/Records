@@ -1,0 +1,70 @@
+﻿@use '../../scss/globals' as *;
+
+.pagination {
+  display: flex;
+  justify-content: center;
+
+  .pagination-item {
+    display: flex;
+    align-items: center;
+
+    button {
+      padding: 8px 15px;
+      border: 1px solid $color-gray-dark;
+      border-right: none;
+      color: inherit;
+      display: block;
+      min-width: 48px;
+
+      @include max-size($medium) {
+        min-width: auto;
+      }
+
+      @include max-size($small) {
+        padding: 9px;
+      }
+
+      &:focus {
+        border: var(--focus);
+        outline: none;
+      }
+
+      &.last-of-type {
+        border-right: 1px solid $color-gray-dark;
+      }
+
+      &.active {
+        background-color: $color-blue;
+        color: $color-white;
+
+        &:hover {
+          cursor: default;
+        }
+      }
+
+      &:hover {
+        background-color: $color-blue;
+        color: $color-white;
+      }
+    }
+
+    &.disabled {
+      .chevron-right,
+      .chevron-left {
+        &::after {
+          border-color: $color-gray;
+        }
+      }
+
+      &:hover {
+        background-color: $color-white;
+      }
+    }
+  }
+
+  .pagination-wrapper {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+}

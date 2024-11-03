@@ -1,6 +1,8 @@
+@use './globals' as *;
+
 a[class^='btn-'],
 button {
-  @include mQ($small) {
+  @include max-size($small) {
     min-width: 140px;
   }
 

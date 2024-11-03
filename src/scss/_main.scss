@@ -1,5 +1,9 @@
 @use './globals' as *;
 
+:root {
+  --focus: 1px dotted;
+}
+
 * {
   box-sizing: border-box;
 }
