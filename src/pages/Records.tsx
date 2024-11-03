@@ -1,6 +1,6 @@
 import { FC, useState } from 'react';
 import Select from 'react-select';
-import { useGetAllRecordsQuery } from '../features/records/recordsApiSlice';
+import { useGetPaginatedRecordsQuery } from '../features/records/recordsApiSlice';
 
 interface RecordsProps {}
 
@@ -14,7 +14,7 @@ const options = [
 const Records: FC<RecordsProps> = () => {
   const [selectedOption, setSelectedOption] = useState('10');
 
-  const { data: records } = useGetAllRecordsQuery({
+  const { data: records } = useGetPaginatedRecordsQuery({
     pageNo: '1',
     limit: selectedOption,
   });

@@ -23,6 +23,12 @@ const paginatedResults = (model) => {
     }
 
     try {
+      results.recordsCount = await model.countDocuments().exec();
+    } catch (error) {
+      res.status(500).json({ message: error.message });
+    }
+    // recordCount
+    try {
       results.results = await model
         .find()
         .sort([['date', -1]])

@@ -1,6 +1,6 @@
 import Record from '../models/RecordsModel.js';
 
-const getNumOfRecords = async (_, res) => {
+const getFirstSixRecords = async (_, res) => {
   try {
     const latestRecords = await Record.find().sort({ _id: -1 }).limit(6);
     res.json(latestRecords);
@@ -9,7 +9,7 @@ const getNumOfRecords = async (_, res) => {
   }
 };
 
-const getAllRecords = async (req, res) => {
+const getPaginatedRecords = async (req, res) => {
   try {
     res.json(res.paginatedResults);
   } catch (error) {
@@ -133,8 +133,8 @@ const deleteRecord = async (req, res) => {
 
 export {
   deleteRecord,
-  getAllRecords,
-  getNumOfRecords,
+  getFirstSixRecords,
+  getPaginatedRecords,
   getRecordById,
   postCreateRecord,
   postPhoto,
