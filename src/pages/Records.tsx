@@ -45,7 +45,7 @@ const Records: FC = () => {
       </div>
       <Pagination
         currentPage={currentPage}
-        onPageClick={onPaginationItemClick}
+        onPaginationItemClick={onPaginationItemClick}
         onPaginationAction={onPaginationAction}
         pageLimit={pageLimit}
         pageRange={pageRange}

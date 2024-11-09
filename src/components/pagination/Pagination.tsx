@@ -3,8 +3,8 @@ import PaginationItems from './PaginationItems';
 
 interface PaginationProps {
   currentPage: number;
-  onPageClick: (page: number) => void;
   onPaginationAction: (action: string) => void;
+  onPaginationItemClick: (page: number) => void;
   pageLimit: number;
   pageRange: number[];
   totalPageCount: number;
@@ -16,7 +16,7 @@ const Pagination: FC<PaginationProps> = ({
   totalPageCount,
   pageLimit,
   onPaginationAction,
-  onPageClick,
+  onPaginationItemClick,
 }) => (
   <article>
     <ul className="pagination">
@@ -52,10 +52,10 @@ const Pagination: FC<PaginationProps> = ({
       </li>
 
       {/* Page Numbers */}
-      {pageRange.map((page: any) => (
+      {pageRange.map((page) => (
         <PaginationItems
           key={page}
-          onSetCurrentPage={onPageClick}
+          onSetCurrentPage={onPaginationItemClick}
           paginationCount={page}
           currentPage={currentPage}
         />
