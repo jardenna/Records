@@ -31,7 +31,12 @@ const Pagination: FC<PaginationProps> = ({
           onClick={() => onPaginationAction(PaginationActionEnum.First)}
           disabled={currentPage === 1}
         >
-          2 chevron First
+          <Icon
+            name={IconName.ChevronsLeft}
+            title="Go to last page"
+            ariaHidden
+          />
+          First
         </button>
       </li>
       {/* Prev Page */}
@@ -41,7 +46,12 @@ const Pagination: FC<PaginationProps> = ({
           onClick={() => onPaginationAction(PaginationActionEnum.Prev)}
           disabled={currentPage === 1}
         >
-          <span className="chevron-left" aria-hidden="true" /> Prev
+          <Icon
+            name={IconName.ChevronLeft}
+            title="Go to last page"
+            ariaHidden
+          />
+          Prev
         </button>
       </li>
 
@@ -91,7 +101,12 @@ const Pagination: FC<PaginationProps> = ({
           onClick={() => onPaginationAction(PaginationActionEnum.Next)}
           disabled={currentPage === totalPageCount}
         >
-          Next <span className="chevron-right" aria-hidden="true" />
+          Next{' '}
+          <Icon
+            name={IconName.ChevronRight}
+            title="Go to last page"
+            ariaHidden
+          />
         </button>
       </li>
       {/* Last Page */}
@@ -102,10 +117,9 @@ const Pagination: FC<PaginationProps> = ({
           disabled={currentPage === totalPageCount}
         >
           Last
-          <span className="chevron-last" aria-hidden="true" />
           <Icon
-            name={IconName.ChevronsLeft}
-            title="Go to last page"
+            name={IconName.ChevronsRight}
+            title="Go to first page"
             ariaHidden
           />
         </button>
