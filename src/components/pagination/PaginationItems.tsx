@@ -3,29 +3,30 @@ import Button from '../Button';
 
 interface PaginationItemsProps {
   ariaLabel: string;
-  currentPage: number;
   onSetCurrentPage: (pageNo: number) => void;
   paginationCount: number;
-  ariaDescribedby?: boolean;
+  ariaDescribedby?: string;
+  isBtnSelected?: boolean;
 }
 
 const PaginationItems: FC<PaginationItemsProps> = ({
   onSetCurrentPage,
   paginationCount,
-  currentPage,
   ariaLabel,
+  isBtnSelected,
   ariaDescribedby,
 }) => (
   <li className="pagination-item">
     <Button
       ariaLabel={ariaLabel}
-      className={` ${currentPage === paginationCount ? 'active' : ''}`}
+      className={`${isBtnSelected ? 'active' : ''}`}
       onClick={() => onSetCurrentPage(paginationCount)}
+      isBtnSelected={isBtnSelected}
       ariaDescribedby={ariaDescribedby}
     >
       {paginationCount}
-      {ariaDescribedby && (
-        <span id="current-status" className="visually-hidden">
+      {isBtnSelected && (
+        <span id={ariaDescribedby} className="visually-hidden">
           Currently selected
         </span>
       )}
