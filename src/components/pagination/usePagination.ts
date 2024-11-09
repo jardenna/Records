@@ -54,6 +54,11 @@ const usePagination = ({
     setPageRange(pages);
   }, [currentPage, totalPageCount, pageLimit]);
 
+  // Set currentPage to 1 when rowsPerPage is changes
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [rowsPerPage]);
+
   // Handle clicking on a specific page
   const handlePaginationItemClick = (page: number) => {
     setCurrentPage(Math.max(1, Math.min(page, totalPageCount))); // keep within bounds

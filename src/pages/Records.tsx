@@ -40,17 +40,22 @@ const Records: FC = () => {
       <h1>Records</h1>
       {records && <RecordTable records={records.results} />}
       <div>
-        {rowsCount * currentPage} of {totalCount} records
+        {rowsCount} of {totalCount} records
+        {/* btn 1 = 1 - 10 records
+       btn 2 = 11 - 21 records
+       btn 3 = 22 - 32 records */}
       </div>
-      <Pagination
-        currentPage={currentPage}
-        onPaginationItemClick={onPaginationItemClick}
-        onPaginationAction={onPaginationAction}
-        pageLimit={pageLimit}
-        pageRange={pageRange}
-        totalPageCount={totalPageCount}
-      />
-
+      {pageRange.length > 1 && (
+        <Pagination
+          currentPage={currentPage}
+          onPaginationItemClick={onPaginationItemClick}
+          onPaginationAction={onPaginationAction}
+          pageLimit={pageLimit}
+          pageRange={pageRange}
+          totalPageCount={totalPageCount}
+        />
+      )}
+      Results per page
       <Select
         options={[
           { value: 10, label: '10' },
