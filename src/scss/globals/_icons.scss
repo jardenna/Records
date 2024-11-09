@@ -1,0 +1,67 @@
+@use './mixins' as *;
+@use './colors' as *;
+
+.chevron-left {
+  &::after {
+    content: '';
+
+    @include chevron($dir: left);
+  }
+}
+
+.chevron-right {
+  &::after {
+    content: '';
+
+    @include chevron($dir: right);
+  }
+}
+
+.chevron-down {
+  &::after {
+    content: '';
+
+    @include chevron($dir: down);
+  }
+}
+
+.chevron-up {
+  &::after {
+    content: '';
+
+    @include chevron;
+  }
+}
+
+.icon-checkmark {
+  display: inline-block;
+
+  &::after {
+    content: '';
+    display: block;
+    width: 3px;
+    height: 6px;
+    border: 1px solid $color-black;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+  }
+}
+
+.icon-x {
+  background: none;
+  padding: 30px;
+  margin: 0;
+  min-width: auto;
+
+  &::after {
+    content: '+';
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    font-size: 19px;
+    font-weight: 500;
+    transform: rotate(45deg);
+    cursor: pointer;
+    color: $color-primary-text;
+  }
+}

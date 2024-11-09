@@ -1,11 +1,12 @@
 import { FC } from 'react';
+import Button from '../Button';
 import PaginationItems from './PaginationItems';
 import './_pagination.scss';
 import { PaginationActionEnum } from './usePagination';
 
 interface PaginationProps {
   currentPage: number;
-  onPaginationAction: (action: PaginationActionEnum) => void;
+  onPaginationAction: (action: any) => void;
   onPaginationItemClick: (page: number) => void;
   pageLimit: number;
   pageRange: number[];
@@ -19,92 +20,97 @@ const Pagination: FC<PaginationProps> = ({
   pageLimit,
   onPaginationAction,
   onPaginationItemClick,
-}) => (
-  <article>
-    <ul className="pagination">
-      {/* Jump Previous */}
-      {currentPage > pageLimit && (
+}) => {
+  console.log(totalPageCount);
+
+  return (
+    <article>
+      <ul className="pagination">
+        {/* First Page */}
         <li className="pagination-item">
           <button
             type="button"
+            onClick={() => onPaginationAction(PaginationActionEnum.First)}
+            disabled={currentPage === 1}
+          >
+            1
+          </button>
+        </li>
+        {/* Jump Previous */}
+
+        <li className="pagination-item">
+          <Button
+            disabled={currentPage < pageLimit}
             onClick={() =>
               onPaginationAction(PaginationActionEnum.PrevPaginationItem)
             }
           >
-            Jump Previous
-          </button>
+            <span aria-hidden="true">...</span>
+            <span className="visually-hidden">Jump Previous</span>
+          </Button>
         </li>
-      )}
 
-      {/* First Page */}
-      <li className="pagination-item">
-        <button
-          type="button"
-          onClick={() => onPaginationAction(PaginationActionEnum.First)}
-          disabled={currentPage === 1}
-        >
-          First
-        </button>
-      </li>
-
-      {/* Prev Page */}
-      <li className="pagination-item">
-        <button
-          type="button"
-          onClick={() => onPaginationAction(PaginationActionEnum.Prev)}
-          disabled={currentPage === 1}
-        >
-          Prev
-        </button>
-      </li>
-
-      {/* Page Numbers */}
-      {pageRange.map((page) => (
-        <PaginationItems
-          key={page}
-          onSetCurrentPage={onPaginationItemClick}
-          paginationCount={page}
-          currentPage={currentPage}
-        />
-      ))}
-
-      {/* Next Page */}
-      <li className="pagination-item">
-        <button
-          type="button"
-          onClick={() => onPaginationAction(PaginationActionEnum.Next)}
-          disabled={currentPage === totalPageCount}
-        >
-          Next
-        </button>
-      </li>
-
-      {/* Jump Next */}
-      {currentPage < totalPageCount - pageLimit && (
+        {/* Prev Page */}
         <li className="pagination-item">
           <button
             type="button"
-            onClick={() =>
-              onPaginationAction(PaginationActionEnum.NextPaginationItem)
-            }
+            onClick={() => onPaginationAction(PaginationActionEnum.Prev)}
+            disabled={currentPage === 1}
           >
-            Jump Next
+            Prev
           </button>
         </li>
-      )}
 
-      {/* Last Page */}
-      <li className="pagination-item">
-        <button
-          type="button"
-          onClick={() => onPaginationAction(PaginationActionEnum.Last)}
-          disabled={currentPage === totalPageCount}
-        >
-          Last
-        </button>
-      </li>
-    </ul>
-  </article>
-);
+        {/* Page Numbers */}
+        {pageRange.map((page) => (
+          <PaginationItems
+            key={page}
+            onSetCurrentPage={onPaginationItemClick}
+            paginationCount={page}
+            currentPage={currentPage}
+            ariaLabel={`Page ${page} of ${totalPageCount}`}
+            ariaDescribedby={page === currentPage ? 'current-status' : ''}
+          />
+        ))}
+
+        {/* Next Page */}
+        <li className="pagination-item">
+          <button
+            type="button"
+            onClick={() => onPaginationAction(PaginationActionEnum.Next)}
+            disabled={currentPage === totalPageCount}
+          >
+            Next
+          </button>
+        </li>
+
+        {/* Jump Next */}
+        {currentPage < totalPageCount - pageLimit && (
+          <li className="pagination-item">
+            <button
+              type="button"
+              onClick={() =>
+                onPaginationAction(PaginationActionEnum.NextPaginationItem)
+              }
+            >
+              Jump Next
+            </button>
+          </li>
+        )}
+
+        {/* Last Page */}
+        <li className="pagination-item">
+          <button
+            type="button"
+            onClick={() => onPaginationAction(PaginationActionEnum.Last)}
+            disabled={currentPage === totalPageCount}
+          >
+            {totalPageCount}
+          </button>
+        </li>
+      </ul>
+    </article>
+  );
+};
 
 export default Pagination;

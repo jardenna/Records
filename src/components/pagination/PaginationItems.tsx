@@ -1,24 +1,33 @@
 import { FC } from 'react';
+import Button from '../Button';
 
 interface PaginationItemsProps {
+  ariaLabel: string;
   currentPage: number;
   onSetCurrentPage: (pageNo: number) => void;
   paginationCount: number;
+  ariaDescribedby?: string;
 }
 
 const PaginationItems: FC<PaginationItemsProps> = ({
   onSetCurrentPage,
   paginationCount,
   currentPage,
+  ariaLabel,
+  ariaDescribedby,
 }) => (
   <li className="pagination-item">
-    <button
-      type="button"
+    <Button
+      ariaLabel={ariaLabel}
       className={` ${currentPage === paginationCount ? 'active' : ''}`}
       onClick={() => onSetCurrentPage(paginationCount)}
+      ariaDescribedby={ariaDescribedby}
     >
       {paginationCount}
-    </button>
+      <span id="current-status" className="visually-hidden">
+        Currently selected
+      </span>
+    </Button>
   </li>
 );
 

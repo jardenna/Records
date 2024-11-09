@@ -16,17 +16,9 @@
       display: block;
       min-width: 48px;
 
-      @include max-size($medium) {
-        min-width: auto;
-      }
-
-      @include max-size($small) {
-        padding: 9px;
-      }
-
-      &:focus-visible {
-        background-color: $color-blue;
-        color: $color-white;
+      &:focus {
+        border: var(--focus);
+        outline: none;
       }
 
       &.last-of-type {

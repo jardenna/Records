@@ -43,3 +43,12 @@ a {
   padding: 30px;
   width: 100%;
 }
+
+.visually-hidden {
+  clip: rect(1px, 1px, 1px, 1px);
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  height: 1px;
+  width: 1px;
+}
