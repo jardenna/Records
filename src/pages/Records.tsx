@@ -7,7 +7,6 @@ import {
   useGetPaginatedRecordsQuery,
 } from '../features/records/recordsApiSlice';
 
-import '../components/pagination/_pagination.scss';
 import Pagination from '../components/pagination/Pagination';
 
 const Records: FC = () => {

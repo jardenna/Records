@@ -1,9 +1,11 @@
 import { FC } from 'react';
 import PaginationItems from './PaginationItems';
+import './_pagination.scss';
+import { PaginationActionEnum } from './usePagination';
 
 interface PaginationProps {
   currentPage: number;
-  onPaginationAction: (action: string) => void;
+  onPaginationAction: (action: PaginationActionEnum) => void;
   onPaginationItemClick: (page: number) => void;
   pageLimit: number;
   pageRange: number[];
@@ -23,7 +25,12 @@ const Pagination: FC<PaginationProps> = ({
       {/* Jump Previous */}
       {currentPage > pageLimit && (
         <li className="pagination-item">
-          <button type="button" onClick={() => onPaginationAction('jump-prev')}>
+          <button
+            type="button"
+            onClick={() =>
+              onPaginationAction(PaginationActionEnum.PrevPaginationItem)
+            }
+          >
             Jump Previous
           </button>
         </li>
@@ -33,7 +40,7 @@ const Pagination: FC<PaginationProps> = ({
       <li className="pagination-item">
         <button
           type="button"
-          onClick={() => onPaginationAction('first')}
+          onClick={() => onPaginationAction(PaginationActionEnum.First)}
           disabled={currentPage === 1}
         >
           First
@@ -44,7 +51,7 @@ const Pagination: FC<PaginationProps> = ({
       <li className="pagination-item">
         <button
           type="button"
-          onClick={() => onPaginationAction('prev')}
+          onClick={() => onPaginationAction(PaginationActionEnum.Prev)}
           disabled={currentPage === 1}
         >
           Prev
@@ -65,7 +72,7 @@ const Pagination: FC<PaginationProps> = ({
       <li className="pagination-item">
         <button
           type="button"
-          onClick={() => onPaginationAction('next')}
+          onClick={() => onPaginationAction(PaginationActionEnum.Next)}
           disabled={currentPage === totalPageCount}
         >
           Next
@@ -75,7 +82,12 @@ const Pagination: FC<PaginationProps> = ({
       {/* Jump Next */}
       {currentPage < totalPageCount - pageLimit && (
         <li className="pagination-item">
-          <button type="button" onClick={() => onPaginationAction('jump-next')}>
+          <button
+            type="button"
+            onClick={() =>
+              onPaginationAction(PaginationActionEnum.NextPaginationItem)
+            }
+          >
             Jump Next
           </button>
         </li>
@@ -85,7 +97,7 @@ const Pagination: FC<PaginationProps> = ({
       <li className="pagination-item">
         <button
           type="button"
-          onClick={() => onPaginationAction('last')}
+          onClick={() => onPaginationAction(PaginationActionEnum.Last)}
           disabled={currentPage === totalPageCount}
         >
           Last

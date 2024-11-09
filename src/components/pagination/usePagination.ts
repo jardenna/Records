@@ -1,5 +1,14 @@
 import { useEffect, useState } from 'react';
 
+export enum PaginationActionEnum {
+  First = 'First',
+  Last = 'Last',
+  Next = 'Next',
+  NextPaginationItem = 'jump-next',
+  Prev = 'Prev',
+  PrevPaginationItem = 'jump-prev',
+}
+
 interface UsePaginationProps {
   pageLimit: number;
   rowsPerPage: number;
@@ -50,24 +59,24 @@ const usePagination = ({
     setCurrentPage(Math.max(1, Math.min(page, totalPageCount))); // keep within bounds
   };
   // Unified pagination handler
-  const handlePaginationAction = (action: string) => {
+  const handlePaginationAction = (action: PaginationActionEnum) => {
     switch (action) {
-      case 'first':
+      case PaginationActionEnum.First:
         handlePaginationItemClick(1);
         break;
-      case 'prev':
+      case PaginationActionEnum.Prev:
         handlePaginationItemClick(currentPage - 1);
         break;
-      case 'next':
+      case PaginationActionEnum.Next:
         handlePaginationItemClick(currentPage + 1);
         break;
-      case 'last':
+      case PaginationActionEnum.Last:
         handlePaginationItemClick(totalPageCount);
         break;
-      case 'jump-prev':
+      case PaginationActionEnum.PrevPaginationItem:
         handlePaginationItemClick(Math.max(1, currentPage - pageLimit));
         break;
-      case 'jump-next':
+      case PaginationActionEnum.NextPaginationItem:
         handlePaginationItemClick(
           Math.min(totalPageCount, currentPage + pageLimit),
         );
