@@ -7,7 +7,7 @@ import { BtnType, ButtonEventType } from '../types/types';
 interface ButtonProps {
   children: ReactNode;
   ariaControls?: string;
-  ariaDescribedby?: string;
+  ariaDescribedby?: boolean;
   ariaExpanded?: boolean;
   ariaLabel?: string;
   ariaSelected?: boolean;
@@ -59,7 +59,7 @@ const Button: FC<ButtonProps> = ({
     className={`btn btn-${variant} ${className}`}
     disabled={disabled}
     name={name}
-    aria-describedby={ariaDescribedby}
+    aria-describedby={ariaDescribedby ? 'current-status' : undefined}
   >
     {children}
   </button>

@@ -6,7 +6,7 @@ interface PaginationItemsProps {
   currentPage: number;
   onSetCurrentPage: (pageNo: number) => void;
   paginationCount: number;
-  ariaDescribedby?: string;
+  ariaDescribedby?: boolean;
 }
 
 const PaginationItems: FC<PaginationItemsProps> = ({
@@ -24,9 +24,11 @@ const PaginationItems: FC<PaginationItemsProps> = ({
       ariaDescribedby={ariaDescribedby}
     >
       {paginationCount}
-      <span id="current-status" className="visually-hidden">
-        Currently selected
-      </span>
+      {ariaDescribedby && (
+        <span id="current-status" className="visually-hidden">
+          Currently selected
+        </span>
+      )}
     </Button>
   </li>
 );
