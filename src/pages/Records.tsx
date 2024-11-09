@@ -1,87 +1,158 @@
 import { FC, useState } from 'react';
 import Select from 'react-select';
-import Pagination from '../components/pagination/Pagination';
+import '../components/pagination/_pagination.scss';
+import PaginationItems from '../components/pagination/PaginationItems';
+import usePagination from '../components/pagination/usePagination';
+import RecordTable from '../components/recordTable/RecordTable';
 import { useGetPaginatedRecordsQuery } from '../features/records/recordsApiSlice';
 
 const Records: FC = () => {
   const [rowsCount, setRowsCount] = useState(50);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [startPage, setStartPage] = useState(1);
 
+  // Initialize the pagination hook
+  const {
+    currentPage,
+    pageRange,
+    totalPageCount,
+    handlePageClick, // keep this for specific page clicks
+  } = usePagination({
+    totalCount: 70, // initial count set to 0 until records data is available
+    rowsPerPage: rowsCount,
+    pageLimit: 5,
+  });
+
+  // Fetch records based on the current page and rows per page
   const { data: records } = useGetPaginatedRecordsQuery({
     page: currentPage,
     limit: rowsCount,
   });
 
-  console.log(records);
+  // Update total count in usePagination when records are fetched
+  const totalCount = records?.recordsCount || 0;
 
-  const options = [
-    { value: 10, label: '10' },
-    { value: 20, label: '20' },
-    { value: 50, label: '50' },
-    { value: records?.recordsCount, label: 'All' },
-  ];
-
-  const pageLimit = 5;
-  const paginationCount = records
-    ? Math.ceil(records.recordsCount / rowsCount)
-    : 1;
-
-  const handlePrevious = () => {
-    const newStartPage = Math.max(startPage - pageLimit, 1);
-    setStartPage(newStartPage);
-    setCurrentPage(newStartPage);
-  };
-
-  const handleNext = () => {
-    const newStartPage = Math.min(
-      startPage + pageLimit,
-      paginationCount - pageLimit + 1,
-    );
-    setStartPage(newStartPage);
-    setCurrentPage(newStartPage);
-  };
-
-  const handlePageClick = (page: number) => {
-    setCurrentPage(page);
-    if (page < startPage) {
-      setStartPage(page);
-    } else if (page >= startPage + pageLimit) {
-      setStartPage(page - pageLimit + 1);
+  // Unified pagination handler
+  const handlePaginationAction = (action: string) => {
+    switch (action) {
+      case 'first':
+        handlePageClick(1);
+        break;
+      case 'prev':
+        handlePageClick(currentPage - 1);
+        break;
+      case 'next':
+        handlePageClick(currentPage + 1);
+        break;
+      case 'last':
+        handlePageClick(totalPageCount);
+        break;
+      case 'jump-prev':
+        // Assuming jump is by 5 pages; adjust as needed
+        handlePageClick(Math.max(1, currentPage - 5));
+        break;
+      case 'jump-next':
+        handlePageClick(Math.min(totalPageCount, currentPage + 5));
+        break;
+      default:
+        break;
     }
-  };
-
-  const handleFirstPage = () => {
-    setCurrentPage(1);
-    setStartPage(1);
-  };
-
-  const handleLastPage = () => {
-    setCurrentPage(paginationCount);
-    setStartPage(paginationCount - pageLimit + 1);
   };
 
   return (
     <section>
       <h1>Records</h1>
+      {records && <RecordTable records={records?.results} />}
       <div>
-        {rowsCount} of {records?.recordsCount} records
+        {rowsCount} of {totalCount} records
       </div>
+      <ul className="pagination">
+        {/* Jump Previous */}
+        {currentPage > 5 && (
+          <li className="pagination-item">
+            <button
+              type="button"
+              onClick={() => handlePaginationAction('jump-prev')}
+            >
+              Jump Previous
+            </button>
+          </li>
+        )}
 
-      <Pagination
-        currentPage={currentPage}
-        handleFirstPage={handleFirstPage}
-        handleLastPage={handleLastPage}
-        handleNext={handleNext}
-        handlePageClick={handlePageClick}
-        handlePrevious={handlePrevious}
-        paginationCount={paginationCount}
-        startPage={startPage}
-      />
+        {/* First Page */}
+        <li className="pagination-item">
+          <button
+            type="button"
+            onClick={() => handlePaginationAction('first')}
+            disabled={currentPage === 1}
+          >
+            First
+          </button>
+        </li>
+
+        {/* Prev Page */}
+        <li className="pagination-item">
+          <button
+            type="button"
+            onClick={() => handlePaginationAction('prev')}
+            disabled={currentPage === 1}
+          >
+            Prev
+          </button>
+        </li>
+
+        {/* Page Numbers */}
+        {pageRange.map((page: any) => (
+          <PaginationItems
+            key={page}
+            onSetCurrentPage={handlePageClick}
+            paginationCount={page}
+            currentPage={currentPage}
+          />
+        ))}
+
+        {/* Next Page */}
+        <li className="pagination-item">
+          <button
+            type="button"
+            onClick={() => handlePaginationAction('next')}
+            disabled={currentPage === totalPageCount}
+          >
+            Next
+          </button>
+        </li>
+
+        {/* Jump Next */}
+        {currentPage < totalPageCount - 5 && (
+          <li className="pagination-item">
+            <button
+              type="button"
+              onClick={() => handlePaginationAction('jump-next')}
+            >
+              Jump Next
+            </button>
+          </li>
+        )}
+
+        {/* Last Page */}
+        <li className="pagination-item">
+          <button
+            type="button"
+            onClick={() => handlePaginationAction('last')}
+            disabled={currentPage === totalPageCount}
+          >
+            Last
+          </button>
+        </li>
+      </ul>
+
       <Select
-        options={options}
+        options={[
+          { value: 10, label: '10' },
+          { value: 20, label: '20' },
+          { value: 50, label: '50' },
+          { value: totalCount, label: 'All' },
+        ]}
         onChange={(e: any) => setRowsCount(e.value)}
-        value={options.find((option) => option.value === rowsCount)}
+        value={{ value: rowsCount, label: String(rowsCount) }}
       />
     </section>
   );
