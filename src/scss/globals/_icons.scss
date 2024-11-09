@@ -17,6 +17,14 @@
   }
 }
 
+.chevron-last {
+  &::before {
+    content: '';
+
+    @include chevron($dir: right);
+  }
+}
+
 .chevron-down {
   &::after {
     content: '';

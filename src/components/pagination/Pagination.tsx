@@ -1,5 +1,6 @@
 import { FC } from 'react';
 import Button from '../Button';
+import Icon, { IconName } from '../icons/Icon';
 import PaginationItems from './PaginationItems';
 import './_pagination.scss';
 import { PaginationActionEnum } from './usePagination';
@@ -23,16 +24,6 @@ const Pagination: FC<PaginationProps> = ({
 }) => (
   <article>
     <ul className="pagination">
-      {/* Prev Page */}
-      <li className="pagination-item">
-        <button
-          type="button"
-          onClick={() => onPaginationAction(PaginationActionEnum.Prev)}
-          disabled={currentPage === 1}
-        >
-          Prev
-        </button>
-      </li>
       {/* First Page */}
       <li className="pagination-item">
         <button
@@ -40,9 +31,20 @@ const Pagination: FC<PaginationProps> = ({
           onClick={() => onPaginationAction(PaginationActionEnum.First)}
           disabled={currentPage === 1}
         >
-          1
+          2 chevron First
         </button>
       </li>
+      {/* Prev Page */}
+      <li className="pagination-item">
+        <button
+          type="button"
+          onClick={() => onPaginationAction(PaginationActionEnum.Prev)}
+          disabled={currentPage === 1}
+        >
+          <span className="chevron-left" aria-hidden="true" /> Prev
+        </button>
+      </li>
+
       {/* Jump Previous */}
       <li className="pagination-item">
         <Button
@@ -82,16 +84,6 @@ const Pagination: FC<PaginationProps> = ({
         </li>
       )}
 
-      {/* Last Page */}
-      <li className="pagination-item">
-        <button
-          type="button"
-          onClick={() => onPaginationAction(PaginationActionEnum.Last)}
-          disabled={currentPage === totalPageCount}
-        >
-          {totalPageCount}
-        </button>
-      </li>
       {/* Next Page */}
       <li className="pagination-item">
         <button
@@ -99,7 +91,23 @@ const Pagination: FC<PaginationProps> = ({
           onClick={() => onPaginationAction(PaginationActionEnum.Next)}
           disabled={currentPage === totalPageCount}
         >
-          Next
+          Next <span className="chevron-right" aria-hidden="true" />
+        </button>
+      </li>
+      {/* Last Page */}
+      <li className="pagination-item">
+        <button
+          type="button"
+          onClick={() => onPaginationAction(PaginationActionEnum.Last)}
+          disabled={currentPage === totalPageCount}
+        >
+          Last
+          <span className="chevron-last" aria-hidden="true" />
+          <Icon
+            name={IconName.ChevronsLeft}
+            title="Go to last page"
+            ariaHidden
+          />
         </button>
       </li>
     </ul>
