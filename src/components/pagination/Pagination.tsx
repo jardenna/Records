@@ -33,7 +33,7 @@ const Pagination: FC<PaginationProps> = ({
         >
           <Icon
             name={IconName.ChevronsLeft}
-            title="Go to last page"
+            title="Go to first page"
             ariaHidden
           />
           First
@@ -48,7 +48,7 @@ const Pagination: FC<PaginationProps> = ({
         >
           <Icon
             name={IconName.ChevronLeft}
-            title="Go to last page"
+            title="Go to prev page"
             ariaHidden
           />
           Prev
@@ -104,7 +104,7 @@ const Pagination: FC<PaginationProps> = ({
           Next{' '}
           <Icon
             name={IconName.ChevronRight}
-            title="Go to last page"
+            title="Go to next page"
             ariaHidden
           />
         </button>
@@ -119,7 +119,7 @@ const Pagination: FC<PaginationProps> = ({
           Last
           <Icon
             name={IconName.ChevronsRight}
-            title="Go to first page"
+            title="Go to last page"
             ariaHidden
           />
         </button>
