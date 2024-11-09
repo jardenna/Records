@@ -3,12 +3,18 @@ import Select from 'react-select';
 import PaginationItems from '../components/pagination/PaginationItems';
 import usePagination from '../components/pagination/usePagination';
 import RecordTable from '../components/recordTable/RecordTable';
-import { useGetPaginatedRecordsQuery } from '../features/records/recordsApiSlice';
+import {
+  useGetAllRecordsQuery,
+  useGetPaginatedRecordsQuery,
+} from '../features/records/recordsApiSlice';
 
 import '../components/pagination/_pagination.scss';
 
 const Records: FC = () => {
+  const { data: recordCount } = useGetAllRecordsQuery();
+
   const [rowsCount, setRowsCount] = useState(10);
+  const totalCount = recordCount ? recordCount.recordsCount : rowsCount;
 
   // Initialize the pagination hook
   const {
@@ -16,8 +22,9 @@ const Records: FC = () => {
     pageRange,
     totalPageCount,
     handlePageClick, // keep this for specific page clicks
+    handlePaginationAction,
   } = usePagination({
-    totalCount: 70, // initial count set to 0 until records data is available
+    totalCount, // initial count set to 0 until records data is available
     rowsPerPage: rowsCount,
     pageLimit: 5,
   });
@@ -28,42 +35,12 @@ const Records: FC = () => {
     limit: rowsCount,
   });
 
-  // Update total count in usePagination when records are fetched
-  const totalCount = records?.recordsCount || 0;
-
-  // Unified pagination handler
-  const handlePaginationAction = (action: string) => {
-    switch (action) {
-      case 'first':
-        handlePageClick(1);
-        break;
-      case 'prev':
-        handlePageClick(currentPage - 1);
-        break;
-      case 'next':
-        handlePageClick(currentPage + 1);
-        break;
-      case 'last':
-        handlePageClick(totalPageCount);
-        break;
-      case 'jump-prev':
-        // Assuming jump is by 5 pages; adjust as needed
-        handlePageClick(Math.max(1, currentPage - 5));
-        break;
-      case 'jump-next':
-        handlePageClick(Math.min(totalPageCount, currentPage + 5));
-        break;
-      default:
-        break;
-    }
-  };
-
   return (
     <section>
       <h1>Records</h1>
       {records && <RecordTable records={records.results} />}
       <div>
-        {rowsCount} of {totalCount} records
+        {rowsCount * currentPage} of {totalCount} records
       </div>
       <ul className="pagination">
         {/* Jump Previous */}

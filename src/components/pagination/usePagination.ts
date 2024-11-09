@@ -51,22 +51,39 @@ const usePagination = ({
   const handlePageClick = (page: number) => {
     setCurrentPage(Math.max(1, Math.min(page, totalPageCount))); // keep within bounds
   };
-
-  // Additional helper functions for common pagination actions
-  const handleFirstPage = () => handlePageClick(1);
-  const handleLastPage = () => handlePageClick(totalPageCount);
-  const handleNext = () => handlePageClick(currentPage + 1);
-  const handlePrevious = () => handlePageClick(currentPage - 1);
+  // Unified pagination handler
+  const handlePaginationAction = (action: string) => {
+    switch (action) {
+      case 'first':
+        handlePageClick(1);
+        break;
+      case 'prev':
+        handlePageClick(currentPage - 1);
+        break;
+      case 'next':
+        handlePageClick(currentPage + 1);
+        break;
+      case 'last':
+        handlePageClick(totalPageCount);
+        break;
+      case 'jump-prev':
+        // Assuming jump is by 5 pages; adjust as needed
+        handlePageClick(Math.max(1, currentPage - 5));
+        break;
+      case 'jump-next':
+        handlePageClick(Math.min(totalPageCount, currentPage + 5));
+        break;
+      default:
+        break;
+    }
+  };
 
   return {
     currentPage,
     totalPageCount,
     pageRange,
     handlePageClick,
-    handleFirstPage,
-    handleLastPage,
-    handleNext,
-    handlePrevious,
+    handlePaginationAction,
   };
 };
 
