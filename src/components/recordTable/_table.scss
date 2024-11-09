@@ -1,0 +1,45 @@
+@use '../../scss/globals' as *;
+
+table {
+  border-spacing: 0;
+  border-collapse: collapse;
+  border: 1px solid $color-gray-dark;
+  margin-bottom: 10px;
+  width: 100%;
+
+  tr {
+    border-bottom: 1px solid $color-gray;
+    height: 70px;
+  }
+
+  td {
+    border-bottom: 1px solid $color-gray-dark;
+    padding: 10px 14px;
+
+    &:last-child {
+      padding-right: 10px;
+      padding-left: 0;
+
+      &.td-info {
+        padding-left: 10px;
+      }
+    }
+  }
+
+  thead {
+    tr {
+      height: 100px;
+    }
+  }
+
+  th {
+    font-weight: 500;
+    padding-left: 13px;
+    background-color: $color-blue;
+    color: $color-white;
+    text-align: left;
+    width: 15%;
+    cursor: pointer;
+    position: relative;
+  }
+}
