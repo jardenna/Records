@@ -1,14 +1,27 @@
+/* eslint-disable no-param-reassign */
 import './_table.scss';
 
-// Define a generic type for the Table component
 interface TableProps<T> {
+  data: T[];
   headers: Record<keyof T, string>;
-  tableData: T[];
+  excludeKeys?: (keyof T)[]; // Define excludeKeys as an array of keys of T
 }
 
-const Table = <T,>({ headers, tableData }: TableProps<T>) => {
-  const headerList: string[] = Object.values(headers);
-  const headerKeysList = Object.keys(headers) as (keyof T)[];
+const Table = <T,>({ headers, data, excludeKeys = [] }: TableProps<T>) => {
+  // Filter headers to exclude specified keys
+  const filteredHeaders = Object.entries(headers)
+    .filter(([key]) => !excludeKeys.includes(key as keyof T))
+    .reduce(
+      (acc, [key, value]) => {
+        acc[key as keyof T] = value as string; // Ensure value is treated as a string
+        return acc;
+      },
+      {} as Record<keyof T, string>,
+    );
+
+  // Extract header names and header keys after filtering
+  const headerList: string[] = Object.values(filteredHeaders);
+  const headerListIds = Object.keys(filteredHeaders) as (keyof T)[];
 
   return (
     <table className="record-table">
@@ -20,10 +33,12 @@ const Table = <T,>({ headers, tableData }: TableProps<T>) => {
         </tr>
       </thead>
       <tbody>
-        {tableData.map((data, rowIndex) => (
+        {data.map((datum, rowIndex) => (
           <tr key={rowIndex}>
-            {headerKeysList.map((header) => (
-              <td key={String(header)}>{String(data[header])}</td>
+            {headerListIds.map((header) => (
+              <td key={String(header)}>
+                <span>{String(datum[header])}</span>
+              </td>
             ))}
           </tr>
         ))}

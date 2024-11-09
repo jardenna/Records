@@ -10,6 +10,8 @@ export const labels = {
   released: 'Senest udgivet',
   info: 'Værd at vide',
   photo: 'Indsæt billede',
+  cover: 'Cover',
+  id: 'Id',
 };
 
 export const noInfo = 'Ikke oplyst';

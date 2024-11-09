@@ -1,13 +1,14 @@
 import { FC, useState } from 'react';
 import Select from 'react-select';
-import '../components/pagination/_pagination.scss';
 import PaginationItems from '../components/pagination/PaginationItems';
 import usePagination from '../components/pagination/usePagination';
 import RecordTable from '../components/recordTable/RecordTable';
 import { useGetPaginatedRecordsQuery } from '../features/records/recordsApiSlice';
 
+import '../components/pagination/_pagination.scss';
+
 const Records: FC = () => {
-  const [rowsCount, setRowsCount] = useState(50);
+  const [rowsCount, setRowsCount] = useState(10);
 
   // Initialize the pagination hook
   const {
@@ -60,7 +61,7 @@ const Records: FC = () => {
   return (
     <section>
       <h1>Records</h1>
-      {records && <RecordTable records={records?.results} />}
+      {records && <RecordTable records={records.results} />}
       <div>
         {rowsCount} of {totalCount} records
       </div>
