@@ -4,17 +4,17 @@ import PaginationItems from '../components/pagination/PaginationItems';
 import usePagination from '../components/pagination/usePagination';
 import RecordTable from '../components/recordTable/RecordTable';
 import {
-  useGetAllRecordsQuery,
+  useGetAmountOfRecordsQuery,
   useGetPaginatedRecordsQuery,
 } from '../features/records/recordsApiSlice';
 
 import '../components/pagination/_pagination.scss';
 
 const Records: FC = () => {
-  const { data: recordCount } = useGetAllRecordsQuery();
+  const { data: recordCount } = useGetAmountOfRecordsQuery();
 
   const [rowsCount, setRowsCount] = useState(10);
-  const totalCount = recordCount ? recordCount.recordsCount : rowsCount;
+  const totalCount = recordCount ? recordCount.totalAmountRecords : rowsCount;
 
   // Initialize the pagination hook
   const {
@@ -24,7 +24,7 @@ const Records: FC = () => {
     handlePageClick, // keep this for specific page clicks
     handlePaginationAction,
   } = usePagination({
-    totalCount, // initial count set to 0 until records data is available
+    totalCount,
     rowsPerPage: rowsCount,
     pageLimit: 5,
   });

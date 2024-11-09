@@ -1,5 +1,14 @@
 import Record from '../models/RecordsModel.js';
 
+const getAmountOfRecords = async (req, res) => {
+  try {
+    const count = await Record.countDocuments(); // Retrieve the count
+    res.status(200).json({ totalAmountRecords: count }); // Send the count in the response
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
 const getFirstSixRecords = async (_, res) => {
   try {
     const latestRecords = await Record.find().sort({ _id: -1 }).limit(6);
@@ -82,6 +91,7 @@ const deleteRecord = async (req, res) => {
 
 export {
   deleteRecord,
+  getAmountOfRecords,
   getFirstSixRecords,
   getPaginatedRecords,
   getRecordById,
