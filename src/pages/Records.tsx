@@ -15,18 +15,19 @@ const Records: FC = () => {
 
   const [rowsCount, setRowsCount] = useState(10);
   const totalCount = recordCount ? recordCount.totalAmountRecords : rowsCount;
+  const pageLimit = 5;
 
   // Initialize the pagination hook
   const {
     currentPage,
     pageRange,
     totalPageCount,
-    handlePageClick, // keep this for specific page clicks
-    handlePaginationAction,
+    onPaginationItemClick, // keep this for specific page clicks
+    onPaginationAction,
   } = usePagination({
     totalCount,
     rowsPerPage: rowsCount,
-    pageLimit: 5,
+    pageLimit,
   });
 
   // Fetch records based on the current page and rows per page
@@ -44,9 +45,9 @@ const Records: FC = () => {
       </div>
       <Pagination
         currentPage={currentPage}
-        onPageClick={handlePageClick}
-        onPaginationAction={handlePaginationAction}
-        pageLimit={5}
+        onPageClick={onPaginationItemClick}
+        onPaginationAction={onPaginationAction}
+        pageLimit={pageLimit}
         pageRange={pageRange}
         totalPageCount={totalPageCount}
       />
