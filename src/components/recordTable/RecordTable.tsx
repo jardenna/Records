@@ -19,6 +19,7 @@ const RecordTable: FC<RecordTableProps> = ({ records }) => (
         'recordNo',
         'released',
         'numOfRecords',
+        'photo',
       ] as (keyof Record)[]
     }
   />
