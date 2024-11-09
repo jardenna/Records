@@ -2,18 +2,18 @@
 import './_table.scss';
 
 interface TableProps<T> {
-  data: T[];
   headers: Record<keyof T, string>;
-  excludeKeys?: (keyof T)[]; // Define excludeKeys as an array of keys of T
+  tableData: T[];
+  excludeKeys?: (keyof T)[];
 }
 
-const Table = <T,>({ headers, data, excludeKeys = [] }: TableProps<T>) => {
+const Table = <T,>({ headers, tableData, excludeKeys = [] }: TableProps<T>) => {
   // Filter headers to exclude specified keys
   const filteredHeaders = Object.entries(headers)
     .filter(([key]) => !excludeKeys.includes(key as keyof T))
     .reduce(
       (acc, [key, value]) => {
-        acc[key as keyof T] = value as string; // Ensure value is treated as a string
+        acc[key as keyof T] = value as string;
         return acc;
       },
       {} as Record<keyof T, string>,
@@ -33,12 +33,10 @@ const Table = <T,>({ headers, data, excludeKeys = [] }: TableProps<T>) => {
         </tr>
       </thead>
       <tbody>
-        {data.map((datum, rowIndex) => (
+        {tableData.map((data, rowIndex) => (
           <tr key={rowIndex}>
             {headerListIds.map((header) => (
-              <td key={String(header)}>
-                <span>{String(datum[header])}</span>
-              </td>
+              <td key={String(header)}>{String(data[header])}</td>
             ))}
           </tr>
         ))}

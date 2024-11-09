@@ -6,6 +6,22 @@ export enum MainPath {
   Update = 'update',
 }
 
+export enum LabelKeys {
+  Artist = 'artist',
+  Cover = 'cover',
+  Id = 'id',
+  Info = 'info',
+  Label = 'label',
+  NumOfRecords = 'numOfRecords',
+  Origin = 'origin',
+  Photo = 'photo',
+  Price = 'price',
+  ProdYear = 'prodYear',
+  RecordNo = 'recordNo',
+  Released = 'released',
+  Title = 'title',
+}
+
 export enum KeyCode {
   Alt = 'AltLeft',
   ArrowDown = 'ArrowDown',

@@ -15,6 +15,7 @@ table {
   td {
     border-bottom: 1px solid $color-gray-dark;
     padding: 10px 14px;
+    line-height: rem(24px);
 
     &:last-child {
       padding-right: 10px;

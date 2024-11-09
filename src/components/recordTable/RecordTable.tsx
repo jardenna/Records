@@ -1,5 +1,6 @@
 import { FC } from 'react';
 import { Record } from '../../app/api/apiTypes';
+import { LabelKeys } from '../../types/enums';
 import Table from './Table';
 import { labels } from './tableHeaders';
 
@@ -10,16 +11,16 @@ interface RecordTableProps {
 const RecordTable: FC<RecordTableProps> = ({ records }) => (
   <Table
     headers={labels}
-    data={records}
+    tableData={records}
     excludeKeys={
       [
-        'id',
-        'cover',
-        'info',
-        'recordNo',
-        'released',
-        'numOfRecords',
-        'photo',
+        LabelKeys.Id,
+        LabelKeys.Cover,
+        LabelKeys.Info,
+        LabelKeys.RecordNo,
+        LabelKeys.Released,
+        LabelKeys.Photo,
+        LabelKeys.NumOfRecords,
       ] as (keyof Record)[]
     }
   />
