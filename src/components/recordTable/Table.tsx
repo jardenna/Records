@@ -1,5 +1,5 @@
 /* eslint-disable no-param-reassign */
-import DetailLink from '../recordDetails/DetailLink';
+import DetailLink from '../../pages/details/DetailLink';
 
 import './_table.scss';
 

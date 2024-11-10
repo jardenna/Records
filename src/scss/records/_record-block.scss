@@ -1,0 +1,101 @@
+﻿@use '../globals' as *;
+
+.index-block-footer {
+  .btn-primary {
+    background: none;
+    text-align: right;
+    font-size: 14px;
+    font-weight: 200;
+  }
+}
+
+.block-container {
+  .flex-item {
+    margin: 0 15px;
+  }
+
+  .block-item {
+    min-width: 380px;
+    position: relative;
+    color: #fff;
+    padding: 25px;
+    margin-bottom: 30px;
+
+    @include max-size($small) {
+      min-width: 100%;
+      margin: 10px 0;
+    }
+
+    .index-block-btn {
+      margin-right: 30px;
+    }
+
+    .index-block-btn,
+    .index-block-danger {
+      background: none;
+      font-weight: 300;
+      min-width: 30px;
+      padding: 0;
+      max-width: 40px;
+      font-size: 14px;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+
+    &:nth-child(1) {
+      background-color: $color-blue;
+    }
+
+    &:nth-child(2) {
+      background-color: $color-gray-darker;
+    }
+
+    &:nth-child(3) {
+      background-color: $color-red;
+    }
+
+    &:nth-child(4) {
+      background-color: $color-gray-darker;
+    }
+
+    &:nth-child(5) {
+      background-color: $color-gray-light;
+      color: $color-black;
+
+      button {
+        color: $color-black;
+      }
+    }
+
+    &:nth-child(6) {
+      background-color: $color-blue;
+      margin-right: 15px;
+    }
+
+    h1 {
+      font-size: 25px;
+      font-weight: 200;
+      margin: 0;
+    }
+
+    h2 {
+      font-size: 18px;
+      font-weight: 200;
+    }
+  }
+
+  .content-footer {
+    text-align: right;
+    margin-top: 10px;
+
+    @include max-size($small) {
+      text-align: center;
+    }
+
+    .popup-wrapper {
+      margin-right: 10px;
+    }
+  }
+}

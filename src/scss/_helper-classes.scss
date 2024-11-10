@@ -1,0 +1,39 @@
+@use './globals' as *;
+
+.flex {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.container {
+  max-width: rem(1400px);
+  margin: 0 auto;
+  padding: 20px 8px;
+  width: 100%;
+}
+
+.visually-hidden {
+  clip: rect(1px, 1px, 1px, 1px);
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  height: 1px;
+  width: 1px;
+}
+
+.text-bold {
+  font-weight: 700;
+}
+
+.grid {
+  display: grid;
+
+  &.two-col {
+    grid-template-rows: repeat(2, 1fr);
+  }
+}
+
+.block-img {
+  max-width: 300px;
+}

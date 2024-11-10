@@ -1,0 +1,33 @@
+﻿@use '../globals' as *;
+
+.create-album {
+  &.flex-wrapper {
+    @include max-size($medium) {
+      display: block;
+    }
+  }
+
+  .input-wrapper {
+    min-width: 48%;
+
+    @include max-size($large) {
+      min-width: 46%;
+    }
+
+    @include max-size($small) {
+      min-width: 100%;
+    }
+
+    &.image-preview-input {
+      min-width: 100%;
+    }
+
+    &:nth-child(odd) {
+      margin-right: 30px;
+    }
+  }
+}
+
+.image-preview-wrapper {
+  text-align: center;
+}
