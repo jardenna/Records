@@ -11,9 +11,6 @@ const Nav: FC = () => (
           <NavLink to={MainPath.Records}>Records</NavLink>
         </li>
         <li className="main-nav-items">
-          <NavLink to={MainPath.Details}>Details</NavLink>
-        </li>
-        <li className="main-nav-items">
           <NavLink to={MainPath.Update}>Update</NavLink>
         </li>
       </ul>

@@ -1,6 +1,6 @@
 import { createBrowserRouter } from 'react-router-dom';
 import Layout from '../layout/Layout';
-import Details from '../pages/details/Details';
+import DetailsPage from '../pages/details/DetailsPage';
 import ErrorPage from '../pages/errorPage/ErrorPage';
 import HomePage from '../pages/HomePage';
 import Records from '../pages/Records';
@@ -23,7 +23,7 @@ const routeConfig = createBrowserRouter([
       },
       {
         path: `${MainPath.Details}/:id`,
-        element: <Details />,
+        element: <DetailsPage />,
       },
       {
         path: MainPath.Update,
