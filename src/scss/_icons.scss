@@ -1,35 +1,3 @@
-.chevron-left {
-  &::after {
-    content: '';
-
-    @include chevron($dir: left);
-  }
-}
-
-.chevron-right {
-  &::after {
-    content: '';
-
-    @include chevron($dir: right);
-  }
-}
-
-.chevron-down {
-  &::after {
-    content: '';
-
-    @include chevron($dir: down);
-  }
-}
-
-.chevron-up {
-  &::after {
-    content: '';
-
-    @include chevron;
-  }
-}
-
 .icon-checkmark {
   display: inline-block;
 
@@ -38,7 +6,7 @@
     display: block;
     width: 3px;
     height: 6px;
-    border: 1px solid #000;
+    border: 1px solid $color-black;
     border-width: 0 2px 2px 0;
     transform: rotate(45deg);
   }

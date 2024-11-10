@@ -8,55 +8,46 @@
     display: flex;
     align-items: center;
 
-    button {
+    .btn {
       padding: 8px 15px;
       border: 1px solid $color-gray-dark;
-      border-right: none;
+      border-right: 0;
       color: inherit;
-      display: block;
       min-width: 48px;
 
-      &:focus {
-        border: var(--focus);
-        outline: none;
+      &.last-pagination-item {
+        border-right: 1px solid $color-gray-dark;
       }
 
-      &.last-of-type {
-        border-right: 1px solid $color-gray-dark;
+      &:disabled {
+        color: #a19e9e;
+      }
+
+      &:hover {
+        background-color: $color-blue;
+        color: $color-white;
+      }
+
+      &:focus {
+        outline: 2px solid $color-blue;
       }
 
       &.active {
         background-color: $color-blue;
         color: $color-white;
-
-        &:hover {
-          cursor: default;
-        }
-      }
-
-      &:hover {
-        background-color: $color-blue;
-        color: $color-white;
-      }
-    }
-
-    &.disabled {
-      .chevron-right,
-      .chevron-left {
-        &::after {
-          border-color: $color-gray;
-        }
-      }
-
-      &:hover {
-        background-color: $color-white;
+        pointer-events: none;
       }
     }
   }
 
-  .pagination-wrapper {
-    list-style: none;
-    margin: 0;
-    padding: 0;
+  .pagination-item-content {
+    display: flex;
+    text-align: center;
+    justify-content: center;
+
+    svg {
+      width: 16px;
+      height: 16px;
+    }
   }
 }

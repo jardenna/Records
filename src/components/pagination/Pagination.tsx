@@ -1,13 +1,13 @@
 import { FC } from 'react';
-import Button from '../Button';
 import Icon, { IconName } from '../icons/Icon';
-import PaginationItems from './PaginationItems';
-import './_pagination.scss';
+import PaginationItem from './PaginationItem';
 import { PaginationActionEnum } from './usePagination';
+
+import './_pagination.scss';
 
 interface PaginationProps {
   currentPage: number;
-  onPaginationAction: (action: any) => void;
+  onPaginationAction: (action: PaginationActionEnum) => void;
   onPaginationItemClick: (page: number) => void;
   pageLimit: number;
   pageRange: number[];
@@ -25,105 +25,110 @@ const Pagination: FC<PaginationProps> = ({
   <article>
     <ul className="pagination">
       {/* First Page */}
-      <li className="pagination-item">
-        <button
-          type="button"
-          onClick={() => onPaginationAction(PaginationActionEnum.First)}
-          disabled={currentPage === 1}
-        >
-          <Icon
-            name={IconName.ChevronsLeft}
-            title="Go to first page"
-            ariaHidden
-          />
-          First
-        </button>
-      </li>
+      <PaginationItem
+        onSetCurrentPage={() => onPaginationAction(PaginationActionEnum.First)}
+        disabled={currentPage === 1}
+        content={
+          <>
+            <Icon
+              name={IconName.ChevronsLeft}
+              title="Go to first page"
+              ariaHidden
+            />
+            First
+          </>
+        }
+      />
+
       {/* Prev Page */}
-      <li className="pagination-item">
-        <button
-          type="button"
-          onClick={() => onPaginationAction(PaginationActionEnum.Prev)}
-          disabled={currentPage === 1}
-        >
-          <Icon
-            name={IconName.ChevronLeft}
-            title="Go to prev page"
-            ariaHidden
-          />
-          Prev
-        </button>
-      </li>
+      <PaginationItem
+        onSetCurrentPage={() => onPaginationAction(PaginationActionEnum.Prev)}
+        disabled={currentPage === 1}
+        content={
+          <>
+            <Icon
+              name={IconName.ChevronLeft}
+              title="Go to prev page"
+              ariaHidden
+            />
+            Prev
+          </>
+        }
+      />
 
       {/* Jump Previous */}
-      <li className="pagination-item">
-        <Button
-          disabled={currentPage < pageLimit}
-          onClick={() =>
-            onPaginationAction(PaginationActionEnum.PrevPaginationItem)
-          }
-        >
-          <span aria-hidden="true">...</span>
-          <span className="visually-hidden">Jump Previous</span>
-        </Button>
-      </li>
+      <PaginationItem
+        disabled={currentPage < pageLimit}
+        onSetCurrentPage={() =>
+          onPaginationAction(PaginationActionEnum.PrevPaginationItem)
+        }
+        content={
+          <>
+            <span aria-hidden="true">...</span>
+            <span className="visually-hidden">Jump Previous</span>
+          </>
+        }
+      />
 
       {/* Page Numbers */}
       {pageRange.map((page) => (
-        <PaginationItems
+        <PaginationItem
           key={page}
-          onSetCurrentPage={onPaginationItemClick}
+          onSetCurrentPage={() => onPaginationItemClick(page)}
           paginationCount={page}
           ariaLabel={`Page ${page} of ${totalPageCount}`}
           isBtnSelected={page === currentPage}
           ariaDescribedby="current-status"
+          disabled={page === currentPage}
         />
       ))}
 
       {/* Jump Next */}
-      {currentPage < totalPageCount - pageLimit && (
-        <li className="pagination-item">
-          <Button
-            onClick={() =>
-              onPaginationAction(PaginationActionEnum.NextPaginationItem)
-            }
-          >
+      <PaginationItem
+        onSetCurrentPage={() =>
+          onPaginationAction(PaginationActionEnum.NextPaginationItem)
+        }
+        disabled={currentPage > totalPageCount - pageLimit}
+        content={
+          <>
             <span aria-hidden="true">...</span>
             <span className="visually-hidden">Jump Next</span>
-          </Button>
-        </li>
-      )}
+          </>
+        }
+      />
 
       {/* Next Page */}
-      <li className="pagination-item">
-        <button
-          type="button"
-          onClick={() => onPaginationAction(PaginationActionEnum.Next)}
-          disabled={currentPage === totalPageCount}
-        >
-          Next{' '}
-          <Icon
-            name={IconName.ChevronRight}
-            title="Go to next page"
-            ariaHidden
-          />
-        </button>
-      </li>
+      <PaginationItem
+        onSetCurrentPage={() => onPaginationAction(PaginationActionEnum.Next)}
+        disabled={currentPage === totalPageCount}
+        content={
+          <>
+            Next
+            <Icon
+              name={IconName.ChevronRight}
+              title="Go to next page"
+              ariaHidden
+            />
+          </>
+        }
+      />
+
       {/* Last Page */}
-      <li className="pagination-item">
-        <button
-          type="button"
-          onClick={() => onPaginationAction(PaginationActionEnum.Last)}
-          disabled={currentPage === totalPageCount}
-        >
-          Last
-          <Icon
-            name={IconName.ChevronsRight}
-            title="Go to last page"
-            ariaHidden
-          />
-        </button>
-      </li>
+      <PaginationItem
+        onSetCurrentPage={() => onPaginationAction(PaginationActionEnum.Last)}
+        disabled={currentPage === totalPageCount}
+        className="last-pagination-item"
+        content={
+          <>
+            Last
+            <Icon
+              name={IconName.ChevronsRight}
+              title="Go to last page"
+              ariaHidden
+            />
+          </>
+        }
+      />
     </ul>
   </article>
 );

@@ -1,41 +1,26 @@
 @use './globals' as *;
 
 a[class^='btn-'],
-button {
-  @include max-size($small) {
-    min-width: 140px;
-  }
-
+.btn {
+  position: relative;
+  font-size: rem(14px);
   color: $color-white;
   outline: none;
   border: 0;
   padding: 10px;
-  font-weight: 700;
+  font-weight: normal;
   min-width: 150px;
-  margin-right: 10px;
   cursor: pointer;
-  display: inline-block;
 
   @include transition;
 
-  position: relative;
-
-  &:focus {
-    border: var(--focus);
+  &:disabled {
+    pointer-events: none;
   }
 
-  /* stylelint-disable-next-line no-descending-specificity */
-  a {
-    color: $color-white;
-  }
-
-  &:last-child {
-    margin: 0;
-  }
-}
-
-button.details-btn:last-child {
-  margin-right: 10px;
+  // &:focus {
+  //   border: var(--focus);
+  // }
 }
 
 a.btn-primary {
@@ -49,13 +34,13 @@ a.btn-primary {
   }
 }
 
-.btn-primary {
-  background-color: $color-primary-btn;
+// .btn-primary {
+//   background-color: $color-primary-btn;
 
-  &:hover {
-    background-color: $color-primary-btn-hover;
-  }
-}
+//   &:hover {
+//     background-color: $color-primary-btn-hover;
+//   }
+// }
 
 .btn-danger {
   background-color: $color-danger;
@@ -63,6 +48,10 @@ a.btn-primary {
   &:hover {
     background-color: $color-red-light;
   }
+}
+
+.btn-ghost {
+  background-color: transparent;
 }
 
 .btn-rounded {
