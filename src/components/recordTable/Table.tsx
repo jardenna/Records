@@ -4,10 +4,16 @@ import './_table.scss';
 interface TableProps<T> {
   headers: Record<keyof T, string>;
   tableData: T[];
+  className?: string;
   excludeKeys?: (keyof T)[];
 }
 
-const Table = <T,>({ headers, tableData, excludeKeys = [] }: TableProps<T>) => {
+const Table = <T,>({
+  headers,
+  tableData,
+  className = '',
+  excludeKeys = [],
+}: TableProps<T>) => {
   // Filter headers to exclude specified keys
   const filteredHeaders = Object.entries(headers)
     .filter(([key]) => !excludeKeys.includes(key as keyof T))
@@ -24,11 +30,14 @@ const Table = <T,>({ headers, tableData, excludeKeys = [] }: TableProps<T>) => {
   const headerListIds = Object.keys(filteredHeaders) as (keyof T)[];
 
   return (
-    <table className="record-table">
+    <table className={className}>
+      <caption className="visually-hidden">Record collection</caption>
       <thead>
         <tr>
           {headerList.map((header) => (
-            <th key={header}>{header}</th>
+            <th scope="col" key={header}>
+              {header}
+            </th>
           ))}
         </tr>
       </thead>
