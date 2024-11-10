@@ -10,6 +10,7 @@ $burger-color-active: $color-gray-dark;
   .container {
     display: flex;
     justify-content: flex-end;
+    padding: 0 20px;
   }
 
   .main-nav-container {
@@ -46,6 +47,8 @@ $burger-color-active: $color-gray-dark;
 
     a {
       color: $color-primary-link;
+      padding: 20px 0;
+      display: flex;
     }
 
     .active {
