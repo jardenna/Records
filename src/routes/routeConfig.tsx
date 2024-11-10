@@ -22,7 +22,7 @@ const routeConfig = createBrowserRouter([
         element: <Records />,
       },
       {
-        path: MainPath.Details,
+        path: `${MainPath.Details}/:id`,
         element: <Details />,
       },
       {

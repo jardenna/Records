@@ -1,7 +1,15 @@
 /* eslint-disable no-param-reassign */
+import DetailLink from '../recordDetails/DetailLink';
+
 import './_table.scss';
 
-interface TableProps<T> {
+// Define an interface with id
+interface Identifiable {
+  id: string;
+}
+
+// Extend T to ensure it includes `id`
+interface TableProps<T extends Identifiable> {
   caption: string;
   headers: Record<keyof T, string>;
   tableData: T[];
@@ -9,7 +17,7 @@ interface TableProps<T> {
   excludeKeys?: (keyof T)[];
 }
 
-const Table = <T,>({
+const Table = <T extends Identifiable>({
   caption,
   headers,
   tableData,
@@ -41,6 +49,7 @@ const Table = <T,>({
               {header}
             </th>
           ))}
+          <th>Details</th>
         </tr>
       </thead>
       <tbody>
@@ -49,6 +58,9 @@ const Table = <T,>({
             {headerListIds.map((header) => (
               <td key={String(header)}>{String(data[header])}</td>
             ))}
+            <td>
+              <DetailLink id={data.id} />
+            </td>
           </tr>
         ))}
       </tbody>

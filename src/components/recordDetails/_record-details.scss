@@ -1,0 +1,52 @@
+@use '../../scss/globals' as *;
+
+.details {
+  .flex-wrapper {
+    &.details-content-wrapper {
+      @include max-size($small) {
+        display: flex;
+        margin-left: 15px;
+      }
+    }
+  }
+
+  .block-img {
+    text-align: left;
+
+    img {
+      @include max-size($small) {
+        max-width: 200px;
+      }
+    }
+  }
+
+  .details-header {
+    margin-bottom: 10px;
+
+    .details-artist {
+      display: inline-block;
+      font-size: 39px;
+      font-weight: 400;
+      margin-right: 0;
+
+      @include max-size($small) {
+        font-size: 24px;
+        margin: 10px;
+      }
+    }
+  }
+
+  .details-info {
+    border-top: 1px solid $color-gray;
+    padding-top: 20px;
+    margin-top: 10px;
+  }
+
+  .details-content {
+    margin: 10px 0;
+
+    @include max-size($small) {
+      margin: 3px 0;
+    }
+  }
+}

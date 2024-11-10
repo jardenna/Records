@@ -22,6 +22,7 @@ const RecordTable: FC<RecordTableProps> = ({ records }) => (
         LabelKeys.Released,
         LabelKeys.Photo,
         LabelKeys.NumOfRecords,
+        LabelKeys.Price,
       ] as (keyof Record)[]
     }
   />
