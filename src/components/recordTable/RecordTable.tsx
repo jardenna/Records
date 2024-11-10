@@ -10,6 +10,7 @@ interface RecordTableProps {
 
 const RecordTable: FC<RecordTableProps> = ({ records }) => (
   <Table
+    caption="Record collection"
     headers={labels}
     tableData={records}
     excludeKeys={

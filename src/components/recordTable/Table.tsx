@@ -2,6 +2,7 @@
 import './_table.scss';
 
 interface TableProps<T> {
+  caption: string;
   headers: Record<keyof T, string>;
   tableData: T[];
   className?: string;
@@ -9,6 +10,7 @@ interface TableProps<T> {
 }
 
 const Table = <T,>({
+  caption,
   headers,
   tableData,
   className = '',
@@ -31,7 +33,7 @@ const Table = <T,>({
 
   return (
     <table className={className}>
-      <caption className="visually-hidden">Record collection</caption>
+      <caption className="visually-hidden">{caption}</caption>
       <thead>
         <tr>
           {headerList.map((header) => (
