@@ -6,21 +6,20 @@
   align-items: center;
   gap: 40px;
 
+  .block-img {
+    margin-top: 12px;
+  }
+
   .details-header {
-    margin-bottom: 10px;
+    margin-bottom: 12px;
     display: flex;
     align-items: center;
     gap: 4px;
 
     .details-artist {
-      font-size: 39px;
+      font-size: rem(40px);
       font-weight: 400;
       margin: 0;
-
-      @include max-size($small) {
-        font-size: 24px;
-        margin: 10px;
-      }
     }
   }
 
@@ -29,9 +28,10 @@
     font-weight: bold;
   }
 
-  .test {
+  .details-img-container {
     padding: 30px 50px;
-    background: #ddd;
+    background: $color-blue;
+    color: $color-white;
   }
 
   .details-info {

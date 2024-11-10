@@ -5,18 +5,15 @@ import { useGetRecordByIdQuery } from '../../features/records/recordsApiSlice';
 import DetailsContent from './DetailsContent';
 import './_record-details.scss';
 
-interface DetailsProps {}
-
-const Details: FC<DetailsProps> = () => {
+const Details: FC = () => {
   const { id } = useParams();
   const { data: selectedRecord } = useGetRecordByIdQuery(id);
 
   return selectedRecord ? (
     <article className="details">
-      <section className="test">
+      <section className="details-img-container">
         <header className="details-header" aria-label="Record details">
           <h2 className="details-artist">{selectedRecord.artist}</h2>
-
           <span className="details-title"> / {selectedRecord.title}</span>
         </header>
         <img src="/images/default.png" alt="" className="block-img" />
