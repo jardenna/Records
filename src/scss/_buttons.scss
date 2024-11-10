@@ -5,7 +5,7 @@ a[class^='btn-'],
   position: relative;
   font-size: rem(14px);
   color: $color-white;
-  outline: none;
+  outline: transparent;
   border: 0;
   padding: 10px;
   font-weight: normal;
@@ -34,13 +34,13 @@ a.btn-primary {
   }
 }
 
-// .btn-primary {
-//   background-color: $color-primary-btn;
+.btn-primary {
+  background-color: $color-primary-btn;
 
-//   &:hover {
-//     background-color: $color-primary-btn-hover;
-//   }
-// }
+  &:hover {
+    background-color: $color-primary-btn-hover;
+  }
+}
 
 .btn-danger {
   background-color: $color-danger;
