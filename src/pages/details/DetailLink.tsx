@@ -7,7 +7,10 @@ interface DetailLinkProps {
 }
 
 const DetailLink: FC<DetailLinkProps> = ({ id }) => (
-  <Link className="btn-primary details-btn" to={`/${MainPath.Details}/${id}`}>
+  <Link
+    className="btn btn-primary details-btn"
+    to={`/${MainPath.Details}/${id}`}
+  >
     Details
   </Link>
 );

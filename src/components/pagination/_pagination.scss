@@ -14,6 +14,7 @@
       border-right: 0;
       color: inherit;
       min-width: 48px;
+      border-radius: 0;
 
       &.last-pagination-item {
         border-right: 1px solid $color-gray-dark;
@@ -46,8 +47,8 @@
     justify-content: center;
 
     svg {
-      width: 16px;
-      height: 16px;
+      width: rem(14px);
+      height: rem(14px);
     }
   }
 }

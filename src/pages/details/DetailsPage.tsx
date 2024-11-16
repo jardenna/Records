@@ -56,7 +56,7 @@ const DetailsPage: FC = () => {
           />
         </div>
         <footer className="details-footer" aria-label="Record-details">
-          <Button>Opdater plade info</Button>
+          <Button>Opdater plade</Button>
           <Button className="btn-danger">Slet plade</Button>
         </footer>
       </section>

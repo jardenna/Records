@@ -14,33 +14,14 @@ table {
 
   td {
     border-bottom: 1px solid $color-gray-dark;
-    padding: 10px 14px;
+    padding: 8px 14px;
     line-height: rem(24px);
-
-    &:last-child {
-      padding-right: 10px;
-      padding-left: 0;
-
-      &.td-info {
-        padding-left: 10px;
-      }
-    }
-  }
-
-  thead {
-    tr {
-      height: 100px;
-    }
   }
 
   th {
-    font-weight: 500;
-    padding-left: 13px;
+    padding-left: 12px;
     background-color: $color-blue;
     color: $color-white;
     text-align: left;
-    width: 15%;
-    cursor: pointer;
-    position: relative;
   }
 }

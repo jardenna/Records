@@ -26,17 +26,6 @@ a[class^='btn-'],
   // }
 }
 
-a.btn-primary {
-  text-decoration: none;
-  text-align: center;
-  padding: 7px;
-  min-height: 35px;
-
-  &:hover {
-    color: $color-white;
-  }
-}
-
 .btn-primary {
   background-color: $color-primary-btn;
 
