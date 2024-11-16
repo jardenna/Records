@@ -1,5 +1,10 @@
 /* eslint-disable no-param-reassign */
+import { useAppDispatch } from '../../app/hooks';
+import { openModal } from '../../features/modal';
 import DetailLink from '../../pages/details/DetailLink';
+import { ModalId } from '../../types/enums';
+import Button from '../Button';
+import DeleteRecord from '../DeleteRecord';
 
 import './_table.scss';
 
@@ -39,6 +44,12 @@ const Table = <T extends Identifiable>({
   const headerList: string[] = Object.values(filteredHeaders);
   const headerListIds = Object.keys(filteredHeaders) as (keyof T)[];
 
+  const dispatch = useAppDispatch();
+
+  const openModals = () => {
+    dispatch(openModal(ModalId.LoginModal));
+  };
+
   return (
     <table className={className}>
       <caption className="visually-hidden">{caption}</caption>
@@ -60,6 +71,8 @@ const Table = <T extends Identifiable>({
             ))}
             <td>
               <DetailLink id={data.id} />
+              <Button onClick={openModals}>klik</Button>
+              <DeleteRecord id={ModalId.LoginModal} />
             </td>
           </tr>
         ))}

@@ -53,3 +53,7 @@ export enum BtnVariant {
   Primary = 'primary',
   Secondary = 'secondary',
 }
+
+export enum ModalId {
+  LoginModal = 'loginmodal',
+}
