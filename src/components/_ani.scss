@@ -1,0 +1,39 @@
+@use '../scss/globals' as *;
+
+.top-right {
+  top: 16;
+  right: 16px;
+  position: fixed;
+  width: 400px;
+  height: 400px;
+  background-color: cadetblue;
+  columns: #fff;
+}
+
+@keyframes slide-in-right {
+  0% {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(0%);
+  }
+}
+
+@keyframes slide-out-right {
+  0% {
+    opacity: 1;
+    transform: translateX(0%);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+}
+
+.transition {
+  animation: slide-in-right 2.5s forwards;
+}
