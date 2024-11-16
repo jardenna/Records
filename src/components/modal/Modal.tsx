@@ -56,41 +56,43 @@ const Modal: React.FC<ModalProps> = ({
     }
   }, [modalId, id]);
 
+  if (!modalId) {
+    return null;
+  }
+
   return (
     <Portal portalId="modal">
-      {modalId && (
-        <dialog
-          ref={modalRef}
-          className={`modal modal-${modalSize} ${className}`}
-          role={isAlert ? 'alert' : undefined}
-        >
-          <ModalHeader
-            modalHeadertext={modalHeaderText}
-            onCloseModal={handleCloseModal}
-            showCloseIcon={showCloseIcon}
-          />
-          {primaryActionBtn?.buttonType !== 'submit' ? (
-            <>
-              <div className="modal-body">{children}</div>
-              <ModalFooter
-                onCloseModal={handleCloseModal}
-                primaryActionBtn={primaryActionBtn}
-                secondaryActionBtn={secondaryActionBtn}
-              />
-            </>
-          ) : (
-            <form method="modal" className="modal-form">
-              {children}
-              <ModalFooter
-                onCloseModal={handleCloseModal}
-                primaryActionBtn={primaryActionBtn}
-                secondaryActionBtn={secondaryActionBtn}
-              />
-            </form>
-          )}
-          {modalInfo && modalInfo}
-        </dialog>
-      )}
+      <dialog
+        ref={modalRef}
+        className={`modal modal-${modalSize} ${className}`}
+        role={isAlert ? 'alert' : undefined}
+      >
+        <ModalHeader
+          modalHeadertext={modalHeaderText}
+          onCloseModal={handleCloseModal}
+          showCloseIcon={showCloseIcon}
+        />
+        {primaryActionBtn?.buttonType !== 'submit' ? (
+          <>
+            <div className="modal-body">{children}</div>
+            <ModalFooter
+              onCloseModal={handleCloseModal}
+              primaryActionBtn={primaryActionBtn}
+              secondaryActionBtn={secondaryActionBtn}
+            />
+          </>
+        ) : (
+          <form method="modal" className="modal-form">
+            {children}
+            <ModalFooter
+              onCloseModal={handleCloseModal}
+              primaryActionBtn={primaryActionBtn}
+              secondaryActionBtn={secondaryActionBtn}
+            />
+          </form>
+        )}
+        {modalInfo && modalInfo}
+      </dialog>
     </Portal>
   );
 };

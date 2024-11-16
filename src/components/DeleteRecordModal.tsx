@@ -1,19 +1,18 @@
 import { FC } from 'react';
 
-import { ModalId } from '../types/enums';
 import Modal from './modal/Modal';
 
-interface DeleteRecordProps {
-  id: ModalId;
+interface DeleteRecordModalProps {
+  id: string;
 }
 
-const DeleteRecord: FC<DeleteRecordProps> = ({ id }) => (
+const DeleteRecordModal: FC<DeleteRecordModalProps> = ({ id }) => (
   <Modal
     id={id}
     modalHeaderText="sss"
     primaryActionBtn={{
       label: 'Click',
-      onClick: () => console.log(12),
+      onClick: () => console.log(23),
     }}
     showCloseIcon
   >
@@ -21,4 +20,4 @@ const DeleteRecord: FC<DeleteRecordProps> = ({ id }) => (
   </Modal>
 );
 
-export default DeleteRecord;
+export default DeleteRecordModal;

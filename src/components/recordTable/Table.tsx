@@ -1,9 +1,7 @@
 /* eslint-disable no-param-reassign */
+import DeleteRecordBtn from '../../pages/details/DeleteRecordBtn';
 import DetailLink from '../../pages/details/DetailLink';
-import { ModalId } from '../../types/enums';
-import Button from '../Button';
-import DeleteRecord from '../DeleteRecord';
-import useModal from '../modal/useModal';
+import DeleteRecordModal from '../DeleteRecordModal';
 
 import './_table.scss';
 
@@ -42,7 +40,6 @@ const Table = <T extends Identifiable>({
   // Extract header names and header keys after filtering
   const headerList: string[] = Object.values(filteredHeaders);
   const headerListIds = Object.keys(filteredHeaders) as (keyof T)[];
-  const { handleOpenModal } = useModal(ModalId.LoginModal);
 
   return (
     <table className={className}>
@@ -65,8 +62,9 @@ const Table = <T extends Identifiable>({
             ))}
             <td>
               <DetailLink id={data.id} />
-              <Button onClick={handleOpenModal}>klik</Button>
-              <DeleteRecord id={ModalId.LoginModal} />
+
+              <DeleteRecordBtn id={data.id} />
+              <DeleteRecordModal id={data.id} />
             </td>
           </tr>
         ))}
