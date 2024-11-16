@@ -40,23 +40,6 @@ function useFormValidation<T extends KeyValuePair<any>>({
     }
   }, [errors]);
 
-  useEffect(() => {
-    if (validate) {
-      const validationErrors = validate(values);
-
-      const updatedErrors = { ...errors };
-      touched.forEach((key) => {
-        if (validationErrors[key]) {
-          updatedErrors[key] = validationErrors[key];
-        } else {
-          delete updatedErrors[key];
-        }
-      });
-
-      setErrors(updatedErrors);
-    }
-  }, [values, touched]);
-
   function onChange(event: ChangeInputType) {
     const { name, value, type, checked } = event.target;
 
@@ -85,6 +68,7 @@ function useFormValidation<T extends KeyValuePair<any>>({
       setTouched([...touched, name]);
     }
 
+    // Clear the error message when typing
     setErrors((prevErrors) => {
       const updatedErrors = { ...prevErrors };
       delete updatedErrors[name];
@@ -100,6 +84,15 @@ function useFormValidation<T extends KeyValuePair<any>>({
     const { name } = event.target;
     if (!touched.includes(name)) {
       setTouched([...touched, name]);
+    }
+
+    // Validate the specific field on blur
+    if (validate) {
+      const validationErrors = validate(values);
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        [name]: validationErrors[name],
+      }));
     }
   };
 
