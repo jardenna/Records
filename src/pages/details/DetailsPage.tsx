@@ -19,44 +19,46 @@ const DetailsPage: FC = () => {
         </header>
         <img src="/images/default.png" alt="" className="block-img" />
       </section>
-      <section>
-        <DetailsContent
-          text={selectedRecord.origin || noInfo}
-          label={labels.origin}
-        />
-        <DetailsContent
-          text={selectedRecord.prodYear}
-          label={labels.prodYear}
-        />
+      <section className="details-content-container">
+        <div>
+          <DetailsContent
+            text={selectedRecord.origin || noInfo}
+            label={labels.origin}
+          />
+          <DetailsContent
+            text={selectedRecord.prodYear}
+            label={labels.prodYear}
+          />
 
-        <DetailsContent
-          text={selectedRecord.released || selectedRecord.prodYear}
-          label={labels.released}
-        />
+          <DetailsContent
+            text={selectedRecord.released || selectedRecord.prodYear}
+            label={labels.released}
+          />
 
-        <DetailsContent
-          text={selectedRecord.label || noInfo}
-          label={labels.label}
-        />
+          <DetailsContent
+            text={selectedRecord.label || noInfo}
+            label={labels.label}
+          />
 
-        <DetailsContent
-          text={selectedRecord.recordNo || noInfo}
-          label={labels.recordNo}
-        />
+          <DetailsContent
+            text={selectedRecord.recordNo || noInfo}
+            label={labels.recordNo}
+          />
 
-        <DetailsContent
-          text={1 || selectedRecord.numOfRecords}
-          label={labels.numOfRecords}
-        />
+          <DetailsContent
+            text={1 || selectedRecord.numOfRecords}
+            label={labels.numOfRecords}
+          />
 
-        <DetailsContent
-          text={`${selectedRecord.price},00` || noInfo}
-          label={labels.price}
-        />
-        <div className="flex">
-          <Button>Opdater plade info</Button>
-          <Button>Slet plade</Button>
+          <DetailsContent
+            text={`${selectedRecord.price},00` || noInfo}
+            label={labels.price}
+          />
         </div>
+        <footer className="details-footer" aria-label="Record-details">
+          <Button>Opdater plade info</Button>
+          <Button className="btn-danger">Slet plade</Button>
+        </footer>
       </section>
     </article>
   ) : (

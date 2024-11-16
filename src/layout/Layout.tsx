@@ -6,9 +6,9 @@ const Layout: FC = () => (
   <div className="main-container">
     <Header />
     <main>
-      <article className="container">
+      <div className="container">
         <Outlet />
-      </article>
+      </div>
     </main>
     <footer className="main-footer" aria-label="main">
       footer
