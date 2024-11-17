@@ -4,6 +4,7 @@ import ChevronLeft from './ChevronLeft';
 import ChevronRight from './ChevronRight';
 import ChevronsLeft from './ChevronsLeft';
 import ChevronsRight from './ChevronsRight';
+import Close from './Close';
 
 export interface IconDefaultProps {
   title: string;
@@ -20,12 +21,14 @@ export enum IconName {
   ChevronRight = 'chevronRight',
   ChevronsLeft = 'chevronsLeft',
   ChevronsRight = 'chevronsRight',
+  Close = 'close',
 }
 const iconMapping = {
   chevronsLeft: ChevronsLeft,
   chevronsRight: ChevronsRight,
   chevronLeft: ChevronLeft,
   chevronRight: ChevronRight,
+  close: Close,
 };
 
 const Icon: FC<IconProps> = ({

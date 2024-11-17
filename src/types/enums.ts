@@ -37,10 +37,6 @@ export enum KeyCode {
   Tab = 'Tab',
 }
 
-export enum IconName {
-  Logo = 'logo',
-}
-
 export enum SizeVariant {
   Lg = 'lg',
   Md = 'md',

@@ -17,11 +17,7 @@ const ModalHeader: FC<ModalHeaderProps> = ({
       {modalHeadertext}
     </h2>
     {showCloseIcon && (
-      <BtnClose
-        onClick={onCloseModal}
-        ariaLabel="close"
-        className="btn-close"
-      />
+      <BtnClose onClick={onCloseModal} ariaLabel="Close modal" />
     )}
   </header>
 );
