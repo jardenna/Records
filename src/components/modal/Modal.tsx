@@ -1,18 +1,17 @@
-import React, { ReactNode, useEffect, useState } from 'react';
+import React, { useRef } from 'react';
 import { useAppSelector } from '../../app/hooks';
 import { selectModal } from '../../features/modal';
+import useVisibility from '../../hooks/useVisibility';
 import { BtnVariant, SizeVariant } from '../../types/enums';
 import { BtnType } from '../../types/types';
 import Portal from '../Portal';
+import './_modal.scss';
 import ModalFooter from './ModalFooter';
 import ModalHeader from './ModalHeader';
-import useModal from './useModal';
-
-import './_modal.scss';
 
 export interface PrimaryActionBtnProps {
   label: string | null;
-  onClick: any;
+  onClick: () => void;
   buttonType?: BtnType;
 }
 
@@ -26,7 +25,6 @@ interface ModalProps {
   modalHeaderText: string;
   className?: string;
   isAlert?: boolean;
-  modalInfo?: ReactNode;
   modalSize?: SizeVariant;
   primaryActionBtn?: PrimaryActionBtnProps;
   secondaryActionBtn?: SecondaryActionBtnProps;
@@ -37,26 +35,18 @@ const Modal: React.FC<ModalProps> = ({
   id,
   modalHeaderText,
   children,
-  isAlert,
-  modalSize = 'sm',
   className = '',
-  showCloseIcon,
-  secondaryActionBtn,
+  modalSize = 'sm',
+  isAlert,
   primaryActionBtn,
-  modalInfo,
+  secondaryActionBtn,
+  showCloseIcon,
 }) => {
   const modalId = useAppSelector(selectModal);
-  const { closeModal, modalRef } = useModal(modalId);
-  const [isVisible, setIsVisible] = useState(false);
-
-  useEffect(() => {
-    if (modalId === id) {
-      setIsVisible(true);
-      modalRef.current?.showModal();
-    } else {
-      setIsVisible(false);
-    }
-  }, [modalId, id]);
+  const modalRef = useRef<HTMLDialogElement>(null);
+  const { isVisible, handleClose } = useVisibility(modalId === id, () =>
+    modalRef.current?.close(),
+  );
 
   if (!modalId) {
     return null;
@@ -71,38 +61,15 @@ const Modal: React.FC<ModalProps> = ({
       >
         <ModalHeader
           modalHeadertext={modalHeaderText}
-          onCloseModal={() => {
-            setIsVisible(false);
-            setTimeout(closeModal, 500);
-          }}
+          onCloseModal={handleClose}
           showCloseIcon={showCloseIcon}
         />
-        {primaryActionBtn?.buttonType !== 'submit' ? (
-          <>
-            <div className="modal-body">{children}</div>
-            <ModalFooter
-              onCloseModal={() => {
-                setIsVisible(false);
-                setTimeout(closeModal, 500);
-              }}
-              primaryActionBtn={primaryActionBtn}
-              secondaryActionBtn={secondaryActionBtn}
-            />
-          </>
-        ) : (
-          <form method="modal" className="modal-form">
-            {children}
-            <ModalFooter
-              onCloseModal={() => {
-                setIsVisible(false);
-                setTimeout(closeModal, 500);
-              }}
-              primaryActionBtn={primaryActionBtn}
-              secondaryActionBtn={secondaryActionBtn}
-            />
-          </form>
-        )}
-        {modalInfo && modalInfo}
+        <div className="modal-body">{children}</div>
+        <ModalFooter
+          onCloseModal={handleClose}
+          primaryActionBtn={primaryActionBtn}
+          secondaryActionBtn={secondaryActionBtn}
+        />
       </dialog>
     </Portal>
   );
