@@ -57,7 +57,7 @@ const useModal = (modalId?: string | null) => {
     }
   }, [modalId, modalRef.current]);
 
-  return { handleCloseModal, openModal: handleOpenModal, modalRef };
+  return { closeModal: handleCloseModal, openModal: handleOpenModal, modalRef };
 };
 
 export default useModal;

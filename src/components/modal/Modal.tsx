@@ -46,7 +46,7 @@ const Modal: React.FC<ModalProps> = ({
   modalInfo,
 }) => {
   const modalId = useAppSelector(selectModal);
-  const { handleCloseModal, modalRef } = useModal(modalId);
+  const { closeModal, modalRef } = useModal(modalId);
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
@@ -55,7 +55,6 @@ const Modal: React.FC<ModalProps> = ({
       modalRef.current?.showModal();
     } else {
       setIsVisible(false);
-      setTimeout(() => modalRef.current?.close(), 500); // Match the animation duration
     }
   }, [modalId, id]);
 
@@ -74,7 +73,7 @@ const Modal: React.FC<ModalProps> = ({
           modalHeadertext={modalHeaderText}
           onCloseModal={() => {
             setIsVisible(false);
-            setTimeout(handleCloseModal, 500); // Match the animation duration
+            setTimeout(closeModal, 500);
           }}
           showCloseIcon={showCloseIcon}
         />
@@ -84,7 +83,7 @@ const Modal: React.FC<ModalProps> = ({
             <ModalFooter
               onCloseModal={() => {
                 setIsVisible(false);
-                setTimeout(handleCloseModal, 500); // Match the animation duration
+                setTimeout(closeModal, 500);
               }}
               primaryActionBtn={primaryActionBtn}
               secondaryActionBtn={secondaryActionBtn}
@@ -96,7 +95,7 @@ const Modal: React.FC<ModalProps> = ({
             <ModalFooter
               onCloseModal={() => {
                 setIsVisible(false);
-                setTimeout(handleCloseModal, 500); // Match the animation duration
+                setTimeout(closeModal, 500);
               }}
               primaryActionBtn={primaryActionBtn}
               secondaryActionBtn={secondaryActionBtn}
