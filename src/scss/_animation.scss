@@ -1,4 +1,4 @@
-@use './mixins' as *;
+@use './globals' as *;
 
 // Slide in from top right
 .top-right {
@@ -15,9 +15,10 @@
 }
 
 .top-center {
+  top: 16px;
+  left: 0;
+
   &.transition {
-    top: 16px;
-    left: 0;
     transform: translateX(-50%);
 
     @include animation(slide-in-top-center);

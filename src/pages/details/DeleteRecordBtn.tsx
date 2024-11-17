@@ -7,9 +7,9 @@ interface DeleteRecordBtnProps {
 }
 
 const DeleteRecordBtn: FC<DeleteRecordBtnProps> = ({ id }) => {
-  const { handleOpenModal } = useModal(id);
+  const { openModal } = useModal(id);
 
-  return <Button onClick={handleOpenModal}>Delete</Button>;
+  return <Button onClick={openModal}>Delete</Button>;
 };
 
 export default DeleteRecordBtn;
