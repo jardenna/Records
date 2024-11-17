@@ -17,8 +17,20 @@ a[class^='btn-'],
 
   @include transition;
 
+  &::after {
+    content: '';
+    position: absolute;
+    top: -21%;
+    left: -18%;
+    width: 130%;
+    height: 144%;
+  }
+
   &:disabled {
     pointer-events: none;
+    background-color: $color-gray-light;
+    color: $color-gray-dark;
+    border-color: $color-gray-light;
   }
 }
 
