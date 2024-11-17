@@ -5,10 +5,6 @@ dialog::backdrop {
   opacity: 0.8;
 }
 
-dialog[open] {
-  transform: translateY(-60%);
-}
-
 .modal {
   border: 0;
   overflow-x: hidden;

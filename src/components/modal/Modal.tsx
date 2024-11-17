@@ -1,4 +1,4 @@
-import React, { ReactNode, useEffect } from 'react';
+import React, { ReactNode, useEffect, useState } from 'react';
 import { useAppSelector } from '../../app/hooks';
 import { selectModal } from '../../features/modal';
 import { BtnVariant, SizeVariant } from '../../types/enums';
@@ -47,12 +47,15 @@ const Modal: React.FC<ModalProps> = ({
 }) => {
   const modalId = useAppSelector(selectModal);
   const { handleCloseModal, modalRef } = useModal(modalId);
+  const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
     if (modalId === id) {
+      setIsVisible(true);
       modalRef.current?.showModal();
     } else {
-      modalRef.current?.close();
+      setIsVisible(false);
+      setTimeout(() => modalRef.current?.close(), 500); // Match the animation duration
     }
   }, [modalId, id]);
 
@@ -64,19 +67,25 @@ const Modal: React.FC<ModalProps> = ({
     <Portal portalId="modal">
       <dialog
         ref={modalRef}
-        className={`modal modal-${modalSize} ${className}`}
+        className={`modal top-center modal-${modalSize} ${className} ${isVisible ? 'transition' : 'dismissed'}`}
         role={isAlert ? 'alert' : undefined}
       >
         <ModalHeader
           modalHeadertext={modalHeaderText}
-          onCloseModal={handleCloseModal}
+          onCloseModal={() => {
+            setIsVisible(false);
+            setTimeout(handleCloseModal, 500); // Match the animation duration
+          }}
           showCloseIcon={showCloseIcon}
         />
         {primaryActionBtn?.buttonType !== 'submit' ? (
           <>
             <div className="modal-body">{children}</div>
             <ModalFooter
-              onCloseModal={handleCloseModal}
+              onCloseModal={() => {
+                setIsVisible(false);
+                setTimeout(handleCloseModal, 500); // Match the animation duration
+              }}
               primaryActionBtn={primaryActionBtn}
               secondaryActionBtn={secondaryActionBtn}
             />
@@ -85,7 +94,10 @@ const Modal: React.FC<ModalProps> = ({
           <form method="modal" className="modal-form">
             {children}
             <ModalFooter
-              onCloseModal={handleCloseModal}
+              onCloseModal={() => {
+                setIsVisible(false);
+                setTimeout(handleCloseModal, 500); // Match the animation duration
+              }}
               primaryActionBtn={primaryActionBtn}
               secondaryActionBtn={secondaryActionBtn}
             />

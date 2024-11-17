@@ -1,7 +1,5 @@
 /* eslint-disable no-param-reassign */
-import DeleteRecordBtn from '../../pages/details/DeleteRecordBtn';
 import DetailLink from '../../pages/details/DetailLink';
-import DeleteRecordModal from '../DeleteRecordModal';
 
 import './_table.scss';
 
@@ -62,9 +60,6 @@ const Table = <T extends Identifiable>({
             ))}
             <td>
               <DetailLink id={data.id} />
-
-              <DeleteRecordBtn id={data.id} />
-              <DeleteRecordModal id={data.id} />
             </td>
           </tr>
         ))}

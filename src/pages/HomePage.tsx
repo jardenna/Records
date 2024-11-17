@@ -1,23 +1,14 @@
-import { FC, useState } from 'react';
-import AnimatedComponent from '../components/AnimatedComponent';
+import { FC } from 'react';
+import DeleteRecordModal from '../components/DeleteRecordModal';
+import { ModalId } from '../types/enums';
+import DeleteRecordBtn from './details/DeleteRecordBtn';
 
-const HomePage: FC = () => {
-  const [showAnimation, setShowAnimation] = useState(false);
-
-  const handleShowAnimation = () => {
-    setShowAnimation(true);
-    setTimeout(() => setShowAnimation(false), 3000); // Hide after 3 seconds
-  };
-
-  return (
-    <div>
-      <h1>Welcome to the Home Page</h1>
-      <button type="button" onClick={handleShowAnimation}>
-        Show Animation
-      </button>
-      {showAnimation && <AnimatedComponent />}
-    </div>
-  );
-};
+const HomePage: FC = () => (
+  <div>
+    <h1>Welcome to the Home Page</h1>
+    <DeleteRecordBtn id={ModalId.LoginModal} />
+    <DeleteRecordModal id={ModalId.LoginModal} />
+  </div>
+);
 
 export default HomePage;
