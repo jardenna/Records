@@ -40,7 +40,7 @@ const useToast = (toastId?: any) => {
       return () => clearTimeout(timer);
     }
     // Start the removal timer after the dismissal animation completes
-    const timer = setTimeout(() => dispatch(dismissToast(toastId)), 500); // Match animation duration
+    const timer = setTimeout(() => dispatch(dismissToast(toastId)), 500);
     return () => clearTimeout(timer);
   }, [isVisible, autoHideDuration, dispatch, toastId]);
 
