@@ -4,7 +4,7 @@ import { useAppDispatch } from '../../app/hooks';
 import { closeModal } from '../../features/modalSlice';
 import { KeyCode } from '../../types/enums';
 
-const useModal = (modalId?: string | null) => {
+const useModal = (modalId: string | null) => {
   const dispatch = useAppDispatch();
   const modalRef = useRef<HTMLDialogElement | null>(null);
 
