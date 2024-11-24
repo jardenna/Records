@@ -4,12 +4,16 @@ import Button from './Button';
 import Icon, { IconName } from './icons/Icon';
 
 interface BtnCloseProps {
-  ariaLabel: string;
+  onClick: any;
+  ariaLabel?: string;
   autoFocus?: boolean;
-  onClick?: () => void;
 }
 
-const BtnClose: FC<BtnCloseProps> = ({ onClick, ariaLabel, autoFocus }) => (
+const BtnClose: FC<BtnCloseProps> = ({
+  onClick,
+  ariaLabel = 'Close',
+  autoFocus,
+}) => (
   <Button
     variant={BtnVariant.Ghost}
     onClick={onClick}

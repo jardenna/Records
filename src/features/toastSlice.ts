@@ -16,9 +16,9 @@ export type ToastPosition =
 export type Toast = {
   id: string;
   message: string;
+  toastType: ToastTypes;
   onClose?: () => void;
   position?: ToastPosition;
-  type?: ToastTypes;
 };
 
 export type ToastWithoutId = Omit<Toast, 'id'>;
