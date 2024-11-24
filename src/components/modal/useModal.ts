@@ -1,6 +1,5 @@
 import { useEffect, useRef } from 'react';
 import { useAppDispatch } from '../../app/hooks';
-import useKeyPress from '../../hooks/useKeyPress';
 
 import { closeModal } from '../../features/modal';
 import { KeyCode } from '../../types/enums';
@@ -12,8 +11,6 @@ const useModal = (modalId?: string | null) => {
   const handleCloseModal = () => {
     dispatch(closeModal());
   };
-
-  useKeyPress(handleCloseModal, [KeyCode.Esc]);
 
   // eslint-disable-next-line consistent-return
   useEffect(() => {

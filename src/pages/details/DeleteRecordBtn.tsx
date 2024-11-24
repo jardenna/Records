@@ -12,7 +12,7 @@ interface DeleteRecordBtnProps extends DeleteRecordModalProps {
 
 const DeleteRecordBtn: FC<DeleteRecordBtnProps> = ({ modalId, btnText }) => {
   const dispatch = useAppDispatch();
-  const handleLogin = () => {
+  const handleOpenModal = () => {
     if (modalId) {
       dispatch(openModal(modalId));
     }
@@ -20,7 +20,7 @@ const DeleteRecordBtn: FC<DeleteRecordBtnProps> = ({ modalId, btnText }) => {
 
   return (
     <>
-      <Button className="btn-danger" onClick={handleLogin}>
+      <Button className="btn-danger" onClick={handleOpenModal}>
         {btnText}
       </Button>
       <DeleteRecordModal modalId={modalId} />

@@ -1,4 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
+import { KeyCode } from '../types/enums';
+import useKeyPress from './useKeyPress';
 
 const useVisibility = (
   isOpen: boolean,
@@ -15,7 +17,7 @@ const useVisibility = (
       timeoutRef.current = window.setTimeout(closeCallback, transitionDuration);
     }
   };
-
+  useKeyPress(handleClosePopup, [KeyCode.Esc]);
   useEffect(() => {
     if (isOpen) {
       setIsVisible(true);
