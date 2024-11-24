@@ -1,7 +1,7 @@
 import React from 'react';
 import Portal from '../../components/Portal';
 import { Toast } from '../../features/toastSlice';
-import ToastComponent from './ToastComponent';
+import ToastListItem from './ToastListItem';
 import useToast from './useToast';
 
 const ToastList: React.FC = () => {
@@ -13,11 +13,11 @@ const ToastList: React.FC = () => {
 
   return (
     <Portal portalId="toast">
-      <div className="toast-container">
+      <ul className="toast-container">
         {toasts.map((toast: Toast) => (
-          <ToastComponent key={toast.id} toast={toast} />
+          <ToastListItem key={toast.id} toast={toast} />
         ))}
-      </div>
+      </ul>
     </Portal>
   );
 };
