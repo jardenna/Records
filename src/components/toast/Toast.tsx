@@ -2,9 +2,7 @@ import { FC } from 'react';
 import ToastItem from './ToastItem';
 import useToast from './useToast';
 
-interface ToastProps {}
-
-const Toast: FC<ToastProps> = () => {
+const Toast: FC = () => {
   const { deleteToast, toasts } = useToast();
 
   const handleDismissToast = (id: string) => {
