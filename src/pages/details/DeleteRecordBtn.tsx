@@ -4,7 +4,7 @@ import Button from '../../components/Button';
 import DeleteRecordModal, {
   DeleteRecordModalProps,
 } from '../../components/DeleteRecordModal';
-import { openModal } from '../../features/modal';
+import { openModal } from '../../features/modalSlice';
 
 interface DeleteRecordBtnProps extends DeleteRecordModalProps {
   btnText: string;

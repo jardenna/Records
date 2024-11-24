@@ -1,6 +1,6 @@
 import React from 'react';
 import { useAppSelector } from '../../app/hooks';
-import { selectModalId } from '../../features/modal';
+import { selectModalId } from '../../features/modalSlice';
 import useVisibility from '../../hooks/useVisibility';
 import { BtnVariant, SizeVariant } from '../../types/enums';
 import { BtnType } from '../../types/types';
