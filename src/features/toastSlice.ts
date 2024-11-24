@@ -38,7 +38,7 @@ const toastSlice = createSlice({
   name: 'toast',
   initialState,
   reducers: {
-    addToast: (state, action: PayloadAction<ToastWithoutId>) => {
+    adToast: (state, action: PayloadAction<ToastWithoutId>) => {
       state.toasts.unshift({
         id: nanoid(),
         ...action.payload,
@@ -58,7 +58,7 @@ const toastSlice = createSlice({
   },
 });
 
-export const { addToast, dismissToast } = toastSlice.actions;
+export const { adToast, dismissToast } = toastSlice.actions;
 
 export const selectToasts = (state: RootState) => state.toast.toasts;
 

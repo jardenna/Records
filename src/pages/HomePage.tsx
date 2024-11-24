@@ -3,10 +3,10 @@ import Toast from '../components/toast/Toast';
 import useToast from '../components/toast/useToast';
 
 const HomePage: FC = () => {
-  const { addToast } = useToast();
+  const { adToast } = useToast();
 
   const handleOpenToast = () => {
-    addToast({
+    adToast({
       message: 'Toast message example',
       toastType: 'success',
     });

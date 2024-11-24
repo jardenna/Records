@@ -1,7 +1,7 @@
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import {
   ToastTypes,
-  addToast,
+  adToast,
   dismissToast,
   selectToasts,
 } from '../../features/toastSlice';
@@ -9,6 +9,7 @@ import {
 type AdToastParams = {
   message: string;
   toastType: ToastTypes;
+  duration?: number; // Optional auto-dismiss duration
 };
 
 type DeleteToastParams = {
@@ -18,9 +19,9 @@ type DeleteToastParams = {
 const useToast = () => {
   const dispatch = useAppDispatch();
 
-  const addToastHandler = ({ message, toastType }: AdToastParams) => {
+  const adToastHandler = ({ message, toastType }: AdToastParams) => {
     dispatch(
-      addToast({
+      adToast({
         message,
         toastType,
       }),
@@ -33,7 +34,7 @@ const useToast = () => {
 
   const toasts = useAppSelector(selectToasts);
 
-  return { addToast: addToastHandler, deleteToast: deleteToastHandler, toasts };
+  return { adToast: adToastHandler, deleteToast: deleteToastHandler, toasts };
 };
 
 export default useToast;
