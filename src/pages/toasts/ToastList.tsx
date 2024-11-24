@@ -1,12 +1,11 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
 import Portal from '../../components/Portal';
-import { selectDuration, selectToasts, Toast } from '../../features/toastSlice';
+import { Toast } from '../../features/toastSlice';
 import ToastComponent from './ToastComponent';
+import useToast from './useToast';
 
 const ToastList: React.FC = () => {
-  const toasts = useSelector(selectToasts);
-  const autoHideDuration = useSelector(selectDuration);
+  const { toasts, autoHideDuration } = useToast();
 
   if (toasts.length === 0) {
     return null;

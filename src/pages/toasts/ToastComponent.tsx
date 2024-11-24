@@ -15,25 +15,20 @@ const ToastComponent: React.FC<ToastProps> = ({
   const dispatch = useDispatch();
   const [isVisible, setIsVisible] = useState(true);
 
-  useEffect(() => {
-    // Auto-dismiss the toast after the specified duration
-    const timer = setTimeout(() => setIsVisible(false), autoHideDuration);
-
-    return () => clearTimeout(timer);
-  }, [autoHideDuration]);
-
   const handleDismiss = () => {
     setIsVisible(false);
   };
 
   useEffect(() => {
+    // Auto-dismiss the toast after the specified duration
+    const timer = setTimeout(() => setIsVisible(false), autoHideDuration);
+    return () => clearTimeout(timer);
+  }, [autoHideDuration]);
+
+  useEffect(() => {
     if (!isVisible) {
       // Dispatch the removal action after the dismissal animation completes
-      const animationDuration = 500; // Match this to your animation's duration
-      const timer = setTimeout(
-        () => dispatch(dismissToast(toast.id)),
-        animationDuration,
-      );
+      const timer = setTimeout(() => dispatch(dismissToast(toast.id)), 500);
       return () => clearTimeout(timer);
     }
   }, [isVisible, dispatch, toast.id]);
