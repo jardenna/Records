@@ -1,13 +1,15 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import { useAppSelector } from '../../app/hooks';
-import { selectModal } from '../../features/modal';
+import { selectModalId } from '../../features/modal';
 import useVisibility from '../../hooks/useVisibility';
 import { BtnVariant, SizeVariant } from '../../types/enums';
 import { BtnType } from '../../types/types';
+import Overlay from '../overlay/Overlay';
 import Portal from '../Portal';
 import './_modal.scss';
 import ModalFooter from './ModalFooter';
 import ModalHeader from './ModalHeader';
+import useModal from './useModal';
 
 export interface PrimaryActionBtnProps {
   label: string | null;
@@ -35,17 +37,19 @@ const Modal: React.FC<ModalProps> = ({
   id,
   modalHeaderText,
   children,
-  className = '',
-  modalSize = 'sm',
   isAlert,
-  primaryActionBtn,
+  modalSize = 'sm',
+  className = '',
+  showCloseIcon = true,
   secondaryActionBtn,
-  showCloseIcon,
+  primaryActionBtn,
 }) => {
-  const modalId = useAppSelector(selectModal);
-  const modalRef = useRef<HTMLDialogElement>(null);
-  const { isVisible, handleClose } = useVisibility(modalId === id, () =>
-    modalRef.current?.close(),
+  const modalId = useAppSelector(selectModalId);
+  const { handleCloseModal, modalRef } = useModal(modalId);
+
+  const { handleClosePopup, popupClass } = useVisibility(
+    modalId === id,
+    handleCloseModal,
   );
 
   if (!modalId) {
@@ -56,21 +60,35 @@ const Modal: React.FC<ModalProps> = ({
     <Portal portalId="modal">
       <dialog
         ref={modalRef}
-        className={`modal top-center modal-${modalSize} ${className} ${isVisible ? 'transition' : 'dismissed'}`}
+        className={`modal animate-top-center modal-${modalSize} ${className}  ${popupClass}`}
         role={isAlert ? 'alert' : undefined}
       >
         <ModalHeader
           modalHeadertext={modalHeaderText}
-          onCloseModal={handleClose}
+          onCloseModal={handleClosePopup}
           showCloseIcon={showCloseIcon}
         />
-        <div className="modal-body">{children}</div>
-        <ModalFooter
-          onCloseModal={handleClose}
-          primaryActionBtn={primaryActionBtn}
-          secondaryActionBtn={secondaryActionBtn}
-        />
+        {primaryActionBtn?.buttonType !== 'submit' ? (
+          <>
+            <div className="modal-body">{children}</div>
+            <ModalFooter
+              onCloseModal={handleClosePopup}
+              primaryActionBtn={primaryActionBtn}
+              secondaryActionBtn={secondaryActionBtn}
+            />
+          </>
+        ) : (
+          <form method="modal" className="modal-form">
+            {children}
+            <ModalFooter
+              onCloseModal={handleClosePopup}
+              primaryActionBtn={primaryActionBtn}
+              secondaryActionBtn={secondaryActionBtn}
+            />
+          </form>
+        )}
       </dialog>
+      <Overlay />
     </Portal>
   );
 };

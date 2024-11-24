@@ -13,6 +13,7 @@ dialog::backdrop {
   gap: 24px;
   display: flex;
   flex-direction: column;
+  z-index: 10;
 
   &.modal-sm {
     max-width: rem(500px);

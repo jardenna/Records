@@ -1,6 +1,7 @@
 import { FC } from 'react';
+import { useAppDispatch } from '../../app/hooks';
 import Button from '../../components/Button';
-import useModal from '../../components/modal/useModal';
+import { openModal } from '../../features/modal';
 
 interface DeleteRecordBtnProps {
   btnText: string;
@@ -8,10 +9,13 @@ interface DeleteRecordBtnProps {
 }
 
 const DeleteRecordBtn: FC<DeleteRecordBtnProps> = ({ id, btnText }) => {
-  const { openModal } = useModal(id);
+  const dispatch = useAppDispatch();
+  const handleLogin = () => {
+    dispatch(openModal(id));
+  };
 
   return (
-    <Button className="btn-danger" onClick={openModal}>
+    <Button className="btn-danger" onClick={handleLogin}>
       {btnText}
     </Button>
   );

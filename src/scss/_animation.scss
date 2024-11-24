@@ -1,11 +1,11 @@
 @use './globals' as *;
 
 // Slide in from top right
-.top-right {
+.animate-top-right {
   top: 16px;
   right: 16px;
 
-  &.transition {
+  &.is-visible {
     @include animation(slide-in-right);
   }
 
@@ -14,12 +14,13 @@
   }
 }
 
-.top-center {
+// Slide in from top center
+.animate-top-center {
   top: 16px;
   left: 0;
 
-  &.transition {
-    transform: translateX(-50%);
+  &.is-visible {
+    transform: translateY(-60%);
 
     @include animation(slide-in-top-center);
   }
@@ -30,11 +31,11 @@
 }
 
 // Slide in from top left
-.top-left {
+.animate-top-left {
   top: 16px;
   left: 0;
 
-  &.transition {
+  &.is-visible {
     @include animation(slide-in-left);
   }
 
@@ -44,11 +45,11 @@
 }
 
 // Slide in from bottom right
-.bottom-right {
+.animate-bottom-right {
   bottom: 16px;
   right: 16px;
 
-  &.transition {
+  &.is-visible {
     @include animation(slide-in-right);
   }
 
@@ -58,12 +59,12 @@
 }
 
 // Slide in from bottom center
-.bottom-center {
+.animate-bottom-center {
   bottom: 16px;
   left: 50%;
   transform: translateX(-50%);
 
-  &.transition {
+  &.is-visible {
     @include animation(slide-in-bottom-center);
   }
 
@@ -73,11 +74,11 @@
 }
 
 // Slide in from bottom left
-.bottom-left {
+.animate-bottom-left {
   bottom: 16px;
   left: 16px;
 
-  &.transition {
+  &.is-visible {
     @include animation(slide-in-left);
   }
 
@@ -85,6 +86,8 @@
     @include animation(slide-out-left);
   }
 }
+
+// KeyFrames
 
 @keyframes slide-in-top-center {
   0% {
