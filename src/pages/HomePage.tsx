@@ -1,25 +1,23 @@
 import { FC } from 'react';
-import { useAppDispatch } from '../app/hooks';
-import Button from '../components/Button';
 import Toast from '../components/toast/Toast';
-import { addToast } from '../features/toastSlice';
+import useToast from '../components/toast/useToast';
 
 const HomePage: FC = () => {
-  const dispatch = useAppDispatch();
+  const { addToast } = useToast();
 
   const handleOpenToast = () => {
-    dispatch(
-      addToast({
-        message: 'hello from toast',
-        toastType: 'success',
-      }),
-    );
+    addToast({
+      message: 'Toast message example',
+      toastType: 'success',
+    });
   };
 
   return (
     <div className="home-page">
       <h1>Welcome to the Home Page</h1>
-      <Button onClick={handleOpenToast}>Klik</Button>
+      <button type="button" onClick={handleOpenToast}>
+        Klik
+      </button>
       <Toast />
     </div>
   );

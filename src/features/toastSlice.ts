@@ -1,7 +1,6 @@
 import { createSlice, nanoid, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from '../app/store';
 
-// Toast Types
 export type ToastTypes = 'success' | 'info' | 'warning' | 'error';
 
 export type ToastPosition =
@@ -59,14 +58,11 @@ const toastSlice = createSlice({
   },
 });
 
-// Actions
 export const { addToast, dismissToast } = toastSlice.actions;
 
-// Selector
 export const selectToasts = (state: RootState) => state.toast.toasts;
 
 export const selectDuration = (state: RootState) =>
   state.toast.autoHideDuration;
 
-// Reducer
 export default toastSlice.reducer;

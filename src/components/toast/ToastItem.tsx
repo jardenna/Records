@@ -1,11 +1,7 @@
 import { FC } from 'react';
-
 import { Toast, ToastTypes } from '../../features/toastSlice';
 import BtnClose from '../BtnClose';
 import Icon, { IconName } from '../icons/Icon';
-
-// Retrieve iconName and title from the config
-export type ToastType = 'success' | 'info' | 'warning' | 'error';
 
 interface ToastItemProps {
   onDismissToast: (id: string) => void;
