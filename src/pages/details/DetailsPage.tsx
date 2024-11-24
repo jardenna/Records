@@ -1,8 +1,11 @@
 import { FC } from 'react';
 import { useParams } from 'react-router-dom';
 import Button from '../../components/Button';
+import DeleteRecordModal from '../../components/DeleteRecordModal';
 import { labels, noInfo } from '../../components/recordTable/tableHeaders';
 import { useGetRecordByIdQuery } from '../../features/records/recordsApiSlice';
+import { ModalId } from '../../types/enums';
+import DeleteRecordBtn from './DeleteRecordBtn';
 import DetailsContent from './DetailsContent';
 import './_details.scss';
 
@@ -57,7 +60,8 @@ const DetailsPage: FC = () => {
         </div>
         <footer className="details-footer" aria-label="Record-details">
           <Button>Opdater plade</Button>
-          <Button className="btn-danger">Slet plade</Button>
+          <DeleteRecordBtn id={ModalId.LoginModal} btnText="Slet plade" />
+          <DeleteRecordModal id={ModalId.LoginModal} />
         </footer>
       </section>
     </article>
