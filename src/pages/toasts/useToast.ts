@@ -14,7 +14,7 @@ type AdToastParams = {
   duration?: number; // Optional auto-dismiss duration
 };
 
-const useToast = (toastIdNew?: any) => {
+const useToast = (toastId?: any) => {
   const dispatch = useAppDispatch();
   const [isVisible, setIsVisible] = useState(true);
   const toasts = useAppSelector(selectToasts);
@@ -34,19 +34,15 @@ const useToast = (toastIdNew?: any) => {
   };
 
   useEffect(() => {
-    // Auto-dismiss the toast after the specified duration
-    const timer = setTimeout(() => setIsVisible(false), autoHideDuration);
-    return () => clearTimeout(timer);
-  }, [autoHideDuration]);
-
-  // eslint-disable-next-line consistent-return
-  useEffect(() => {
-    if (!isVisible) {
-      // Dispatch the removal action after the dismissal animation completes
-      const timer = setTimeout(() => dispatch(dismissToast(toastIdNew)), 500);
+    if (isVisible) {
+      // Start the auto-dismiss timer
+      const timer = setTimeout(() => setIsVisible(false), autoHideDuration);
       return () => clearTimeout(timer);
     }
-  }, [isVisible, dispatch, toastIdNew]);
+    // Start the removal timer after the dismissal animation completes
+    const timer = setTimeout(() => dispatch(dismissToast(toastId)), 500); // Match animation duration
+    return () => clearTimeout(timer);
+  }, [isVisible, autoHideDuration, dispatch, toastId]);
 
   const popupClass = isVisible ? 'is-visible' : 'dismissed';
 
