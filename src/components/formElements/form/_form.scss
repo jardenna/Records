@@ -40,13 +40,14 @@ input[type='number'] {
   textarea {
     width: 100%;
     background-color: $color-white;
-    color: $color-primary;
+    color: $color-gray-darker;
     position: relative;
     border: 1px solid $color-border;
     font-size: rem(14px);
-    padding: 12px;
+    padding: 8px;
     border-radius: 4px;
     outline: transparent;
+    font-family: $font-primary;
 
     &:focus-visible {
       background: linear-gradient($color-blue, $color-blue-dark) bottom -12px
