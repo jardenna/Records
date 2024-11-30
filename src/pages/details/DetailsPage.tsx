@@ -3,6 +3,7 @@ import { useParams } from 'react-router';
 import Button from '../../components/Button';
 import { labels, noInfo } from '../../components/recordTable/tableHeaders';
 import { useGetRecordByIdQuery } from '../../features/records/recordsApiSlice';
+import FooterComp from '../../layout/FooterComp';
 import DeleteRecordBtn from './DeleteRecordBtn';
 import DetailsContent from './DetailsContent';
 import './_details.scss';
@@ -56,10 +57,10 @@ const DetailsPage: FC = () => {
             label={labels.price}
           />
         </div>
-        <footer className="details-footer" aria-label="Record-details">
+        <FooterComp className="details-footer" ariaLabel="Record-details">
           <Button>Opdater plade</Button>
           {id && <DeleteRecordBtn modalId={id} btnText="Slet plade" />}
-        </footer>
+        </FooterComp>
       </section>
     </article>
   ) : (

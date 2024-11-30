@@ -124,13 +124,12 @@ const Update: FC<UpdateProps> = () => {
               labelText="Værd at vide"
             />
           </div>
-          <div className="flex column">
-            <ImagePreview
-              fileName="record"
-              previewUrl="images/default.png"
-              uploadedPhoto="images/default.png"
-            />
-          </div>
+
+          <ImagePreview
+            fileName="record"
+            previewUrl="images/default.png"
+            uploadedPhoto="images/default.png"
+          />
         </div>
       </Form>
     </section>

@@ -1,4 +1,5 @@
 import { FC, ReactNode } from 'react';
+import FooterComp from '../../../layout/FooterComp';
 import { FormEventType } from '../../../types/types';
 import Button from '../../Button';
 import './_form.scss';
@@ -19,10 +20,10 @@ const Form: FC<FormProps> = ({
   <form onSubmit={onSubmit} noValidate className={className}>
     {children}
 
-    <footer className="form-footer">
+    <FooterComp className="form-footer" ariaLabel="form">
       <Button type="submit">{labelText}</Button>{' '}
       <Button type="submit">{labelText}</Button>
-    </footer>
+    </FooterComp>
   </form>
 );
 

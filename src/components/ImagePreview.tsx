@@ -14,7 +14,7 @@ const ImagePreview: FC<ImagePreviewProps> = ({
   uploadedPhoto,
   previewUrl,
 }) => (
-  <section className="flex-item image-preview-wrapper">
+  <section className="image-preview-wrapper">
     <h2>Billede upload</h2>
     {previewUrl === '' ? (
       <div className="image-preview">

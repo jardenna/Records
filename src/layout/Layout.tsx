@@ -1,6 +1,7 @@
 import { FC } from 'react';
 import { Outlet } from 'react-router';
-import Header from './Header';
+import FooterComp from './FooterComp';
+import Header from './header/Header';
 
 const Layout: FC = () => (
   <div className="main-container">
@@ -10,9 +11,9 @@ const Layout: FC = () => (
         <Outlet />
       </div>
     </main>
-    <footer className="main-footer" aria-label="main">
+    <FooterComp className="main-footer" ariaLabel="main">
       footer
-    </footer>
+    </FooterComp>
   </div>
 );
 
