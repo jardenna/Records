@@ -30,8 +30,15 @@ const Update: FC<UpdateProps> = () => {
 
   const [createRecord] = useCreateNewRecordMutation();
 
-  function handleSubmit() {
-    createRecord(values);
+  async function handleSubmit() {
+    try {
+      const result = await createRecord(values).unwrap();
+      console.log('Record created successfully:', result);
+    } catch (error) {
+      console.error('Failed to create record:', error);
+
+      // Handle the error
+    }
   }
 
   return (
