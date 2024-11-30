@@ -49,8 +49,8 @@ input[type='number'] {
     outline: transparent;
 
     &:focus-visible {
-      background: linear-gradient($color-blue-dark-medium, $color-blue-dark)
-        bottom -12px left 0 / 100% 3px content-box padding-box repeat-x;
+      background: linear-gradient($color-blue, $color-blue-dark) bottom -12px
+        left 0 / 100% 3px content-box padding-box repeat-x;
     }
   }
 
@@ -106,7 +106,7 @@ input[type='number'] {
     color: currentcolor;
     width: rem(24px);
     height: rem(24px);
-    border: 2px solid $color-blue-dark-medium;
+    border: 2px solid $color-blue;
     transform: translateY(-1.2px);
     display: flex;
     position: relative;
@@ -121,7 +121,7 @@ input[type='number'] {
   }
 
   &:focus-within {
-    outline: 2px solid rgba($color-blue-dark-medium, 70%);
+    outline: 2px solid rgba($color-blue, 70%);
   }
 
   .form-label-container {

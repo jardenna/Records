@@ -12,11 +12,11 @@ input[type='radio'] {
 
     @include transition($time: 0.12s);
 
-    box-shadow: inset 16px 0 $color-blue-dark-medium;
+    box-shadow: inset 16px 0 $color-blue;
   }
 
   &:checked {
-    border-color: $color-blue-dark-medium;
+    border-color: $color-blue;
     outline: transparent;
 
     &::before {
