@@ -22,6 +22,14 @@ export const recordsApiSlice = apiSlice.injectEndpoints({
     getRecordById: builder.query<Record, string | undefined>({
       query: (id) => `${endpoints.records}/${id}`,
     }),
+    createNewRecord: builder.mutation<any, any>({
+      query: (record) => ({
+        url: `/${endpoints.records}`,
+        method: 'POST',
+        body: record,
+      }),
+      invalidatesTags: ['Records'],
+    }),
   }),
 });
 
@@ -29,4 +37,5 @@ export const {
   useGetPaginatedRecordsQuery,
   useGetAmountOfRecordsQuery,
   useGetRecordByIdQuery,
+  useCreateNewRecordMutation,
 } = recordsApiSlice;

@@ -19,9 +19,7 @@ const Form: FC<FormProps> = ({
 }) => (
   <form onSubmit={onSubmit} noValidate className={className}>
     {children}
-
     <FooterComp className="form-footer" ariaLabel="form">
-      <Button type="submit">{labelText}</Button>{' '}
       <Button type="submit">{labelText}</Button>
     </FooterComp>
   </form>

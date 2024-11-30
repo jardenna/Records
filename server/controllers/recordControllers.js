@@ -40,7 +40,6 @@ const getRecordById = async (req, res) => {
 const postCreateRecord = async (req, res) => {
   const recordData = {
     ...req.body,
-    photo: req.file ? req.file.filename : '',
   };
 
   try {

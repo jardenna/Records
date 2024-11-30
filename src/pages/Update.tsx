@@ -5,6 +5,7 @@ import Form from '../components/formElements/form/Form';
 import Input from '../components/formElements/Input';
 import Textarea from '../components/formElements/Textarea';
 import ImagePreview from '../components/ImagePreview';
+import { useCreateNewRecordMutation } from '../features/records/recordsApiSlice';
 
 interface UpdateProps {}
 
@@ -27,8 +28,10 @@ const Update: FC<UpdateProps> = () => {
     callback: handleSubmit,
   });
 
+  const [createRecord] = useCreateNewRecordMutation();
+
   function handleSubmit() {
-    console.log(values);
+    createRecord(values);
   }
 
   return (

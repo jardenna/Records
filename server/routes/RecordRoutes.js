@@ -31,7 +31,7 @@ router.get('/:recordId', getRecordById);
 router.post('/:recordId', upload.single('photo'), postPhoto);
 
 //Add new record
-router.post('/', upload.single('photo'), postCreateRecord);
+router.post('/', postCreateRecord);
 
 //Delete Record
 router.delete('/delete/:recordId', deleteRecord);
