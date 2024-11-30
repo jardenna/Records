@@ -29,6 +29,10 @@ const routeConfig = createBrowserRouter([
         path: MainPath.Update,
         element: <Update />,
       },
+      {
+        path: MainPath.Create,
+        element: <Update />,
+      },
     ],
   },
 ]);

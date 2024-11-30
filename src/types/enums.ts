@@ -1,4 +1,5 @@
 export enum MainPath {
+  Create = 'create',
   Details = 'details',
   Login = 'login',
   Records = 'records',
