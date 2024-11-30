@@ -1,0 +1,32 @@
+@import '../../../scss/functions';
+@import '../../../scss/colors';
+@import '../../../scss/mixins';
+
+input[type='radio'] {
+  border-radius: 50%;
+
+  &::before {
+    content: '';
+    width: rem(15px);
+    height: rem(15px);
+    border-radius: 50%;
+    transform: scale(0);
+
+    @include transition($time: 0.12s);
+
+    box-shadow: inset 16px 0 $color-blue-dark-medium;
+
+    @media (prefers-color-scheme: dark) {
+      box-shadow: inset 16px 0 $color-gray-dark;
+    }
+  }
+
+  &:checked {
+    border-color: $color-blue-dark-medium;
+    outline: transparent;
+
+    &::before {
+      transform: scale(1);
+    }
+  }
+}

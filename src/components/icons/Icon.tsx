@@ -1,5 +1,6 @@
 import { FC } from 'react';
 
+import AddIcon from './AddIcon';
 import ChevronLeft from './ChevronLeft';
 import ChevronRight from './ChevronRight';
 import ChevronsLeft from './ChevronsLeft';
@@ -7,6 +8,7 @@ import ChevronsRight from './ChevronsRight';
 import Close from './Close';
 import ErrorIcon from './ErrorIcon';
 import InfoIcon from './InfoIcon';
+import SubtractIcon from './SubtractIcon';
 import SuccessIcon from './SuccessIcon';
 import WarningIcon from './WarningIcon';
 
@@ -20,7 +22,9 @@ export interface IconDefaultProps {
 interface IconProps extends IconDefaultProps {
   name: IconName;
 }
+
 export enum IconName {
+  Add = 'add',
   ChevronLeft = 'chevronLeft',
   ChevronRight = 'chevronRight',
   ChevronsLeft = 'chevronsLeft',
@@ -28,6 +32,7 @@ export enum IconName {
   Close = 'close',
   Error = 'error',
   Info = 'info',
+  Subtract = 'subtract',
   Success = 'success',
   Warning = 'warning',
 }
@@ -41,6 +46,8 @@ const iconMapping = {
   success: SuccessIcon,
   warning: WarningIcon,
   info: InfoIcon,
+  subtract: SubtractIcon,
+  add: AddIcon,
 };
 
 const Icon: FC<IconProps> = ({
