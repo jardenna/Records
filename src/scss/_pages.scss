@@ -1,0 +1,11 @@
+@use './globals' as *;
+
+.create-album-page {
+  .flex {
+    align-items: flex-start;
+  }
+
+  textarea {
+    min-height: rem(117px);
+  }
+}

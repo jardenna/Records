@@ -18,7 +18,11 @@ const Form: FC<FormProps> = ({
 }) => (
   <form onSubmit={onSubmit} noValidate className={className}>
     {children}
-    <Button type="submit">{labelText}</Button>
+
+    <footer className="form-footer">
+      <Button type="submit">{labelText}</Button>{' '}
+      <Button type="submit">{labelText}</Button>
+    </footer>
   </form>
 );
 

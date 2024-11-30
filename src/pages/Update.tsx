@@ -32,7 +32,7 @@ const Update: FC<UpdateProps> = () => {
   }
 
   return (
-    <section className="create-album">
+    <section className="create-album-page">
       <h1>Tilføj album</h1>
       <Form onSubmit={onSubmit} labelText="Tilføj album">
         <div className="flex">

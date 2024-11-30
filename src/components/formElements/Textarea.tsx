@@ -20,7 +20,7 @@ const Textarea: FC<TextareaProps> = ({
   labelText,
   onChange,
 }) => (
-  <div className="inputContainer">
+  <div className="input-container">
     <span className="form-label-container">
       {!inputHasNoLabel && (
         <FormLabel required={required} inputLabel={labelText} id={id} />
