@@ -1,14 +1,9 @@
 import { FC } from 'react';
 import useFormValidation from '../hooks/useFormValidation';
 
-import Input from '../components/formElements/Input';
-import Checkbox from '../components/formElements/checkbox/Checkbox';
 import Form from '../components/formElements/form/Form';
-import {
-  checkboxItems,
-  radioButtonGenderList,
-} from '../components/formElements/formList';
-import RadioButton from '../components/formElements/radioButton/RadioButton';
+import Input from '../components/formElements/Input';
+import Textarea from '../components/formElements/Textarea';
 
 interface UpdateProps {}
 
@@ -24,8 +19,6 @@ const Update: FC<UpdateProps> = () => {
     numOfRecords: '',
     released: '',
     info: '',
-    selectedItems: ['Option 1', 'Option 3'],
-    genderOption: 'woman',
   };
 
   const { onSubmit, onChange, onBlur, values, errors } = useFormValidation({
@@ -41,18 +34,6 @@ const Update: FC<UpdateProps> = () => {
     <section>
       <h1>update</h1>
       <Form onSubmit={onSubmit} labelText="Insert Record">
-        <RadioButton
-          radioButtonList={radioButtonGenderList}
-          name="genderOption"
-          initialChecked={values.genderOption}
-          onChange={onChange}
-          formInfoText="Understanding the gender distribution of our users, helps us to promote diversity and ensure that no group is left out. All data collected is used in accordance with our Privacy Policy."
-        />
-        <Checkbox
-          onChange={onChange}
-          values={values.selectedItems}
-          checkBoxList={checkboxItems}
-        />
         <Input
           name="artist"
           id="artist"
@@ -61,6 +42,79 @@ const Update: FC<UpdateProps> = () => {
           errorText={errors.artist}
           value={values.artist}
           labelText="Gruppe / Kunstner"
+          required
+        />
+        <Input
+          name="title"
+          id="title"
+          onChange={onChange}
+          onBlur={onBlur}
+          errorText={errors.title}
+          value={values.title}
+          labelText="Title"
+          required
+        />
+        <Input
+          name="prodYear"
+          id="prodYear"
+          onChange={onChange}
+          onBlur={onBlur}
+          errorText={errors.prodYear}
+          value={values.prodYear}
+          labelText="Produktions år"
+          required
+        />
+        <Input
+          name="released"
+          id="released"
+          onChange={onChange}
+          onBlur={onBlur}
+          errorText={errors.released}
+          value={values.released}
+          labelText="Senest udgivet"
+          required
+        />
+        <Input
+          name="label"
+          id="label"
+          onChange={onChange}
+          value={values.label}
+          labelText="Plademærke"
+        />
+        <Input
+          name="recordNo"
+          id="recordNo"
+          onChange={onChange}
+          value={values.recordNo}
+          labelText="Pladenummer"
+        />
+        <Input
+          name="numOfRecords"
+          id="numOfRecords"
+          onChange={onChange}
+          value={values.numOfRecords}
+          labelText="Antal LP(er)"
+        />
+        <Input
+          name="price"
+          id="price"
+          onChange={onChange}
+          value={values.price}
+          labelText="Pris"
+        />
+        <Textarea
+          name="origin"
+          id="origin"
+          value={values.origin}
+          onChange={onChange}
+          labelText="Oprindelse"
+        />
+        <Textarea
+          name="info"
+          id="info"
+          value={values.info}
+          onChange={onChange}
+          labelText="Værd at vide"
         />
       </Form>
     </section>
