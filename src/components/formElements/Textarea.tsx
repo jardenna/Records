@@ -1,14 +1,14 @@
 import { FC } from 'react';
-import FormLabel from './FormLabel';
 
-interface TextareaProps {
-  id: string;
-  labelText: string;
-  name: string;
-  onChange: any;
-  value: string;
-  inputHasNoLabel?: boolean;
-  required?: boolean;
+import FormLabel from './FormLabel';
+import { InputProps } from './Input';
+
+type OmittedProps = Omit<
+  InputProps,
+  'className' | 'type' | 'checked' | 'placeholder' | 'autoComplete' | 'onChange'
+>;
+interface TextareaProps extends OmittedProps {
+  onChange: (event: any) => void;
 }
 
 const Textarea: FC<TextareaProps> = ({

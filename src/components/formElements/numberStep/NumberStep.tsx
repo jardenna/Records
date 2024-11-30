@@ -4,19 +4,18 @@ import { ButtonEventType } from '../../../types/types';
 import Button from '../../Button';
 
 import Icon, { IconName } from '../../icons/Icon';
-import Input from '../Input';
+import FormLabel from '../FormLabel';
+import Input, { InputProps } from '../Input';
 import './_number-step.scss';
 
-interface NumberStepProps {
-  id: string;
-  labelText: string;
-  name: string;
-  onChange: (event?: any) => void;
+type OmittedProps = Omit<
+  InputProps,
+  'className' | 'type' | 'checked' | 'placeholder' | 'autoComplete'
+>;
+
+interface NumberStepProps extends OmittedProps {
   onNumberStepChange: (event: any, count: number) => void;
-  value: number;
   initCount?: number;
-  max?: string;
-  min?: string;
 }
 
 const NumberStep: FC<NumberStepProps> = ({
@@ -24,6 +23,7 @@ const NumberStep: FC<NumberStepProps> = ({
   onNumberStepChange,
   value,
   initCount = 1,
+  inputHasNoLabel,
   min = '0',
   max,
   labelText,
@@ -31,7 +31,7 @@ const NumberStep: FC<NumberStepProps> = ({
   name,
 }) => (
   <article className="number-step">
-    <label htmlFor={id}>{labelText}</label>
+    {!inputHasNoLabel && <FormLabel inputLabel={labelText} id={id} />}
     <div className="number-step-container">
       <Button
         id="add"

@@ -38,7 +38,7 @@ const Input: FC<InputProps> = ({
   min,
   max,
   placeholder,
-  autoComplete = 'off',
+  autoComplete = 'on',
 }) => {
   const inputClassName = `${type === 'checkbox' || type === 'radio' ? 'checkbox-radio-container' : 'input-container'}`;
 
