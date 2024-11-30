@@ -4,6 +4,7 @@ import useFormValidation from '../hooks/useFormValidation';
 import Form from '../components/formElements/form/Form';
 import Input from '../components/formElements/Input';
 import Textarea from '../components/formElements/Textarea';
+import ImagePreview from '../components/ImagePreview';
 
 interface UpdateProps {}
 
@@ -31,91 +32,106 @@ const Update: FC<UpdateProps> = () => {
   }
 
   return (
-    <section>
-      <h1>update</h1>
-      <Form onSubmit={onSubmit} labelText="Insert Record">
-        <Input
-          name="artist"
-          id="artist"
-          onChange={onChange}
-          onBlur={onBlur}
-          errorText={errors.artist}
-          value={values.artist}
-          labelText="Gruppe / Kunstner"
-          required
-        />
-        <Input
-          name="title"
-          id="title"
-          onChange={onChange}
-          onBlur={onBlur}
-          errorText={errors.title}
-          value={values.title}
-          labelText="Title"
-          required
-        />
-        <Input
-          name="prodYear"
-          id="prodYear"
-          onChange={onChange}
-          onBlur={onBlur}
-          errorText={errors.prodYear}
-          value={values.prodYear}
-          labelText="Produktions år"
-          required
-        />
-        <Input
-          name="released"
-          id="released"
-          onChange={onChange}
-          onBlur={onBlur}
-          errorText={errors.released}
-          value={values.released}
-          labelText="Senest udgivet"
-          required
-        />
-        <Input
-          name="label"
-          id="label"
-          onChange={onChange}
-          value={values.label}
-          labelText="Plademærke"
-        />
-        <Input
-          name="recordNo"
-          id="recordNo"
-          onChange={onChange}
-          value={values.recordNo}
-          labelText="Pladenummer"
-        />
-        <Input
-          name="numOfRecords"
-          id="numOfRecords"
-          onChange={onChange}
-          value={values.numOfRecords}
-          labelText="Antal LP(er)"
-        />
-        <Input
-          name="price"
-          id="price"
-          onChange={onChange}
-          value={values.price}
-          labelText="Pris"
-        />
-        <Textarea
-          name="origin"
-          id="origin"
-          value={values.origin}
-          onChange={onChange}
-          labelText="Oprindelse"
-        />
-        <Textarea
-          name="info"
-          id="info"
-          value={values.info}
-          onChange={onChange}
-          labelText="Værd at vide"
-        />
+    <section className="create-album">
+      <h1>Tilføj album</h1>
+      <Form onSubmit={onSubmit} labelText="Tilføj album">
+        <div className="flex">
+          <div className="flex column">
+            <Input
+              name="artist"
+              id="artist"
+              onChange={onChange}
+              onBlur={onBlur}
+              errorText={errors.artist}
+              value={values.artist}
+              labelText="Gruppe / Kunstner"
+              required
+            />
+            <Input
+              name="title"
+              id="title"
+              onChange={onChange}
+              onBlur={onBlur}
+              errorText={errors.title}
+              value={values.title}
+              labelText="Title"
+              required
+            />
+            <Input
+              name="prodYear"
+              id="prodYear"
+              onChange={onChange}
+              onBlur={onBlur}
+              errorText={errors.prodYear}
+              value={values.prodYear}
+              labelText="Produktions år"
+              required
+            />
+            <Input
+              name="released"
+              id="released"
+              onChange={onChange}
+              onBlur={onBlur}
+              errorText={errors.released}
+              value={values.released}
+              labelText="Senest udgivet"
+              required
+            />
+
+            <Input
+              name="label"
+              id="label"
+              onChange={onChange}
+              value={values.label}
+              labelText="Plademærke"
+            />
+            <Input
+              name="recordNo"
+              id="recordNo"
+              onChange={onChange}
+              value={values.recordNo}
+              labelText="Pladenummer"
+            />
+          </div>
+
+          <div className="flex column">
+            <Input
+              name="numOfRecords"
+              id="numOfRecords"
+              onChange={onChange}
+              value={values.numOfRecords}
+              labelText="Antal LP(er)"
+            />
+            <Input
+              name="price"
+              id="price"
+              onChange={onChange}
+              value={values.price}
+              labelText="Pris"
+            />
+            <Textarea
+              name="origin"
+              id="origin"
+              value={values.origin}
+              onChange={onChange}
+              labelText="Oprindelse"
+            />
+            <Textarea
+              name="info"
+              id="info"
+              value={values.info}
+              onChange={onChange}
+              labelText="Værd at vide"
+            />
+          </div>
+          <div className="flex column">
+            <ImagePreview
+              fileName="record"
+              previewUrl="images/default.png"
+              uploadedPhoto="images/default.png"
+            />
+          </div>
+        </div>
       </Form>
     </section>
   );

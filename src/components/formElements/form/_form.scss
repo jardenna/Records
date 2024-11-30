@@ -29,7 +29,7 @@ input[type='number'] {
 .input-container {
   display: flex;
   flex-direction: column;
-  margin-bottom: 20px;
+  width: 100%;
 
   .form-label {
     margin-bottom: 4px;
@@ -52,6 +52,10 @@ input[type='number'] {
     &:focus-visible {
       background: linear-gradient($color-blue, $color-blue-dark) bottom -12px
         left 0 / 100% 3px content-box padding-box repeat-x;
+    }
+
+    &:disabled {
+      pointer-events: none;
     }
   }
 
