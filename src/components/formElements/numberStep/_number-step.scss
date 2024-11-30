@@ -1,5 +1,4 @@
-@import '../../../scss/colors';
-@import '../../../scss/functions';
+@use '../../../scss/globals' as *;
 
 .number-step {
   display: flex;
@@ -23,10 +22,6 @@
     input {
       text-align: center;
       border: 0;
-
-      @media (prefers-color-scheme: dark) {
-        color: $color-gray-medium;
-      }
 
       &:focus-visible {
         background-color: transparent;

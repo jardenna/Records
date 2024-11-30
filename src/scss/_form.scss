@@ -1,6 +1,4 @@
-// input:-webkit-autofill {
-//   box-shadow: 0 0 0 100px white inset;
-// }
+@use './globals' as *;
 
 form {
   position: relative;

@@ -1,6 +1,4 @@
-@import '../../../scss/functions';
-@import '../../../scss/colors';
-@import '../../../scss/mixins';
+@use '../../../scss/globals' as *;
 
 input[type='radio'] {
   border-radius: 50%;
@@ -15,10 +13,6 @@ input[type='radio'] {
     @include transition($time: 0.12s);
 
     box-shadow: inset 16px 0 $color-blue-dark-medium;
-
-    @media (prefers-color-scheme: dark) {
-      box-shadow: inset 16px 0 $color-gray-dark;
-    }
   }
 
   &:checked {

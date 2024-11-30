@@ -1,7 +1,4 @@
-@import '../../../scss/colors';
-@import '../../../scss/fonts';
-@import '../../../scss/functions';
-@import '../../../scss/mixins';
+@use '../../../scss/globals' as *;
 
 // Remove autofill
 :-webkit-autofill,
@@ -10,16 +7,6 @@
   box-shadow:
     0 0 0 1000px rgba($color-white, 50%) inset,
     0 0 0 1000px $color-white inset;
-}
-
-@media (prefers-color-scheme: dark) {
-  :-webkit-autofill,
-  :-webkit-autofill:hover,
-  :-webkit-autofill:focus {
-    box-shadow:
-      0 0 0 1000px rgba($color-white, 20%) inset,
-      0 0 0 1000px $color-primary-dark inset;
-  }
 }
 
 /* Chrome, Safari, Edge, Opera */
@@ -37,10 +24,6 @@ input[type='number'] {
 ::placeholder {
   color: $color-placeholder;
   opacity: 1;
-
-  @media (prefers-color-scheme: dark) {
-    color: $color-gray-dark;
-  }
 }
 
 .input-container {
@@ -65,11 +48,6 @@ input[type='number'] {
     border-radius: 4px;
     outline: transparent;
 
-    @media (prefers-color-scheme: dark) {
-      background-color: $color-primary;
-      color: $color-primary-light;
-    }
-
     &:focus-visible {
       background: linear-gradient($color-blue-dark-medium, $color-blue-dark)
         bottom -12px left 0 / 100% 3px content-box padding-box repeat-x;
@@ -77,12 +55,8 @@ input[type='number'] {
   }
 
   .error-message {
-    font-family: $font-primary-bold;
+    font-weight: bold;
     color: $color-danger;
-
-    @media (prefers-color-scheme: dark) {
-      color: $color-error-light;
-    }
   }
 
   input[aria-invalid='true'] {
@@ -116,7 +90,6 @@ input[type='number'] {
   border-radius: 50%;
   height: rem(24px);
   align-items: center;
-  color: $color-primary-light;
   justify-content: center;
 }
 
@@ -139,10 +112,6 @@ input[type='number'] {
     position: relative;
     align-items: center;
     justify-content: center;
-
-    @media (prefers-color-scheme: dark) {
-      background-color: $color-primary;
-    }
 
     @include transition($time: 0.22s);
 
@@ -169,7 +138,6 @@ fieldset {
 }
 
 legend {
-  font-family: $font-primary-bold;
   position: absolute;
   top: 20px;
   left: 0;

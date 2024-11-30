@@ -1,13 +1,12 @@
 import { FC, useState } from 'react';
 import Select from 'react-select';
+import Pagination from '../components/pagination/Pagination';
 import usePagination from '../components/pagination/usePagination';
 import RecordTable from '../components/recordTable/RecordTable';
 import {
   useGetAmountOfRecordsQuery,
   useGetPaginatedRecordsQuery,
 } from '../features/records/recordsApiSlice';
-
-import Pagination from '../components/pagination/Pagination';
 
 const Records: FC = () => {
   const { data: recordCount } = useGetAmountOfRecordsQuery();

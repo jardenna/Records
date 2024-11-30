@@ -1,6 +1,4 @@
-@import '../../../scss/functions';
-@import '../../../scss/colors';
-@import '../../../scss/mixins';
+@use '../../../scss/globals' as *;
 
 input[type='checkbox'] {
   &:checked {
