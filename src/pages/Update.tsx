@@ -40,6 +40,7 @@ const Update: FC<UpdateProps> = () => {
       // Handle the error
     }
   }
+  const maxYear = new Date().getFullYear() + 1;
 
   return (
     <section className="create-album-page">
@@ -74,6 +75,8 @@ const Update: FC<UpdateProps> = () => {
               onBlur={onBlur}
               errorText={errors.prodYear}
               type="number"
+              min={1900}
+              max={maxYear}
               value={values.prodYear}
               labelText="Produktions år"
               maxLength={4}
@@ -85,6 +88,8 @@ const Update: FC<UpdateProps> = () => {
               onChange={onChange}
               value={values.released}
               labelText="Senest udgivet"
+              min={Number(values.prodYear) + 1}
+              max={maxYear}
               type="number"
               maxLength={4}
             />

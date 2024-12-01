@@ -14,9 +14,9 @@ export interface InputProps {
   className?: string;
   errorText?: string;
   inputHasNoLabel?: boolean;
-  max?: string;
+  max?: number;
   maxLength?: number;
-  min?: string;
+  min?: number;
   onBlur?: (event: BlurEventType) => void;
   placeholder?: string;
   required?: boolean;

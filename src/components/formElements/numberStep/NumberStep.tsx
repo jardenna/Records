@@ -24,7 +24,7 @@ const NumberStep: FC<NumberStepProps> = ({
   value,
   initCount = 1,
   inputHasNoLabel,
-  min = '0',
+  min = 0,
   max,
   labelText,
   id,
