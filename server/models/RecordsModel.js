@@ -13,7 +13,7 @@ const RecordSchema = mongoose.Schema(
       required: [true, 'Please enter a title'],
     },
     prodYear: {
-      type: Number,
+      type: String,
       validate: {
         validator: function (v) {
           return yearRegex.test(v);
@@ -25,7 +25,7 @@ const RecordSchema = mongoose.Schema(
     label: String,
     origin: String,
     price: {
-      type: Number,
+      type: String,
       default: '',
     },
     recordNo: String,
@@ -33,7 +33,7 @@ const RecordSchema = mongoose.Schema(
       type: Number,
       default: 1,
     },
-    released: Number,
+    released: String,
     info: String,
     photo: String,
   },

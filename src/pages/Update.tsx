@@ -13,13 +13,13 @@ const Update: FC<UpdateProps> = () => {
   const initialCreateState = {
     artist: '',
     title: '',
-    prodYear: 0,
+    prodYear: '',
     label: '',
     origin: '',
-    price: 0,
+    price: '',
     recordNo: '',
     numOfRecords: 1,
-    released: 0,
+    released: '',
     info: '',
   };
 
@@ -73,6 +73,7 @@ const Update: FC<UpdateProps> = () => {
               onChange={onChange}
               onBlur={onBlur}
               errorText={errors.prodYear}
+              type="number"
               value={values.prodYear}
               labelText="Produktions år"
               required
@@ -83,6 +84,7 @@ const Update: FC<UpdateProps> = () => {
               onChange={onChange}
               value={values.released}
               labelText="Senest udgivet"
+              type="number"
             />
 
             <Input
@@ -106,15 +108,16 @@ const Update: FC<UpdateProps> = () => {
               name="numOfRecords"
               id="numOfRecords"
               onChange={onChange}
-              value={values.numOfRecords}
               labelText="Antal LP(er)"
+              type="number"
+              value={values.numOfRecords}
             />
             <Input
               name="price"
               id="price"
               onChange={onChange}
-              value={values.price}
               labelText="Pris"
+              value={values.price}
             />
             <Textarea
               name="origin"

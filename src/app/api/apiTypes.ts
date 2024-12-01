@@ -3,14 +3,14 @@ export interface Record {
   id: string;
   label: string;
   numOfRecords: number;
-  prodYear: number;
+  prodYear: string;
   recordNo: string;
   title: string;
   cover?: string;
   info?: string;
   origin?: string;
-  price?: number;
-  released?: number;
+  price?: string;
+  released?: string;
 }
 
 export type OmittedRecordRequest = Omit<Record, 'id'>;
