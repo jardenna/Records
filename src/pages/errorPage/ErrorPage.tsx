@@ -2,6 +2,7 @@ import { FC } from 'react';
 import { isRouteErrorResponse, useRouteError } from 'react-router';
 import PageTitle from '../../components/PageTitle';
 
+import HeaderComp from '../../layout/header/HeaderComp';
 import './_error-page.scss';
 
 const ErrorPage: FC = () => {
@@ -16,7 +17,7 @@ const ErrorPage: FC = () => {
   return (
     <main className={`error-page ${isWrongUrl ? 'error-url' : ''}`}>
       <PageTitle title="Error page" />
-      <header aria-label="Error page">
+      <HeaderComp ariaLabel="Error">
         <img
           className="emoji"
           src="/images/sad_smiley.png"
@@ -24,7 +25,7 @@ const ErrorPage: FC = () => {
         />
 
         <h1>ErrorText</h1>
-      </header>
+      </HeaderComp>
 
       <h2>{error.data}</h2>
     </main>

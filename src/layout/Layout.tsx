@@ -1,7 +1,13 @@
-import { FC } from 'react';
+import { FC, ReactNode } from 'react';
 import { Outlet } from 'react-router';
 import FooterComp from './FooterComp';
 import Header from './header/Header';
+
+export interface LayoutElementProps {
+  ariaLabel: string;
+  children: ReactNode;
+  className?: string;
+}
 
 const Layout: FC = () => (
   <div className="main-container">

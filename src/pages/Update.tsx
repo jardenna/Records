@@ -1,15 +1,18 @@
 import { FC } from 'react';
-import useFormValidation from '../hooks/useFormValidation';
-
+import { useParams } from 'react-router';
 import Form from '../components/formElements/form/Form';
 import Input from '../components/formElements/Input';
 import Textarea from '../components/formElements/Textarea';
 import ImagePreview from '../components/ImagePreview';
 import { useCreateNewRecordMutation } from '../features/records/recordsApiSlice';
+import useFormValidation from '../hooks/useFormValidation';
 
 interface UpdateProps {}
 
 const Update: FC<UpdateProps> = () => {
+  const recordId = useParams().id;
+  console.log(recordId);
+
   const initialCreateState = {
     artist: '',
     title: '',

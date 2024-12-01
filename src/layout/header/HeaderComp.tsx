@@ -1,12 +1,7 @@
-import { FC, ReactNode } from 'react';
+import { FC } from 'react';
+import { LayoutElementProps } from '../Layout';
 
-export interface HeaderCompProps {
-  ariaLabel: string;
-  children: ReactNode;
-  className?: string;
-}
-
-const HeaderComp: FC<HeaderCompProps> = ({
+const HeaderComp: FC<LayoutElementProps> = ({
   children,
   ariaLabel,
   className = '',

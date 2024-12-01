@@ -4,21 +4,22 @@ import Button from '../../components/Button';
 import { labels, noInfo } from '../../components/recordTable/tableHeaders';
 import { useGetRecordByIdQuery } from '../../features/records/recordsApiSlice';
 import FooterComp from '../../layout/FooterComp';
+import HeaderComp from '../../layout/header/HeaderComp';
 import DeleteRecordBtn from './DeleteRecordBtn';
 import DetailsContent from './DetailsContent';
 import './_details.scss';
 
 const DetailsPage: FC = () => {
-  const { id } = useParams();
-  const { data: selectedRecord } = useGetRecordByIdQuery(id);
+  const recordId = useParams().id;
+  const { data: selectedRecord } = useGetRecordByIdQuery(recordId);
 
   return selectedRecord ? (
     <article className="details">
       <section className="details-img-container">
-        <header className="details-header" aria-label="Record details">
+        <HeaderComp className="details-header" ariaLabel="Record details">
           <h2 className="details-artist">{selectedRecord.artist}</h2>
           <span className="details-title"> / {selectedRecord.title}</span>
-        </header>
+        </HeaderComp>
         <img src="/images/default.png" alt="" className="block-img" />
       </section>
       <section className="details-content-container">
@@ -59,7 +60,9 @@ const DetailsPage: FC = () => {
         </div>
         <FooterComp className="details-footer" ariaLabel="Record-details">
           <Button>Opdater plade</Button>
-          {id && <DeleteRecordBtn modalId={id} btnText="Slet plade" />}
+          {recordId && (
+            <DeleteRecordBtn modalId={recordId} btnText="Slet pladde" />
+          )}
         </FooterComp>
       </section>
     </article>

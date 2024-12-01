@@ -1,7 +1,7 @@
 import { FC } from 'react';
-import { HeaderCompProps } from './header/HeaderComp';
+import { LayoutElementProps } from './Layout';
 
-const FooterComp: FC<HeaderCompProps> = ({
+const FooterComp: FC<LayoutElementProps> = ({
   children,
   ariaLabel,
   className = '',
