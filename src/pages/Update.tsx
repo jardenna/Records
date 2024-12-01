@@ -76,6 +76,7 @@ const Update: FC<UpdateProps> = () => {
               type="number"
               value={values.prodYear}
               labelText="Produktions år"
+              maxLength={4}
               required
             />
             <Input
@@ -85,6 +86,7 @@ const Update: FC<UpdateProps> = () => {
               value={values.released}
               labelText="Senest udgivet"
               type="number"
+              maxLength={4}
             />
 
             <Input
