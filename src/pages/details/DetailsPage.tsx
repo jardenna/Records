@@ -1,6 +1,5 @@
 import { FC } from 'react';
-import { useParams } from 'react-router';
-import Button from '../../components/Button';
+import { Link, useParams } from 'react-router';
 import { labels, noInfo } from '../../components/recordTable/tableHeaders';
 import { useGetRecordByIdQuery } from '../../features/records/recordsApiSlice';
 import FooterComp from '../../layout/FooterComp';
@@ -10,7 +9,8 @@ import DetailsContent from './DetailsContent';
 import './_details.scss';
 
 const DetailsPage: FC = () => {
-  const recordId = useParams().id;
+  const recordParams = useParams();
+  const recordId = recordParams.id;
   const { data: selectedRecord } = useGetRecordByIdQuery(recordId);
 
   return selectedRecord ? (
@@ -32,36 +32,38 @@ const DetailsPage: FC = () => {
             text={selectedRecord.prodYear}
             label={labels.prodYear}
           />
-
           <DetailsContent
             text={selectedRecord.released || selectedRecord.prodYear}
             label={labels.released}
           />
-
           <DetailsContent
             text={selectedRecord.label || noInfo}
             label={labels.label}
           />
-
           <DetailsContent
             text={selectedRecord.recordNo || noInfo}
             label={labels.recordNo}
           />
-
           <DetailsContent
             text={1 || selectedRecord.numOfRecords}
             label={labels.numOfRecords}
           />
-
           <DetailsContent
             text={`${selectedRecord.price},00` || noInfo}
             label={labels.price}
           />
         </div>
         <FooterComp className="details-footer" ariaLabel="Record-details">
-          <Button>Opdater plade</Button>
+          <Link
+            id={recordId}
+            className="btn-primary"
+            to={`/update/${recordId}`}
+          >
+            Opdater plade
+          </Link>
+
           {recordId && (
-            <DeleteRecordBtn modalId={recordId} btnText="Slet pladde" />
+            <DeleteRecordBtn modalId={recordId} btnText="Slet plade" />
           )}
         </FooterComp>
       </section>
