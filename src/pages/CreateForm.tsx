@@ -1,29 +1,17 @@
 import { FC } from 'react';
+import { OmittedRecordRequest, Records } from '../app/api/apiTypes';
 import Form from '../components/formElements/form/Form';
 import Input from '../components/formElements/Input';
 import Textarea from '../components/formElements/Textarea';
 import ImagePreview from '../components/ImagePreview';
-import { useCreateNewRecordMutation } from '../features/records/recordsApiSlice';
 import useFormValidation from '../hooks/useFormValidation';
 
 interface CreateFormProps {
-  recordDetails?: any;
+  onUpdateRecord?: (values: Records) => void;
+  recordDetails?: OmittedRecordRequest;
 }
 
-const CreateForm: FC<CreateFormProps> = ({ recordDetails }) => {
-  // const initialCreateState = {
-  //   artist: recordDetails.artist,
-  //   title: recordDetails.title,
-  //   prodYear: recordDetails.prodYear,
-  //   label: recordDetails.label,
-  //   origin: recordDetails.origin,
-  //   price: recordDetails.price,
-  //   recordNo: recordDetails.recordNo,
-  //   numOfRecords: recordDetails.numOfRecords,
-  //   released: recordDetails.released,
-  //   info: recordDetails.info,
-  // };
-
+const CreateForm: FC<CreateFormProps> = ({ recordDetails, onUpdateRecord }) => {
   const initialState = {
     artist: recordDetails?.artist ?? '',
     title: recordDetails?.title ?? '',
@@ -42,16 +30,11 @@ const CreateForm: FC<CreateFormProps> = ({ recordDetails }) => {
     callback: handleSubmit,
   });
 
-  const [createRecord] = useCreateNewRecordMutation();
+  // const [createRecord] = useCreateNewRecordMutation();
 
-  async function handleSubmit() {
-    try {
-      const result = await createRecord(values).unwrap();
-      console.log('Record created successfully:', result);
-    } catch (error) {
-      console.error('Failed to create record:', error);
-
-      // Handle the error
+  function handleSubmit() {
+    if (onUpdateRecord) {
+      onUpdateRecord(values as Records);
     }
   }
   const maxYear = new Date().getFullYear() + 1;

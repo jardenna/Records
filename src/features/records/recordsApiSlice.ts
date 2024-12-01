@@ -32,6 +32,14 @@ export const recordsApiSlice = apiSlice.injectEndpoints({
       }),
       invalidatesTags: ['Records'],
     }),
+    updateRecord: builder.mutation<Records, { id: string; record: Records }>({
+      query: ({ id, record }) => ({
+        url: `/${endpoints.records}/${id}`,
+        method: 'PUT',
+        body: record,
+      }),
+      invalidatesTags: ['Records'],
+    }),
   }),
 });
 
@@ -40,4 +48,5 @@ export const {
   useGetAmountOfRecordsQuery,
   useGetRecordByIdQuery,
   useCreateNewRecordMutation,
+  useUpdateRecordMutation,
 } = recordsApiSlice;
