@@ -13,6 +13,8 @@ export interface Record {
   released?: number;
 }
 
+export type OmittedRecordRequest = Omit<Record, 'id'>;
+
 export interface Pagination {
   limit: number;
   page: number;

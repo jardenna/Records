@@ -13,13 +13,13 @@ const Update: FC<UpdateProps> = () => {
   const initialCreateState = {
     artist: '',
     title: '',
-    prodYear: '',
+    prodYear: 0,
     label: '',
     origin: '',
-    price: '',
+    price: 0,
     recordNo: '',
-    numOfRecords: '',
-    released: '',
+    numOfRecords: 1,
+    released: 0,
     info: '',
   };
 
@@ -81,11 +81,8 @@ const Update: FC<UpdateProps> = () => {
               name="released"
               id="released"
               onChange={onChange}
-              onBlur={onBlur}
-              errorText={errors.released}
               value={values.released}
               labelText="Senest udgivet"
-              required
             />
 
             <Input

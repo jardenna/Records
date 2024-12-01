@@ -1,6 +1,7 @@
 import apiSlice from '../../app/api/apiSlice';
 import {
   AmountRecordsResponse,
+  OmittedRecordRequest,
   Pagination,
   Record,
   RecordsResponse,
@@ -21,8 +22,9 @@ export const recordsApiSlice = apiSlice.injectEndpoints({
     }),
     getRecordById: builder.query<Record, string | undefined>({
       query: (id) => `${endpoints.records}/${id}`,
+      providesTags: ['Records'],
     }),
-    createNewRecord: builder.mutation<any, any>({
+    createNewRecord: builder.mutation<Record, OmittedRecordRequest>({
       query: (record) => ({
         url: `/${endpoints.records}`,
         method: 'POST',
