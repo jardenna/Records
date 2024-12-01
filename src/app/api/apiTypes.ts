@@ -1,4 +1,4 @@
-export interface Record {
+export interface Records {
   artist: string;
   id: string;
   label: string;
@@ -13,7 +13,7 @@ export interface Record {
   released?: string;
 }
 
-export type OmittedRecordRequest = Omit<Record, 'id'>;
+export type OmittedRecordRequest = Omit<Records, 'id'>;
 
 export interface Pagination {
   limit: number;
@@ -24,7 +24,7 @@ export interface RecordsResponse {
   next: Pagination;
   previous: Pagination;
   recordsCount: number;
-  results: Record[];
+  results: Records[];
 }
 
 export interface AmountRecordsResponse {

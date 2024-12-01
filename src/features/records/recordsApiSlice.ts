@@ -3,7 +3,7 @@ import {
   AmountRecordsResponse,
   OmittedRecordRequest,
   Pagination,
-  Record,
+  Records,
   RecordsResponse,
 } from '../../app/api/apiTypes';
 import transformId from '../../app/api/transformResponse';
@@ -17,14 +17,14 @@ export const recordsApiSlice = apiSlice.injectEndpoints({
     getPaginatedRecords: builder.query<RecordsResponse, Pagination>({
       query: ({ page, limit }) =>
         `${endpoints.records}?page=${page}&limit=${limit}`,
-      transformResponse: (responseData: Record[]) => transformId(responseData),
+      transformResponse: (responseData: Records[]) => transformId(responseData),
       providesTags: ['Records'],
     }),
-    getRecordById: builder.query<Record, string | undefined>({
+    getRecordById: builder.query<Records, string | undefined>({
       query: (id) => `${endpoints.records}/${id}`,
       providesTags: ['Records'],
     }),
-    createNewRecord: builder.mutation<Record, OmittedRecordRequest>({
+    createNewRecord: builder.mutation<Records, OmittedRecordRequest>({
       query: (record) => ({
         url: `/${endpoints.records}`,
         method: 'POST',
