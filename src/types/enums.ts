@@ -23,6 +23,11 @@ export enum LabelKeys {
   Title = 'title',
 }
 
+export enum PopupRole {
+  Alert = 'alert',
+  Status = 'status',
+}
+
 export enum KeyCode {
   Alt = 'AltLeft',
   ArrowDown = 'ArrowDown',

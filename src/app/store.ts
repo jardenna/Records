@@ -1,5 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
 
+import messagePopupReducer from '../features/messagePopupSlice';
+
 import modalReducer from '../features/modalSlice';
 import toastReducer from '../features/toastSlice';
 import apiSlice from './api/apiSlice';
@@ -9,6 +11,7 @@ export const store = configureStore({
     [apiSlice.reducerPath]: apiSlice.reducer,
     modal: modalReducer,
     toast: toastReducer,
+    messagePopup: messagePopupReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(apiSlice.middleware),
