@@ -7,11 +7,16 @@ import ImagePreview from '../components/ImagePreview';
 import useFormValidation from '../hooks/useFormValidation';
 
 interface CreateFormProps {
+  onCreateRecord?: any;
   onUpdateRecord?: (values: Records) => void;
   recordDetails?: OmittedRecordRequest;
 }
 
-const CreateForm: FC<CreateFormProps> = ({ recordDetails, onUpdateRecord }) => {
+const CreateForm: FC<CreateFormProps> = ({
+  recordDetails,
+  onUpdateRecord,
+  onCreateRecord,
+}) => {
   const initialState = {
     artist: recordDetails?.artist ?? '',
     title: recordDetails?.title ?? '',
@@ -30,11 +35,11 @@ const CreateForm: FC<CreateFormProps> = ({ recordDetails, onUpdateRecord }) => {
     callback: handleSubmit,
   });
 
-  // const [createRecord] = useCreateNewRecordMutation();
-
   function handleSubmit() {
     if (onUpdateRecord) {
       onUpdateRecord(values as Records);
+    } else {
+      onCreateRecord(values as Records);
     }
   }
   const maxYear = new Date().getFullYear() + 1;
