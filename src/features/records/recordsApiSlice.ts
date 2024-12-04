@@ -40,6 +40,12 @@ export const recordsApiSlice = apiSlice.injectEndpoints({
       }),
       invalidatesTags: ['Records'],
     }),
+    deleteRecord: builder.mutation({
+      query: (id) => ({
+        url: `${endpoints.deleteRecord}/${id}`,
+        method: 'DELETE',
+      }),
+    }),
   }),
 });
 
@@ -49,4 +55,5 @@ export const {
   useGetRecordByIdQuery,
   useCreateNewRecordMutation,
   useUpdateRecordMutation,
+  useDeleteRecordMutation,
 } = recordsApiSlice;

@@ -13,7 +13,6 @@ const UpdateRecord: FC = () => {
   const recordParams = useParams();
   const recordId = recordParams.id;
   const { data: recordDetails } = useGetRecordByIdQuery(recordId);
-
   const [updateRecord] = useUpdateRecordMutation();
 
   async function handleUpdateRecord(values: Records) {
