@@ -1,6 +1,7 @@
 import { FC } from 'react';
 import { useNavigate, useParams } from 'react-router';
 import { Records } from '../app/api/apiTypes';
+import useMessagePopup from '../components/messagePopup/useMessagePopup';
 import {
   useGetRecordByIdQuery,
   useUpdateRecordMutation,
@@ -14,6 +15,7 @@ const UpdateRecord: FC = () => {
   const recordId = recordParams.id;
   const { data: recordDetails } = useGetRecordByIdQuery(recordId);
   const [updateRecord] = useUpdateRecordMutation();
+  const { addMessagePopup } = useMessagePopup();
 
   async function handleUpdateRecord(values: Records) {
     if (recordId) {
@@ -35,6 +37,17 @@ const UpdateRecord: FC = () => {
 
   return (
     <section className="create-album-page">
+      <button
+        type="button"
+        onClick={() =>
+          addMessagePopup({
+            message: 'Updated',
+            messagePopupType: 'success',
+          })
+        }
+      >
+        klik
+      </button>
       <h1>Opdater album</h1>
       {recordDetails && (
         <CreateForm
