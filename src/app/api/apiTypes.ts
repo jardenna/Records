@@ -21,6 +21,7 @@ export enum SortOrder {
 export type OmittedRecordRequest = Omit<Records, 'id'>;
 
 export interface Pagination {
+  artist: any;
   limit: number;
   page: number;
   sortField: string;

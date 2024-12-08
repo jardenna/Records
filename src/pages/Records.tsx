@@ -31,8 +31,7 @@ const Records: FC = () => {
 
   const [sortField, setSortField] = useState('date');
   const [sortOrder, setSortOrder] = useState(SortOrder.Desc);
-
-  console.log(sortField, sortOrder);
+  const [filters, setFilters] = useState({ artist: '', title: '' });
 
   const handleSort = (field: string) => {
     if (sortField === field) {
@@ -51,10 +50,19 @@ const Records: FC = () => {
     limit: rowsCount,
     sortField,
     sortOrder,
+    artist: filters.artist,
   });
 
   return (
     <section>
+      <form onSubmit={(e) => e.preventDefault()}>
+        <input
+          type="text"
+          placeholder="Filter by artist"
+          value={filters.artist}
+          onChange={(e) => setFilters({ ...filters, artist: e.target.value })}
+        />
+      </form>
       <h1>Records</h1>
       {records && <RecordTable records={records.results} onSort={handleSort} />}
       <div>

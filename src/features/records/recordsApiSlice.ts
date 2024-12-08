@@ -15,8 +15,8 @@ export const recordsApiSlice = apiSlice.injectEndpoints({
       query: () => `${endpoints.records}/amount`,
     }),
     getPaginatedRecords: builder.query<RecordsResponse, Pagination>({
-      query: ({ page, limit, sortField, sortOrder }) =>
-        `${endpoints.records}?page=${page}&limit=${limit}&sortField=${sortField}&sortOrder=${sortOrder}`,
+      query: ({ page, limit, sortField, sortOrder, artist }) =>
+        `${endpoints.records}?page=${page}&limit=${limit}&sortField=${sortField}&sortOrder=${sortOrder}&artist=${artist}`,
       transformResponse: (responseData: Records[]) => transformId(responseData),
       providesTags: ['Records'],
     }),
