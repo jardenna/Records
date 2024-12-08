@@ -18,7 +18,10 @@ const paginatedResults = (model) => {
     const results = {};
 
     try {
-      results.recordsCount = await model.countDocuments(filters).exec();
+      // Count documents matching the filters
+      const totalRecords = await model.countDocuments(filters).exec();
+
+      results.recordsCount = totalRecords;
       results.results = await model
         .find(filters)
         .sort([[sortField, sortOrder]])
@@ -26,7 +29,8 @@ const paginatedResults = (model) => {
         .skip(startIndex)
         .exec();
 
-      if (startIndex + limit < results.recordsCount) {
+      // Update pagination based on the filtered totalRecords
+      if (startIndex + limit < totalRecords) {
         results.next = { page: page + 1, limit };
       }
       if (startIndex > 0) {
