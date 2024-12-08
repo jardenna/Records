@@ -5,14 +5,16 @@ import Table from './Table';
 import { labels } from './tableHeaders';
 
 interface RecordTableProps {
+  onSort: any;
   records: Records[];
 }
 
-const RecordTable: FC<RecordTableProps> = ({ records }) => (
+const RecordTable: FC<RecordTableProps> = ({ records, onSort }) => (
   <Table
     caption="Records collection"
     headers={labels}
     tableData={records}
+    onSort={onSort}
     excludeKeys={
       [
         LabelKeys.Id,

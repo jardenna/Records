@@ -1,5 +1,6 @@
 /* eslint-disable no-param-reassign */
 import DetailLink from '../../pages/details/DetailLink';
+import Button from '../Button';
 
 import './_table.scss';
 
@@ -12,6 +13,7 @@ interface Identifiable {
 interface TableProps<T extends Identifiable> {
   caption: string;
   headers: Record<keyof T, string>;
+  onSort: any;
   tableData: T[];
   className?: string;
   excludeKeys?: (keyof T)[];
@@ -23,6 +25,7 @@ const Table = <T extends Identifiable>({
   tableData,
   className = '',
   excludeKeys = [],
+  onSort,
 }: TableProps<T>) => {
   // Filter headers to exclude specified keys
   const filteredHeaders = Object.entries(headers)
@@ -36,7 +39,7 @@ const Table = <T extends Identifiable>({
     );
 
   // Extract header names and header keys after filtering
-  const headerList: string[] = Object.values(filteredHeaders);
+  const headerList: string[] = Object.keys(filteredHeaders);
   const headerListIds = Object.keys(filteredHeaders) as (keyof T)[];
 
   return (
@@ -47,6 +50,7 @@ const Table = <T extends Identifiable>({
           {headerList.map((header) => (
             <th scope="col" key={header}>
               {header}
+              <Button onClick={() => onSort(header)}>sort</Button>
             </th>
           ))}
           <th>Details</th>

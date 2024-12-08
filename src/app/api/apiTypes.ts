@@ -13,11 +13,18 @@ export interface Records {
   released?: string;
 }
 
+export enum SortOrder {
+  Asc = 'asc',
+  Desc = 'desc',
+}
+
 export type OmittedRecordRequest = Omit<Records, 'id'>;
 
 export interface Pagination {
   limit: number;
   page: number;
+  sortField: string;
+  sortOrder: SortOrder;
 }
 
 export interface RecordsResponse {

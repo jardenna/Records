@@ -1,5 +1,6 @@
 import { FC, useState } from 'react';
 import Select from 'react-select';
+import { SortOrder } from '../app/api/apiTypes';
 import Pagination from '../components/pagination/Pagination';
 import usePagination from '../components/pagination/usePagination';
 import RecordTable from '../components/recordTable/RecordTable';
@@ -28,16 +29,34 @@ const Records: FC = () => {
     pageLimit,
   });
 
+  const [sortField, setSortField] = useState('date');
+  const [sortOrder, setSortOrder] = useState(SortOrder.Desc);
+
+  console.log(sortField, sortOrder);
+
+  const handleSort = (field: string) => {
+    if (sortField === field) {
+      setSortOrder(
+        sortOrder === SortOrder.Asc ? SortOrder.Desc : SortOrder.Asc,
+      );
+    } else {
+      setSortField(field);
+      setSortOrder(SortOrder.Asc);
+    }
+  };
+
   // Fetch records based on the current page and rows per page
   const { data: records } = useGetPaginatedRecordsQuery({
     page: currentPage,
     limit: rowsCount,
+    sortField,
+    sortOrder,
   });
 
   return (
     <section>
       <h1>Records</h1>
-      {records && <RecordTable records={records.results} />}
+      {records && <RecordTable records={records.results} onSort={handleSort} />}
       <div>
         {rowsCount} of {totalCount} records
         {/* btn 1 = 1 - 10 records
