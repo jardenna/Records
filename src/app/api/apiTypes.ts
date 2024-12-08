@@ -34,7 +34,3 @@ export interface RecordsResponse {
   recordsCount: number;
   results: Records[];
 }
-
-export interface AmountRecordsResponse {
-  totalAmountRecords: number;
-}

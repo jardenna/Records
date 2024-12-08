@@ -4,34 +4,42 @@ import { SortOrder } from '../app/api/apiTypes';
 import Pagination from '../components/pagination/Pagination';
 import usePagination from '../components/pagination/usePagination';
 import RecordTable from '../components/recordTable/RecordTable';
-import {
-  useGetAmountOfRecordsQuery,
-  useGetPaginatedRecordsQuery,
-} from '../features/records/recordsApiSlice';
+import { useGetPaginatedRecordsQuery } from '../features/records/recordsApiSlice';
 
 const Records: FC = () => {
-  const { data: recordCount } = useGetAmountOfRecordsQuery();
+  // const { data: recordCount } = useGetAmountOfRecordsQuery();
 
   const [rowsCount, setRowsCount] = useState(10);
-  const totalCount = recordCount ? recordCount.totalAmountRecords : rowsCount;
-  const pageLimit = 5;
 
+  const pageLimit = 5;
+  const [sortField, setSortField] = useState('date');
+  const [sortOrder, setSortOrder] = useState(SortOrder.Desc);
+  const [filters, setFilters] = useState<any>({ artist: '', title: '' });
+  const [currentPage, setCurrentPage] = useState(1);
+
+  // Fetch records based on the current page and rows per page
+  const { data: records } = useGetPaginatedRecordsQuery({
+    page: currentPage,
+    limit: rowsCount,
+    sortField,
+    sortOrder,
+    artist: filters.artist,
+  });
+
+  const totalCount = records ? records.recordsCount : rowsCount;
   // Initialize the pagination hook
   const {
-    currentPage,
     pageRange,
     totalPageCount,
     onPaginationItemClick, // keep this for specific page clicks
     onPaginationAction,
   } = usePagination({
-    totalCount: recordCount,
+    totalCount,
     rowsPerPage: rowsCount,
     pageLimit,
+    currentPage,
+    setCurrentPage,
   });
-
-  const [sortField, setSortField] = useState('date');
-  const [sortOrder, setSortOrder] = useState(SortOrder.Desc);
-  const [filters, setFilters] = useState<any>({ artist: '', title: '' });
 
   const handleSort = (field: string) => {
     if (sortField === field) {
@@ -43,15 +51,6 @@ const Records: FC = () => {
       setSortOrder(SortOrder.Asc);
     }
   };
-
-  // Fetch records based on the current page and rows per page
-  const { data: records } = useGetPaginatedRecordsQuery({
-    page: currentPage,
-    limit: rowsCount,
-    sortField,
-    sortOrder,
-    artist: filters.artist,
-  });
 
   const handleFilter = (e: any) => {
     const { name, value } = e.target;
@@ -85,21 +84,20 @@ const Records: FC = () => {
       <h1>Records</h1>
       {records && <RecordTable records={records.results} onSort={handleSort} />}
       <div>
-        {rowsCount} of {totalCount} records
+        {rowsCount} of {records?.recordsCount} {currentPage}
+        25
         {/* btn 1 = 1 - 10 records
        btn 2 = 11 - 21 records
        btn 3 = 22 - 32 records */}
       </div>
-      {pageRange.length > 1 && (
-        <Pagination
-          currentPage={currentPage}
-          onPaginationItemClick={onPaginationItemClick}
-          onPaginationAction={onPaginationAction}
-          pageLimit={pageLimit}
-          pageRange={pageRange}
-          totalPageCount={totalPageCount}
-        />
-      )}
+      <Pagination
+        currentPage={currentPage}
+        onPaginationItemClick={onPaginationItemClick}
+        onPaginationAction={onPaginationAction}
+        pageLimit={pageLimit}
+        pageRange={pageRange}
+        totalPageCount={totalPageCount}
+      />
       Results per page
       <Select
         options={[

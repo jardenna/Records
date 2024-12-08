@@ -1,6 +1,5 @@
 import apiSlice from '../../app/api/apiSlice';
 import {
-  AmountRecordsResponse,
   OmittedRecordRequest,
   Pagination,
   Records,
@@ -11,9 +10,6 @@ import endpoints from '../../app/endpoints';
 
 export const recordsApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
-    getAmountOfRecords: builder.query<AmountRecordsResponse, void>({
-      query: () => `${endpoints.records}/amount`,
-    }),
     getPaginatedRecords: builder.query<RecordsResponse, Pagination>({
       query: ({ page, limit, sortField, sortOrder, artist }) =>
         `${endpoints.records}?page=${page}&limit=${limit}&sortField=${sortField}&sortOrder=${sortOrder}&artist=${artist}`,
@@ -51,7 +47,6 @@ export const recordsApiSlice = apiSlice.injectEndpoints({
 
 export const {
   useGetPaginatedRecordsQuery,
-  useGetAmountOfRecordsQuery,
   useGetRecordByIdQuery,
   useCreateNewRecordMutation,
   useUpdateRecordMutation,
