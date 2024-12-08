@@ -24,14 +24,14 @@ const Records: FC = () => {
     onPaginationItemClick, // keep this for specific page clicks
     onPaginationAction,
   } = usePagination({
-    totalCount,
+    totalCount: recordCount,
     rowsPerPage: rowsCount,
     pageLimit,
   });
 
   const [sortField, setSortField] = useState('date');
   const [sortOrder, setSortOrder] = useState(SortOrder.Desc);
-  const [filters, setFilters] = useState({ artist: '', title: '' });
+  const [filters, setFilters] = useState<any>({ artist: '', title: '' });
 
   const handleSort = (field: string) => {
     if (sortField === field) {
@@ -53,14 +53,33 @@ const Records: FC = () => {
     artist: filters.artist,
   });
 
+  const handleFilter = (e: any) => {
+    const { name, value } = e.target;
+    setFilters({
+      ...filters,
+      [name]: value,
+    });
+  };
+
   return (
     <section>
       <form onSubmit={(e) => e.preventDefault()}>
         <input
           type="text"
+          name="artist"
+          id="artist"
           placeholder="Filter by artist"
           value={filters.artist}
-          onChange={(e) => setFilters({ ...filters, artist: e.target.value })}
+          onChange={handleFilter}
+        />
+
+        <input
+          type="text"
+          placeholder="Filter by title"
+          value={filters.title}
+          name="title"
+          id="title"
+          onChange={handleFilter}
         />
       </form>
       <h1>Records</h1>

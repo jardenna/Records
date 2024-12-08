@@ -12,7 +12,7 @@ export enum PaginationActionEnum {
 interface UsePaginationProps {
   pageLimit: number;
   rowsPerPage: number;
-  totalCount: number; // max number of page buttons to show at once
+  totalCount: any;
 }
 
 const usePagination = ({
