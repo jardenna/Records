@@ -16,6 +16,7 @@ export type FormValues = {
 interface FormValidationProps<T extends KeyValuePair<any>> {
   initialState: T;
   callback?: (values: T) => void;
+  isArray?: boolean;
   validate?: (values: KeyValuePair<string>) => KeyValuePair<string>;
 }
 
@@ -23,6 +24,7 @@ function useFormValidation<T extends KeyValuePair<any>>({
   initialState,
   callback,
   validate,
+  isArray,
 }: FormValidationProps<T>) {
   const [values, setValues] = useState<T>(initialState);
   const [errors, setErrors] = useState<KeyValuePair<string>>({});
@@ -76,12 +78,8 @@ function useFormValidation<T extends KeyValuePair<any>>({
     });
   }
 
-  const onCustomChange = (
-    name: string,
-    value: Date | string,
-    createArray?: string,
-  ) => {
-    if (createArray) {
+  const onCustomChange = (name: string, value: Date | string) => {
+    if (isArray) {
       setValues({
         ...values,
         [name]: values[name]?.includes(value)
