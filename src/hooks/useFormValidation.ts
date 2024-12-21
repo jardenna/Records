@@ -14,8 +14,8 @@ export type FormValues = {
 };
 
 interface FormValidationProps<T extends KeyValuePair<any>> {
-  callback: (values: T) => void;
   initialState: T;
+  callback?: (values: T) => void;
   validate?: (values: KeyValuePair<string>) => KeyValuePair<string>;
 }
 
@@ -76,6 +76,26 @@ function useFormValidation<T extends KeyValuePair<any>>({
     });
   }
 
+  const onCustomChange = (
+    name: string,
+    value: Date | string,
+    createArray?: string,
+  ) => {
+    if (createArray) {
+      setValues({
+        ...values,
+        [name]: values[name]?.includes(value)
+          ? values[name] // Don't add if it already exists
+          : [...values[name], value], // Add the new value if it's not in the array
+      });
+    } else {
+      setValues({
+        ...values,
+        [name]: value,
+      });
+    }
+  };
+
   const onClearAll = () => {
     setValues(initialState);
   };
@@ -111,9 +131,10 @@ function useFormValidation<T extends KeyValuePair<any>>({
     const formHasNoErrors = !Object.keys(validationErrors).length;
 
     if (formHasNoErrors) {
-      setValues(initialState);
       setIsSubmitting(true);
-      callback(values);
+      if (callback) {
+        callback(values);
+      }
     } else {
       setErrors(validationErrors);
       scrollToFirstError();
@@ -123,6 +144,7 @@ function useFormValidation<T extends KeyValuePair<any>>({
   return {
     onSubmit,
     onChange,
+    onCustomChange,
     onBlur,
     values,
     errors,
