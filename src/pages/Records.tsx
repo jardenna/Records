@@ -1,41 +1,44 @@
 import { FC, useState } from 'react';
-import Select from 'react-select';
 import { SortOrder } from '../app/api/apiTypes';
+import CustomSelect from '../components/formElements/SelectBox';
 import Pagination from '../components/pagination/Pagination';
 import usePagination from '../components/pagination/usePagination';
 import RecordTable from '../components/recordTable/RecordTable';
 import { useGetPaginatedRecordsQuery } from '../features/records/recordsApiSlice';
+import useFormValidation from '../hooks/useFormValidation';
 
 const Records: FC = () => {
-  // const { data: recordCount } = useGetAmountOfRecordsQuery();
-
-  const [rowsCount, setRowsCount] = useState(10);
-
   const pageLimit = 5;
   const [sortField, setSortField] = useState('date');
   const [sortOrder, setSortOrder] = useState(SortOrder.Desc);
   const [filters, setFilters] = useState<any>({ artist: '', title: '' });
   const [currentPage, setCurrentPage] = useState(1);
 
-  // Fetch records based on the current page and rows per page
+  const initialState = {
+    categories: '',
+  };
+  const { onCustomChange, values } = useFormValidation({
+    initialState,
+  });
+
   const { data: records } = useGetPaginatedRecordsQuery({
     page: currentPage,
-    limit: rowsCount,
+    limit: Number(values.categories),
     sortField,
     sortOrder,
     artist: filters.artist,
   });
 
-  const totalCount = records ? records.recordsCount : rowsCount;
-  // Initialize the pagination hook
+  const totalCount = records ? records.recordsCount : Number(values.categories);
+
   const {
     pageRange,
     totalPageCount,
-    onPaginationItemClick, // keep this for specific page clicks
+    onPaginationItemClick,
     onPaginationAction,
   } = usePagination({
     totalCount,
-    rowsPerPage: rowsCount,
+    rowsPerPage: Number(values.categories),
     pageLimit,
     currentPage,
     setCurrentPage,
@@ -60,31 +63,48 @@ const Records: FC = () => {
     });
   };
 
+  const handleSearch = (name: string, selectedOption: any) => {
+    const options = Array.isArray(selectedOption)
+      ? selectedOption
+      : [selectedOption];
+
+    options.forEach((option) => {
+      if (option) {
+        onCustomChange(name, option.value);
+      }
+    });
+  };
+
   return (
     <section>
       <form onSubmit={(e) => e.preventDefault()}>
+        <CustomSelect
+          name="categories"
+          options={[
+            { value: 10, label: '10' },
+            { value: 20, label: '20' },
+            { value: 50, label: '50' },
+            { value: totalCount, label: 'All' },
+          ]}
+          id="categories"
+          onChange={(selectedOption) =>
+            handleSearch('categories', selectedOption)
+          }
+          labelText="Results per page"
+        />
         <input
-          type="text"
+          type="search"
           name="artist"
           id="artist"
           placeholder="Filter by artist"
           value={filters.artist}
           onChange={handleFilter}
         />
-
-        <input
-          type="text"
-          placeholder="Filter by title"
-          value={filters.title}
-          name="title"
-          id="title"
-          onChange={handleFilter}
-        />
       </form>
       <h1>Records</h1>
       {records && <RecordTable records={records.results} onSort={handleSort} />}
       <div>
-        {rowsCount} of {records?.recordsCount} {currentPage}
+        {Number(values.categories)} of {records?.recordsCount} {currentPage}
         25
         {/* btn 1 = 1 - 10 records
        btn 2 = 11 - 21 records
@@ -97,17 +117,6 @@ const Records: FC = () => {
         pageLimit={pageLimit}
         pageRange={pageRange}
         totalPageCount={totalPageCount}
-      />
-      Results per page
-      <Select
-        options={[
-          { value: 10, label: '10' },
-          { value: 20, label: '20' },
-          { value: 50, label: '50' },
-          { value: totalCount, label: 'All' },
-        ]}
-        onChange={(e: any) => setRowsCount(e.value)}
-        value={{ value: rowsCount, label: String(rowsCount) }}
       />
     </section>
   );
