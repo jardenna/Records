@@ -1,22 +1,31 @@
 import { FC } from 'react';
-import Select from 'react-select';
+import Select, {
+  GroupBase,
+  MultiValue,
+  OptionsOrGroups,
+  SelectComponentsConfig,
+  SingleValue,
+} from 'react-select';
 import FormLabel from './FormLabel';
 
+export type Option = { label: string; value: number | string; count?: number };
+export type SelectedOption = SingleValue<Option> | MultiValue<Option>;
+
 interface CustomSelectProps {
+  defaultValue: Option | Option[] | null;
   id: string;
   labelText: string;
   name: string;
-  onChange: (newValue: any) => void;
-  options: any;
+  onChange: (value: SelectedOption) => void;
+  options: OptionsOrGroups<Option, GroupBase<Option>>;
   className?: string;
   closeMenuOnSelect?: boolean;
-
+  components?: SelectComponentsConfig<Option, boolean, GroupBase<Option>>;
   inputHasNoLabel?: boolean;
   inputValue?: string;
   isMulti?: boolean;
-
+  isSearchable?: boolean;
   onInputChange?: (value: string) => void;
-
   placeholder?: string;
   required?: boolean;
 }
@@ -28,16 +37,16 @@ const CustomSelect: FC<CustomSelectProps> = ({
   options,
   placeholder = '',
   onChange,
-
   closeMenuOnSelect,
   isMulti,
   inputHasNoLabel,
   required,
   labelText,
-
+  isSearchable = false,
   onInputChange,
-
+  defaultValue,
   inputValue,
+  components,
 }) => (
   <div>
     <div className="input-container">
@@ -58,6 +67,9 @@ const CustomSelect: FC<CustomSelectProps> = ({
         className={className}
         inputValue={inputValue}
         menuPlacement="auto"
+        defaultValue={defaultValue}
+        isSearchable={isSearchable}
+        components={components}
       />
     </div>
   </div>
