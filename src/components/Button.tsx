@@ -12,13 +12,13 @@ interface ButtonProps {
   ariaLabel?: string;
   ariaSelected?: boolean;
   autoFocus?: boolean;
-  btnRef?: (el: HTMLButtonElement | null) => void;
   className?: string;
   disabled?: boolean;
   id?: string;
   isBtnSelected?: boolean;
   name?: string;
   onClick?: (event?: ButtonEventType) => void;
+  ref?: (el: HTMLButtonElement | null) => void;
   role?: string;
   tabIndex?: 0 | -1;
   type?: BtnType;
@@ -32,7 +32,7 @@ const Button: FC<ButtonProps> = ({
   tabIndex,
   variant = 'primary',
   onClick,
-  btnRef,
+  ref,
   ariaSelected,
   ariaExpanded,
   ariaControls,
@@ -50,7 +50,7 @@ const Button: FC<ButtonProps> = ({
     tabIndex={tabIndex}
     role={role}
     type={type}
-    ref={btnRef}
+    ref={ref}
     onClick={onClick}
     aria-selected={ariaSelected}
     aria-expanded={ariaExpanded}
