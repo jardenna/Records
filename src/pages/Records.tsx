@@ -1,6 +1,8 @@
 import { FC, useState } from 'react';
 import { SortOrder } from '../app/api/apiTypes';
-import CustomSelect from '../components/formElements/SelectBox';
+import CustomSelect, {
+  SelectedOption,
+} from '../components/formElements/SelectBox';
 import Pagination from '../components/pagination/Pagination';
 import usePagination from '../components/pagination/usePagination';
 import RecordTable from '../components/recordTable/RecordTable';
@@ -15,7 +17,7 @@ const Records: FC = () => {
   const [currentPage, setCurrentPage] = useState(1);
 
   const initialState = {
-    categories: '',
+    categories: '10',
   };
   const { onCustomChange, values } = useFormValidation({
     initialState,
@@ -63,7 +65,7 @@ const Records: FC = () => {
     });
   };
 
-  const handleSearch = (name: string, selectedOption: any) => {
+  const handleSearch = (name: string, selectedOption: SelectedOption) => {
     const options = Array.isArray(selectedOption)
       ? selectedOption
       : [selectedOption];
@@ -91,6 +93,7 @@ const Records: FC = () => {
             handleSearch('categories', selectedOption)
           }
           labelText="Results per page"
+          defaultValue={{ value: 10, label: '10' }}
         />
         <input
           type="search"
