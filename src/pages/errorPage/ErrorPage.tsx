@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { isRouteErrorResponse, useRouteError } from 'react-router';
-import PageTitle from '../../components/PageTitle';
 
+import MetaTags from '../../components/MetaTags';
 import HeaderComp from '../../layout/header/HeaderComp';
 import './_error-page.scss';
 
@@ -16,7 +16,11 @@ const ErrorPage: FC = () => {
 
   return (
     <main className={`error-page ${isWrongUrl ? 'error-url' : ''}`}>
-      <PageTitle title="Error page" />
+      <MetaTags
+        description="This is the records page description"
+        keywords="records, music, artists"
+        title="Error Page"
+      />
       <HeaderComp ariaLabel="Error">
         <img
           className="emoji"

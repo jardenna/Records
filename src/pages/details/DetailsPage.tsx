@@ -1,5 +1,6 @@
 import { FC } from 'react';
 import { Link, useParams } from 'react-router';
+import MetaTags from '../../components/MetaTags';
 import { labels, noInfo } from '../../components/recordTable/tableHeaders';
 import { useGetRecordByIdQuery } from '../../features/records/recordsApiSlice';
 import FooterComp from '../../layout/FooterComp';
@@ -15,6 +16,11 @@ const DetailsPage: FC = () => {
 
   return selectedRecord ? (
     <article className="details">
+      <MetaTags
+        description="This is the records page description"
+        keywords="records, music, artists"
+        title="Records details"
+      />
       <section className="details-img-container">
         <HeaderComp className="details-header" ariaLabel="Record details">
           <h2 className="details-artist">{selectedRecord.artist}</h2>

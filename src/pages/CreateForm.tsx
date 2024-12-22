@@ -4,6 +4,7 @@ import Form from '../components/formElements/form/Form';
 import Input from '../components/formElements/Input';
 import Textarea from '../components/formElements/Textarea';
 import ImagePreview from '../components/ImagePreview';
+import MetaTags from '../components/MetaTags';
 import useFormValidation from '../hooks/useFormValidation';
 
 interface CreateFormProps {
@@ -46,6 +47,11 @@ const CreateForm: FC<CreateFormProps> = ({
 
   return (
     <section className="create-album-page">
+      <MetaTags
+        description="This is the records page description"
+        keywords="records, music, artists"
+        title="Create Album"
+      />
       <Form onSubmit={onSubmit} labelText="Tilføj album">
         <div className="flex">
           <div className="flex column">

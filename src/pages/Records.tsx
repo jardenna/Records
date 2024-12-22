@@ -3,6 +3,7 @@ import { SortOrder } from '../app/api/apiTypes';
 import CustomSelect, {
   SelectedOption,
 } from '../components/formElements/SelectBox';
+import MetaTags from '../components/MetaTags';
 import Pagination from '../components/pagination/Pagination';
 import usePagination from '../components/pagination/usePagination';
 import RecordTable from '../components/recordTable/RecordTable';
@@ -79,6 +80,12 @@ const Records: FC = () => {
 
   return (
     <section>
+      <MetaTags
+        description="This is the records page description"
+        keywords="records, music, artists"
+        title="Album table"
+      />
+
       <form onSubmit={(e) => e.preventDefault()}>
         <CustomSelect
           name="categories"
