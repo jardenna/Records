@@ -8,6 +8,7 @@ interface FormProps {
   labelText: string;
   onSubmit: () => void;
   className?: string;
+  isLoading?: boolean;
 }
 
 const Form: FC<FormProps> = ({
@@ -15,11 +16,14 @@ const Form: FC<FormProps> = ({
   onSubmit,
   labelText,
   className = '',
+  isLoading,
 }) => (
   <form action={onSubmit} noValidate className={className}>
     {children}
     <FooterComp className="form-footer" ariaLabel="form">
-      <Button type="submit">{labelText}</Button>
+      <Button type="submit" isLoading={isLoading}>
+        {labelText}
+      </Button>
     </FooterComp>
   </form>
 );

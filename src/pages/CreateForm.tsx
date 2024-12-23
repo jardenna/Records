@@ -8,6 +8,7 @@ import MetaTags from '../components/MetaTags';
 import useFormValidation from '../hooks/useFormValidation';
 
 interface CreateFormProps {
+  isLoading?: boolean;
   onCreateRecord?: any;
   onUpdateRecord?: (values: Records) => void;
   recordDetails?: OmittedRecordRequest;
@@ -17,6 +18,7 @@ const CreateForm: FC<CreateFormProps> = ({
   recordDetails,
   onUpdateRecord,
   onCreateRecord,
+  isLoading,
 }) => {
   const initialState = {
     artist: recordDetails?.artist ?? '',
@@ -52,7 +54,7 @@ const CreateForm: FC<CreateFormProps> = ({
         keywords="records, music, artists"
         title="Create Album"
       />
-      <Form onSubmit={onSubmit} labelText="Tilføj album">
+      <Form onSubmit={onSubmit} labelText="Tilføj album" isLoading={isLoading}>
         <div className="flex">
           <div className="flex column">
             <Input

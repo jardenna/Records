@@ -17,6 +17,7 @@ interface ButtonProps {
   disabled?: boolean;
   id?: string;
   isBtnSelected?: boolean;
+  isLoading?: boolean;
   name?: string;
   onClick?: (event?: ButtonEventType) => void;
   ref?: (el: HTMLButtonElement | null) => void;
@@ -45,6 +46,7 @@ const Button: FC<ButtonProps> = ({
   disabled,
   name,
   ariaDescribedby,
+  isLoading,
 }) => (
   <button
     id={id}
@@ -59,12 +61,12 @@ const Button: FC<ButtonProps> = ({
     autoFocus={autoFocus}
     aria-disabled={disabled || undefined}
     className={`btn btn-${variant} ${className}`}
-    disabled={disabled}
+    disabled={disabled || isLoading}
     name={name}
     aria-describedby={isBtnSelected ? ariaDescribedby : undefined}
   >
     {ariaLabel && <VisuallyHidden>{ariaLabel}</VisuallyHidden>}
-    {children}
+    {!isLoading ? children : <span aria-busy="true">...Loading</span>}
   </button>
 );
 

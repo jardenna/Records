@@ -6,7 +6,7 @@ import CreateForm from './CreateForm';
 interface CreateRecordProps {}
 
 const CreateRecord: FC<CreateRecordProps> = () => {
-  const [createRecord] = useCreateNewRecordMutation();
+  const [createRecord, { isLoading }] = useCreateNewRecordMutation();
 
   // eslint-disable-next-line consistent-return
   const handleCreateRecord = async (values: Records) => {
@@ -22,7 +22,7 @@ const CreateRecord: FC<CreateRecordProps> = () => {
   return (
     <section className="create-album-page">
       <h1>Tilføj album</h1>
-      <CreateForm onCreateRecord={handleCreateRecord} />
+      <CreateForm onCreateRecord={handleCreateRecord} isLoading={isLoading} />
     </section>
   );
 };

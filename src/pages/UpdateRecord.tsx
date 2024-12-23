@@ -12,7 +12,7 @@ const UpdateRecord: FC = () => {
   const recordParams = useParams();
   const recordId = recordParams.id;
   const { data: recordDetails } = useGetRecordByIdQuery(recordId);
-  const [updateRecord] = useUpdateRecordMutation();
+  const [updateRecord, { isLoading }] = useUpdateRecordMutation();
   const { addMessagePopup } = useMessagePopup();
 
   async function handleUpdateRecord(values: Records) {
@@ -27,9 +27,7 @@ const UpdateRecord: FC = () => {
           message: 'Record created successfully',
           messagePopupType: 'success',
         });
-      } catch (error: any) {
-        console.error('Failed to create record:', error);
-
+      } catch (error) {
         addMessagePopup({
           message: 'Failed to create record',
           messagePopupType: 'error',
@@ -46,6 +44,7 @@ const UpdateRecord: FC = () => {
         <CreateForm
           recordDetails={recordDetails}
           onUpdateRecord={handleUpdateRecord}
+          isLoading={isLoading}
         />
       )}
     </section>
