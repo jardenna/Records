@@ -1,5 +1,6 @@
 import { FC } from 'react';
 import { BlurEventType, ChangeInputType, InputType } from '../../types/types';
+import VisuallyHidden from '../VisuallyHidden';
 import FormError from './FormError';
 import FormLabel from './FormLabel';
 
@@ -53,8 +54,12 @@ const Input: FC<InputProps> = ({
   return (
     <div className={inputClassName}>
       <span className="form-label-container">
-        {!inputHasNoLabel && (
+        {!inputHasNoLabel ? (
           <FormLabel required={required} inputLabel={labelText} id={id} />
+        ) : (
+          <VisuallyHidden as="label" htmlFor={id}>
+            {labelText}
+          </VisuallyHidden>
         )}
         {errorText && <FormError errorText={errorText} ariaErrorId={id} />}
       </span>
@@ -74,7 +79,6 @@ const Input: FC<InputProps> = ({
         aria-invalid={errorText ? true : undefined}
         aria-required={required || undefined}
         aria-errormessage={errorText ? id : undefined}
-        aria-label={inputHasNoLabel ? labelText : undefined}
         onBlur={onBlur}
         placeholder={placeholder}
         min={min}

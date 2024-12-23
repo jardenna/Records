@@ -3,6 +3,7 @@
 import { FC, ReactNode } from 'react';
 import { BtnVariant } from '../types/enums';
 import { BtnType, ButtonEventType } from '../types/types';
+import VisuallyHidden from './VisuallyHidden';
 
 interface ButtonProps {
   children: ReactNode;
@@ -55,7 +56,6 @@ const Button: FC<ButtonProps> = ({
     aria-selected={ariaSelected}
     aria-expanded={ariaExpanded}
     aria-controls={ariaControls}
-    aria-label={ariaLabel}
     autoFocus={autoFocus}
     aria-disabled={disabled || undefined}
     className={`btn btn-${variant} ${className}`}
@@ -63,10 +63,9 @@ const Button: FC<ButtonProps> = ({
     name={name}
     aria-describedby={isBtnSelected ? ariaDescribedby : undefined}
   >
+    {ariaLabel && <VisuallyHidden>{ariaLabel}</VisuallyHidden>}
     {children}
   </button>
 );
 
 export default Button;
-
-// aria-describedby="current-status"
