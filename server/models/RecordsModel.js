@@ -39,12 +39,18 @@ const RecordSchema = mongoose.Schema(
 
     released: {
       type: String,
+      required: false, // The field is optional
       validate: {
         validator: function (v) {
-          return yearRegex.test(v);
+          const prodYear = parseInt(this.prodYear, 10);
+          console.log(prodYear, this.prodYear);
+
+          if (!v) return true; // Skip validation if the field is empty
+          const year = parseInt(v, 10);
+          return year >= 1889 && year <= prodYear; // Validate only if there's a value
         },
         message: (props) =>
-          `${props.value} must be a valid number between 1889 and ${nextYear}`,
+          `${props.value} must be a valid year between 1889 and ${prodYear}`,
       },
     },
     info: String,
