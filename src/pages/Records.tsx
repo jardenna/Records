@@ -64,7 +64,7 @@ const Records: FC = () => {
     });
   };
 
-  const handleSearch = (name: string, selectedOptions: Option) => {
+  const handleSetRowsCount = (name: string, selectedOptions: Option) => {
     onCustomChange(name, selectedOptions.value);
   };
 
@@ -87,7 +87,7 @@ const Records: FC = () => {
           ]}
           id="categories"
           onChange={(selectedOptions) =>
-            handleSearch('categories', selectedOptions as Option)
+            handleSetRowsCount('categories', selectedOptions as Option)
           }
           labelText="Results per page"
           defaultValue={{ value: 10, label: '10' }}
