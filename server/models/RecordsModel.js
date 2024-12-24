@@ -43,7 +43,6 @@ const RecordSchema = mongoose.Schema(
       validate: {
         validator: function (v) {
           const prodYear = parseInt(this.prodYear, 10);
-          console.log(prodYear, this.prodYear);
 
           if (!v) return true; // Skip validation if the field is empty
           const year = parseInt(v, 10);

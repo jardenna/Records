@@ -27,7 +27,7 @@ const DeleteRecordBtn: FC<DeleteRecordBtnProps> = ({ modalId, btnText }) => {
   };
 
   const primaryActionBtn: PrimaryActionBtnProps = {
-    label: 'delete',
+    label: 'Delete',
     onClick: handleDeleteRecord,
   };
   return (

@@ -14,11 +14,11 @@ const DeleteRecordModal: FC<DeleteRecordModalProps> = ({
   modalId && (
     <Modal
       id={modalId}
-      modalHeaderText="sss"
+      modalHeaderText="Delete Album"
       primaryActionBtn={primaryActionBtn}
       showCloseIcon
     >
-      Delete
+      Are you sure you want to Delete
     </Modal>
   );
 
