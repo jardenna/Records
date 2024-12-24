@@ -1,6 +1,7 @@
 import { FC, useState } from 'react';
 import { useSearchParams } from 'react-router';
 import { SortOrder } from '../app/api/apiTypes';
+import Input from '../components/formElements/Input';
 import SelectBox, { Option } from '../components/formElements/SelectBox';
 import MetaTags from '../components/MetaTags';
 import Pagination from '../components/pagination/Pagination';
@@ -100,13 +101,14 @@ const Records: FC = () => {
           labelText="Results per page"
           defaultValue={{ value: Number(limit) || 10, label: limit || '10' }}
         />
-        <input
+        <Input
           type="search"
           name="artist"
           id="artist"
           placeholder="Filter by artist"
           value={filterValue || filteredArtists}
           onChange={handleFilterArtists}
+          labelText="Filter by artist"
         />
       </form>
       <h1>Records</h1>
