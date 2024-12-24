@@ -1,8 +1,6 @@
 /* eslint-disable consistent-return */
 import { useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
-import useKeyPress from '../../hooks/useKeyPress';
-
 import {
   MessagePopupWithoutId,
   addMessagePopup,
@@ -10,6 +8,7 @@ import {
   selectDuration,
   selectMessagePopups,
 } from '../../features/messagePopupSlice';
+import useKeyPress from '../../hooks/useKeyPress';
 import { KeyCode } from '../../types/enums';
 
 const useMessagePopup = (messagePopupId?: string) => {
@@ -55,7 +54,7 @@ const useMessagePopup = (messagePopupId?: string) => {
       500,
     );
     return () => clearTimeout(timer);
-  }, [isVisible, autoHideDuration, dispatch, messagePopupId, messagePopups]);
+  }, [isVisible, autoHideDuration, dispatch, messagePopupId]);
 
   const popupClass = isVisible ? 'is-visible' : 'dismissed';
 
