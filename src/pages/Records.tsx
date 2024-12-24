@@ -105,7 +105,7 @@ const Records: FC = () => {
           name="artist"
           id="artist"
           placeholder="Filter by artist"
-          value={filteredArtists}
+          value={filterValue || filteredArtists}
           onChange={handleFilterArtists}
         />
       </form>
