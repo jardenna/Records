@@ -78,7 +78,7 @@ function useFormValidation<T extends KeyValuePair<any>>({
     });
   }
 
-  const onCustomChange = (name: string, value: Date | string) => {
+  const onCustomChange = (name: string, value: Date | string | number) => {
     if (isArray) {
       setValues({
         ...values,

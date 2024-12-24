@@ -48,7 +48,13 @@ const SelectBox: FC<SelectBoxProps> = ({
   inputValue,
   components,
 }) => {
-  console.log(123);
+  const handleChange = (newValue: SelectedOption) => {
+    if (isMulti) {
+      onChange((newValue as Option[]) || []);
+    } else {
+      onChange(newValue as Option);
+    }
+  };
 
   return (
     <div className="input-container">
@@ -59,7 +65,7 @@ const SelectBox: FC<SelectBoxProps> = ({
         name={name}
         options={options}
         inputId={id}
-        onChange={onChange}
+        onChange={handleChange}
         placeholder={placeholder}
         classNamePrefix="select-box"
         hideSelectedOptions={false}

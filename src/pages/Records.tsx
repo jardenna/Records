@@ -1,8 +1,6 @@
 import { FC, useState } from 'react';
 import { SortOrder } from '../app/api/apiTypes';
-import SelectBox, {
-  SelectedOption,
-} from '../components/formElements/SelectBox';
+import SelectBox, { Option } from '../components/formElements/SelectBox';
 import MetaTags from '../components/MetaTags';
 import Pagination from '../components/pagination/Pagination';
 import usePagination from '../components/pagination/usePagination';
@@ -66,16 +64,8 @@ const Records: FC = () => {
     });
   };
 
-  const handleSearch = (name: string, selectedOption: SelectedOption) => {
-    const options = Array.isArray(selectedOption)
-      ? selectedOption
-      : [selectedOption];
-
-    options.forEach((option) => {
-      if (option) {
-        onCustomChange(name, option.value);
-      }
-    });
+  const handleSearch = (name: string, selectedOptions: Option) => {
+    onCustomChange(name, selectedOptions.value);
   };
 
   return (
@@ -96,8 +86,8 @@ const Records: FC = () => {
             { value: totalCount, label: 'All' },
           ]}
           id="categories"
-          onChange={(selectedOption) =>
-            handleSearch('categories', selectedOption)
+          onChange={(selectedOptions) =>
+            handleSearch('categories', selectedOptions as Option)
           }
           labelText="Results per page"
           defaultValue={{ value: 10, label: '10' }}
