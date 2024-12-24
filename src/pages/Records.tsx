@@ -1,6 +1,6 @@
 import { FC, useState } from 'react';
 import { SortOrder } from '../app/api/apiTypes';
-import CustomSelect, {
+import SelectBox, {
   SelectedOption,
 } from '../components/formElements/SelectBox';
 import MetaTags from '../components/MetaTags';
@@ -87,7 +87,7 @@ const Records: FC = () => {
       />
 
       <form onSubmit={(e) => e.preventDefault()}>
-        <CustomSelect
+        <SelectBox
           name="categories"
           options={[
             { value: 10, label: '10' },

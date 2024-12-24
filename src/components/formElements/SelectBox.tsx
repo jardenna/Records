@@ -11,7 +11,7 @@ import FormLabel from './FormLabel';
 export type Option = { label: string; value: number | string; count?: number };
 export type SelectedOption = SingleValue<Option> | MultiValue<Option>;
 
-interface CustomSelectProps {
+interface SelectBoxProps {
   defaultValue: Option | Option[] | null;
   id: string;
   labelText: string;
@@ -30,7 +30,7 @@ interface CustomSelectProps {
   required?: boolean;
 }
 
-const CustomSelect: FC<CustomSelectProps> = ({
+const SelectBox: FC<SelectBoxProps> = ({
   className = '',
   name,
   id,
@@ -47,8 +47,10 @@ const CustomSelect: FC<CustomSelectProps> = ({
   defaultValue,
   inputValue,
   components,
-}) => (
-  <div>
+}) => {
+  console.log(123);
+
+  return (
     <div className="input-container">
       {!inputHasNoLabel && (
         <FormLabel required={required} inputLabel={labelText} id={id} />
@@ -72,7 +74,6 @@ const CustomSelect: FC<CustomSelectProps> = ({
         components={components}
       />
     </div>
-  </div>
-);
-
-export default CustomSelect;
+  );
+};
+export default SelectBox;
