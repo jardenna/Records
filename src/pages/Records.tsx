@@ -1,4 +1,5 @@
 import { FC, useState } from 'react';
+import { useSearchParams } from 'react-router';
 import { SortOrder } from '../app/api/apiTypes';
 import SelectBox, { Option } from '../components/formElements/SelectBox';
 import MetaTags from '../components/MetaTags';
@@ -7,30 +8,36 @@ import usePagination from '../components/pagination/usePagination';
 import RecordTable from '../components/recordTable/RecordTable';
 import { useGetPaginatedRecordsQuery } from '../features/records/recordsApiSlice';
 import useFormValidation from '../hooks/useFormValidation';
+import { ChangeInputType } from '../types/types';
 
 const Records: FC = () => {
   const pageLimit = 5;
-  const [sortField, setSortField] = useState('date');
+  const [sortField, setSortField] = useState('createdAt');
   const [sortOrder, setSortOrder] = useState(SortOrder.Desc);
-  const [filters, setFilters] = useState<any>({ artist: '', title: '' });
+  const [filteredArtists, setFilteredArtists] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const limit = searchParams.get('limit');
+  const filterValue = searchParams.get('filter');
 
   const initialState = {
-    categories: '10',
+    limit: limit || '10',
   };
+
   const { onCustomChange, values } = useFormValidation({
     initialState,
   });
 
   const { data: records } = useGetPaginatedRecordsQuery({
     page: currentPage,
-    limit: Number(values.categories),
+    limit: Number(limit) || Number(values.limit),
     sortField,
     sortOrder,
-    artist: filters.artist,
+    artist: filterValue || filteredArtists,
   });
 
-  const totalCount = records ? records.recordsCount : Number(values.categories);
+  const totalCount = records ? records.recordsCount : Number(values.limit);
 
   const {
     pageRange,
@@ -39,7 +46,7 @@ const Records: FC = () => {
     onPaginationAction,
   } = usePagination({
     totalCount,
-    rowsPerPage: Number(values.categories),
+    rowsPerPage: Number(values.limit),
     pageLimit,
     currentPage,
     setCurrentPage,
@@ -56,15 +63,16 @@ const Records: FC = () => {
     }
   };
 
-  const handleFilter = (e: any) => {
-    const { name, value } = e.target;
-    setFilters({
-      ...filters,
-      [name]: value,
-    });
+  const handleFilterArtists = (event: ChangeInputType) => {
+    const { value } = event.target;
+    searchParams.set('filter', value.trim());
+    setSearchParams(searchParams);
+    setFilteredArtists(value);
   };
 
   const handleSetRowsCount = (name: string, selectedOptions: Option) => {
+    searchParams.set('limit', selectedOptions.value.toString());
+    setSearchParams(searchParams);
     onCustomChange(name, selectedOptions.value);
   };
 
@@ -76,35 +84,35 @@ const Records: FC = () => {
         title="Album table"
       />
 
-      <form onSubmit={(e) => e.preventDefault()}>
+      <form onSubmit={(event) => event.preventDefault()}>
         <SelectBox
-          name="categories"
+          name="limit"
           options={[
             { value: 10, label: '10' },
             { value: 20, label: '20' },
             { value: 50, label: '50' },
             { value: totalCount, label: 'All' },
           ]}
-          id="categories"
+          id="limit"
           onChange={(selectedOptions) =>
-            handleSetRowsCount('categories', selectedOptions as Option)
+            handleSetRowsCount('limit', selectedOptions as Option)
           }
           labelText="Results per page"
-          defaultValue={{ value: 10, label: '10' }}
+          defaultValue={{ value: Number(limit) || 10, label: limit || '10' }}
         />
         <input
           type="search"
           name="artist"
           id="artist"
           placeholder="Filter by artist"
-          value={filters.artist}
-          onChange={handleFilter}
+          value={filteredArtists}
+          onChange={handleFilterArtists}
         />
       </form>
       <h1>Records</h1>
       {records && <RecordTable records={records.results} onSort={handleSort} />}
       <div>
-        {Number(values.categories)} of {records?.recordsCount} {currentPage}
+        {Number(values.limit)} of {records?.recordsCount} {currentPage}
         25
         {/* btn 1 = 1 - 10 records
        btn 2 = 11 - 21 records
