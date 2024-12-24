@@ -48,7 +48,7 @@ const useModal = (modalId: string | null) => {
         modalRef.current?.removeEventListener('keydown', handleTabKeyPress);
       };
     }
-  }, [modalId, modalRef.current]);
+  }, [modalId, modalRef]);
 
   return { handleCloseModal, modalRef };
 };
