@@ -15,6 +15,8 @@ export interface PrimaryActionBtnProps {
   label: string | null;
   onClick: () => void;
   buttonType?: BtnType;
+  className?: string;
+  variant?: BtnVariant;
 }
 
 export interface SecondaryActionBtnProps {

@@ -38,7 +38,7 @@ const DetailsPage: FC = () => {
   };
 
   const primaryActionBtn: PrimaryActionBtnProps = {
-    label: 'Delete',
+    label: 'Slet album',
     onClick: handleDeleteRecord,
   };
 

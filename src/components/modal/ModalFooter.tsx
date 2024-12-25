@@ -15,7 +15,7 @@ const ModalFooter: FC<modalFooterProps> = ({
   secondaryActionBtn,
 }) => {
   const handlePrimaryBtnClick = () => {
-    if (primaryActionBtn && onCloseModal) {
+    if (onCloseModal) {
       primaryActionBtn.onClick();
       onCloseModal();
     }
@@ -23,14 +23,13 @@ const ModalFooter: FC<modalFooterProps> = ({
 
   return (
     <FooterComp className="modal-footer" ariaLabel="dialog">
-      {primaryActionBtn && (
-        <Button
-          onClick={handlePrimaryBtnClick}
-          type={primaryActionBtn.buttonType}
-        >
-          {primaryActionBtn.label}
-        </Button>
-      )}
+      <Button
+        onClick={handlePrimaryBtnClick}
+        type={primaryActionBtn.buttonType}
+        className={primaryActionBtn.className || 'btn-danger'}
+      >
+        {primaryActionBtn.label}
+      </Button>
       {secondaryActionBtn && secondaryActionBtn.label && (
         <Button
           onClick={secondaryActionBtn.onClick || onCloseModal}
