@@ -1,14 +1,16 @@
 import { FC } from 'react';
-import { useParams } from 'react-router';
+import { useNavigate, useParams } from 'react-router';
 import { Records } from '../app/api/apiTypes';
 import useMessagePopup from '../components/messagePopup/useMessagePopup';
 import {
   useGetRecordByIdQuery,
   useUpdateRecordMutation,
 } from '../features/records/recordsApiSlice';
+import { MainPath } from '../types/enums';
 import CreateForm from './CreateForm';
 
 const UpdateRecord: FC = () => {
+  const navigate = useNavigate();
   const recordParams = useParams();
   const recordId = recordParams.id;
   const { data: recordDetails } = useGetRecordByIdQuery(recordId);
@@ -22,9 +24,9 @@ const UpdateRecord: FC = () => {
           id: recordId,
           record: values,
         }).unwrap();
-
+        navigate(`/${MainPath.Records}`);
         addMessagePopup({
-          message: 'Record created successfully',
+          message: 'Record updated successfully',
           messagePopupType: 'success',
         });
       } catch (error) {
