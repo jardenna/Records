@@ -57,16 +57,16 @@ const Records: FC = () => {
   });
 
   const handleSort = (field: string) => {
+    searchParams.set('sortField', field);
+    searchParams.set('sortOrder', sortOrder);
+    setSearchParams(searchParams);
     if (sortField === field) {
       setSortOrder(
         sortOrder === SortOrder.Asc ? SortOrder.Desc : SortOrder.Asc,
       );
     } else {
       setSortField(field);
-      searchParams.set('sortField', field);
-      searchParams.set('sortOrder', sortOrder);
       setSortOrder(SortOrder.Asc);
-      setSearchParams(searchParams);
     }
   };
 
