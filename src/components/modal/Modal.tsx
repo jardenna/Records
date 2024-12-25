@@ -17,7 +17,10 @@ export interface PrimaryActionBtnProps {
   buttonType?: BtnType;
 }
 
-export interface SecondaryActionBtnProps extends PrimaryActionBtnProps {
+export interface SecondaryActionBtnProps {
+  label: string | null;
+  buttonType?: BtnType;
+  onClick?: () => void;
   variant?: BtnVariant;
 }
 
