@@ -22,7 +22,7 @@ const RecordSchema = mongoose.Schema(
           return yearRegex.test(v);
         },
         message: (props) =>
-          `${props.value} must be a valid number between ${minimumYear} and ${nextYear}`,
+          `${props.value} must be a number between ${minimumYear} and ${nextYear}`,
       },
       required: [true, 'Please enter a production year'],
     },
@@ -40,6 +40,9 @@ const RecordSchema = mongoose.Schema(
 
     released: {
       type: String,
+      validator: function (v) {
+        return yearRegex.test(v);
+      },
     },
     info: String,
     photo: String,
@@ -49,13 +52,14 @@ const RecordSchema = mongoose.Schema(
 
 // Middleware for validating 'released'
 RecordSchema.pre('save', function (next) {
+  const prodYear = parseInt(this.prodYear, 10);
   if (this.released) {
     // Skip validation if the field is empty
     const year = parseInt(this.released, 10);
-    if (year < minimumYear || year > nextYear) {
+    if (year < minimumYear || year > prodYear) {
       return next(
         new Error(
-          `Released year ${this.released} must be between ${minimumYear} and ${nextYear}.`,
+          `Released year ${this.released} must be between ${prodYear} and ${nextYear}.`,
         ),
       );
     }
