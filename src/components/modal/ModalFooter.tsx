@@ -13,25 +13,34 @@ const ModalFooter: FC<modalFooterProps> = ({
   primaryActionBtn,
   onCloseModal,
   secondaryActionBtn,
-}) => (
-  <FooterComp className="modal-footer" ariaLabel="dialog">
-    {primaryActionBtn && (
-      <Button
-        onClick={primaryActionBtn.onClick}
-        type={primaryActionBtn.buttonType}
-      >
-        {primaryActionBtn.label}
-      </Button>
-    )}
-    {secondaryActionBtn && secondaryActionBtn.label && (
-      <Button
-        onClick={secondaryActionBtn.onClick || onCloseModal}
-        variant={secondaryActionBtn.variant}
-      >
-        {secondaryActionBtn.label}
-      </Button>
-    )}
-  </FooterComp>
-);
+}) => {
+  const handlePrimaryBtnClick = () => {
+    if (primaryActionBtn && onCloseModal) {
+      primaryActionBtn.onClick();
+      onCloseModal();
+    }
+  };
+
+  return (
+    <FooterComp className="modal-footer" ariaLabel="dialog">
+      {primaryActionBtn && (
+        <Button
+          onClick={handlePrimaryBtnClick}
+          type={primaryActionBtn.buttonType}
+        >
+          {primaryActionBtn.label}
+        </Button>
+      )}
+      {secondaryActionBtn && secondaryActionBtn.label && (
+        <Button
+          onClick={secondaryActionBtn.onClick || onCloseModal}
+          variant={secondaryActionBtn.variant}
+        >
+          {secondaryActionBtn.label}
+        </Button>
+      )}
+    </FooterComp>
+  );
+};
 
 export default ModalFooter;

@@ -84,7 +84,6 @@ const Modal: React.FC<ModalProps> = ({
           <form method="modal" className="modal-form">
             {children}
             <ModalFooter
-              onCloseModal={handleClosePopup}
               primaryActionBtn={primaryActionBtn}
               secondaryActionBtn={secondaryActionBtn}
             />

@@ -9,6 +9,7 @@ import {
   SecondaryActionBtnProps,
 } from '../../components/modal/Modal';
 import { toggleModal } from '../../features/modalSlice';
+import { useDeleteRecordMutation } from '../../features/records/recordsApiSlice';
 
 interface DeleteRecordBtnProps extends DeleteRecordModalProps {
   btnText: string;
@@ -22,12 +23,10 @@ const DeleteRecordBtn: FC<DeleteRecordBtnProps> = ({ modalId, btnText }) => {
     }
   };
 
-  // const [deleteRecord] = useDeleteRecordMutation();
+  const [deleteRecord] = useDeleteRecordMutation();
 
   const handleDeleteRecord = () => {
-    console.log(123);
-
-    // deleteRecord(modalId);
+    deleteRecord(modalId);
   };
 
   const primaryActionBtn: PrimaryActionBtnProps = {
@@ -37,7 +36,6 @@ const DeleteRecordBtn: FC<DeleteRecordBtnProps> = ({ modalId, btnText }) => {
 
   const secondaryActionBtn: SecondaryActionBtnProps = {
     label: 'Annuller',
-    onClick: handleDeleteRecord,
   };
 
   return (
