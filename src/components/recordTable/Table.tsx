@@ -1,6 +1,6 @@
 /* eslint-disable no-param-reassign */
-import DetailLink from '../../pages/details/DetailLink';
-import { BtnVariant } from '../../types/enums';
+import { Link } from 'react-router';
+import { BtnVariant, MainPath } from '../../types/enums';
 import Button from '../Button';
 import Icon, { IconName } from '../icons/Icon';
 
@@ -16,6 +16,7 @@ interface TableProps<T extends Identifiable> {
   caption: string;
   headers: Record<keyof T, string>;
   onSort: any;
+  searchParams: string;
   tableData: T[];
   className?: string;
   excludeKeys?: (keyof T)[];
@@ -28,6 +29,7 @@ const Table = <T extends Identifiable>({
   className = '',
   excludeKeys = [],
   onSort,
+  searchParams,
 }: TableProps<T>) => {
   // Filter headers to exclude specified keys
   const filteredHeaders = Object.entries(headers)
@@ -67,7 +69,12 @@ const Table = <T extends Identifiable>({
               <td key={String(header)}>{String(data[header])}</td>
             ))}
             <td>
-              <DetailLink id={data.id} />
+              <Link
+                className="btn btn-primary details-btn"
+                to={`/${MainPath.Details}/${data.id}${searchParams}`}
+              >
+                Details
+              </Link>
             </td>
           </tr>
         ))}

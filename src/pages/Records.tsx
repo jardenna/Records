@@ -1,5 +1,5 @@
 import { FC, useState } from 'react';
-import { useSearchParams } from 'react-router';
+import { useLocation, useSearchParams } from 'react-router';
 import { SortOrder } from '../app/api/apiTypes';
 import Input from '../components/formElements/Input';
 import SelectBox, { Option } from '../components/formElements/SelectBox';
@@ -23,6 +23,7 @@ const Records: FC = () => {
   const filterValue = searchParams.get('filter');
   const sortOrderParam = searchParams.get('sortOrder');
   const sortFieldParam = searchParams.get('sortField');
+  const location = useLocation();
 
   const initialState = {
     limit: limit || '10',
@@ -117,7 +118,13 @@ const Records: FC = () => {
         />
       </form>
       <h1>Records</h1>
-      {records && <RecordTable records={records.results} onSort={handleSort} />}
+      {records && (
+        <RecordTable
+          records={records.results}
+          onSort={handleSort}
+          searchParams={location.search}
+        />
+      )}
       <div>
         {Number(values.limit)} of {records?.recordsCount} {currentPage}
         25

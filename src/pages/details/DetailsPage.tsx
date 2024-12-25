@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { Link, useNavigate, useParams } from 'react-router';
+import { Link, useLocation, useNavigate, useParams } from 'react-router';
 import { useAppDispatch } from '../../app/hooks';
 import Button from '../../components/Button';
 import DeleteRecordModal from '../../components/DeleteRecordModal';
@@ -22,6 +22,7 @@ import './_details.scss';
 
 const DetailsPage: FC = () => {
   const dispatch = useAppDispatch();
+  const location = useLocation();
   const recordParams = useParams();
   const recordId = recordParams.id;
   const navigate = useNavigate();
@@ -36,7 +37,11 @@ const DetailsPage: FC = () => {
 
   const handleDeleteRecord = () => {
     deleteRecord(recordId);
-    navigate(`/${MainPath.Records}`);
+    if (location.search) {
+      navigate(`/${MainPath.Records}${location.search}`);
+    } else {
+      navigate(`/${MainPath.Records}`);
+    }
   };
 
   const primaryActionBtn: PrimaryActionBtnProps = {

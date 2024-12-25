@@ -7,10 +7,16 @@ import { labels } from './tableHeaders';
 interface RecordTableProps {
   onSort: any;
   records: Records[];
+  searchParams: string;
 }
 
-const RecordTable: FC<RecordTableProps> = ({ records, onSort }) => (
+const RecordTable: FC<RecordTableProps> = ({
+  records,
+  onSort,
+  searchParams,
+}) => (
   <Table
+    searchParams={searchParams}
     caption="Records collection"
     headers={labels}
     tableData={records}
