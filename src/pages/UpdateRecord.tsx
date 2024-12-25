@@ -1,6 +1,6 @@
 /* eslint-disable consistent-return */
 import { FC } from 'react';
-import { useNavigate, useParams } from 'react-router';
+import { useLocation, useNavigate, useParams } from 'react-router';
 import { Records } from '../app/api/apiTypes';
 import useMessagePopup from '../components/messagePopup/useMessagePopup';
 import {
@@ -12,6 +12,7 @@ import CreateForm from './CreateForm';
 
 const UpdateRecord: FC = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const recordParams = useParams();
   const recordId = recordParams.id;
   const { data: recordDetails } = useGetRecordByIdQuery(recordId);
@@ -25,7 +26,11 @@ const UpdateRecord: FC = () => {
           id: recordId,
           record: values,
         }).unwrap();
-        navigate(`/${MainPath.Records}`);
+        if (location.search) {
+          navigate(`/${MainPath.Records}${location.search}`);
+        } else {
+          navigate(`/${MainPath.Records}`);
+        }
         addMessagePopup({
           message: 'Record updated successfully',
           messagePopupType: 'success',
@@ -33,7 +38,7 @@ const UpdateRecord: FC = () => {
 
         return result;
       } catch (error) {
-        console.log(error, 34);
+        console.log(error);
       }
     }
   }

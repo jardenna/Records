@@ -103,7 +103,7 @@ const DetailsPage: FC = () => {
           <Link
             id={recordId}
             className="btn-primary"
-            to={`/update/${recordId}`}
+            to={`/update/${recordId}${location.search}`}
           >
             Opdater plade
           </Link>
