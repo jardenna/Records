@@ -1,11 +1,11 @@
 import { FormValues, ValidationErrors } from '../../../hooks/useFormValidation';
 import { labels } from '../../recordTable/tableHeaders';
 
-function validateUpdate(values: FormValues) {
-  const currentYear = new Date().getFullYear();
-  const nextYear = currentYear + 1;
-  const minimumYear = 1889;
+const currentYear = new Date().getFullYear();
+const nextYear = currentYear + 1;
+export const minimumYear = 1889;
 
+function validateUpdate(values: FormValues) {
   const errors: ValidationErrors = {};
   const { artist, title, prodYear, released } = values;
 
@@ -25,7 +25,7 @@ function validateUpdate(values: FormValues) {
   }
   if (released < prodYear) {
     errors.released = `Must be greater than ${labels.prodYear}`;
-  } else if ((prodYear as number) < minimumYear) {
+  } else if (released && (released as number) < minimumYear) {
     errors.released = `Please enter a year after ${minimumYear}`;
   }
 

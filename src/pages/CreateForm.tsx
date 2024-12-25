@@ -3,7 +3,9 @@ import { OmittedRecordRequest, Records } from '../app/api/apiTypes';
 import Form from '../components/formElements/form/Form';
 import Input from '../components/formElements/Input';
 import Textarea from '../components/formElements/Textarea';
-import validateUpdate from '../components/formElements/validation/validationFormElements';
+import validateUpdate, {
+  minimumYear,
+} from '../components/formElements/validation/validationFormElements';
 import ImagePreview from '../components/ImagePreview';
 import MetaTags from '../components/MetaTags';
 import useFormValidation from '../hooks/useFormValidation';
@@ -86,9 +88,9 @@ const CreateForm: FC<CreateFormProps> = ({
               onBlur={onBlur}
               errorText={errors.prodYear}
               type="number"
-              min={1900}
+              min={minimumYear}
               max={maxYear}
-              value={values.prodYear}
+              value={values.prodYear || ''}
               labelText="Produktions år"
               maxLength={4}
               required
@@ -97,9 +99,9 @@ const CreateForm: FC<CreateFormProps> = ({
               name="released"
               id="released"
               onChange={onChange}
-              value={values.released}
+              value={values.released || ''}
               labelText="Senest udgivet"
-              min={Number(values.prodYear) + 1}
+              min={Number(values.prodYear) + 1 && minimumYear}
               max={maxYear}
               type="number"
               maxLength={4}
