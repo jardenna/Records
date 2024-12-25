@@ -49,6 +49,7 @@ export const recordsApiSlice = apiSlice.injectEndpoints({
         url: `${endpoints.deleteRecord}/${id}`,
         method: 'DELETE',
       }),
+      invalidatesTags: ['Records'],
     }),
   }),
 });
