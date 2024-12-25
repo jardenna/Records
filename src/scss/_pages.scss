@@ -1,0 +1,7 @@
+@use './globals' as *;
+
+.create-album-page {
+  textarea {
+    min-height: rem(117px);
+  }
+}

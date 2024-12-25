@@ -1,12 +1,13 @@
 import { FC } from 'react';
-import { Link } from 'react-router-dom';
-import { MainPath } from '../types/enums';
-import Nav from './nav/Nav';
+import { Link } from 'react-router';
+import { MainPath } from '../../types/enums';
+import Nav from '../nav/Nav';
 
+import HeaderComp from './HeaderComp';
 import './_header.scss';
 
 const Header: FC = () => (
-  <header className="main-header" aria-label="main">
+  <HeaderComp className="main-header" ariaLabel="main">
     <article className="hero">
       <div className="container">
         <div className="logo">
@@ -18,7 +19,7 @@ const Header: FC = () => (
       </div>
     </article>
     <Nav />
-  </header>
+  </HeaderComp>
 );
 
 export default Header;

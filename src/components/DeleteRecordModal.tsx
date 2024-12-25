@@ -1,23 +1,30 @@
 import { FC } from 'react';
 
-import Modal from './modal/Modal';
+import Modal, {
+  PrimaryActionBtnProps,
+  SecondaryActionBtnProps,
+} from './modal/Modal';
 
 export interface DeleteRecordModalProps {
   modalId: string;
+  primaryActionBtn: PrimaryActionBtnProps;
+  secondaryActionBtn?: SecondaryActionBtnProps;
 }
 
-const DeleteRecordModal: FC<DeleteRecordModalProps> = ({ modalId }) =>
+const DeleteRecordModal: FC<DeleteRecordModalProps> = ({
+  modalId,
+  primaryActionBtn,
+  secondaryActionBtn,
+}) =>
   modalId && (
     <Modal
       id={modalId}
-      modalHeaderText="sss"
-      primaryActionBtn={{
-        label: 'Click',
-        onClick: () => console.log(23),
-      }}
+      modalHeaderText="Delete Album"
+      primaryActionBtn={primaryActionBtn}
+      secondaryActionBtn={secondaryActionBtn}
       showCloseIcon
     >
-      Delete
+      Are you sure you want to Delete
     </Modal>
   );
 

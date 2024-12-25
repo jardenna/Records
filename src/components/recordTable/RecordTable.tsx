@@ -1,18 +1,20 @@
 import { FC } from 'react';
-import { Record } from '../../app/api/apiTypes';
+import { Records } from '../../app/api/apiTypes';
 import { LabelKeys } from '../../types/enums';
 import Table from './Table';
 import { labels } from './tableHeaders';
 
 interface RecordTableProps {
-  records: Record[];
+  onSort: any;
+  records: Records[];
 }
 
-const RecordTable: FC<RecordTableProps> = ({ records }) => (
+const RecordTable: FC<RecordTableProps> = ({ records, onSort }) => (
   <Table
-    caption="Record collection"
+    caption="Records collection"
     headers={labels}
     tableData={records}
+    onSort={onSort}
     excludeKeys={
       [
         LabelKeys.Id,
@@ -23,7 +25,7 @@ const RecordTable: FC<RecordTableProps> = ({ records }) => (
         LabelKeys.Photo,
         LabelKeys.NumOfRecords,
         LabelKeys.Price,
-      ] as (keyof Record)[]
+      ] as (keyof Records)[]
     }
   />
 );

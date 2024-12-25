@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 
 export enum PaginationActionEnum {
   First = 'First',
@@ -10,17 +10,20 @@ export enum PaginationActionEnum {
 }
 
 interface UsePaginationProps {
+  currentPage: number;
   pageLimit: number;
   rowsPerPage: number;
-  totalCount: number; // max number of page buttons to show at once
+  setCurrentPage: Dispatch<SetStateAction<number>>;
+  totalCount: number;
 }
 
 const usePagination = ({
   totalCount,
   rowsPerPage,
   pageLimit,
+  currentPage,
+  setCurrentPage,
 }: UsePaginationProps) => {
-  const [currentPage, setCurrentPage] = useState(1);
   const [totalPageCount, setTotalPageCount] = useState(0);
   const [pageRange, setPageRange] = useState<number[]>([]);
 

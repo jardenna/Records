@@ -4,6 +4,11 @@
   display: flex;
   align-items: center;
   gap: 20px;
+  width: 100%;
+}
+
+.column {
+  flex-direction: column;
 }
 
 .container {
@@ -28,9 +33,14 @@
 
 .grid {
   display: grid;
+  gap: 12px;
 
   &.two-col {
-    grid-template-rows: repeat(2, 1fr);
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  &.three-col {
+    grid-template-columns: repeat(3, 1fr);
   }
 }
 

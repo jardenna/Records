@@ -1,14 +1,5 @@
 import Record from '../models/RecordsModel.js';
 
-const getAmountOfRecords = async (req, res) => {
-  try {
-    const count = await Record.countDocuments(); // Retrieve the count
-    res.status(200).json({ totalAmountRecords: count }); // Send the count in the response
-  } catch (error) {
-    res.status(500).json({ message: error.message });
-  }
-};
-
 const getFirstSixRecords = async (_, res) => {
   try {
     const latestRecords = await Record.find().sort({ _id: -1 }).limit(6);
@@ -40,7 +31,6 @@ const getRecordById = async (req, res) => {
 const postCreateRecord = async (req, res) => {
   const recordData = {
     ...req.body,
-    photo: req.file ? req.file.filename : '',
   };
 
   try {
@@ -73,6 +63,7 @@ const postUpdateRecord = async (req, res) => {
     const updatedRecord = await Record.updateOne(
       { _id: req.params.recordId },
       { $set: updatedData },
+      { runValidators: true }, // Ensure validation is run during update
     );
     res.json(updatedRecord);
   } catch (error) {
@@ -91,7 +82,6 @@ const deleteRecord = async (req, res) => {
 
 export {
   deleteRecord,
-  getAmountOfRecords,
   getFirstSixRecords,
   getPaginatedRecords,
   getRecordById,

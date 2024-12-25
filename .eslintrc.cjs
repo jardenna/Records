@@ -20,8 +20,14 @@ module.exports = {
     ecmaVersion: 12,
     sourceType: 'module',
   },
-  plugins: ['react', '@typescript-eslint', 'typescript-sort-keys'],
+  plugins: [
+    'react',
+    '@typescript-eslint',
+    'typescript-sort-keys',
+    'eslint-plugin-react-compiler',
+  ],
   rules: {
+    'react-compiler/react-compiler': 'error',
     'typescript-sort-keys/interface': [
       'warn',
       'asc',

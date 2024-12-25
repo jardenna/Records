@@ -17,7 +17,7 @@ const BtnClose: FC<BtnCloseProps> = ({
   <Button
     variant={BtnVariant.Ghost}
     onClick={onClick}
-    ariaLabel={ariaLabel}
+    ariaLabel={ariaLabel || 'Close'}
     autoFocus={autoFocus}
     className="btn-close"
   >

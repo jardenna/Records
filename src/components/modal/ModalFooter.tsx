@@ -1,10 +1,11 @@
 import { FC } from 'react';
+import FooterComp from '../../layout/FooterComp';
 import Button from '../Button';
 import { PrimaryActionBtnProps, SecondaryActionBtnProps } from './Modal';
 
 interface modalFooterProps {
+  primaryActionBtn: PrimaryActionBtnProps;
   onCloseModal?: () => void;
-  primaryActionBtn?: PrimaryActionBtnProps;
   secondaryActionBtn?: SecondaryActionBtnProps;
 }
 
@@ -12,25 +13,33 @@ const ModalFooter: FC<modalFooterProps> = ({
   primaryActionBtn,
   onCloseModal,
   secondaryActionBtn,
-}) => (
-  <footer className="modal-footer" aria-label="dialog">
-    {primaryActionBtn && (
+}) => {
+  const handlePrimaryBtnClick = () => {
+    if (onCloseModal) {
+      primaryActionBtn.onClick();
+      onCloseModal();
+    }
+  };
+
+  return (
+    <FooterComp className="modal-footer" ariaLabel="dialog">
       <Button
-        onClick={primaryActionBtn.onClick}
+        onClick={handlePrimaryBtnClick}
         type={primaryActionBtn.buttonType}
+        className={primaryActionBtn.className || 'btn-danger'}
       >
         {primaryActionBtn.label}
       </Button>
-    )}
-    {secondaryActionBtn && secondaryActionBtn.label && (
-      <Button
-        onClick={secondaryActionBtn.onClick || onCloseModal}
-        variant={secondaryActionBtn.variant}
-      >
-        {secondaryActionBtn.label}
-      </Button>
-    )}
-  </footer>
-);
+      {secondaryActionBtn && secondaryActionBtn.label && (
+        <Button
+          onClick={secondaryActionBtn.onClick || onCloseModal}
+          variant={secondaryActionBtn.variant}
+        >
+          {secondaryActionBtn.label}
+        </Button>
+      )}
+    </FooterComp>
+  );
+};
 
 export default ModalFooter;

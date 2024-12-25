@@ -15,9 +15,14 @@ export interface PrimaryActionBtnProps {
   label: string | null;
   onClick: () => void;
   buttonType?: BtnType;
+  className?: string;
+  variant?: BtnVariant;
 }
 
-export interface SecondaryActionBtnProps extends PrimaryActionBtnProps {
+export interface SecondaryActionBtnProps {
+  label: string | null;
+  buttonType?: BtnType;
+  onClick?: () => void;
   variant?: BtnVariant;
 }
 
@@ -25,10 +30,10 @@ interface ModalProps {
   children: React.ReactNode;
   id: string;
   modalHeaderText: string;
+  primaryActionBtn: PrimaryActionBtnProps;
   className?: string;
   isAlert?: boolean;
   modalSize?: SizeVariant;
-  primaryActionBtn?: PrimaryActionBtnProps;
   secondaryActionBtn?: SecondaryActionBtnProps;
   showCloseIcon?: boolean;
 }
@@ -60,7 +65,7 @@ const Modal: React.FC<ModalProps> = ({
     <Portal portalId="modal">
       <dialog
         ref={modalRef}
-        className={`modal animate-top-center modal-${modalSize} ${className}  ${popupClass}`}
+        className={`modal animate-top-center modal-${modalSize} ${className} ${popupClass}`}
         role={isAlert ? 'alert' : undefined}
       >
         <ModalHeader
@@ -81,7 +86,6 @@ const Modal: React.FC<ModalProps> = ({
           <form method="modal" className="modal-form">
             {children}
             <ModalFooter
-              onCloseModal={handleClosePopup}
               primaryActionBtn={primaryActionBtn}
               secondaryActionBtn={secondaryActionBtn}
             />

@@ -4,7 +4,6 @@ const router = express.Router();
 
 import {
   deleteRecord,
-  getAmountOfRecords,
   getFirstSixRecords,
   getPaginatedRecords,
   getRecordById,
@@ -18,9 +17,6 @@ import Record from '../models/RecordsModel.js';
 // Get all records
 router.get('/', paginatedResults(Record), getPaginatedRecords);
 
-//Get amounts of records
-router.get('/amount/', getAmountOfRecords);
-
 //Get the first 6 records
 router.get('/firstSix/', getFirstSixRecords);
 
@@ -31,7 +27,7 @@ router.get('/:recordId', getRecordById);
 router.post('/:recordId', upload.single('photo'), postPhoto);
 
 //Add new record
-router.post('/', upload.single('photo'), postCreateRecord);
+router.post('/', postCreateRecord);
 
 //Delete Record
 router.delete('/delete/:recordId', deleteRecord);

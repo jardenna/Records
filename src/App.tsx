@@ -1,12 +1,7 @@
 import { FC } from 'react';
-import { RouterProvider } from 'react-router-dom';
+import { RouterProvider } from 'react-router';
 import routeConfig from './routes/routeConfig';
 
-const App: FC = () => (
-  <RouterProvider
-    router={routeConfig}
-    fallbackElement={<p>Initial Load...</p>}
-  />
-);
+const App: FC = () => <RouterProvider router={routeConfig} />;
 
 export default App;

@@ -1,0 +1,25 @@
+@use './globals' as *;
+
+.flex-wrapper {
+  display: flex;
+  position: relative;
+}
+
+.flex-item {
+  display: flex;
+}
+
+.flex-2 {
+  flex: 2;
+  flex-basis: 50%;
+}
+
+.flex-3 {
+  flex: 3;
+  flex-basis: 75%;
+}
+
+.flex-4 {
+  flex: 4;
+  flex-basis: 65%;
+}

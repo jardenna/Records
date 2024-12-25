@@ -1,4 +1,5 @@
 import { FC } from 'react';
+import HeaderComp from '../../layout/header/HeaderComp';
 import BtnClose from '../BtnClose';
 
 interface ModalHeaderProps {
@@ -12,14 +13,14 @@ const ModalHeader: FC<ModalHeaderProps> = ({
   onCloseModal,
   showCloseIcon,
 }) => (
-  <header className="modal-header" aria-label="Dialog">
+  <HeaderComp className="modal-header" ariaLabel="Dialog">
     <h2 className="modal-title" id="modal-title">
       {modalHeadertext}
     </h2>
     {showCloseIcon && (
       <BtnClose onClick={onCloseModal} ariaLabel="Close modal" />
     )}
-  </header>
+  </HeaderComp>
 );
 
 export default ModalHeader;

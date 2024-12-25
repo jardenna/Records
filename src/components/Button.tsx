@@ -3,6 +3,7 @@
 import { FC, ReactNode } from 'react';
 import { BtnVariant } from '../types/enums';
 import { BtnType, ButtonEventType } from '../types/types';
+import VisuallyHidden from './VisuallyHidden';
 
 interface ButtonProps {
   children: ReactNode;
@@ -12,13 +13,14 @@ interface ButtonProps {
   ariaLabel?: string;
   ariaSelected?: boolean;
   autoFocus?: boolean;
-  btnRef?: (el: HTMLButtonElement | null) => void;
   className?: string;
   disabled?: boolean;
   id?: string;
   isBtnSelected?: boolean;
+  isLoading?: boolean;
   name?: string;
   onClick?: (event?: ButtonEventType) => void;
+  ref?: (el: HTMLButtonElement | null) => void;
   role?: string;
   tabIndex?: 0 | -1;
   type?: BtnType;
@@ -32,7 +34,7 @@ const Button: FC<ButtonProps> = ({
   tabIndex,
   variant = 'primary',
   onClick,
-  btnRef,
+  ref,
   ariaSelected,
   ariaExpanded,
   ariaControls,
@@ -44,29 +46,28 @@ const Button: FC<ButtonProps> = ({
   disabled,
   name,
   ariaDescribedby,
+  isLoading,
 }) => (
   <button
     id={id}
     tabIndex={tabIndex}
     role={role}
     type={type}
-    ref={btnRef}
+    ref={ref}
     onClick={onClick}
     aria-selected={ariaSelected}
     aria-expanded={ariaExpanded}
     aria-controls={ariaControls}
-    aria-label={ariaLabel}
     autoFocus={autoFocus}
     aria-disabled={disabled || undefined}
     className={`btn btn-${variant} ${className}`}
-    disabled={disabled}
+    disabled={disabled || isLoading}
     name={name}
     aria-describedby={isBtnSelected ? ariaDescribedby : undefined}
   >
-    {children}
+    {ariaLabel && <VisuallyHidden>{ariaLabel}</VisuallyHidden>}
+    {!isLoading ? children : <span aria-busy="true">...Loading</span>}
   </button>
 );
 
 export default Button;
-
-// aria-describedby="current-status"

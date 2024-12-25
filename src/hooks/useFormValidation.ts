@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { BlurEventType, ChangeInputType, FormEventType } from '../types/types';
+import { BlurEventType, ChangeInputType } from '../types/types';
 
 export interface KeyValuePair<T> {
   [key: string]: T;
@@ -14,8 +14,9 @@ export type FormValues = {
 };
 
 interface FormValidationProps<T extends KeyValuePair<any>> {
-  callback: (values: T) => void;
   initialState: T;
+  callback?: (values: T) => void;
+  isArray?: boolean;
   validate?: (values: KeyValuePair<string>) => KeyValuePair<string>;
 }
 
@@ -23,6 +24,7 @@ function useFormValidation<T extends KeyValuePair<any>>({
   initialState,
   callback,
   validate,
+  isArray,
 }: FormValidationProps<T>) {
   const [values, setValues] = useState<T>(initialState);
   const [errors, setErrors] = useState<KeyValuePair<string>>({});
@@ -76,6 +78,22 @@ function useFormValidation<T extends KeyValuePair<any>>({
     });
   }
 
+  const onCustomChange = (name: string, value: Date | string | number) => {
+    if (isArray) {
+      setValues({
+        ...values,
+        [name]: values[name]?.includes(value)
+          ? values[name] // Don't add if it already exists
+          : [...values[name], value], // Add the new value if it's not in the array
+      });
+    } else {
+      setValues({
+        ...values,
+        [name]: value,
+      });
+    }
+  };
+
   const onClearAll = () => {
     setValues(initialState);
   };
@@ -104,16 +122,15 @@ function useFormValidation<T extends KeyValuePair<any>>({
     }
   };
 
-  const onSubmit = (event: FormEventType) => {
-    event.preventDefault();
-
+  const onSubmit = () => {
     const validationErrors = validate ? validate(values) : {};
     const formHasNoErrors = !Object.keys(validationErrors).length;
 
     if (formHasNoErrors) {
-      setValues(initialState);
       setIsSubmitting(true);
-      callback(values);
+      if (callback) {
+        callback(values);
+      }
     } else {
       setErrors(validationErrors);
       scrollToFirstError();
@@ -123,6 +140,7 @@ function useFormValidation<T extends KeyValuePair<any>>({
   return {
     onSubmit,
     onChange,
+    onCustomChange,
     onBlur,
     values,
     errors,

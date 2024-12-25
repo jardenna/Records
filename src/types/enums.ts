@@ -1,4 +1,5 @@
 export enum MainPath {
+  Create = 'create',
   Details = 'details',
   Login = 'login',
   Records = 'records',
@@ -20,6 +21,11 @@ export enum LabelKeys {
   RecordNo = 'recordNo',
   Released = 'released',
   Title = 'title',
+}
+
+export enum PopupRole {
+  Alert = 'alert',
+  Status = 'status',
 }
 
 export enum KeyCode {
