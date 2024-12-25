@@ -28,10 +28,10 @@ interface ModalProps {
   children: React.ReactNode;
   id: string;
   modalHeaderText: string;
+  primaryActionBtn: PrimaryActionBtnProps;
   className?: string;
   isAlert?: boolean;
   modalSize?: SizeVariant;
-  primaryActionBtn?: PrimaryActionBtnProps;
   secondaryActionBtn?: SecondaryActionBtnProps;
   showCloseIcon?: boolean;
 }

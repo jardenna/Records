@@ -4,8 +4,8 @@ import Button from '../Button';
 import { PrimaryActionBtnProps, SecondaryActionBtnProps } from './Modal';
 
 interface modalFooterProps {
+  primaryActionBtn: PrimaryActionBtnProps;
   onCloseModal?: () => void;
-  primaryActionBtn?: PrimaryActionBtnProps;
   secondaryActionBtn?: SecondaryActionBtnProps;
 }
 

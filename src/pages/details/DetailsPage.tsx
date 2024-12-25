@@ -1,11 +1,21 @@
 import { FC } from 'react';
 import { Link, useParams } from 'react-router';
+import { useAppDispatch } from '../../app/hooks';
+import Button from '../../components/Button';
+import DeleteRecordModal from '../../components/DeleteRecordModal';
 import MetaTags from '../../components/MetaTags';
+import {
+  PrimaryActionBtnProps,
+  SecondaryActionBtnProps,
+} from '../../components/modal/Modal';
 import { labels, noInfo } from '../../components/recordTable/tableHeaders';
-import { useGetRecordByIdQuery } from '../../features/records/recordsApiSlice';
+import { toggleModal } from '../../features/modalSlice';
+import {
+  useDeleteRecordMutation,
+  useGetRecordByIdQuery,
+} from '../../features/records/recordsApiSlice';
 import FooterComp from '../../layout/FooterComp';
 import HeaderComp from '../../layout/header/HeaderComp';
-import DeleteRecordBtn from './DeleteRecordBtn';
 import DetailsContent from './DetailsContent';
 import './_details.scss';
 
@@ -13,6 +23,28 @@ const DetailsPage: FC = () => {
   const recordParams = useParams();
   const recordId = recordParams.id;
   const { data: selectedRecord } = useGetRecordByIdQuery(recordId);
+
+  const dispatch = useAppDispatch();
+  const handleOpenModal = () => {
+    if (recordId) {
+      dispatch(toggleModal(recordId));
+    }
+  };
+
+  const [deleteRecord] = useDeleteRecordMutation();
+
+  const handleDeleteRecord = () => {
+    deleteRecord(recordId);
+  };
+
+  const primaryActionBtn: PrimaryActionBtnProps = {
+    label: 'Delete',
+    onClick: handleDeleteRecord,
+  };
+
+  const secondaryActionBtn: SecondaryActionBtnProps = {
+    label: 'Annuller',
+  };
 
   return selectedRecord ? (
     <article className="details">
@@ -69,7 +101,16 @@ const DetailsPage: FC = () => {
           </Link>
 
           {recordId && (
-            <DeleteRecordBtn modalId={recordId} btnText="Slet plade" />
+            <>
+              <Button className="btn-danger" onClick={handleOpenModal}>
+                Slet album
+              </Button>
+              <DeleteRecordModal
+                modalId={recordId}
+                primaryActionBtn={primaryActionBtn}
+                secondaryActionBtn={secondaryActionBtn}
+              />
+            </>
           )}
         </FooterComp>
       </section>
