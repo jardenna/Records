@@ -6,23 +6,14 @@ import { useCreateNewRecordMutation } from '../features/records/recordsApiSlice'
 import { MainPath } from '../types/enums';
 import CreateForm from './CreateForm';
 
-interface CreateRecordProps {}
-
-const CreateRecord: FC<CreateRecordProps> = () => {
+const CreateRecord: FC = () => {
   const navigate = useNavigate();
-  const [createRecord, { isLoading, isError, error }] =
-    useCreateNewRecordMutation();
-  console.log({ isError, error });
+  const [createRecord, { isLoading }] = useCreateNewRecordMutation();
 
   const handleCreateRecord = async (values: Records) => {
     try {
       const result = await createRecord(values).unwrap();
       navigate(`/${MainPath.Records}`);
-      // if (!result.error) {
-      //   navigate(`/${MainPath.Records}`);
-      // } else {
-      //   console.log(result.error, 34);
-      // }
       return result;
     } catch (error) {
       console.log(error, 34);

@@ -1,3 +1,4 @@
+/* eslint-disable consistent-return */
 import { FC } from 'react';
 import { useNavigate, useParams } from 'react-router';
 import { Records } from '../app/api/apiTypes';
@@ -20,7 +21,7 @@ const UpdateRecord: FC = () => {
   async function handleUpdateRecord(values: Records) {
     if (recordId) {
       try {
-        await updateRecord({
+        const result = await updateRecord({
           id: recordId,
           record: values,
         }).unwrap();
@@ -29,12 +30,10 @@ const UpdateRecord: FC = () => {
           message: 'Record updated successfully',
           messagePopupType: 'success',
         });
+
+        return result;
       } catch (error) {
-        addMessagePopup({
-          message: 'Failed to create record',
-          messagePopupType: 'error',
-          componentType: 'notification',
-        });
+        console.log(error, 34);
       }
     }
   }
