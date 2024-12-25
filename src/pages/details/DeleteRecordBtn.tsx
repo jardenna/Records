@@ -5,7 +5,7 @@ import DeleteRecordModal, {
   DeleteRecordModalProps,
 } from '../../components/DeleteRecordModal';
 import { PrimaryActionBtnProps } from '../../components/modal/Modal';
-import { openModal } from '../../features/modalSlice';
+import { toggleModal } from '../../features/modalSlice';
 import { useDeleteRecordMutation } from '../../features/records/recordsApiSlice';
 
 interface DeleteRecordBtnProps extends DeleteRecordModalProps {
@@ -16,7 +16,7 @@ const DeleteRecordBtn: FC<DeleteRecordBtnProps> = ({ modalId, btnText }) => {
   const dispatch = useAppDispatch();
   const handleOpenModal = () => {
     if (modalId) {
-      dispatch(openModal(modalId));
+      dispatch(toggleModal(modalId));
     }
   };
 

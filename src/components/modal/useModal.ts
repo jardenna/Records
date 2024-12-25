@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { useAppDispatch } from '../../app/hooks';
-import { closeModal } from '../../features/modalSlice';
+import { toggleModal } from '../../features/modalSlice';
 import { KeyCode } from '../../types/enums';
 
 const useModal = (modalId: string | null) => {
@@ -8,7 +8,7 @@ const useModal = (modalId: string | null) => {
   const modalRef = useRef<HTMLDialogElement | null>(null);
 
   const handleCloseModal = () => {
-    dispatch(closeModal());
+    dispatch(toggleModal(null));
   };
 
   // eslint-disable-next-line consistent-return
