@@ -4,6 +4,7 @@ import { BtnVariant, MainPath } from '../../types/enums';
 import Button from '../Button';
 import Icon, { IconName } from '../icons/Icon';
 
+import { SortOrder } from '../../app/api/apiTypes';
 import './_table.scss';
 
 // Define an interface with id
@@ -17,6 +18,8 @@ interface TableProps<T extends Identifiable> {
   headers: Record<keyof T, string>;
   onSort: any;
   searchParams: string;
+  sortField: string;
+  sortOrder: string;
   tableData: T[];
   className?: string;
   excludeKeys?: (keyof T)[];
@@ -30,6 +33,8 @@ const Table = <T extends Identifiable>({
   excludeKeys = [],
   onSort,
   searchParams,
+  sortField,
+  sortOrder,
 }: TableProps<T>) => {
   // Filter headers to exclude specified keys
   const filteredHeaders = Object.entries(headers)
@@ -46,6 +51,10 @@ const Table = <T extends Identifiable>({
   const headerList: string[] = Object.keys(filteredHeaders);
   const headerListIds = Object.keys(filteredHeaders) as (keyof T)[];
 
+  const handleTest = (header: string) => {
+    onSort(header);
+  };
+
   return (
     <table className={className}>
       <caption className="visually-hidden">{caption}</caption>
@@ -53,9 +62,22 @@ const Table = <T extends Identifiable>({
         <tr>
           {headerList.map((header) => (
             <th scope="col" key={header}>
-              {header}
-              <Button variant={BtnVariant.Ghost} onClick={() => onSort(header)}>
-                <Icon name={IconName.ArrowDown} title="Sort by" />
+              <Button
+                variant={BtnVariant.Ghost}
+                onClick={() => handleTest(header)}
+              >
+                {header}
+
+                {sortField === header && (
+                  <Icon
+                    name={
+                      sortOrder === SortOrder.Desc
+                        ? IconName.ArrowDown
+                        : IconName.ArrowUp
+                    }
+                    title="Sort by"
+                  />
+                )}
               </Button>
             </th>
           ))}

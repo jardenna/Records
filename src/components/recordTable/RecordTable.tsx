@@ -5,15 +5,19 @@ import Table from './Table';
 import { labels } from './tableHeaders';
 
 interface RecordTableProps {
-  onSort: any;
+  onSort: (field: string) => void;
   records: Records[];
   searchParams: string;
+  sortField: string;
+  sortOrder: string;
 }
 
 const RecordTable: FC<RecordTableProps> = ({
   records,
   onSort,
   searchParams,
+  sortField,
+  sortOrder,
 }) => (
   <Table
     searchParams={searchParams}
@@ -21,6 +25,8 @@ const RecordTable: FC<RecordTableProps> = ({
     headers={labels}
     tableData={records}
     onSort={onSort}
+    sortOrder={sortOrder}
+    sortField={sortField}
     excludeKeys={
       [
         LabelKeys.Id,

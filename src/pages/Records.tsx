@@ -123,6 +123,8 @@ const Records: FC = () => {
           records={records.results}
           onSort={handleSort}
           searchParams={location.search}
+          sortField={sortField}
+          sortOrder={sortOrder}
         />
       )}
       <div>
