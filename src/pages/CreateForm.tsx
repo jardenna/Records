@@ -3,6 +3,7 @@ import { OmittedRecordRequest, Records } from '../app/api/apiTypes';
 import Form from '../components/formElements/form/Form';
 import Input from '../components/formElements/Input';
 import Textarea from '../components/formElements/Textarea';
+import validateUpdate from '../components/formElements/validation/validationFormElements';
 import ImagePreview from '../components/ImagePreview';
 import MetaTags from '../components/MetaTags';
 import useFormValidation from '../hooks/useFormValidation';
@@ -36,6 +37,7 @@ const CreateForm: FC<CreateFormProps> = ({
   const { onSubmit, onChange, onBlur, values, errors } = useFormValidation({
     initialState,
     callback: handleSubmit,
+    validate: validateUpdate,
   });
 
   function handleSubmit() {

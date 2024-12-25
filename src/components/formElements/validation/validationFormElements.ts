@@ -1,27 +1,24 @@
 import { FormValues, ValidationErrors } from '../../../hooks/useFormValidation';
-import language from '../../../language/language.json';
-import { emailRegex } from '../../../utils';
 
-function validationFormElements(values: FormValues) {
+import { labels } from '../../recordTable/tableHeaders';
+
+function validateUpdate(values: FormValues) {
   const errors: ValidationErrors = {};
-  const { phone, email, fullName } = values;
-
-  if (!phone) {
-    errors.phone = `${language.PleaseEnter} Your phone no.`;
+  const { artist, title, prodYear, released } = values;
+  if (!artist) {
+    errors.artist = `required${labels.artist}`;
   }
-
-  if (!fullName) {
-    errors.fullName = `${language.PleaseEnter} Your name`;
+  if (!title) {
+    errors.title = `required${labels.title}`;
   }
-
-  // Email Errors
-  if (!email) {
-    errors.email = `${language.PleaseEnter} Your email`;
-  } else if (!emailRegex.test(email as string)) {
-    errors.email = `${language.PleaseEnter} a valid emai`;
+  if (!prodYear) {
+    errors.prodYear = `Please enter ${labels.prodYear}`;
+  }
+  if (released > prodYear) {
+    errors.released = `must be smaller than ${labels.prodYear}`;
   }
 
   return errors;
 }
 
-export default validationFormElements;
+export default validateUpdate;
