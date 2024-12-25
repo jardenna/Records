@@ -132,7 +132,7 @@ const CreateForm: FC<CreateFormProps> = ({
               onChange={onChange}
               labelText="Antal LP(er)"
               type="number"
-              value={values.numOfRecords}
+              value={values.numOfRecords || ''}
             />
             <Input
               name="price"

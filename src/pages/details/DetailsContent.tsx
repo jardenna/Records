@@ -3,12 +3,16 @@ import { FC } from 'react';
 interface DetailsContentProps {
   label: string;
   text: string | number;
+  isPrice?: boolean;
 }
 
-const DetailsContent: FC<DetailsContentProps> = ({ text, label }) => (
+const DetailsContent: FC<DetailsContentProps> = ({ text, label, isPrice }) => (
   <div className="flex details-info">
     <span className="details-label">{label}:</span>
-    <span>{text}</span>
+    <span>
+      {text}
+      {isPrice && ',00'}
+    </span>
   </div>
 );
 

@@ -85,12 +85,13 @@ const DetailsPage: FC = () => {
             label={labels.recordNo}
           />
           <DetailsContent
-            text={1 || selectedRecord.numOfRecords}
+            text={selectedRecord.numOfRecords || 1}
             label={labels.numOfRecords}
           />
           <DetailsContent
-            text={`${selectedRecord.price},00` || noInfo}
+            text={`${selectedRecord.price}` || noInfo}
             label={labels.price}
+            isPrice={!!selectedRecord.price}
           />
         </div>
         <FooterComp className="details-footer" ariaLabel="Record-details">
