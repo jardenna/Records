@@ -5,7 +5,7 @@ import Input from '../components/formElements/Input';
 import Textarea from '../components/formElements/Textarea';
 import validateUpdate, {
   minimumYear,
-} from '../components/formElements/validation/validationFormElements';
+} from '../components/formElements/validation/validateUpdate';
 import ImagePreview from '../components/ImagePreview';
 import MetaTags from '../components/MetaTags';
 import useFormValidation from '../hooks/useFormValidation';
