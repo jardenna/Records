@@ -3,6 +3,7 @@ import mongoose from 'mongoose';
 const yearRegex = /^(18(8[9]|9[0-9])|19\d{2}|20\d{2}|2099)$/;
 const currentYear = new Date().getFullYear();
 const nextYear = currentYear + 1;
+const minimumYear = 1889;
 
 const RecordSchema = mongoose.Schema(
   {
@@ -21,7 +22,7 @@ const RecordSchema = mongoose.Schema(
           return yearRegex.test(v);
         },
         message: (props) =>
-          `${props.value} must be a valid number between 1889 and ${nextYear}`,
+          `${props.value} must be a valid number between ${minimumYear} and ${nextYear}`,
       },
       required: [true, 'Please enter a production year'],
     },
@@ -39,22 +40,28 @@ const RecordSchema = mongoose.Schema(
 
     released: {
       type: String,
-      required: false, // The field is optional
-      validate: {
-        validator: function (v) {
-          if (!v) return true; // Skip validation if the field is empty
-          const year = parseInt(v, 10);
-          return year >= 1889 && year <= nextYear; // Validate only if there's a value
-        },
-        message: (props) =>
-          `${props.value} must be a valid year between 1889 and ${nextYear}`,
-      },
     },
     info: String,
     photo: String,
   },
   { timestamps: true },
 );
+
+// Middleware for validating 'released'
+RecordSchema.pre('save', function (next) {
+  if (this.released) {
+    // Skip validation if the field is empty
+    const year = parseInt(this.released, 10);
+    if (year < minimumYear || year > nextYear) {
+      return next(
+        new Error(
+          `Released year ${this.released} must be between ${minimumYear} and ${nextYear}.`,
+        ),
+      );
+    }
+  }
+  next();
+});
 
 const Records = mongoose.model('Records', RecordSchema);
 
