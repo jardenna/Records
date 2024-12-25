@@ -63,6 +63,7 @@ const postUpdateRecord = async (req, res) => {
     const updatedRecord = await Record.updateOne(
       { _id: req.params.recordId },
       { $set: updatedData },
+      { runValidators: true }, // Ensure validation is run during update
     );
     res.json(updatedRecord);
   } catch (error) {
