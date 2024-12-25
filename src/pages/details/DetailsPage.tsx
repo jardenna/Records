@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { Link, useParams } from 'react-router';
+import { Link, useNavigate, useParams } from 'react-router';
 import { useAppDispatch } from '../../app/hooks';
 import Button from '../../components/Button';
 import DeleteRecordModal from '../../components/DeleteRecordModal';
@@ -16,25 +16,27 @@ import {
 } from '../../features/records/recordsApiSlice';
 import FooterComp from '../../layout/FooterComp';
 import HeaderComp from '../../layout/header/HeaderComp';
+import { MainPath } from '../../types/enums';
 import DetailsContent from './DetailsContent';
 import './_details.scss';
 
 const DetailsPage: FC = () => {
+  const dispatch = useAppDispatch();
   const recordParams = useParams();
   const recordId = recordParams.id;
+  const navigate = useNavigate();
   const { data: selectedRecord } = useGetRecordByIdQuery(recordId);
+  const [deleteRecord] = useDeleteRecordMutation();
 
-  const dispatch = useAppDispatch();
   const handleOpenModal = () => {
     if (recordId) {
       dispatch(toggleModal(recordId));
     }
   };
 
-  const [deleteRecord] = useDeleteRecordMutation();
-
   const handleDeleteRecord = () => {
     deleteRecord(recordId);
+    navigate(`/${MainPath.Records}`);
   };
 
   const primaryActionBtn: PrimaryActionBtnProps = {
