@@ -1,6 +1,8 @@
 import { FC } from 'react';
 
 import AddIcon from './AddIcon';
+import ArrowDown from './ArrowDown';
+import ArrowUp from './ArrowUp';
 import ChevronLeft from './ChevronLeft';
 import ChevronRight from './ChevronRight';
 import ChevronsLeft from './ChevronsLeft';
@@ -25,6 +27,8 @@ interface IconProps extends IconDefaultProps {
 
 export enum IconName {
   Add = 'add',
+  ArrowDown = 'arrowDown',
+  ArrowUp = 'arrowUp',
   ChevronLeft = 'chevronLeft',
   ChevronRight = 'chevronRight',
   ChevronsLeft = 'chevronsLeft',
@@ -36,18 +40,21 @@ export enum IconName {
   Success = 'success',
   Warning = 'warning',
 }
+
 const iconMapping = {
-  chevronsLeft: ChevronsLeft,
-  chevronsRight: ChevronsRight,
+  add: AddIcon,
+  arrowDown: ArrowDown,
+  arrowUp: ArrowUp,
   chevronLeft: ChevronLeft,
   chevronRight: ChevronRight,
+  chevronsLeft: ChevronsLeft,
+  chevronsRight: ChevronsRight,
   close: Close,
   error: ErrorIcon,
-  success: SuccessIcon,
-  warning: WarningIcon,
   info: InfoIcon,
   subtract: SubtractIcon,
-  add: AddIcon,
+  success: SuccessIcon,
+  warning: WarningIcon,
 };
 
 const Icon: FC<IconProps> = ({

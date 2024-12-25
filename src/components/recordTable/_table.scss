@@ -23,5 +23,9 @@ table {
     background-color: $color-blue;
     color: $color-white;
     text-align: left;
+
+    .btn-ghost {
+      color: #fff;
+    }
   }
 }

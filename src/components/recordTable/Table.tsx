@@ -1,6 +1,8 @@
 /* eslint-disable no-param-reassign */
 import DetailLink from '../../pages/details/DetailLink';
+import { BtnVariant } from '../../types/enums';
 import Button from '../Button';
+import Icon, { IconName } from '../icons/Icon';
 
 import './_table.scss';
 
@@ -50,7 +52,9 @@ const Table = <T extends Identifiable>({
           {headerList.map((header) => (
             <th scope="col" key={header}>
               {header}
-              <Button onClick={() => onSort(header)}>sort</Button>
+              <Button variant={BtnVariant.Ghost} onClick={() => onSort(header)}>
+                <Icon name={IconName.ArrowDown} title="Sort by" />
+              </Button>
             </th>
           ))}
           <th>Details</th>
