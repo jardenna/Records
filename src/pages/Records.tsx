@@ -21,6 +21,8 @@ const Records: FC = () => {
 
   const limit = searchParams.get('limit');
   const filterValue = searchParams.get('filter');
+  const sortOrderParam = searchParams.get('sortOrder');
+  const sortFieldParam = searchParams.get('sortField');
 
   const initialState = {
     limit: limit || '10',
@@ -33,8 +35,8 @@ const Records: FC = () => {
   const { data: records } = useGetPaginatedRecordsQuery({
     page: currentPage,
     limit: Number(limit) || Number(values.limit),
-    sortField,
-    sortOrder,
+    sortField: sortFieldParam || sortField,
+    sortOrder: (sortOrderParam as SortOrder) || sortOrder,
     artist: filterValue || filteredArtists,
   });
 
@@ -60,7 +62,10 @@ const Records: FC = () => {
       );
     } else {
       setSortField(field);
+      searchParams.set('sortField', field);
+      searchParams.set('sortOrder', sortOrder);
       setSortOrder(SortOrder.Asc);
+      setSearchParams(searchParams);
     }
   };
 
