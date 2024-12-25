@@ -17,7 +17,9 @@ const useVisibility = (
       timeoutRef.current = window.setTimeout(closeCallback, transitionDuration);
     }
   };
+
   useKeyPress(handleClosePopup, [KeyCode.Esc]);
+
   useEffect(() => {
     if (isOpen) {
       setIsVisible(true);

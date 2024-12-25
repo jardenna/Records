@@ -60,7 +60,7 @@ const Modal: React.FC<ModalProps> = ({
     <Portal portalId="modal">
       <dialog
         ref={modalRef}
-        className={`modal animate-top-center modal-${modalSize} ${className}  ${popupClass}`}
+        className={`modal animate-top-center modal-${modalSize} ${className} ${popupClass}`}
         role={isAlert ? 'alert' : undefined}
       >
         <ModalHeader

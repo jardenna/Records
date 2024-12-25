@@ -1,6 +1,5 @@
 import { useEffect, useRef } from 'react';
 import { useAppDispatch } from '../../app/hooks';
-
 import { closeModal } from '../../features/modalSlice';
 import { KeyCode } from '../../types/enums';
 
