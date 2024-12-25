@@ -70,7 +70,7 @@ const DetailsPage: FC = () => {
       <section className="details-content-container">
         <div>
           <DetailsContent
-            text={selectedRecord.origin || noInfo}
+            text={selectedRecord.origin?.trim() || noInfo}
             label={labels.origin}
           />
           <DetailsContent
@@ -78,15 +78,15 @@ const DetailsPage: FC = () => {
             label={labels.prodYear}
           />
           <DetailsContent
-            text={selectedRecord.released || selectedRecord.prodYear}
+            text={selectedRecord.prodYear || selectedRecord.released || noInfo}
             label={labels.released}
           />
           <DetailsContent
-            text={selectedRecord.label || noInfo}
+            text={selectedRecord.label?.trim() || noInfo}
             label={labels.label}
           />
           <DetailsContent
-            text={selectedRecord.recordNo || noInfo}
+            text={selectedRecord.recordNo?.trim() || noInfo}
             label={labels.recordNo}
           />
           <DetailsContent
@@ -94,9 +94,9 @@ const DetailsPage: FC = () => {
             label={labels.numOfRecords}
           />
           <DetailsContent
-            text={`${selectedRecord.price}` || noInfo}
+            text={`${selectedRecord.price?.trim()}` || noInfo}
             label={labels.price}
-            isPrice={!!selectedRecord.price}
+            isPrice={!!selectedRecord.price?.trim()}
           />
         </div>
         <FooterComp className="details-footer" ariaLabel="Record-details">

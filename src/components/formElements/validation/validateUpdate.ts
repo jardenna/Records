@@ -23,9 +23,12 @@ function validateUpdate(values: FormValues) {
   ) {
     errors.prodYear = `Please enter a year before ${nextYear} and after ${minimumYear}`;
   }
-  if (released < prodYear) {
-    errors.released = `Must be greater than ${labels.prodYear}`;
-  } else if (released && (released as number) < minimumYear) {
+  if (released.toString().trim() !== '' && released < prodYear) {
+    errors.released = `Must be greater than or equal to  ${labels.prodYear}`;
+  } else if (
+    released.toString().trim() !== '' &&
+    (released as number) < minimumYear
+  ) {
     errors.released = `Please enter a year after ${minimumYear}`;
   }
 
