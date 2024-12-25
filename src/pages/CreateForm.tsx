@@ -103,6 +103,8 @@ const CreateForm: FC<CreateFormProps> = ({
               max={maxYear}
               type="number"
               maxLength={4}
+              errorText={errors.released}
+              onBlur={onBlur}
             />
 
             <Input
