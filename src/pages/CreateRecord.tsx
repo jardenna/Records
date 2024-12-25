@@ -1,21 +1,31 @@
+/* eslint-disable consistent-return */
 import { FC } from 'react';
+import { useNavigate } from 'react-router';
 import { Records } from '../app/api/apiTypes';
 import { useCreateNewRecordMutation } from '../features/records/recordsApiSlice';
+import { MainPath } from '../types/enums';
 import CreateForm from './CreateForm';
 
 interface CreateRecordProps {}
 
 const CreateRecord: FC<CreateRecordProps> = () => {
-  const [createRecord, { isLoading }] = useCreateNewRecordMutation();
+  const navigate = useNavigate();
+  const [createRecord, { isLoading, isError, error }] =
+    useCreateNewRecordMutation();
+  console.log({ isError, error });
 
-  // eslint-disable-next-line consistent-return
   const handleCreateRecord = async (values: Records) => {
     try {
-      const result = await createRecord(values);
-
+      const result = await createRecord(values).unwrap();
+      navigate(`/${MainPath.Records}`);
+      // if (!result.error) {
+      //   navigate(`/${MainPath.Records}`);
+      // } else {
+      //   console.log(result.error, 34);
+      // }
       return result;
     } catch (error) {
-      console.log(error);
+      console.log(error, 34);
     }
   };
 

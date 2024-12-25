@@ -49,7 +49,7 @@ const RecordSchema = mongoose.Schema(
           return year >= 1889 && year <= prodYear; // Validate only if there's a value
         },
         message: (props) =>
-          `${props.value} must be a valid year between 1889 and ${prodYear}`,
+          `${props.value} must be a valid year between 1889 and parseInt(this.prodYear, 10)`,
       },
     },
     info: String,
