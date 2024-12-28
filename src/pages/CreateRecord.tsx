@@ -28,8 +28,11 @@ const CreateRecord: FC = () => {
 
   return (
     <section className="create-album-page">
-      <h1>Tilføj album</h1>
-      <CreateForm onCreateRecord={handleCreateRecord} isLoading={isLoading} />
+      <CreateForm
+        onCreateRecord={handleCreateRecord}
+        isLoading={isLoading}
+        title="Tilføj album"
+      />
     </section>
   );
 };

@@ -11,6 +11,7 @@ import MetaTags from '../components/MetaTags';
 import useFormValidation from '../hooks/useFormValidation';
 
 interface CreateFormProps {
+  title: string;
   isLoading?: boolean;
   onCreateRecord?: any;
   onUpdateRecord?: (values: Records) => void;
@@ -22,6 +23,7 @@ const CreateForm: FC<CreateFormProps> = ({
   onUpdateRecord,
   onCreateRecord,
   isLoading,
+  title,
 }) => {
   const initialState = {
     artist: recordDetails?.artist ?? '',
@@ -56,9 +58,9 @@ const CreateForm: FC<CreateFormProps> = ({
       <MetaTags
         description="This is the records page description"
         keywords="records, music, artists"
-        title="Create Album"
+        title={title}
       />
-      <Form onSubmit={onSubmit} labelText="Tilføj album" isLoading={isLoading}>
+      <Form onSubmit={onSubmit} labelText={title} isLoading={isLoading}>
         <div className="flex">
           <div className="flex column">
             <Input

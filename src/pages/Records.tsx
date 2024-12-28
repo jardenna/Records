@@ -91,6 +91,31 @@ const Records: FC = () => {
         title="Album table"
       />
 
+      <h1>Records</h1>
+      {records && (
+        <RecordTable
+          records={records.results}
+          onSort={handleSort}
+          searchParams={location.search}
+          sortField={sortField}
+          sortOrder={sortOrder}
+        />
+      )}
+      <div>
+        {Number(values.limit)} of {records?.recordsCount} {currentPage}
+        25
+        {/* btn 1 = 1 - 10 records
+       btn 2 = 11 - 21 records
+       btn 3 = 22 - 32 records */}
+      </div>
+      <Pagination
+        currentPage={currentPage}
+        onPaginationItemClick={onPaginationItemClick}
+        onPaginationAction={onPaginationAction}
+        pageLimit={pageLimit}
+        pageRange={pageRange}
+        totalPageCount={totalPageCount}
+      />
       <form onSubmit={(event) => event.preventDefault()}>
         <SelectBox
           name="limit"
@@ -117,31 +142,6 @@ const Records: FC = () => {
           labelText="Filter by artist"
         />
       </form>
-      <h1>Records</h1>
-      {records && (
-        <RecordTable
-          records={records.results}
-          onSort={handleSort}
-          searchParams={location.search}
-          sortField={sortField}
-          sortOrder={sortOrder}
-        />
-      )}
-      <div>
-        {Number(values.limit)} of {records?.recordsCount} {currentPage}
-        25
-        {/* btn 1 = 1 - 10 records
-       btn 2 = 11 - 21 records
-       btn 3 = 22 - 32 records */}
-      </div>
-      <Pagination
-        currentPage={currentPage}
-        onPaginationItemClick={onPaginationItemClick}
-        onPaginationAction={onPaginationAction}
-        pageLimit={pageLimit}
-        pageRange={pageRange}
-        totalPageCount={totalPageCount}
-      />
     </section>
   );
 };

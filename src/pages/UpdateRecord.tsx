@@ -45,12 +45,12 @@ const UpdateRecord: FC = () => {
 
   return (
     <section className="create-album-page">
-      <h1>Opdater album</h1>
       {recordDetails && (
         <CreateForm
           recordDetails={recordDetails}
           onUpdateRecord={handleUpdateRecord}
           isLoading={isLoading}
+          title="Update Album"
         />
       )}
     </section>

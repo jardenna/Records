@@ -2,7 +2,6 @@ import { FC } from 'react';
 import { Link } from 'react-router';
 import { MainPath } from '../../types/enums';
 import Nav from '../nav/Nav';
-
 import HeaderComp from './HeaderComp';
 import './_header.scss';
 
