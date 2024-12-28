@@ -53,10 +53,10 @@ const RecordSchema = mongoose.Schema(
 // Middleware for validating 'released'
 RecordSchema.pre('save', function (next) {
   const prodYear = parseInt(this.prodYear, 10);
-  if (this.released) {
+  const year = parseInt(this.released, 10);
+  if (year !== 0) {
     // Skip validation if the field is empty
-    const year = parseInt(this.released, 10);
-    if (year < minimumYear || year > prodYear) {
+    if (year < minimumYear || year < prodYear) {
       return next(
         new Error(
           `Released year ${this.released} must be between ${prodYear} and ${nextYear}.`,
