@@ -37,6 +37,7 @@ const DetailsPage: FC = () => {
 
   const handleDeleteRecord = () => {
     deleteRecord(recordId);
+    dispatch(toggleModal(null));
     if (location.search) {
       navigate(`/${MainPath.Records}${location.search}`);
     } else {
