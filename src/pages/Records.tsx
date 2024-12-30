@@ -18,7 +18,6 @@ const Records: FC = () => {
   const [filteredArtists, setFilteredArtists] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
   const [searchParams, setSearchParams] = useSearchParams();
-
   const limit = searchParams.get('limit');
   const filterValue = searchParams.get('filter');
   const sortOrderParam = searchParams.get('sortOrder');
@@ -91,7 +90,6 @@ const Records: FC = () => {
         title="Album table"
       />
 
-      <h1>Records</h1>
       {records && (
         <RecordTable
           records={records.results}

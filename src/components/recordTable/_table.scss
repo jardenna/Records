@@ -1,32 +1,100 @@
+/* stylelint-disable no-descending-specificity */
 @use '../../scss/globals' as *;
 
+.table-container {
+  position: relative;
+  z-index: 1;
+  overflow: auto;
+  width: 300px;
+  max-height: 400px;
+  min-width: 100%;
+  border: 1px solid $color-border;
+}
+
 table {
-  border-spacing: 0;
-  border-collapse: collapse;
-  border: 1px solid $color-gray-dark;
-  margin-bottom: 10px;
   width: 100%;
-  table-layout: fixed;
+  min-width: rem(380px);
+  border-spacing: 0;
+
+  .detail-td {
+    z-index: 5;
+  }
+
+  .btn {
+    padding: 12px;
+  }
 
   tr {
-    border-bottom: 1px solid $color-gray;
-    height: 70px;
+    height: rem(50px);
   }
 
   td {
-    border-bottom: 1px solid $color-gray-dark;
-    padding: 8px 14px;
     line-height: rem(24px);
+    background-color: $color-white;
+  }
+
+  th,
+  td {
+    white-space: nowrap;
+    padding: 8px 12px;
   }
 
   th {
-    padding-left: 12px;
-    background-color: $color-blue;
-    color: $color-white;
+    border: 1px solid transparent;
+    border-bottom: 1px solid #969393;
     text-align: left;
+    background-color: $color-white;
 
-    .btn-ghost {
-      color: #fff;
+    &:has(.btn:focus) {
+      border-color: $color-placeholder;
+    }
+
+    .btn {
+      padding-left: 0;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: bold;
+
+      &:hover,
+      &:focus-visible {
+        outline: transparent;
+      }
+    }
+
+    &:first-child {
+      position: sticky;
+      left: 0;
+      z-index: 2;
+      background-color: $color-white;
+    }
+  }
+
+  thead {
+    th {
+      position: sticky;
+      top: 0;
+
+      &:first-child {
+        z-index: 5;
+        border-right: 1px solid $color-border;
+      }
+    }
+  }
+
+  tbody {
+    td:first-child {
+      border-right: 1px solid $color-border;
+      position: sticky;
+      left: 0;
+      z-index: 2;
+    }
+
+    tr:nth-child(odd) {
+      th,
+      td {
+        background-color: $color-gray-light;
+      }
     }
   }
 }
