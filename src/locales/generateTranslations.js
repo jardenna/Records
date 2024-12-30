@@ -23,7 +23,7 @@ fs.readFile(filePath, 'utf8', (err, data) => {
   fs.writeFileSync(tempFilePath, cleanedData);
 
   fs.createReadStream(tempFilePath)
-    .pipe(csv({ separator: ';', headers: ['key', 'en', 'da'] }))
+    .pipe(csv({ separator: ';', headers: ['key', 'en', 'da'], skipLines: 1 }))
     .on('data', (data) => {
       results.push(data);
     })
@@ -52,6 +52,8 @@ fs.readFile(filePath, 'utf8', (err, data) => {
           'src/locales/da.json',
           JSON.stringify(daJson, null, 2),
         );
+
+        console.log('JSON files created successfully!');
       } catch (error) {
         console.error('Error processing CSV:', error);
       }
