@@ -18,7 +18,8 @@ build
 request.rest
 .env
 .eslintcache
-
+en.json
+da.json
 
 # Editor directories and files
 .vscode/*

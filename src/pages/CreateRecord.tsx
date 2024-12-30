@@ -27,7 +27,6 @@ const CreateRecord: FC = () => {
     }
   };
   const { language } = useLanguage();
-  console.log(language.createAlbum);
 
   return (
     <section className="create-album-page">
