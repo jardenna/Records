@@ -14,7 +14,8 @@
     "stylelint": "npx stylelint \"**/*.scss\"",
     "stylelint:fix": "npx stylelint \"**/*.scss\" --fix",
     "prepare": "husky",
-    "server": "nodemon server/app.js"
+    "server": "nodemon server/app.js",
+    "translate": "node src/locales/generateTranslations.js"
   },
   "license": "ISC",
   "devDependencies": {
