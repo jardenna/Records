@@ -3,6 +3,7 @@ import { FC } from 'react';
 import { useNavigate } from 'react-router';
 import { Records } from '../app/api/apiTypes';
 import useMessagePopup from '../components/messagePopup/useMessagePopup';
+import useLanguage from '../features/language/useLanguage';
 import { useCreateNewRecordMutation } from '../features/records/recordsApiSlice';
 import { MainPath } from '../types/enums';
 import CreateForm from './CreateForm';
@@ -22,16 +23,18 @@ const CreateRecord: FC = () => {
       });
       return result;
     } catch (error) {
-      console.log(error, 34);
+      console.log(error);
     }
   };
+  const { language } = useLanguage();
+  console.log(language.createAlbum);
 
   return (
     <section className="create-album-page">
       <CreateForm
         onCreateRecord={handleCreateRecord}
         isLoading={isLoading}
-        title="Tilføj album"
+        title={language.createAlbum}
       />
     </section>
   );

@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
+import danishLang from '../../../da.json';
 import { RootState } from '../../app/store';
-import danishLang from '../../locales/da.json';
 
 export type SelectedLanguage = 'en' | 'da';
 
@@ -20,7 +20,7 @@ export const loadLanguage = createAsyncThunk<
 
 // Initial state
 const initialState: LanguageState = {
-  selectedLanguage: 'da', // default language
+  selectedLanguage: 'en', // default language
   language: danishLang,
 };
 
