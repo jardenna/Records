@@ -56,52 +56,55 @@ const Table = <T extends Identifiable>({
   };
 
   return (
-    <table className={className}>
-      <caption className="visually-hidden">{caption}</caption>
-      <thead>
-        <tr>
-          {headerList.map((header) => (
-            <th scope="col" key={header}>
-              <Button
-                variant={BtnVariant.Ghost}
-                onClick={() => handleTest(header)}
-              >
-                {header}
+    <div className="table-container">
+      <table className={className}>
+        <caption className="visually-hidden">{caption}</caption>
+        <thead>
+          <tr>
+            {headerList.map((header) => (
+              <th scope="col" key={header}>
+                <Button
+                  variant={BtnVariant.Ghost}
+                  onClick={() => handleTest(header)}
+                >
+                  {header}
 
-                {sortField === header && (
-                  <Icon
-                    name={
-                      sortOrder === SortOrder.Desc
-                        ? IconName.ArrowDown
-                        : IconName.ArrowUp
-                    }
-                    title="Sort by"
-                  />
-                )}
-              </Button>
-            </th>
-          ))}
-          <th>Details</th>
-        </tr>
-      </thead>
-      <tbody>
-        {tableData.map((data, rowIndex) => (
-          <tr key={rowIndex}>
-            {headerListIds.map((header) => (
-              <td key={String(header)}>{String(data[header])}</td>
+                  {sortField === header && (
+                    <Icon
+                      size="16"
+                      name={
+                        sortOrder === SortOrder.Desc
+                          ? IconName.ArrowDown
+                          : IconName.ArrowUp
+                      }
+                      title="Sort by"
+                    />
+                  )}
+                </Button>
+              </th>
             ))}
-            <td>
-              <Link
-                className="btn btn-primary details-btn"
-                to={`/${MainPath.Details}/${data.id}${searchParams}`}
-              >
-                Details
-              </Link>
-            </td>
+            <th>Details</th>
           </tr>
-        ))}
-      </tbody>
-    </table>
+        </thead>
+        <tbody>
+          {tableData.map((data, rowIndex) => (
+            <tr key={rowIndex}>
+              {headerListIds.map((header) => (
+                <td key={String(header)}>{String(data[header])}</td>
+              ))}
+              <td className="detail-td">
+                <Link
+                  className="btn btn-primary details-btn"
+                  to={`/${MainPath.Details}/${data.id}${searchParams}`}
+                >
+                  Details
+                </Link>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
   );
 };
 
