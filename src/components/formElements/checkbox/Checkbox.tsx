@@ -1,8 +1,11 @@
 import { FC } from 'react';
 import { ChangeInputType } from '../../../types/types';
-import { CheckboxItems } from '../form/formList';
 import Input from '../Input';
 import './_checkbox.scss';
+
+export interface CheckboxItems {
+  label: string;
+}
 
 interface CheckboxProps {
   checkBoxList: CheckboxItems[];

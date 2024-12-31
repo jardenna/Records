@@ -1,8 +1,12 @@
 import { FC } from 'react';
 import { ChangeInputType } from '../../../types/types';
-import { RadioListItem } from '../form/formList';
 import Input from '../Input';
 import './_radio-button.scss';
+
+export interface RadioListItem {
+  id: string;
+  labelText: string;
+}
 
 interface RadioButtonProps {
   initialChecked: string;
@@ -14,7 +18,6 @@ interface RadioButtonProps {
 
 const RadioButton: FC<RadioButtonProps> = ({
   initialChecked,
-
   radioButtonList,
   onChange,
   name,
