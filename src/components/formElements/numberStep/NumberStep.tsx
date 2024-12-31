@@ -14,7 +14,10 @@ type OmittedProps = Omit<
 >;
 
 interface NumberStepProps extends OmittedProps {
-  onNumberStepChange: (event: any, count: number) => void;
+  onNumberStepChange: (
+    event: ButtonEventType | undefined,
+    count: number,
+  ) => void;
   initCount?: number;
 }
 

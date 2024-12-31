@@ -13,7 +13,7 @@ import useFormValidation from '../hooks/useFormValidation';
 interface CreateFormProps {
   title: string;
   isLoading?: boolean;
-  onCreateRecord?: any;
+  onCreateRecord?: (values: Records) => void;
   onUpdateRecord?: (values: Records) => void;
   recordDetails?: OmittedRecordRequest;
 }
@@ -47,7 +47,7 @@ const CreateForm: FC<CreateFormProps> = ({
   function handleSubmit() {
     if (onUpdateRecord) {
       onUpdateRecord(values as Records);
-    } else {
+    } else if (onCreateRecord) {
       onCreateRecord(values as Records);
     }
   }

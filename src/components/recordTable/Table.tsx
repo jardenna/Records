@@ -31,9 +31,9 @@ const Table = <T extends Record<string, any>>({
       <thead>
         <tr>
           {headers.map((header) => (
-            <th scope="col" key={String(header)}>
+            <th scope="col" key={header}>
               <Button variant={BtnVariant.Ghost} onClick={() => onSort(header)}>
-                {String(header)}
+                {header}
                 {sortField === header && (
                   <Icon
                     size="16"
@@ -55,7 +55,7 @@ const Table = <T extends Record<string, any>>({
         {tableData.map((data, rowIndex) => (
           <tr key={rowIndex}>
             {headers.map((header) => (
-              <td key={String(header)}>{data[header]}</td>
+              <td key={header}>{data[header]}</td>
             ))}
             <td className="detail-table-header">
               <Link

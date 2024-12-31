@@ -9,12 +9,12 @@ import usePagination from '../components/pagination/usePagination';
 import RecordTable from '../components/recordTable/RecordTable';
 import { useGetPaginatedRecordsQuery } from '../features/records/recordsApiSlice';
 import useFormValidation from '../hooks/useFormValidation';
+import { ChangeInputType } from '../types/types';
 
 const Records: FC = () => {
   const pageLimit = 5;
   const [sortField, setSortField] = useState('createdAt');
   const [sortOrder, setSortOrder] = useState(SortOrder.Desc);
-
   const [currentPage, setCurrentPage] = useState(1);
   const [searchParams, setSearchParams] = useSearchParams();
   const limit = searchParams.get('limit');
@@ -72,7 +72,7 @@ const Records: FC = () => {
     }
   };
 
-  const handleTest = (event: any) => {
+  const handleTest = (event: ChangeInputType) => {
     const { name, value } = event.target;
     searchParams.set(name, value.trim());
     setSearchParams(searchParams);

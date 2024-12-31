@@ -21,12 +21,12 @@ export enum SortOrder {
 export type OmittedRecordRequest = Omit<Records, 'id'>;
 
 export interface Pagination {
-  artist: any;
+  artist: string;
   limit: number;
   page: number;
   sortField: string;
   sortOrder: SortOrder;
-  title: any;
+  title: string;
 }
 
 export interface RecordsResponse {
