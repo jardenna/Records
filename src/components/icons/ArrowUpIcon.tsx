@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { IconDefaultProps } from './Icon';
 
-const ArrowUp: FC<IconDefaultProps> = ({ size, title, className }) => (
+const ArrowUpIcon: FC<IconDefaultProps> = ({ size, title, className }) => (
   <svg
     role="img"
     xmlns="http://www.w3.org/2000/svg"
@@ -21,4 +21,4 @@ const ArrowUp: FC<IconDefaultProps> = ({ size, title, className }) => (
   </svg>
 );
 
-export default ArrowUp;
+export default ArrowUpIcon;

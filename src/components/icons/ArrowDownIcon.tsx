@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { IconDefaultProps } from './Icon';
 
-const Filter: FC<IconDefaultProps> = ({ size, title, className }) => (
+const ArroDownIcon: FC<IconDefaultProps> = ({ size, title, className }) => (
   <svg
     role="img"
     xmlns="http://www.w3.org/2000/svg"
@@ -16,10 +16,9 @@ const Filter: FC<IconDefaultProps> = ({ size, title, className }) => (
     strokeLinejoin="round"
   >
     <title>{title}</title>
-    <path d="M3 6h18" />
-    <path d="M7 12h10" />
-    <path d="M10 18h4" />
+    <path d="M12 5v14" />
+    <path d="m19 12-7 7-7-7" />
   </svg>
 );
 
-export default Filter;
+export default ArroDownIcon;

@@ -1,15 +1,14 @@
 import { FC } from 'react';
-
 import AddIcon from './AddIcon';
-import ArrowDown from './ArrowDown';
-import ArrowUp from './ArrowUp';
-import ChevronLeft from './ChevronLeft';
-import ChevronRight from './ChevronRight';
-import ChevronsLeft from './ChevronsLeft';
-import ChevronsRight from './ChevronsRight';
-import Close from './Close';
+import ArrowDownIcon from './ArrowDownIcon';
+import ArrowUpIcon from './ArrowUpIcon';
+import ChevronLeftIcon from './ChevronLeftIcon';
+import ChevronRightIcon from './ChevronRightIcon';
+import ChevronsLeftIcon from './ChevronsLeftIcon';
+import ChevronsRightIcon from './ChevronsRightIcon';
+import CloseIcon from './CloseIcon';
 import ErrorIcon from './ErrorIcon';
-import Filter from './Filter';
+import FilterIcon from './FilterIcon';
 import InfoIcon from './InfoIcon';
 import SubtractIcon from './SubtractIcon';
 import SuccessIcon from './SuccessIcon';
@@ -45,15 +44,15 @@ export enum IconName {
 
 const iconMapping = {
   add: AddIcon,
-  arrowDown: ArrowDown,
-  arrowUp: ArrowUp,
-  chevronLeft: ChevronLeft,
-  chevronRight: ChevronRight,
-  chevronsLeft: ChevronsLeft,
-  chevronsRight: ChevronsRight,
-  close: Close,
+  arrowDown: ArrowDownIcon,
+  arrowUp: ArrowUpIcon,
+  chevronLeft: ChevronLeftIcon,
+  chevronRight: ChevronRightIcon,
+  chevronsLeft: ChevronsLeftIcon,
+  chevronsRight: ChevronsRightIcon,
+  close: CloseIcon,
   error: ErrorIcon,
-  filter: Filter,
+  filter: FilterIcon,
   info: InfoIcon,
   subtract: SubtractIcon,
   success: SuccessIcon,

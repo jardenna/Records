@@ -1,12 +1,7 @@
 import { FC } from 'react';
 import { IconDefaultProps } from './Icon';
 
-const ChevronLeft: FC<IconDefaultProps> = ({
-  size,
-  title,
-  className,
-  ariaHidden,
-}) => (
+const FilterIcon: FC<IconDefaultProps> = ({ size, title, className }) => (
   <svg
     role="img"
     xmlns="http://www.w3.org/2000/svg"
@@ -19,11 +14,12 @@ const ChevronLeft: FC<IconDefaultProps> = ({
     strokeWidth="2"
     strokeLinecap="round"
     strokeLinejoin="round"
-    aria-hidden={ariaHidden}
   >
     <title>{title}</title>
-    <path d="m15 18-6-6 6-6" />
+    <path d="M3 6h18" />
+    <path d="M7 12h10" />
+    <path d="M10 18h4" />
   </svg>
 );
 
-export default ChevronLeft;
+export default FilterIcon;

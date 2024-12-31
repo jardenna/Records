@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { IconDefaultProps } from './Icon';
 
-const ChevronsRight: FC<IconDefaultProps> = ({
+const ChevronRightIcon: FC<IconDefaultProps> = ({
   size,
   title,
   className,
@@ -22,9 +22,8 @@ const ChevronsRight: FC<IconDefaultProps> = ({
     aria-hidden={ariaHidden}
   >
     <title>{title}</title>
-    <path d="m6 17 5-5-5-5" />
-    <path d="m13 17 5-5-5-5" />
+    <path d="m9 18 6-6-6-6" />
   </svg>
 );
 
-export default ChevronsRight;
+export default ChevronRightIcon;
