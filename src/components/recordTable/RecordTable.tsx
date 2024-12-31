@@ -1,8 +1,6 @@
 import { FC } from 'react';
 import { Records } from '../../app/api/apiTypes';
-import { LabelKeys } from '../../types/enums';
 import Table from './Table';
-import { labels } from './tableHeaders';
 
 interface RecordTableProps {
   onSort: (field: string) => void;
@@ -12,7 +10,7 @@ interface RecordTableProps {
   sortOrder: string;
 }
 
-// const labels2 = ['artist', 'title', 'prodYear', 'label', 'origin'];
+const tableHeaders = ['artist', 'title', 'prodYear', 'label', 'origin'];
 
 const RecordTable: FC<RecordTableProps> = ({
   records,
@@ -24,23 +22,11 @@ const RecordTable: FC<RecordTableProps> = ({
   <Table
     searchParams={searchParams}
     caption="Records collection"
-    headers={labels}
+    headers={tableHeaders}
     tableData={records}
     onSort={onSort}
     sortOrder={sortOrder}
     sortField={sortField}
-    excludeKeys={
-      [
-        LabelKeys.Id,
-        LabelKeys.Cover,
-        LabelKeys.Info,
-        LabelKeys.RecordNo,
-        LabelKeys.Released,
-        LabelKeys.Photo,
-        LabelKeys.NumOfRecords,
-        LabelKeys.Price,
-      ] as (keyof Records)[]
-    }
   />
 );
 

@@ -1,4 +1,3 @@
-/* eslint-disable no-param-reassign */
 import { Link } from 'react-router';
 import { SortOrder } from '../../app/api/apiTypes';
 import { BtnVariant, MainPath } from '../../types/enums';
@@ -14,53 +13,36 @@ interface Identifiable {
 // Extend T to ensure it includes `id`
 interface TableProps<T extends Identifiable> {
   caption: string;
-  headers: Record<keyof T, string>;
+  headers: string[];
   onSort: any;
   searchParams: string;
   sortField: string;
   sortOrder: string;
   tableData: T[];
   className?: string;
-  excludeKeys?: (keyof T)[];
 }
 
 const Table = <T extends Identifiable>({
   caption,
   headers,
   tableData,
-  className = '',
-  excludeKeys = [],
   onSort,
   searchParams,
   sortField,
   sortOrder,
+  className,
 }: TableProps<T>) => {
-  // Filter headers to exclude specified keys
-  const filteredHeaders = Object.entries(headers)
-    .filter(([key]) => !excludeKeys.includes(key as keyof T))
-    .reduce(
-      (acc, [key, value]) => {
-        acc[key as keyof T] = value as string;
-        return acc;
-      },
-      {} as Record<keyof T, string>,
-    );
-
-  // Extract header names and header keys after filtering
-  const headerList: string[] = Object.keys(filteredHeaders);
-  const headerListIds = Object.keys(filteredHeaders) as (keyof T)[];
-
   const handleTest = (header: string) => {
     onSort(header);
   };
 
   return (
-    <div className="table-container">
-      <table className={className}>
+    <div className={`table-container ${className}`}>
+      <table>
         <caption className="visually-hidden">{caption}</caption>
         <thead>
           <tr>
-            {headerList.map((header) => (
+            {headers.map((header) => (
               <th scope="col" key={header}>
                 <Button
                   variant={BtnVariant.Ghost}
@@ -85,10 +67,10 @@ const Table = <T extends Identifiable>({
           </tr>
         </thead>
         <tbody>
-          {tableData.map((data, rowIndex) => (
+          {tableData.map((data: any, rowIndex) => (
             <tr key={rowIndex}>
-              {headerListIds.map((header) => (
-                <td key={header as string}>{data[header] as string}</td>
+              {headers.map((header) => (
+                <td key={header}>{data[header]}</td>
               ))}
               <td className="detail-td">
                 <Link
