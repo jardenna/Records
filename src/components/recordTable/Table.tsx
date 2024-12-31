@@ -1,10 +1,9 @@
 /* eslint-disable no-param-reassign */
 import { Link } from 'react-router';
+import { SortOrder } from '../../app/api/apiTypes';
 import { BtnVariant, MainPath } from '../../types/enums';
 import Button from '../Button';
 import Icon, { IconName } from '../icons/Icon';
-
-import { SortOrder } from '../../app/api/apiTypes';
 import './_table.scss';
 
 // Define an interface with id
@@ -68,7 +67,6 @@ const Table = <T extends Identifiable>({
                   onClick={() => handleTest(header)}
                 >
                   {header}
-
                   {sortField === header && (
                     <Icon
                       size="16"
@@ -83,18 +81,18 @@ const Table = <T extends Identifiable>({
                 </Button>
               </th>
             ))}
-            <th>Details</th>
+            <th className="detail-table-header">Details</th>
           </tr>
         </thead>
         <tbody>
           {tableData.map((data, rowIndex) => (
             <tr key={rowIndex}>
               {headerListIds.map((header) => (
-                <td key={String(header)}>{String(data[header])}</td>
+                <td key={header as string}>{data[header] as string}</td>
               ))}
               <td className="detail-td">
                 <Link
-                  className="btn btn-primary details-btn"
+                  className="btn btn-primary"
                   to={`/${MainPath.Details}/${data.id}${searchParams}`}
                 >
                   Details

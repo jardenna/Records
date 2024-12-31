@@ -12,6 +12,8 @@ interface RecordTableProps {
   sortOrder: string;
 }
 
+// const labels2 = ['artist', 'title', 'prodYear', 'label', 'origin'];
+
 const RecordTable: FC<RecordTableProps> = ({
   records,
   onSort,
