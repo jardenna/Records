@@ -26,6 +26,7 @@ export interface Pagination {
   page: number;
   sortField: string;
   sortOrder: SortOrder;
+  title: any;
 }
 
 export interface RecordsResponse {

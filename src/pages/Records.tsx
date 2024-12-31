@@ -9,26 +9,28 @@ import usePagination from '../components/pagination/usePagination';
 import RecordTable from '../components/recordTable/RecordTable';
 import { useGetPaginatedRecordsQuery } from '../features/records/recordsApiSlice';
 import useFormValidation from '../hooks/useFormValidation';
-import { ChangeInputType } from '../types/types';
 
 const Records: FC = () => {
   const pageLimit = 5;
   const [sortField, setSortField] = useState('createdAt');
   const [sortOrder, setSortOrder] = useState(SortOrder.Desc);
-  const [filteredArtists, setFilteredArtists] = useState('');
+
   const [currentPage, setCurrentPage] = useState(1);
   const [searchParams, setSearchParams] = useSearchParams();
   const limit = searchParams.get('limit');
-  const filterValue = searchParams.get('filter');
+  const filterValue = searchParams.get('artist');
+  const filterValueTitle = searchParams.get('title');
   const sortOrderParam = searchParams.get('sortOrder');
   const sortFieldParam = searchParams.get('sortField');
   const location = useLocation();
 
   const initialState = {
     limit: limit || '10',
+    artist: '',
+    title: '',
   };
 
-  const { onCustomChange, values } = useFormValidation({
+  const { onCustomChange, values, onChange } = useFormValidation({
     initialState,
   });
 
@@ -37,7 +39,8 @@ const Records: FC = () => {
     limit: Number(limit) || Number(values.limit),
     sortField: sortFieldParam || sortField,
     sortOrder: (sortOrderParam as SortOrder) || sortOrder,
-    artist: filterValue || filteredArtists,
+    artist: filterValue || values.artist,
+    title: filterValueTitle || values.title,
   });
 
   const totalCount = records ? records.recordsCount : Number(values.limit);
@@ -69,11 +72,11 @@ const Records: FC = () => {
     }
   };
 
-  const handleFilterArtists = (event: ChangeInputType) => {
-    const { value } = event.target;
-    searchParams.set('filter', value.trim());
+  const handleTest = (event: any) => {
+    const { name, value } = event.target;
+    searchParams.set(name, value.trim());
     setSearchParams(searchParams);
-    setFilteredArtists(value);
+    onChange(event);
   };
 
   const handleSetRowsCount = (name: string, selectedOptions: Option) => {
@@ -135,9 +138,18 @@ const Records: FC = () => {
           name="artist"
           id="artist"
           placeholder="Filter by artist"
-          value={filterValue || filteredArtists}
-          onChange={handleFilterArtists}
+          value={filterValue || values.artist}
+          onChange={handleTest}
           labelText="Filter by artist"
+        />
+        <Input
+          type="search"
+          name="title"
+          id="title"
+          placeholder="Filter by title"
+          value={filterValueTitle || values.title}
+          onChange={handleTest}
+          labelText="Filter by title"
         />
       </form>
     </section>

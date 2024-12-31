@@ -11,13 +11,14 @@ import endpoints from '../../app/endpoints';
 export const recordsApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     getPaginatedRecords: builder.query<RecordsResponse, Pagination>({
-      query: ({ page, limit, sortField, sortOrder, artist }) => {
+      query: ({ page, limit, sortField, sortOrder, artist, title }) => {
         const params = new URLSearchParams({
           page: page.toString(),
           limit: limit.toString(),
           sortField,
           sortOrder,
           artist: artist || '',
+          title: title || '',
         });
         return `${endpoints.records}?${params.toString()}`;
       },
