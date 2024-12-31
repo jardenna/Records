@@ -9,6 +9,7 @@ import ChevronsLeft from './ChevronsLeft';
 import ChevronsRight from './ChevronsRight';
 import Close from './Close';
 import ErrorIcon from './ErrorIcon';
+import Filter from './Filter';
 import InfoIcon from './InfoIcon';
 import SubtractIcon from './SubtractIcon';
 import SuccessIcon from './SuccessIcon';
@@ -35,6 +36,7 @@ export enum IconName {
   ChevronsRight = 'chevronsRight',
   Close = 'close',
   Error = 'error',
+  Filter = 'filter',
   Info = 'info',
   Subtract = 'subtract',
   Success = 'success',
@@ -51,6 +53,7 @@ const iconMapping = {
   chevronsRight: ChevronsRight,
   close: Close,
   error: ErrorIcon,
+  filter: Filter,
   info: InfoIcon,
   subtract: SubtractIcon,
   success: SuccessIcon,
