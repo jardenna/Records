@@ -9,12 +9,11 @@ interface RecordTableProps {
   records: Records[];
   searchParams: string;
   sortOrder: string;
+  tableHeaders: string[];
   values: Record<string, string>;
   valuesFromSearch: any;
   className?: string;
 }
-
-const tableHeaders = ['artist', 'title', 'prodYear', 'label', 'origin'];
 
 const RecordTable: FC<RecordTableProps> = ({
   records,
@@ -25,6 +24,7 @@ const RecordTable: FC<RecordTableProps> = ({
   values,
   valuesFromSearch,
   className,
+  tableHeaders,
 }) => (
   <Table
     searchParams={searchParams}

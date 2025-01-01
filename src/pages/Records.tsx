@@ -14,6 +14,7 @@ const Records: FC = () => {
   const location = useLocation();
   const defaultOptionValue = 10;
   const pageLimit = 5;
+  const tableHeaders = ['artist', 'title', 'prodYear', 'label', 'origin'];
   const [sortingField, setSortingField] = useState('createdAt');
   const [sortingOrder, setSortingOrder] = useState(SortOrder.Desc);
   const [currentPage, setCurrentPage] = useState(1);
@@ -111,6 +112,7 @@ const Records: FC = () => {
           onFilterRecords={handleFilterRecords}
           values={values}
           valuesFromSearch={Object.fromEntries(searchParams)}
+          tableHeaders={tableHeaders}
         />
       )}
       <div>
