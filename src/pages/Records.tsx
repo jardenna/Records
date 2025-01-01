@@ -11,19 +11,19 @@ import useFormValidation from '../hooks/useFormValidation';
 import { ChangeInputType } from '../types/types';
 
 const Records: FC = () => {
+  const location = useLocation();
+  const defaultOptionValue = 10;
   const pageLimit = 5;
   const [sortingField, setSortingField] = useState('createdAt');
   const [sortingOrder, setSortingOrder] = useState(SortOrder.Desc);
   const [currentPage, setCurrentPage] = useState(1);
   const [searchParams, setSearchParams] = useSearchParams();
 
-  const location = useLocation();
-
   const { artist, title, limit, sortOrder, sortField } =
     Object.fromEntries(searchParams);
 
   const initialState = {
-    limit: limit || '10',
+    limit: limit || defaultOptionValue.toString(),
     artist: '',
     title: '',
   };
@@ -56,6 +56,11 @@ const Records: FC = () => {
     setCurrentPage,
   });
 
+  // function handlePaginationToParam() {
+  //   searchParams.set('page', currentPage.toString());
+  //   setSearchParams(searchParams);
+  // }
+
   const handleSort = (field: string) => {
     searchParams.set('sortField', field);
     searchParams.set('sortOrder', sortingOrder);
@@ -70,15 +75,25 @@ const Records: FC = () => {
     }
   };
 
-  const handleTest = (event: ChangeInputType) => {
+  const handleFilterRecords = (event: ChangeInputType) => {
     const { name, value } = event.target;
-    searchParams.set(name, value);
+    if (value) {
+      searchParams.set(name, value);
+    } else {
+      searchParams.delete(name);
+    }
+
     setSearchParams(searchParams);
     onChange(event);
   };
 
   const handleSetRowsCount = (name: string, selectedOptions: Option) => {
-    searchParams.set('limit', selectedOptions.value.toString());
+    if (selectedOptions.value !== defaultOptionValue) {
+      searchParams.set('limit', selectedOptions.value.toString());
+    } else {
+      searchParams.delete(name);
+    }
+
     setSearchParams(searchParams);
     onCustomChange(name, selectedOptions.value);
   };
@@ -97,7 +112,7 @@ const Records: FC = () => {
           onSort={handleSort}
           searchParams={location.search}
           sortOrder={sortOrder}
-          onFilterRecords={handleTest}
+          onFilterRecords={handleFilterRecords}
           values={values}
           valuesFromSearch={Object.fromEntries(searchParams)}
         />
@@ -121,7 +136,7 @@ const Records: FC = () => {
         <SelectBox
           name="limit"
           options={[
-            { value: 10, label: '10' },
+            { value: defaultOptionValue, label: defaultOptionValue.toString() },
             { value: 20, label: '20' },
             { value: 50, label: '50' },
             { value: totalCount, label: 'All' },
@@ -131,7 +146,10 @@ const Records: FC = () => {
             handleSetRowsCount('limit', selectedOptions as Option)
           }
           labelText="Results per page"
-          defaultValue={{ value: Number(limit) || 10, label: limit || '10' }}
+          defaultValue={{
+            value: Number(limit) || 10,
+            label: limit || defaultOptionValue.toString(),
+          }}
         />
       </form>
     </section>
