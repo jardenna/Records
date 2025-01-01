@@ -1,7 +1,6 @@
 import { FC, useState } from 'react';
 import { useLocation, useSearchParams } from 'react-router';
 import { SortOrder } from '../app/api/apiTypes';
-import Input from '../components/formElements/Input';
 import SelectBox, { Option } from '../components/formElements/SelectBox';
 import MetaTags from '../components/MetaTags';
 import Pagination from '../components/pagination/Pagination';
@@ -17,12 +16,11 @@ const Records: FC = () => {
   const [sortOrder, setSortOrder] = useState(SortOrder.Desc);
   const [currentPage, setCurrentPage] = useState(1);
   const [searchParams, setSearchParams] = useSearchParams();
-  const limit = searchParams.get('limit');
-  const filterValue = searchParams.get('artist');
-  const filterValueTitle = searchParams.get('title');
   const sortOrderParam = searchParams.get('sortOrder');
   const sortFieldParam = searchParams.get('sortField');
   const location = useLocation();
+
+  const { artist, title, limit } = Object.fromEntries(searchParams);
 
   const initialState = {
     limit: limit || '10',
@@ -39,8 +37,8 @@ const Records: FC = () => {
     limit: Number(limit) || Number(values.limit),
     sortField: sortFieldParam || sortField,
     sortOrder: (sortOrderParam as SortOrder) || sortOrder,
-    artist: filterValue || values.artist,
-    title: filterValueTitle || values.title,
+    artist: artist || values.artist,
+    title: title || values.title,
   });
 
   const totalCount = records ? records.recordsCount : Number(values.limit);
@@ -100,6 +98,9 @@ const Records: FC = () => {
           searchParams={location.search}
           sortField={sortField}
           sortOrder={sortOrder}
+          onFilterRecords={handleTest}
+          values={values}
+          valuesFromSearch={Object.fromEntries(searchParams)}
         />
       )}
       <div>
@@ -132,24 +133,6 @@ const Records: FC = () => {
           }
           labelText="Results per page"
           defaultValue={{ value: Number(limit) || 10, label: limit || '10' }}
-        />
-        <Input
-          type="search"
-          name="artist"
-          id="artist"
-          placeholder="Filter by artist"
-          value={filterValue || values.artist}
-          onChange={handleTest}
-          labelText="Filter by artist"
-        />
-        <Input
-          type="search"
-          name="title"
-          id="title"
-          placeholder="Filter by title"
-          value={filterValueTitle || values.title}
-          onChange={handleTest}
-          labelText="Filter by title"
         />
       </form>
     </section>

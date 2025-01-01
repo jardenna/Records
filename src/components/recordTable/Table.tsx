@@ -1,17 +1,22 @@
 import { Link } from 'react-router';
 import { BtnVariant, MainPath } from '../../types/enums';
+import { ChangeInputType } from '../../types/types';
 import Button from '../Button';
+import Input from '../formElements/Input';
 import Icon, { IconName } from '../icons/Icon';
 import './_table.scss';
 
 interface TableProps<T> {
   caption: string;
   headers: string[];
+  onFilterRecords: (e: ChangeInputType) => void;
   onSort: (field: keyof T) => void;
   searchParams: string;
   sortField: string;
   sortOrder: string;
   tableData: T[];
+  values: Record<string, string>;
+  valuesFromSearch: any;
   className?: string;
 }
 
@@ -24,6 +29,9 @@ const Table = <T extends Record<string, any>>({
   sortField,
   sortOrder,
   className,
+  onFilterRecords,
+  valuesFromSearch,
+  values,
 }: TableProps<T>) => (
   <div className={`table-container ${className}`}>
     <table>
@@ -32,20 +40,40 @@ const Table = <T extends Record<string, any>>({
         <tr>
           {headers.map((header) => (
             <th scope="col" key={header}>
-              <Button variant={BtnVariant.Ghost} onClick={() => onSort(header)}>
-                {header}
-                {sortField === header && (
-                  <Icon
-                    size="16"
-                    name={
-                      sortOrder === 'desc'
-                        ? IconName.ArrowDown
-                        : IconName.ArrowUp
-                    }
-                    title="Sort by"
-                  />
+              <div>
+                <Button
+                  variant={BtnVariant.Ghost}
+                  onClick={() => onSort(header)}
+                >
+                  {header}
+                  {sortField === header && (
+                    <Icon
+                      size="16"
+                      name={
+                        sortOrder === 'desc'
+                          ? IconName.ArrowDown
+                          : IconName.ArrowUp
+                      }
+                      title="Sort by"
+                    />
+                  )}
+                </Button>
+
+                {values[header] !== undefined && (
+                  <div>
+                    <Icon name={IconName.Filter} title={`Filter ${header}`} />
+                    <Input
+                      type="search"
+                      name={header}
+                      id={header}
+                      placeholder={`Filter by ${header}`}
+                      value={valuesFromSearch[header] || values[header]}
+                      onChange={onFilterRecords}
+                      labelText={`Filter by ${header}`}
+                    />
+                  </div>
                 )}
-              </Button>
+              </div>
             </th>
           ))}
           <th className="detail-table-header">Details</th>
