@@ -27,6 +27,7 @@ const SearchField: FC<SearchFieldProps> = ({
         onClick={() => onToggleSearchField(title)}
       >
         <Icon name={IconName.Filter} title={`Filter ${title}`} />
+        {value !== '' && <span className="dot" />}
       </Button>
     </div>
     <Input
