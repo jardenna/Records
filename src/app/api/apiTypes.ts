@@ -20,7 +20,7 @@ export enum SortOrder {
 
 export type OmittedRecordRequest = Omit<Records, 'id'>;
 
-export interface Pagination {
+export interface RecordsRequest {
   artist: string;
   label: string;
   limit: number;
@@ -33,8 +33,8 @@ export interface Pagination {
 }
 
 export interface RecordsResponse {
-  next: Pagination;
-  previous: Pagination;
+  next: RecordsRequest;
+  previous: RecordsRequest;
   recordsCount: number;
   results: Records[];
 }

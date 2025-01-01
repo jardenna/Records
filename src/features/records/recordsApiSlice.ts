@@ -1,8 +1,8 @@
 import apiSlice from '../../app/api/apiSlice';
 import {
   OmittedRecordRequest,
-  Pagination,
   Records,
+  RecordsRequest,
   RecordsResponse,
 } from '../../app/api/apiTypes';
 import transformId from '../../app/api/transformResponse';
@@ -10,7 +10,7 @@ import endpoints from '../../app/endpoints';
 
 export const recordsApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
-    getPaginatedRecords: builder.query<RecordsResponse, Pagination>({
+    getPaginatedRecords: builder.query<RecordsResponse, RecordsRequest>({
       query: ({
         page,
         limit,
@@ -21,7 +21,7 @@ export const recordsApiSlice = apiSlice.injectEndpoints({
         label,
         prodYear,
         origin,
-      }: Pagination) => {
+      }: RecordsRequest) => {
         const params = new URLSearchParams({
           page: page.toString(),
           limit: limit.toString(),
