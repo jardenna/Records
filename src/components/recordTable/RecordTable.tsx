@@ -8,7 +8,6 @@ interface RecordTableProps {
   onSort: (field: string) => void;
   records: Records[];
   searchParams: string;
-  sortField: string;
   sortOrder: string;
   values: Record<string, string>;
   valuesFromSearch: any;
@@ -21,7 +20,6 @@ const RecordTable: FC<RecordTableProps> = ({
   records,
   onSort,
   searchParams,
-  sortField,
   sortOrder,
   onFilterRecords,
   values,
@@ -35,7 +33,6 @@ const RecordTable: FC<RecordTableProps> = ({
     tableData={records}
     onSort={onSort}
     sortOrder={sortOrder}
-    sortField={sortField}
     onFilterRecords={onFilterRecords}
     values={values}
     className={className}

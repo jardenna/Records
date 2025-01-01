@@ -72,7 +72,7 @@ const Records: FC = () => {
 
   const handleTest = (event: ChangeInputType) => {
     const { name, value } = event.target;
-    searchParams.set(name, value.trim());
+    searchParams.set(name, value);
     setSearchParams(searchParams);
     onChange(event);
   };
@@ -96,8 +96,7 @@ const Records: FC = () => {
           records={records.results}
           onSort={handleSort}
           searchParams={location.search}
-          sortField={sortingField}
-          sortOrder={sortingOrder}
+          sortOrder={sortOrder}
           onFilterRecords={handleTest}
           values={values}
           valuesFromSearch={Object.fromEntries(searchParams)}

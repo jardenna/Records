@@ -12,7 +12,6 @@ interface TableProps<T> {
   onFilterRecords: (e: ChangeInputType) => void;
   onSort: (field: keyof T) => void;
   searchParams: string;
-  sortField: string;
   sortOrder: string;
   tableData: T[];
   values: Record<string, string>;
@@ -26,7 +25,6 @@ const Table = <T extends Record<string, any>>({
   tableData,
   onSort,
   searchParams,
-  sortField,
   sortOrder,
   className,
   onFilterRecords,
@@ -46,7 +44,7 @@ const Table = <T extends Record<string, any>>({
                   onClick={() => onSort(header)}
                 >
                   {header}
-                  {sortField === header && (
+                  {valuesFromSearch.sortField === header && (
                     <Icon
                       size="16"
                       name={
@@ -54,7 +52,7 @@ const Table = <T extends Record<string, any>>({
                           ? IconName.ArrowDown
                           : IconName.ArrowUp
                       }
-                      title="Sort by"
+                      title={`Sort by ${header}`}
                     />
                   )}
                 </Button>
@@ -99,5 +97,4 @@ const Table = <T extends Record<string, any>>({
     </table>
   </div>
 );
-
 export default Table;
