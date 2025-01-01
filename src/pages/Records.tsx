@@ -12,15 +12,15 @@ import { ChangeInputType } from '../types/types';
 
 const Records: FC = () => {
   const pageLimit = 5;
-  const [sortField, setSortField] = useState('createdAt');
-  const [sortOrder, setSortOrder] = useState(SortOrder.Desc);
+  const [sortFields, setSortField] = useState('createdAt');
+  const [sortOrders, setSortOrder] = useState(SortOrder.Desc);
   const [currentPage, setCurrentPage] = useState(1);
   const [searchParams, setSearchParams] = useSearchParams();
-  const sortOrderParam = searchParams.get('sortOrder');
-  const sortFieldParam = searchParams.get('sortField');
+
   const location = useLocation();
 
-  const { artist, title, limit } = Object.fromEntries(searchParams);
+  const { artist, title, limit, sortOrder, sortField } =
+    Object.fromEntries(searchParams);
 
   const initialState = {
     limit: limit || '10',
@@ -35,8 +35,8 @@ const Records: FC = () => {
   const { data: records } = useGetPaginatedRecordsQuery({
     page: currentPage,
     limit: Number(limit) || Number(values.limit),
-    sortField: sortFieldParam || sortField,
-    sortOrder: (sortOrderParam as SortOrder) || sortOrder,
+    sortField: sortField || sortFields,
+    sortOrder: (sortOrder as SortOrder) || sortOrders,
     artist: artist || values.artist,
     title: title || values.title,
   });
@@ -58,11 +58,11 @@ const Records: FC = () => {
 
   const handleSort = (field: string) => {
     searchParams.set('sortField', field);
-    searchParams.set('sortOrder', sortOrder);
+    searchParams.set('sortOrder', sortOrders);
     setSearchParams(searchParams);
-    if (sortField === field) {
+    if (sortFields === field) {
       setSortOrder(
-        sortOrder === SortOrder.Asc ? SortOrder.Desc : SortOrder.Asc,
+        sortOrders === SortOrder.Asc ? SortOrder.Desc : SortOrder.Asc,
       );
     } else {
       setSortField(field);
@@ -96,8 +96,8 @@ const Records: FC = () => {
           records={records.results}
           onSort={handleSort}
           searchParams={location.search}
-          sortField={sortField}
-          sortOrder={sortOrder}
+          sortField={sortFields}
+          sortOrder={sortOrders}
           onFilterRecords={handleTest}
           values={values}
           valuesFromSearch={Object.fromEntries(searchParams)}
