@@ -7,14 +7,14 @@ const paginatedResults = (model) => {
     const sortField = req.query.sortField || 'date';
     const sortOrder = req.query.sortOrder === 'asc' ? 1 : -1;
 
+    const filterFields = ['artist', 'title'];
     const filters = {};
-    if (req.query.artist) {
-      filters.artist = { $regex: req.query.artist, $options: 'i' }; // Case-insensitive match
-    }
-    if (req.query.title) {
-      filters.title = { $regex: req.query.title, $options: 'i' };
-    }
 
+    filterFields.forEach((field) => {
+      if (req.query[field]) {
+        filters[field] = { $regex: `^${req.query[field]}`, $options: 'i' }; // Match values starting with the query string
+      }
+    });
     const results = {};
 
     try {
