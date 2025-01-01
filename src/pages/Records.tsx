@@ -20,8 +20,17 @@ const Records: FC = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [searchParams, setSearchParams] = useSearchParams();
 
-  const { artist, label, prodYear, title, limit, sortOrder, sortField, page } =
-    Object.fromEntries(searchParams);
+  const {
+    artist,
+    label,
+    prodYear,
+    title,
+    limit,
+    sortOrder,
+    sortField,
+    page,
+    origin,
+  } = Object.fromEntries(searchParams);
 
   const initialState = {
     limit: limit || defaultOptionValue.toString(),
@@ -29,6 +38,7 @@ const Records: FC = () => {
     title: '',
     label: '',
     prodYear: '',
+    origin: '',
   };
 
   const { onCustomChange, values, onChange } = useFormValidation({
@@ -44,6 +54,7 @@ const Records: FC = () => {
     title: title || values.title,
     label: label || values.label,
     prodYear: prodYear || values.prodYear,
+    origin: origin || values.origin,
   });
 
   const totalCount = records ? records.recordsCount : Number(values.limit);

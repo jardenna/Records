@@ -20,6 +20,7 @@ export const recordsApiSlice = apiSlice.injectEndpoints({
         title,
         label,
         prodYear,
+        origin,
       }: Pagination) => {
         const params = new URLSearchParams({
           page: page.toString(),
@@ -30,6 +31,7 @@ export const recordsApiSlice = apiSlice.injectEndpoints({
           title: title || '',
           label: label || '',
           prodYear: prodYear || '',
+          origin: origin || '',
         });
         return `${endpoints.records}?${params.toString()}`;
       },

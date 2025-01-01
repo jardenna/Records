@@ -24,12 +24,12 @@ export interface Pagination {
   artist: string;
   label: string;
   limit: number;
+  origin: string;
   page: number;
   prodYear: string;
   sortField: string;
   sortOrder: SortOrder;
   title: string;
-  origin?: string;
 }
 
 export interface RecordsResponse {
