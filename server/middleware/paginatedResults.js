@@ -7,7 +7,7 @@ const paginatedResults = (model) => {
     const sortField = req.query.sortField || 'date';
     const sortOrder = req.query.sortOrder === 'asc' ? 1 : -1;
 
-    const filterFields = ['artist', 'title', 'label'];
+    const filterFields = ['artist', 'title', 'prodYear', 'label'];
     const filters = {};
 
     filterFields.forEach((field) => {

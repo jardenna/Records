@@ -25,11 +25,11 @@ export interface Pagination {
   label: string;
   limit: number;
   page: number;
+  prodYear: string;
   sortField: string;
   sortOrder: SortOrder;
   title: string;
   origin?: string;
-  prodYear?: string;
 }
 
 export interface RecordsResponse {
