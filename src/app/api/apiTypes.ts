@@ -27,6 +27,9 @@ export interface Pagination {
   sortField: string;
   sortOrder: SortOrder;
   title: string;
+  label?: string;
+  origin?: string;
+  prodYear?: string;
 }
 
 export interface RecordsResponse {
