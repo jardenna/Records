@@ -64,7 +64,14 @@ const usePagination = ({
   // Set currentPage to 1 when rowsPerPage is changes
   useEffect(() => {
     setCurrentPage(1);
-  }, [rowsPerPage]);
+    // eslint-disable-next-line no-warning-comments
+    // TODO - Fix this totalCount === 1
+
+    if (totalCount === 1) {
+      searchParams.set('page', '1');
+      setSearchParams(searchParams);
+    }
+  }, [rowsPerPage, totalCount]);
 
   // Handle clicking on a specific page
   const handlePaginationItemClick = (page: number) => {
