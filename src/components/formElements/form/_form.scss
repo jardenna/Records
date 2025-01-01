@@ -54,8 +54,11 @@ textarea {
     font-family: $font-primary;
 
     &:focus-visible {
-      background: linear-gradient($color-blue, $color-blue-dark) bottom -12px
-        left 0 / 100% 3px content-box padding-box repeat-x;
+      background:
+        /* stylelint-disable-next-line scss/operator-no-newline-after */
+        linear-gradient($color-blue, $color-blue-dark) bottom -12px left 0 /
+          100% 3px content-box padding-box repeat-x,
+        $color-white;
     }
 
     &:disabled {
