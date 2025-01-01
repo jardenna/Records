@@ -30,8 +30,6 @@ const usePagination = ({
   const [totalPageCount, setTotalPageCount] = useState(0);
   const [pageRange, setPageRange] = useState<number[]>([]);
   const [searchParams, setSearchParams] = useSearchParams();
-  const { page } = Object.fromEntries(searchParams);
-  const selectedPage = Number(page) || currentPage;
 
   // Calculate total page count whenever totalCount or rowsPerPage changes
   useEffect(() => {
@@ -48,7 +46,7 @@ const usePagination = ({
 
     // Determine the start and end of the page range
     const halfPageLimit = Math.floor(pageLimit / 2);
-    let rangeStart = Math.max(1, selectedPage - halfPageLimit);
+    let rangeStart = Math.max(1, currentPage - halfPageLimit);
     const rangeEnd = Math.min(totalPageCount, rangeStart + pageLimit - 1);
 
     // Adjust the range if it doesn't fill up the pageLimit
@@ -61,7 +59,7 @@ const usePagination = ({
       pages.push(i);
     }
     setPageRange(pages);
-  }, [selectedPage, totalPageCount, pageLimit]);
+  }, [currentPage, totalPageCount, pageLimit]);
 
   // Set currentPage to 1 when rowsPerPage is changes
   useEffect(() => {
@@ -84,20 +82,20 @@ const usePagination = ({
         handlePaginationItemClick(1);
         break;
       case PaginationActionEnum.Prev:
-        handlePaginationItemClick(selectedPage - 1);
+        handlePaginationItemClick(currentPage - 1);
         break;
       case PaginationActionEnum.Next:
-        handlePaginationItemClick(selectedPage + 1);
+        handlePaginationItemClick(currentPage + 1);
         break;
       case PaginationActionEnum.Last:
         handlePaginationItemClick(totalPageCount);
         break;
       case PaginationActionEnum.PrevPaginationItem:
-        handlePaginationItemClick(Math.max(1, selectedPage - pageLimit));
+        handlePaginationItemClick(Math.max(1, currentPage - pageLimit));
         break;
       case PaginationActionEnum.NextPaginationItem:
         handlePaginationItemClick(
-          Math.min(totalPageCount, selectedPage + pageLimit),
+          Math.min(totalPageCount, currentPage + pageLimit),
         );
         break;
       default:

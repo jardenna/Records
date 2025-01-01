@@ -52,7 +52,7 @@ const Records: FC = () => {
     totalCount,
     rowsPerPage: Number(values.limit),
     pageLimit,
-    currentPage,
+    currentPage: selectedPage,
     setCurrentPage,
     addCurrentPageToParams: true,
   });
