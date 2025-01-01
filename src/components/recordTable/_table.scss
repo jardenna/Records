@@ -11,6 +11,24 @@
   border: 1px solid $color-border;
 }
 
+.table-header-container {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+
+  .input-container {
+    left: 20px;
+    top: 54px;
+    position: absolute;
+    width: 220px;
+    display: none;
+
+    &:has(.active) {
+      display: flex;
+    }
+  }
+}
+
 table {
   width: 100%;
   min-width: rem(380px);

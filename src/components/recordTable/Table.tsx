@@ -1,10 +1,10 @@
+import { useState } from 'react';
 import { Link } from 'react-router';
-import { BtnVariant, MainPath } from '../../types/enums';
+import { MainPath } from '../../types/enums';
 import { ChangeInputType } from '../../types/types';
-import Button from '../Button';
-import Input from '../formElements/Input';
-import Icon, { IconName } from '../icons/Icon';
 import './_table.scss';
+import SearchField from './SearchField';
+import SortBtn from './SortBtn';
 
 interface TableProps<T> {
   caption: string;
@@ -30,71 +30,63 @@ const Table = <T extends Record<string, any>>({
   onFilterRecords,
   valuesFromSearch,
   values,
-}: TableProps<T>) => (
-  <div className={`table-container ${className}`}>
-    <table>
-      <caption className="visually-hidden">{caption}</caption>
-      <thead>
-        <tr>
-          {headers.map((header) => (
-            <th scope="col" key={header}>
-              <div>
-                <Button
-                  variant={BtnVariant.Ghost}
-                  onClick={() => onSort(header)}
-                >
-                  {header}
-                  {valuesFromSearch.sortField === header && (
-                    <Icon
-                      size="16"
-                      name={
-                        sortOrder === 'desc'
-                          ? IconName.ArrowDown
-                          : IconName.ArrowUp
-                      }
-                      title={`Sort by ${header}`}
+}: TableProps<T>) => {
+  const [showSearchField, setShowSearchField] = useState('');
+
+  const handleToggleSearchField = (header: string) => {
+    setShowSearchField((prev) => (prev === header ? '' : header));
+  };
+
+  return (
+    <div className={`table-container ${className}`}>
+      <table>
+        <caption className="visually-hidden">{caption}</caption>
+        <thead>
+          <tr>
+            {headers.map((header) => (
+              <th scope="col" key={header}>
+                <div className="table-header-container">
+                  <SortBtn
+                    onSort={() => onSort(header)}
+                    showIcon={valuesFromSearch.sortField === header}
+                    sortOrder={sortOrder}
+                    title={header}
+                  />
+
+                  {values[header] !== undefined && (
+                    <SearchField
+                      onFilterRecords={onFilterRecords}
+                      title={header}
+                      value={valuesFromSearch[header] || values[header]}
+                      onToggleSearchField={handleToggleSearchField}
+                      showSearchField={showSearchField}
                     />
                   )}
-                </Button>
-
-                {values[header] !== undefined && (
-                  <div>
-                    <Icon name={IconName.Filter} title={`Filter ${header}`} />
-                    <Input
-                      type="search"
-                      name={header}
-                      id={header}
-                      placeholder={`Filter by ${header}`}
-                      value={valuesFromSearch[header] || values[header]}
-                      onChange={onFilterRecords}
-                      labelText={`Filter by ${header}`}
-                    />
-                  </div>
-                )}
-              </div>
-            </th>
-          ))}
-          <th className="detail-table-header">Details</th>
-        </tr>
-      </thead>
-      <tbody>
-        {tableData.map((data, rowIndex) => (
-          <tr key={rowIndex}>
-            {headers.map((header) => (
-              <td key={header}>{data[header]}</td>
+                </div>
+              </th>
             ))}
-            <td className="detail-table-header">
-              <Link
-                className="btn btn-primary"
-                to={`/${MainPath.Details}/${data.id}${searchParams}`}
-              >
-                Details
-              </Link>
-            </td>
+            <th className="detail-table-header">Details</th>
           </tr>
-        ))}
-      </tbody>
-    </table>
-  </div>
-);
+        </thead>
+        <tbody>
+          {tableData.map((data, rowIndex) => (
+            <tr key={rowIndex}>
+              {headers.map((header) => (
+                <td key={header}>{data[header]}</td>
+              ))}
+              <td className="detail-table-header">
+                <Link
+                  className="btn btn-primary"
+                  to={`/${MainPath.Details}/${data.id}${searchParams}`}
+                >
+                  Details
+                </Link>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+};
 export default Table;
