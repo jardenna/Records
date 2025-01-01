@@ -12,8 +12,8 @@ import { ChangeInputType } from '../types/types';
 
 const Records: FC = () => {
   const pageLimit = 5;
-  const [sortFields, setSortField] = useState('createdAt');
-  const [sortOrders, setSortOrder] = useState(SortOrder.Desc);
+  const [sortingField, setSortingField] = useState('createdAt');
+  const [sortingOrder, setSortingOrder] = useState(SortOrder.Desc);
   const [currentPage, setCurrentPage] = useState(1);
   const [searchParams, setSearchParams] = useSearchParams();
 
@@ -35,8 +35,8 @@ const Records: FC = () => {
   const { data: records } = useGetPaginatedRecordsQuery({
     page: currentPage,
     limit: Number(limit) || Number(values.limit),
-    sortField: sortField || sortFields,
-    sortOrder: (sortOrder as SortOrder) || sortOrders,
+    sortField: sortField || sortingField,
+    sortOrder: (sortOrder as SortOrder) || sortingOrder,
     artist: artist || values.artist,
     title: title || values.title,
   });
@@ -58,15 +58,15 @@ const Records: FC = () => {
 
   const handleSort = (field: string) => {
     searchParams.set('sortField', field);
-    searchParams.set('sortOrder', sortOrders);
+    searchParams.set('sortOrder', sortingOrder);
     setSearchParams(searchParams);
-    if (sortFields === field) {
-      setSortOrder(
-        sortOrders === SortOrder.Asc ? SortOrder.Desc : SortOrder.Asc,
+    if (sortingField === field) {
+      setSortingOrder(
+        sortingOrder === SortOrder.Asc ? SortOrder.Desc : SortOrder.Asc,
       );
     } else {
-      setSortField(field);
-      setSortOrder(SortOrder.Asc);
+      setSortingField(field);
+      setSortingOrder(SortOrder.Asc);
     }
   };
 
@@ -96,8 +96,8 @@ const Records: FC = () => {
           records={records.results}
           onSort={handleSort}
           searchParams={location.search}
-          sortField={sortFields}
-          sortOrder={sortOrders}
+          sortField={sortingField}
+          sortOrder={sortingOrder}
           onFilterRecords={handleTest}
           values={values}
           valuesFromSearch={Object.fromEntries(searchParams)}
