@@ -18,6 +18,7 @@ export const recordsApiSlice = apiSlice.injectEndpoints({
         sortOrder,
         artist,
         title,
+        label,
       }: Pagination) => {
         const params = new URLSearchParams({
           page: page.toString(),
@@ -26,6 +27,7 @@ export const recordsApiSlice = apiSlice.injectEndpoints({
           sortOrder,
           artist: artist || '',
           title: title || '',
+          label: label || '',
         });
         return `${endpoints.records}?${params.toString()}`;
       },

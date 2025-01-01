@@ -22,12 +22,12 @@ export type OmittedRecordRequest = Omit<Records, 'id'>;
 
 export interface Pagination {
   artist: string;
+  label: string;
   limit: number;
   page: number;
   sortField: string;
   sortOrder: SortOrder;
   title: string;
-  label?: string;
   origin?: string;
   prodYear?: string;
 }
