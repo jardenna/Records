@@ -1,4 +1,5 @@
 import { Dispatch, SetStateAction, useEffect, useState } from 'react';
+import { useSearchParams } from 'react-router';
 
 export enum PaginationActionEnum {
   First = 'First',
@@ -15,6 +16,7 @@ interface UsePaginationProps {
   rowsPerPage: number;
   setCurrentPage: Dispatch<SetStateAction<number>>;
   totalCount: number;
+  addCurrentPageToParams?: boolean;
 }
 
 const usePagination = ({
@@ -23,9 +25,13 @@ const usePagination = ({
   pageLimit,
   currentPage,
   setCurrentPage,
+  addCurrentPageToParams,
 }: UsePaginationProps) => {
   const [totalPageCount, setTotalPageCount] = useState(0);
   const [pageRange, setPageRange] = useState<number[]>([]);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const { page } = Object.fromEntries(searchParams);
+  const selectedPage = Number(page) || currentPage;
 
   // Calculate total page count whenever totalCount or rowsPerPage changes
   useEffect(() => {
@@ -42,7 +48,7 @@ const usePagination = ({
 
     // Determine the start and end of the page range
     const halfPageLimit = Math.floor(pageLimit / 2);
-    let rangeStart = Math.max(1, currentPage - halfPageLimit);
+    let rangeStart = Math.max(1, selectedPage - halfPageLimit);
     const rangeEnd = Math.min(totalPageCount, rangeStart + pageLimit - 1);
 
     // Adjust the range if it doesn't fill up the pageLimit
@@ -55,7 +61,7 @@ const usePagination = ({
       pages.push(i);
     }
     setPageRange(pages);
-  }, [currentPage, totalPageCount, pageLimit]);
+  }, [selectedPage, totalPageCount, pageLimit]);
 
   // Set currentPage to 1 when rowsPerPage is changes
   useEffect(() => {
@@ -65,6 +71,11 @@ const usePagination = ({
   // Handle clicking on a specific page
   const handlePaginationItemClick = (page: number) => {
     setCurrentPage(Math.max(1, Math.min(page, totalPageCount))); // keep within bounds
+
+    if (addCurrentPageToParams) {
+      searchParams.set('page', page.toString());
+      setSearchParams(searchParams);
+    }
   };
   // Unified pagination handler
   const handlePaginationAction = (action: PaginationActionEnum) => {
@@ -73,20 +84,20 @@ const usePagination = ({
         handlePaginationItemClick(1);
         break;
       case PaginationActionEnum.Prev:
-        handlePaginationItemClick(currentPage - 1);
+        handlePaginationItemClick(selectedPage - 1);
         break;
       case PaginationActionEnum.Next:
-        handlePaginationItemClick(currentPage + 1);
+        handlePaginationItemClick(selectedPage + 1);
         break;
       case PaginationActionEnum.Last:
         handlePaginationItemClick(totalPageCount);
         break;
       case PaginationActionEnum.PrevPaginationItem:
-        handlePaginationItemClick(Math.max(1, currentPage - pageLimit));
+        handlePaginationItemClick(Math.max(1, selectedPage - pageLimit));
         break;
       case PaginationActionEnum.NextPaginationItem:
         handlePaginationItemClick(
-          Math.min(totalPageCount, currentPage + pageLimit),
+          Math.min(totalPageCount, selectedPage + pageLimit),
         );
         break;
       default:
@@ -95,7 +106,6 @@ const usePagination = ({
   };
 
   return {
-    currentPage,
     totalPageCount,
     pageRange,
     onPaginationItemClick: handlePaginationItemClick,

@@ -19,7 +19,7 @@ const Records: FC = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [searchParams, setSearchParams] = useSearchParams();
 
-  const { artist, title, limit, sortOrder, sortField } =
+  const { artist, title, limit, sortOrder, sortField, page } =
     Object.fromEntries(searchParams);
 
   const initialState = {
@@ -31,9 +31,9 @@ const Records: FC = () => {
   const { onCustomChange, values, onChange } = useFormValidation({
     initialState,
   });
-
+  const selectedPage = Number(page) || currentPage;
   const { data: records } = useGetPaginatedRecordsQuery({
-    page: currentPage,
+    page: selectedPage,
     limit: Number(limit) || Number(values.limit),
     sortField: sortField || sortingField,
     sortOrder: (sortOrder as SortOrder) || sortingOrder,
@@ -54,12 +54,8 @@ const Records: FC = () => {
     pageLimit,
     currentPage,
     setCurrentPage,
+    addCurrentPageToParams: true,
   });
-
-  // function handlePaginationToParam() {
-  //   searchParams.set('page', currentPage.toString());
-  //   setSearchParams(searchParams);
-  // }
 
   const handleSort = (field: string) => {
     searchParams.set('sortField', field);
@@ -118,14 +114,13 @@ const Records: FC = () => {
         />
       )}
       <div>
-        {Number(values.limit)} of {records?.recordsCount} {currentPage}
-        25
+        {Number(values.limit)} of {records?.recordsCount}-{selectedPage}
         {/* btn 1 = 1 - 10 records
        btn 2 = 11 - 21 records
        btn 3 = 22 - 32 records */}
       </div>
       <Pagination
-        currentPage={currentPage}
+        currentPage={selectedPage}
         onPaginationItemClick={onPaginationItemClick}
         onPaginationAction={onPaginationAction}
         pageLimit={pageLimit}
