@@ -1,5 +1,6 @@
-import { useEffect, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import { Link } from 'react-router';
+import useClickOutside from '../../hooks/useClickOutside';
 import { MainPath } from '../../types/enums';
 import { ChangeInputType } from '../../types/types';
 import './_table.scss';
@@ -32,28 +33,13 @@ const Table = <T extends Record<string, any>>({
   values,
 }: TableProps<T>) => {
   const [showSearchField, setShowSearchField] = useState<string | null>(null);
-  const containerRefs = useRef<Map<string, HTMLDivElement>>(new Map());
+  const containerRefs = useRef<any>(new Map());
 
   const handleToggleSearchField = (header: string) => {
     setShowSearchField((prev) => (prev === header ? null : header));
   };
 
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      const clickedOutside = Array.from(containerRefs.current.values()).every(
-        (ref) => ref && !ref.contains(event.target as Node),
-      );
-
-      if (clickedOutside) {
-        setShowSearchField(null);
-      }
-    };
-
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
-  }, []);
+  useClickOutside(containerRefs, () => setShowSearchField(null));
 
   return (
     <div className={`table-container ${className}`}>
