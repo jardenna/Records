@@ -81,23 +81,31 @@ const Table = <T extends Record<string, any>>({
             <th className="detail-table-header">Details</th>
           </tr>
         </thead>
-        <tbody>
-          {tableData.map((data, rowIndex) => (
-            <tr key={rowIndex}>
-              {headers.map((header) => (
-                <td key={header}>{data[header]}</td>
-              ))}
-              <td className="detail-table-header">
-                <Link
-                  className="btn btn-primary"
-                  to={`/${MainPath.Details}/${data.id}${searchParams}`}
-                >
-                  Details
-                </Link>
-              </td>
+        {tableData.length > 0 ? (
+          <tbody>
+            {tableData.map((data, rowIndex) => (
+              <tr key={rowIndex}>
+                {headers.map((header) => (
+                  <td key={header}>{data[header]}</td>
+                ))}
+                <td className="detail-table-header">
+                  <Link
+                    className="btn btn-primary"
+                    to={`/${MainPath.Details}/${data.id}${searchParams}`}
+                  >
+                    Details
+                  </Link>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        ) : (
+          <tbody>
+            <tr>
+              <td className="no-records-table-field">No records found</td>
             </tr>
-          ))}
-        </tbody>
+          </tbody>
+        )}
       </table>
     </div>
   );

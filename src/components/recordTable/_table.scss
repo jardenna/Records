@@ -44,6 +44,7 @@
 table {
   width: 100%;
   min-width: rem(380px);
+  min-height: rem(300px);
   border-spacing: 0;
 
   .detail-table-header {
@@ -103,10 +104,10 @@ table {
     th {
       position: sticky;
       top: 0;
+      border-right: 1px solid $color-border;
 
       &:first-child {
         z-index: 5;
-        border-right: 1px solid $color-border;
       }
     }
   }
@@ -123,6 +124,11 @@ table {
       th,
       td {
         background-color: $color-gray-light;
+
+        &.no-records-table-field {
+          background-color: $color-white;
+          border: none;
+        }
       }
     }
   }
