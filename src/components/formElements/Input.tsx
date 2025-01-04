@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, RefObject } from 'react';
 import { BlurEventType, ChangeInputType, InputType } from '../../types/types';
 import VisuallyHidden from '../VisuallyHidden';
 import FormError from './FormError';
@@ -20,12 +20,14 @@ export interface InputProps {
   min?: number;
   onBlur?: (event: BlurEventType) => void;
   placeholder?: string;
+  ref?: RefObject<HTMLInputElement | null>;
   required?: boolean;
   type?: InputType;
 }
 
 const Input: FC<InputProps> = ({
   id,
+  ref,
   type,
   required,
   labelText,
@@ -69,6 +71,7 @@ const Input: FC<InputProps> = ({
         </span>
       )}
       <input
+        ref={ref}
         type={type || 'text'}
         name={name}
         checked={checked}
