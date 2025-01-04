@@ -54,20 +54,19 @@ const usePagination = ({
       rangeStart = Math.max(1, rangeEnd - pageLimit + 1);
     }
 
-    const pages = [];
-    for (let i = rangeStart; i <= rangeEnd; i++) {
-      pages.push(i);
-    }
+    const pages = Array.from(
+      { length: rangeEnd - rangeStart + 1 },
+      (_, i) => rangeStart + i,
+    );
+
     setPageRange(pages);
   }, [currentPage, totalPageCount, pageLimit]);
 
   // Set currentPage to 1 when rowsPerPage is changes
   useEffect(() => {
     setCurrentPage(1);
-    // eslint-disable-next-line no-warning-comments
-    // TODO - Fix this totalCount === 1
 
-    if (totalCount === 1) {
+    if (totalCount < Number(rowsPerPage)) {
       searchParams.set('page', '1');
       setSearchParams(searchParams);
     }
