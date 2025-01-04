@@ -44,10 +44,12 @@ const Records: FC = () => {
   const { onCustomChange, values, onChange } = useFormValidation({
     initialState,
   });
+
+  const shownRows = Number(limit) || Number(values.limit);
   const selectedPage = Number(page) || currentPage;
   const { data: records } = useGetPaginatedRecordsQuery({
     page: selectedPage,
-    limit: Number(limit) || Number(values.limit),
+    limit: shownRows,
     sortField: sortField || sortingField,
     sortOrder: (sortOrder as SortOrder) || sortingOrder,
     artist: artist || values.artist,
@@ -57,8 +59,7 @@ const Records: FC = () => {
     origin: origin || values.origin,
   });
 
-  const totalCount = records ? records.recordsCount : Number(values.limit);
-
+  const totalCount = records ? records.recordsCount : shownRows;
   const {
     pageRange,
     totalPageCount,
@@ -66,7 +67,7 @@ const Records: FC = () => {
     onPaginationAction,
   } = usePagination({
     totalCount,
-    rowsPerPage: Number(values.limit),
+    rowsPerPage: shownRows,
     pageLimit,
     currentPage: selectedPage,
     setCurrentPage,
@@ -105,10 +106,12 @@ const Records: FC = () => {
     } else {
       searchParams.delete(name);
     }
-
     setSearchParams(searchParams);
     onCustomChange(name, selectedOptions.value);
   };
+  const totalRows = records?.recordsCount || 0;
+  const startRow = (selectedPage - 1) * shownRows + 1;
+  const endRow = Math.min(selectedPage * shownRows, totalRows);
 
   return (
     <section>
@@ -130,12 +133,9 @@ const Records: FC = () => {
           tableHeaders={tableHeaders}
         />
       )}
-      <div>
-        {Number(values.limit)} of {records?.recordsCount}-{selectedPage}
-        {/* btn 1 = 1 - 10 records
-       btn 2 = 11 - 21 records
-       btn 3 = 22 - 32 records */}
-      </div>
+      <p>
+        Showing {startRow} to {endRow} of {totalRows} albums
+      </p>
       <Pagination
         currentPage={selectedPage}
         onPaginationItemClick={onPaginationItemClick}
