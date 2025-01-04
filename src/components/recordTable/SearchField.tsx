@@ -8,7 +8,7 @@ import Icon, { IconName } from '../icons/Icon';
 interface SearchFieldProps {
   onFilterRecords: (e: ChangeInputType) => void;
   onToggleSearchField: (header: string) => void;
-  showSearchField: string;
+  showSearchField: boolean;
   title: string;
   value: string;
 }
@@ -16,22 +16,20 @@ interface SearchFieldProps {
 const SearchField: FC<SearchFieldProps> = ({
   title,
   value,
+  showSearchField,
   onFilterRecords,
   onToggleSearchField,
-  showSearchField,
 }) => (
   <>
-    <div>
-      <Button
-        variant={BtnVariant.Ghost}
-        onClick={() => onToggleSearchField(title)}
-      >
-        <Icon name={IconName.Filter} title={`Filter ${title}`} />
-        {value !== '' && <span className="dot" />}
-      </Button>
-    </div>
+    <Button
+      variant={BtnVariant.Ghost}
+      onClick={() => onToggleSearchField(title)}
+    >
+      <Icon name={IconName.Filter} title={`Filter ${title}`} />
+      {value !== '' && <span className="dot" />}
+    </Button>
     <Input
-      className={`search-field ${showSearchField === title ? 'active' : ''}`}
+      className={`search-field ${showSearchField ? 'active' : ''}`}
       type="search"
       name={title}
       id={title}

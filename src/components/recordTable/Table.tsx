@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router';
 import { MainPath } from '../../types/enums';
 import { ChangeInputType } from '../../types/types';
@@ -31,11 +31,29 @@ const Table = <T extends Record<string, any>>({
   valuesFromSearch,
   values,
 }: TableProps<T>) => {
-  const [showSearchField, setShowSearchField] = useState('');
+  const [showSearchField, setShowSearchField] = useState<string | null>(null);
+  const containerRefs = useRef<Map<string, HTMLDivElement>>(new Map());
 
   const handleToggleSearchField = (header: string) => {
-    setShowSearchField((prev) => (prev === header ? '' : header));
+    setShowSearchField((prev) => (prev === header ? null : header));
   };
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      const clickedOutside = Array.from(containerRefs.current.values()).every(
+        (ref) => ref && !ref.contains(event.target as Node),
+      );
+
+      if (clickedOutside) {
+        setShowSearchField(null);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
 
   return (
     <div className={`table-container ${className}`}>
@@ -45,7 +63,16 @@ const Table = <T extends Record<string, any>>({
           <tr>
             {headers.map((header) => (
               <th scope="col" key={header}>
-                <div className="table-header-container">
+                <div
+                  className="table-header-container"
+                  ref={(el) => {
+                    if (el) {
+                      containerRefs.current.set(header, el);
+                    } else {
+                      containerRefs.current.delete(header);
+                    }
+                  }}
+                >
                   <SortBtn
                     onSort={() => onSort(header)}
                     showIcon={valuesFromSearch.sortField === header}
@@ -59,7 +86,7 @@ const Table = <T extends Record<string, any>>({
                       title={header}
                       value={valuesFromSearch[header] || values[header]}
                       onToggleSearchField={handleToggleSearchField}
-                      showSearchField={showSearchField}
+                      showSearchField={showSearchField === header}
                     />
                   )}
                 </div>
@@ -89,4 +116,5 @@ const Table = <T extends Record<string, any>>({
     </div>
   );
 };
+
 export default Table;
