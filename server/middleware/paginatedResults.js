@@ -12,7 +12,7 @@ const paginatedResults = (model) => {
 
     filterFields.forEach((field) => {
       if (req.query[field]) {
-        filters[field] = { $regex: `^${req.query[field]}`, $options: 'i' }; // Match values starting with the query string
+        filters[field] = { $regex: `${req.query[field]}`, $options: 'i' }; // Match values starting with the query string
       }
     });
     const results = {};
