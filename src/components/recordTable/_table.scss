@@ -11,6 +11,19 @@
   border: 1px solid $color-border;
 }
 
+.record-select-container {
+  display: flex;
+  justify-content: flex-end;
+  padding-bottom: 20px;
+  align-items: center;
+  gap: 20px;
+
+  .input-container {
+    position: relative;
+    z-index: 10;
+  }
+}
+
 .table-header-container {
   display: flex;
   justify-content: space-between;
