@@ -121,6 +121,35 @@ const Records: FC = () => {
         title="Album table"
       />
 
+      <div className="record-select-container">
+        <p>
+          Showing {startRow} to {endRow} of {totalRows} albums
+        </p>
+        <form onSubmit={(event) => event.preventDefault()}>
+          <SelectBox
+            name="limit"
+            options={[
+              {
+                value: defaultOptionValue,
+                label: defaultOptionValue.toString(),
+              },
+              { value: 20, label: '20' },
+              { value: 50, label: '50' },
+              { value: totalCount, label: 'All' },
+            ]}
+            id="limit"
+            onChange={(selectedOptions) =>
+              handleSetRowsCount('limit', selectedOptions as Option)
+            }
+            labelText="Results per page"
+            defaultValue={{
+              value: Number(limit) || 10,
+              label: limit || defaultOptionValue.toString(),
+            }}
+          />
+        </form>
+      </div>
+
       {records && (
         <RecordTable
           records={records.results}
@@ -133,9 +162,7 @@ const Records: FC = () => {
           tableHeaders={tableHeaders}
         />
       )}
-      <p>
-        Showing {startRow} to {endRow} of {totalRows} albums
-      </p>
+
       <Pagination
         currentPage={selectedPage}
         onPaginationItemClick={onPaginationItemClick}
@@ -144,26 +171,6 @@ const Records: FC = () => {
         pageRange={pageRange}
         totalPageCount={totalPageCount}
       />
-      <form onSubmit={(event) => event.preventDefault()}>
-        <SelectBox
-          name="limit"
-          options={[
-            { value: defaultOptionValue, label: defaultOptionValue.toString() },
-            { value: 20, label: '20' },
-            { value: 50, label: '50' },
-            { value: totalCount, label: 'All' },
-          ]}
-          id="limit"
-          onChange={(selectedOptions) =>
-            handleSetRowsCount('limit', selectedOptions as Option)
-          }
-          labelText="Results per page"
-          defaultValue={{
-            value: Number(limit) || 10,
-            label: limit || defaultOptionValue.toString(),
-          }}
-        />
-      </form>
     </section>
   );
 };
