@@ -103,7 +103,7 @@ const Pagination: FC<PaginationProps> = ({
         disabled={currentPage === totalPageCount}
         content={
           <>
-            Next
+            <VisuallyHidden>Go to next page</VisuallyHidden>
             <Icon
               name={IconName.ChevronRight}
               title="Go to next page"
@@ -120,7 +120,7 @@ const Pagination: FC<PaginationProps> = ({
         className="last-pagination-item"
         content={
           <>
-            Last
+            <VisuallyHidden>Go to last page</VisuallyHidden>
             <Icon
               name={IconName.ChevronsRight}
               title="Go to last page"
