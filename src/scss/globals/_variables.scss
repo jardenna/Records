@@ -1,0 +1,7 @@
+@use './functions' as *;
+@use './colors' as *;
+
+$mini: rem(400px);
+$small: rem(767px);
+$medium: rem(1024px);
+$large: rem(1440px);
