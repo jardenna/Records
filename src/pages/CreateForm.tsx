@@ -110,7 +110,6 @@ const CreateForm: FC<CreateFormProps> = ({
               errorText={errors.released}
               onBlur={onBlur}
             />
-
             <Input
               name="label"
               id="label"

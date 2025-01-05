@@ -14,17 +14,13 @@ const FormLabel: FC<FormLabelProps> = ({
   required,
   inputHasNoLabel,
 }) =>
-  !inputHasNoLabel ? (
-    <FormLabel
-      required={required}
-      inputLabel={inputLabel}
-      id={id}
-      inputHasNoLabel={inputHasNoLabel}
-    />
+  inputHasNoLabel ? (
+    <VisuallyHidden>{inputLabel}</VisuallyHidden>
   ) : (
-    <VisuallyHidden as="label" htmlFor={id}>
+    <label className="form-label" htmlFor={id}>
       {inputLabel}
-    </VisuallyHidden>
+      {required && <span aria-hidden="true">*</span>}
+    </label>
   );
 
 export default FormLabel;

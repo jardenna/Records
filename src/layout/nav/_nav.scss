@@ -9,8 +9,9 @@ $burger-color-active: $color-gray-dark;
 
   .container {
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
     padding: 0 20px;
+    align-items: center;
   }
 
   .main-nav-container {

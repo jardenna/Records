@@ -18,7 +18,7 @@ const Form: FC<FormProps> = ({
   className = '',
   isLoading,
 }) => (
-  <form action={onSubmit} noValidate className={className}>
+  <form onSubmit={onSubmit} noValidate className={className}>
     {children}
     <FooterComp className="form-footer" ariaLabel="form">
       <Button type="submit" isLoading={isLoading}>
