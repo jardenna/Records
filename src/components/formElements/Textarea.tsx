@@ -1,5 +1,4 @@
 import { FC } from 'react';
-
 import FormLabel from './FormLabel';
 import { InputProps } from './Input';
 
@@ -22,11 +21,13 @@ const Textarea: FC<TextareaProps> = ({
 }) => (
   <div className="input-container">
     <span className="form-label-container">
-      {!inputHasNoLabel && (
-        <FormLabel required={required} inputLabel={labelText} id={id} />
-      )}
+      <FormLabel
+        required={required}
+        inputLabel={labelText}
+        id={id}
+        inputHasNoLabel={inputHasNoLabel}
+      />
     </span>
-
     <textarea name={name} id={id} value={value} onChange={onChange} />
   </div>
 );

@@ -142,6 +142,7 @@ const Records: FC = () => {
               handleSetRowsCount('limit', selectedOptions as Option)
             }
             labelText="Results per page"
+            inputHasNoLabel
             defaultValue={{
               value: Number(limit) || 10,
               label: limit || defaultOptionValue.toString(),

@@ -34,7 +34,11 @@ const NumberStep: FC<NumberStepProps> = ({
   name,
 }) => (
   <article className="number-step">
-    {!inputHasNoLabel && <FormLabel inputLabel={labelText} id={id} />}
+    <FormLabel
+      inputLabel={labelText}
+      id={id}
+      inputHasNoLabel={inputHasNoLabel}
+    />
     <div className="number-step-container">
       <Button
         id="add"

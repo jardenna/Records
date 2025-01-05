@@ -58,9 +58,12 @@ const SelectBox: FC<SelectBoxProps> = ({
 
   return (
     <div className="input-container">
-      {!inputHasNoLabel && (
-        <FormLabel required={required} inputLabel={labelText} id={id} />
-      )}
+      <FormLabel
+        required={required}
+        inputLabel={labelText}
+        id={id}
+        inputHasNoLabel={inputHasNoLabel}
+      />
       <Select
         name={name}
         options={options}
