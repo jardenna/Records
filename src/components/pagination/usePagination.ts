@@ -1,4 +1,10 @@
-import { Dispatch, SetStateAction, useEffect, useState } from 'react';
+import {
+  Dispatch,
+  SetStateAction,
+  useCallback,
+  useEffect,
+  useState,
+} from 'react';
 import { useSearchParams } from 'react-router';
 
 export enum PaginationActionEnum {
@@ -70,42 +76,47 @@ const usePagination = ({
       searchParams.set('page', '1');
       setSearchParams(searchParams);
     }
+    setPageRange([]);
   }, [rowsPerPage, totalCount]);
 
-  // Handle clicking on a specific page
-  const handlePaginationItemClick = (page: number) => {
-    setCurrentPage(Math.max(1, Math.min(page, totalPageCount))); // keep within bounds
+  const handlePaginationItemClick = useCallback(
+    (page: number) => {
+      setCurrentPage(Math.max(1, Math.min(page, totalPageCount))); // keep within bounds
 
-    if (addCurrentPageToParams) {
-      searchParams.set('page', page.toString());
-      setSearchParams(searchParams);
-    }
-  };
+      if (addCurrentPageToParams) {
+        searchParams.set('page', page.toString());
+        setSearchParams(searchParams);
+      }
+    },
+    [
+      setCurrentPage,
+      totalPageCount,
+      addCurrentPageToParams,
+      searchParams,
+      setSearchParams,
+    ],
+  );
   // Unified pagination handler
+  const paginationActions = {
+    [PaginationActionEnum.First]: () => handlePaginationItemClick(1),
+    [PaginationActionEnum.Prev]: () =>
+      handlePaginationItemClick(currentPage - 1),
+    [PaginationActionEnum.Next]: () =>
+      handlePaginationItemClick(currentPage + 1),
+    [PaginationActionEnum.Last]: () =>
+      handlePaginationItemClick(totalPageCount),
+    [PaginationActionEnum.PrevPaginationItem]: () =>
+      handlePaginationItemClick(Math.max(1, currentPage - pageLimit)),
+    [PaginationActionEnum.NextPaginationItem]: () =>
+      handlePaginationItemClick(
+        Math.min(totalPageCount, currentPage + pageLimit),
+      ),
+  };
+
   const handlePaginationAction = (action: PaginationActionEnum) => {
-    switch (action) {
-      case PaginationActionEnum.First:
-        handlePaginationItemClick(1);
-        break;
-      case PaginationActionEnum.Prev:
-        handlePaginationItemClick(currentPage - 1);
-        break;
-      case PaginationActionEnum.Next:
-        handlePaginationItemClick(currentPage + 1);
-        break;
-      case PaginationActionEnum.Last:
-        handlePaginationItemClick(totalPageCount);
-        break;
-      case PaginationActionEnum.PrevPaginationItem:
-        handlePaginationItemClick(Math.max(1, currentPage - pageLimit));
-        break;
-      case PaginationActionEnum.NextPaginationItem:
-        handlePaginationItemClick(
-          Math.min(totalPageCount, currentPage + pageLimit),
-        );
-        break;
-      default:
-        break;
+    const actionHandler = paginationActions[action];
+    if (actionHandler) {
+      actionHandler();
     }
   };
 
