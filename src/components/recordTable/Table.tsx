@@ -3,6 +3,7 @@ import { Link } from 'react-router';
 import useClickOutside from '../../hooks/useClickOutside';
 import { MainPath } from '../../types/enums';
 import { ChangeInputType } from '../../types/types';
+import VisuallyHidden from '../VisuallyHidden';
 import './_table.scss';
 import SearchField from './SearchField';
 import SortBtn from './SortBtn';
@@ -27,7 +28,7 @@ const Table = <T extends Record<string, any>>({
   onSort,
   searchParams,
   sortOrder,
-  className,
+  className = '',
   onFilterRecords,
   valuesFromSearch,
   values,
@@ -44,7 +45,7 @@ const Table = <T extends Record<string, any>>({
   return (
     <div className={`table-container ${className}`}>
       <table>
-        <caption className="visually-hidden">{caption}</caption>
+        <VisuallyHidden as="caption">{caption}</VisuallyHidden>
         <thead>
           <tr>
             {headers.map((header) => (

@@ -1,6 +1,7 @@
 import { FC, ReactNode } from 'react';
 import { BtnVariant } from '../../types/enums';
 import Button from '../Button';
+import VisuallyHidden from '../VisuallyHidden';
 
 interface PaginationItemProps {
   onSetCurrentPage: () => void;
@@ -38,9 +39,7 @@ const PaginationItem: FC<PaginationItemProps> = ({
       </span>
 
       {isBtnSelected && (
-        <span id={ariaDescribedby} className="visually-hidden">
-          Currently selected
-        </span>
+        <VisuallyHidden id={ariaDescribedby}>Currently selected</VisuallyHidden>
       )}
     </Button>
   </li>

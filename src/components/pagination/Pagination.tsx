@@ -1,9 +1,9 @@
 import { FC } from 'react';
 import Icon, { IconName } from '../icons/Icon';
+import VisuallyHidden from '../VisuallyHidden';
+import './_pagination.scss';
 import PaginationItem from './PaginationItem';
 import { PaginationActionEnum } from './usePagination';
-
-import './_pagination.scss';
 
 interface PaginationProps {
   currentPage: number;
@@ -35,7 +35,7 @@ const Pagination: FC<PaginationProps> = ({
               title="Go to first page"
               ariaHidden
             />
-            First
+            <VisuallyHidden>Go to first page</VisuallyHidden>
           </>
         }
       />
@@ -51,7 +51,7 @@ const Pagination: FC<PaginationProps> = ({
               title="Go to prev page"
               ariaHidden
             />
-            Prev
+            <VisuallyHidden>Go to previous page</VisuallyHidden>
           </>
         }
       />
@@ -65,7 +65,7 @@ const Pagination: FC<PaginationProps> = ({
         content={
           <>
             <span aria-hidden="true">...</span>
-            <span className="visually-hidden">Jump Previous</span>
+            <VisuallyHidden>Go to previous page</VisuallyHidden>
           </>
         }
       />
@@ -92,7 +92,7 @@ const Pagination: FC<PaginationProps> = ({
         content={
           <>
             <span aria-hidden="true">...</span>
-            <span className="visually-hidden">Jump Next</span>
+            <VisuallyHidden>Go to next page</VisuallyHidden>
           </>
         }
       />
