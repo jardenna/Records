@@ -1,26 +1,33 @@
 ﻿key;en;da
 album;Album;Album
-albumsSmall;albums;album
 albumCreatedSuccessfully;Album created successfully;Nyt album blev oprettet
 albumDetails;Album details;Album detaljer
 albums;Albums;Album
+albumsSmall;albums;album
 albumUpdatedSuccessfully;Album updated successfully;Album blev opdateret
 all;All;Alle
 artist;Band / Artist;Gruppe / Kunstner
+cancel;Cancel;Annuller
 close;Close;Luk
-createAlbum;Create album;Opret album
-createAlbum;Create album;Tilføj album
+sureToDelete;Are you sure you want to Delete;Er du sikker på at du vil slette
+closeDialog;Close dialog;Luk dialog
+createAlbum;Currently selected;Valgt
+currentlySelected;Create album;Opret album
 delete;Delete;Slet
 deleteAlbum;Delete album;Slet album
-deleteAlbum;Delete album;Slet album
-deleteAlbum;Delete Album;Slet album
 details;Details;Detaljer
 dialog;Dialog;Dialog
 error;Error;Fejl
 filter;Filter;Filtrer
 form;Form;Fomular
+gotoFirstPage;Go to first page;Gå til første side
+gotoLastPage;Go to last page;Gå til sidste side
+gotoNextPage;Go to next page;Gå til næste side
+gotoPrevPage;Go to previous page;Gå til forrige side
 info;Nice to know;Værd at vide
 insertCover;Insert cover;Indsæt cover
+jumpPagesForth;Jump forth;Hop frem
+jumpPagesBack;Jump back;Hop tilbage
 label;Label;Label
 mustBeGreaterEqual;Must be greater than or equal to;Skal være større end eller lig med
 noInfo;No info;Ikke oplyst
@@ -37,7 +44,6 @@ showing;Showing;Viser
 sortBy;Sort by;Sorter efter
 title;Title;Titel
 to;to;til
-updateAlbum;Update album;Opdater album
 updateAlbum;Update album;Opdater album
 wantToDelete;Are you sure you want to delete;Er du sikker på at du vil slette
 yearAfter;a year after;et år efter

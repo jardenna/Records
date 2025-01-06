@@ -1,5 +1,6 @@
 import { FC } from 'react';
 
+import useLanguage from '../features/language/useLanguage';
 import Modal, {
   PrimaryActionBtnProps,
   SecondaryActionBtnProps,
@@ -15,17 +16,21 @@ const DeleteRecordModal: FC<DeleteRecordModalProps> = ({
   modalId,
   primaryActionBtn,
   secondaryActionBtn,
-}) =>
-  modalId && (
-    <Modal
-      id={modalId}
-      modalHeaderText="Delete Album"
-      primaryActionBtn={primaryActionBtn}
-      secondaryActionBtn={secondaryActionBtn}
-      showCloseIcon
-    >
-      Are you sure you want to Delete
-    </Modal>
+}) => {
+  const { language } = useLanguage();
+  return (
+    modalId && (
+      <Modal
+        id={modalId}
+        modalHeaderText={language.deleteAlbum}
+        primaryActionBtn={primaryActionBtn}
+        secondaryActionBtn={secondaryActionBtn}
+        showCloseIcon
+      >
+        {language.sureToDelete}
+      </Modal>
+    )
   );
+};
 
 export default DeleteRecordModal;

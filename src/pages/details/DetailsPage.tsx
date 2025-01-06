@@ -52,7 +52,7 @@ const DetailsPage: FC = () => {
   };
 
   const secondaryActionBtn: SecondaryActionBtnProps = {
-    label: 'Annuller',
+    label: language.cancel,
   };
 
   return selectedRecord ? (
@@ -111,13 +111,13 @@ const DetailsPage: FC = () => {
             className="btn-primary"
             to={`/update/${recordId}${location.search}`}
           >
-            Opdater plade
+            {language.updateAlbum}
           </Link>
 
           {recordId && (
             <>
               <Button className="btn-danger" onClick={handleOpenModal}>
-                Slet album
+                {language.deleteAlbum}
               </Button>
               <DeleteRecordModal
                 modalId={recordId}

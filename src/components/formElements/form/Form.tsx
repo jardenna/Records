@@ -1,4 +1,5 @@
 import { FC, ReactNode } from 'react';
+import useLanguage from '../../../features/language/useLanguage';
 import FooterComp from '../../../layout/FooterComp';
 import Button from '../../Button';
 import './_form.scss';
@@ -17,15 +18,19 @@ const Form: FC<FormProps> = ({
   labelText,
   className = '',
   isLoading,
-}) => (
-  <form onSubmit={onSubmit} noValidate className={className}>
-    {children}
-    <FooterComp className="form-footer" ariaLabel="form">
-      <Button type="submit" isLoading={isLoading}>
-        {labelText}
-      </Button>
-    </FooterComp>
-  </form>
-);
+}) => {
+  const { language } = useLanguage();
+
+  return (
+    <form onSubmit={onSubmit} noValidate className={className}>
+      {children}
+      <FooterComp className="form-footer" ariaLabel={language.form}>
+        <Button type="submit" isLoading={isLoading}>
+          {labelText}
+        </Button>
+      </FooterComp>
+    </form>
+  );
+};
 
 export default Form;

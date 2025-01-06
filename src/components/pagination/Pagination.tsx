@@ -1,4 +1,5 @@
 import { FC } from 'react';
+import useLanguage from '../../features/language/useLanguage';
 import Icon, { IconName } from '../icons/Icon';
 import VisuallyHidden from '../VisuallyHidden';
 import './_pagination.scss';
@@ -21,116 +22,122 @@ const Pagination: FC<PaginationProps> = ({
   pageLimit,
   onPaginationAction,
   onPaginationItemClick,
-}) => (
-  <article>
-    <ul className="pagination">
-      {/* First Page */}
-      <PaginationItem
-        onSetCurrentPage={() => onPaginationAction(PaginationActionEnum.First)}
-        disabled={currentPage === 1}
-        content={
-          <>
-            <Icon
-              name={IconName.ChevronsLeft}
-              title="Go to first page"
-              ariaHidden
-            />
-            <VisuallyHidden>Go to first page</VisuallyHidden>
-          </>
-        }
-      />
+}) => {
+  const { language } = useLanguage();
 
-      {/* Prev Page */}
-      <PaginationItem
-        onSetCurrentPage={() => onPaginationAction(PaginationActionEnum.Prev)}
-        disabled={currentPage === 1}
-        content={
-          <>
-            <Icon
-              name={IconName.ChevronLeft}
-              title="Go to prev page"
-              ariaHidden
-            />
-            <VisuallyHidden>Go to previous page</VisuallyHidden>
-          </>
-        }
-      />
-
-      {/* Jump Previous */}
-      <PaginationItem
-        disabled={currentPage < pageLimit}
-        onSetCurrentPage={() =>
-          onPaginationAction(PaginationActionEnum.PrevPaginationItem)
-        }
-        content={
-          <>
-            <span aria-hidden="true">...</span>
-            <VisuallyHidden>Go to previous page</VisuallyHidden>
-          </>
-        }
-      />
-
-      {/* Page Numbers */}
-      {pageRange.map((page) => (
+  return (
+    <article>
+      <ul className="pagination">
+        {/* First Page */}
         <PaginationItem
-          key={page}
-          onSetCurrentPage={() => onPaginationItemClick(page)}
-          paginationCount={page}
-          ariaLabel={`Page ${page} of ${totalPageCount}`}
-          isBtnSelected={page === currentPage}
-          ariaDescribedby="current-status"
-          disabled={page === currentPage}
+          onSetCurrentPage={() =>
+            onPaginationAction(PaginationActionEnum.First)
+          }
+          disabled={currentPage === 1}
+          content={
+            <>
+              <Icon
+                name={IconName.ChevronsLeft}
+                title={language.gotoFirstPage}
+                ariaHidden
+              />
+              <VisuallyHidden>{language.gotoFirstPage}</VisuallyHidden>
+            </>
+          }
         />
-      ))}
 
-      {/* Jump Next */}
-      <PaginationItem
-        onSetCurrentPage={() =>
-          onPaginationAction(PaginationActionEnum.NextPaginationItem)
-        }
-        disabled={currentPage > totalPageCount - pageLimit}
-        content={
-          <>
-            <span aria-hidden="true">...</span>
-            <VisuallyHidden>Go to next page</VisuallyHidden>
-          </>
-        }
-      />
+        {/* Prev Page */}
+        <PaginationItem
+          onSetCurrentPage={() => onPaginationAction(PaginationActionEnum.Prev)}
+          disabled={currentPage === 1}
+          content={
+            <>
+              <Icon
+                name={IconName.ChevronLeft}
+                title={language.gotoPrevPage}
+                ariaHidden
+              />
+              <VisuallyHidden>{language.gotoPrevPage}</VisuallyHidden>
+            </>
+          }
+        />
 
-      {/* Next Page */}
-      <PaginationItem
-        onSetCurrentPage={() => onPaginationAction(PaginationActionEnum.Next)}
-        disabled={currentPage === totalPageCount}
-        content={
-          <>
-            <VisuallyHidden>Go to next page</VisuallyHidden>
-            <Icon
-              name={IconName.ChevronRight}
-              title="Go to next page"
-              ariaHidden
-            />
-          </>
-        }
-      />
+        {/* Jump Previous */}
+        <PaginationItem
+          disabled={currentPage < pageLimit}
+          onSetCurrentPage={() =>
+            onPaginationAction(PaginationActionEnum.PrevPaginationItem)
+          }
+          content={
+            <>
+              <span aria-hidden="true">...</span>
+              <VisuallyHidden>{language.jumpPagesBack}</VisuallyHidden>
+            </>
+          }
+        />
 
-      {/* Last Page */}
-      <PaginationItem
-        onSetCurrentPage={() => onPaginationAction(PaginationActionEnum.Last)}
-        disabled={currentPage === totalPageCount}
-        className="last-pagination-item"
-        content={
-          <>
-            <VisuallyHidden>Go to last page</VisuallyHidden>
-            <Icon
-              name={IconName.ChevronsRight}
-              title="Go to last page"
-              ariaHidden
-            />
-          </>
-        }
-      />
-    </ul>
-  </article>
-);
+        {/* Page Numbers */}
+        {pageRange.map((page) => (
+          <PaginationItem
+            key={page}
+            onSetCurrentPage={() => onPaginationItemClick(page)}
+            paginationCount={page}
+            ariaLabel={`Page ${page} of ${totalPageCount}`}
+            isBtnSelected={page === currentPage}
+            ariaDescribedby="current-status"
+            disabled={page === currentPage}
+          />
+        ))}
+
+        {/* Jump Next */}
+        <PaginationItem
+          onSetCurrentPage={() =>
+            onPaginationAction(PaginationActionEnum.NextPaginationItem)
+          }
+          disabled={currentPage > totalPageCount - pageLimit}
+          content={
+            <>
+              <span aria-hidden="true">...</span>
+              <VisuallyHidden>{language.jumpPagesForth}</VisuallyHidden>
+            </>
+          }
+        />
+
+        {/* Next Page */}
+        <PaginationItem
+          onSetCurrentPage={() => onPaginationAction(PaginationActionEnum.Next)}
+          disabled={currentPage === totalPageCount}
+          content={
+            <>
+              <VisuallyHidden>{language.gotoNextPage}</VisuallyHidden>
+              <Icon
+                name={IconName.ChevronRight}
+                title={language.gotoNextPage}
+                ariaHidden
+              />
+            </>
+          }
+        />
+
+        {/* Last Page */}
+        <PaginationItem
+          onSetCurrentPage={() => onPaginationAction(PaginationActionEnum.Last)}
+          disabled={currentPage === totalPageCount}
+          className="last-pagination-item"
+          content={
+            <>
+              <VisuallyHidden>{language.gotoLastPage}</VisuallyHidden>
+              <Icon
+                name={IconName.ChevronsRight}
+                title={language.gotoLastPage}
+                ariaHidden
+              />
+            </>
+          }
+        />
+      </ul>
+    </article>
+  );
+};
 
 export default Pagination;
