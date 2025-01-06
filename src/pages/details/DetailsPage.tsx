@@ -47,7 +47,7 @@ const DetailsPage: FC = () => {
   };
 
   const primaryActionBtn: PrimaryActionBtnProps = {
-    label: 'Slet album',
+    label: language.deleteAlbum,
     onClick: handleDeleteRecord,
   };
 
@@ -60,7 +60,7 @@ const DetailsPage: FC = () => {
       <MetaTags
         description="This is the records page description"
         keywords="records, music, artists"
-        title="Records details"
+        title={language.albumDetails}
       />
       <section className="details-img-container">
         <HeaderComp className="details-header" ariaLabel="Record details">
@@ -133,4 +133,5 @@ const DetailsPage: FC = () => {
     <span>Loading...</span>
   );
 };
+
 export default DetailsPage;

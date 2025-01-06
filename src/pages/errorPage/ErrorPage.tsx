@@ -1,12 +1,13 @@
 import { FC } from 'react';
 import { isRouteErrorResponse, useRouteError } from 'react-router';
-
 import MetaTags from '../../components/MetaTags';
+import useLanguage from '../../features/language/useLanguage';
 import HeaderComp from '../../layout/header/HeaderComp';
 import './_error-page.scss';
 
 const ErrorPage: FC = () => {
   const error = useRouteError() as Error;
+  const { language } = useLanguage();
 
   if (!isRouteErrorResponse(error)) {
     return null;
@@ -19,7 +20,7 @@ const ErrorPage: FC = () => {
       <MetaTags
         description="This is the records page description"
         keywords="records, music, artists"
-        title="Error Page"
+        title={language.error}
       />
       <HeaderComp ariaLabel="Error">
         <img

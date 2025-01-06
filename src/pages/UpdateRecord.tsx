@@ -3,6 +3,7 @@ import { FC } from 'react';
 import { useLocation, useNavigate, useParams } from 'react-router';
 import { Records } from '../app/api/apiTypes';
 import useMessagePopup from '../components/messagePopup/useMessagePopup';
+import useLanguage from '../features/language/useLanguage';
 import {
   useGetRecordByIdQuery,
   useUpdateRecordMutation,
@@ -13,6 +14,7 @@ import CreateForm from './CreateForm';
 const UpdateRecord: FC = () => {
   const navigate = useNavigate();
   const location = useLocation();
+  const { language } = useLanguage();
   const recordParams = useParams();
   const recordId = recordParams.id;
   const { data: recordDetails } = useGetRecordByIdQuery(recordId);
@@ -50,7 +52,7 @@ const UpdateRecord: FC = () => {
           recordDetails={recordDetails}
           onUpdateRecord={handleUpdateRecord}
           isLoading={isLoading}
-          title="Update Album"
+          title={language.updateAlbum}
         />
       )}
     </section>

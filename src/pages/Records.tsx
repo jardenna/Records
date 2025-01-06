@@ -120,7 +120,7 @@ const Records: FC = () => {
       <MetaTags
         description="This is the records page description"
         keywords="records, music, artists"
-        title="Album table"
+        title={language.albumsTable}
       />
 
       <div className="record-select-container">

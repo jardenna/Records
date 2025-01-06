@@ -3,7 +3,9 @@ album;Album;Album
 albumCreatedSuccessfully;Album created successfully;Nyt album blev oprettet
 albumDetails;Album details;Album detaljer
 albums;Albums;Album
+albumDetails;Album details;Album detaljer
 albumsSmall;albums;album
+albumsTable;Album table;Album tabel
 albumUpdatedSuccessfully;Album updated successfully;Album blev opdateret
 all;All;Alle
 artist;Band / Artist;Gruppe / Kunstner
@@ -29,6 +31,7 @@ insertCover;Insert cover;Indsæt cover
 jumpPagesForth;Jump forth;Hop frem
 jumpPagesBack;Jump back;Hop tilbage
 label;Label;Label
+main;Main;Primær
 mustBeGreaterEqual;Must be greater than or equal to;Skal være større end eller lig med
 noInfo;No info;Ikke oplyst
 numOfRecords;Number of records;Antal lp(er)
