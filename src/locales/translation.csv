@@ -26,13 +26,13 @@ gotoFirstPage;Go to first page;Gå til første side
 gotoLastPage;Go to last page;Gå til sidste side
 gotoNextPage;Go to next page;Gå til næste side
 gotoPrevPage;Go to previous page;Gå til forrige side
-info;Nice to know;Værd at vide
 insertCover;Insert cover;Indsæt cover
 jumpPagesForth;Jump forth;Hop frem
 jumpPagesBack;Jump back;Hop tilbage
 label;Label;Label
 main;Main;Primær
 mustBeGreaterEqual;Must be greater than or equal to;Skal være større end eller lig med
+niceToKnow;Nice to know;Værd at vide
 noInfo;No info;Ikke oplyst
 numOfRecords;Number of records;Antal lp(er)
 of;of;af

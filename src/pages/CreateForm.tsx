@@ -8,6 +8,7 @@ import validateUpdate, {
 } from '../components/formElements/validation/validateUpdate';
 import ImagePreview from '../components/ImagePreview';
 import MetaTags from '../components/MetaTags';
+import useLanguage from '../features/language/useLanguage';
 import useFormValidation from '../hooks/useFormValidation';
 
 interface CreateFormProps {
@@ -25,6 +26,7 @@ const CreateForm: FC<CreateFormProps> = ({
   isLoading,
   title,
 }) => {
+  const { language } = useLanguage();
   const initialState = {
     artist: recordDetails?.artist ?? '',
     title: recordDetails?.title ?? '',
@@ -70,7 +72,7 @@ const CreateForm: FC<CreateFormProps> = ({
               onBlur={onBlur}
               errorText={errors.artist}
               value={values.artist}
-              labelText="Gruppe / Kunstner"
+              labelText={language.artist}
               required
             />
             <Input
@@ -80,7 +82,7 @@ const CreateForm: FC<CreateFormProps> = ({
               onBlur={onBlur}
               errorText={errors.title}
               value={values.title}
-              labelText="Title"
+              labelText={language.title}
               required
             />
             <Input
@@ -93,7 +95,7 @@ const CreateForm: FC<CreateFormProps> = ({
               min={minimumYear}
               max={maxYear}
               value={values.prodYear || ''}
-              labelText="Produktions år"
+              labelText={language.prodYear}
               maxLength={4}
               required
             />
@@ -102,7 +104,7 @@ const CreateForm: FC<CreateFormProps> = ({
               id="released"
               onChange={onChange}
               value={values.released || ''}
-              labelText="Senest udgivet"
+              labelText={language.released}
               min={Number(values.prodYear) + 1 && minimumYear}
               max={maxYear}
               type="number"
@@ -115,14 +117,14 @@ const CreateForm: FC<CreateFormProps> = ({
               id="label"
               onChange={onChange}
               value={values.label}
-              labelText="Plademærke"
+              labelText={language.label}
             />
             <Input
               name="recordNo"
               id="recordNo"
               onChange={onChange}
               value={values.recordNo}
-              labelText="Pladenummer"
+              labelText={language.recordNo}
             />
           </div>
 
@@ -131,7 +133,7 @@ const CreateForm: FC<CreateFormProps> = ({
               name="numOfRecords"
               id="numOfRecords"
               onChange={onChange}
-              labelText="Antal LP(er)"
+              labelText={language.numOfRecords}
               type="number"
               value={values.numOfRecords || ''}
             />
@@ -139,7 +141,7 @@ const CreateForm: FC<CreateFormProps> = ({
               name="price"
               id="price"
               onChange={onChange}
-              labelText="Pris"
+              labelText={language.price}
               value={values.price}
             />
             <Textarea
@@ -147,14 +149,14 @@ const CreateForm: FC<CreateFormProps> = ({
               id="origin"
               value={values.origin}
               onChange={onChange}
-              labelText="Oprindelse"
+              labelText={language.origin}
             />
             <Textarea
               name="info"
               id="info"
               value={values.info}
               onChange={onChange}
-              labelText="Værd at vide"
+              labelText={language.niceToKnow}
             />
           </div>
 
