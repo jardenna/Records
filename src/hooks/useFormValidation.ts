@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { BlurEventType, ChangeInputType } from '../types/types';
+import { BlurEventType, ChangeInputType, FormEventType } from '../types/types';
 
 export interface KeyValuePair<T> {
   [key: string]: T;
@@ -122,7 +122,8 @@ function useFormValidation<T extends KeyValuePair<any>>({
     }
   };
 
-  const onSubmit = () => {
+  const onSubmit = (event: FormEventType) => {
+    event.preventDefault();
     const validationErrors = validate ? validate(values) : {};
     const formHasNoErrors = !Object.keys(validationErrors).length;
 
