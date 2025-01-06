@@ -10,16 +10,16 @@ const Nav: FC = () => {
 
   const getTitle = (pathname: string): string => {
     if (pathname === `/${MainPath.Records}`) {
-      return 'Records';
+      return language.albums;
     }
     if (pathname === `/${MainPath.Create}`) {
-      return 'Create album';
+      return language.createAlbum;
     }
     if (pathname.includes(`/${MainPath.Details}`)) {
-      return 'Details';
+      return language.details;
     }
     if (pathname.includes(`/${MainPath.Update}`)) {
-      return 'Update album';
+      return language.updateAlbum;
     }
     return '';
   };
@@ -32,10 +32,10 @@ const Nav: FC = () => {
         <h1>{title}</h1>
         <ul className="main-nav-container">
           <li className="main-nav-items">
-            <NavLink to={MainPath.Records}>Records</NavLink>
+            <NavLink to={MainPath.Records}>{language.albums}</NavLink>
           </li>
           <li className="main-nav-items">
-            <NavLink to={MainPath.Create}>Create album</NavLink>
+            <NavLink to={MainPath.Create}>{language.createAlbum}</NavLink>
           </li>
         </ul>
       </div>

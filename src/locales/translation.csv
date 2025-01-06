@@ -13,8 +13,8 @@ cancel;Cancel;Annuller
 close;Close;Luk
 sureToDelete;Are you sure you want to Delete;Er du sikker på at du vil slette
 closeDialog;Close dialog;Luk dialog
-createAlbum;Currently selected;Valgt
-currentlySelected;Create album;Opret album
+createAlbum;Create album;Opret album
+currentlySelected;Currently selected;Valgt
 delete;Delete;Slet
 deleteAlbum;Delete album;Slet album
 details;Details;Detaljer
