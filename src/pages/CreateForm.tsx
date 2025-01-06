@@ -3,9 +3,6 @@ import { OmittedRecordRequest, Records } from '../app/api/apiTypes';
 import Form from '../components/formElements/form/Form';
 import Input from '../components/formElements/Input';
 import Textarea from '../components/formElements/Textarea';
-import validateUpdate, {
-  minimumYear,
-} from '../components/formElements/validation/validateUpdate';
 import ImagePreview from '../components/ImagePreview';
 import MetaTags from '../components/MetaTags';
 import useLanguage from '../features/language/useLanguage';
@@ -43,8 +40,47 @@ const CreateForm: FC<CreateFormProps> = ({
   const { onSubmit, onChange, onBlur, values, errors } = useFormValidation({
     initialState,
     callback: handleSubmit,
-    validate: validateUpdate,
+    validate,
   });
+
+  const currentYear = new Date().getFullYear();
+  const nextYear = currentYear + 1;
+  const minimumYear = 1889;
+
+  function validate() {
+    const errors: any = {};
+    if (!values.artist) {
+      errors.artist = `${language.pleaseEnter} ${language.artist}`;
+    }
+    if (!values.title) {
+      errors.title = `${language.pleaseEnter} ${language.title}`;
+    }
+
+    if (!values.prodYear) {
+      errors.prodYear = `${language.pleaseEnter} ${language.prodYear}`;
+    } else if (
+      Number(values.prodYear) < minimumYear ||
+      Number(values.prodYear) > nextYear
+    ) {
+      errors.prodYear = `${language.pleaseEnter} ${language.yearBetween} ${minimumYear} ${language.and} ${nextYear}`;
+    }
+
+    if (
+      Number(values.released) !== 0 &&
+      values.released !== '' &&
+      values.released < values.prodYear
+    ) {
+      errors.released = `${language.pleaseEnter} ${language.yearAfterOrEqual}  ${language.prodYear}`;
+    } else if (
+      Number(values.released) !== 0 &&
+      values.released !== '' &&
+      Number(values.released) < minimumYear
+    ) {
+      errors.released = `${language.pleaseEnter} ${language.yearAfter} ${minimumYear}`;
+    }
+
+    return errors;
+  }
 
   function handleSubmit() {
     if (onUpdateRecord) {
@@ -80,7 +116,9 @@ const CreateForm: FC<CreateFormProps> = ({
               id="title"
               onChange={onChange}
               onBlur={onBlur}
-              errorText={errors.title}
+              errorText={
+                errors.title && `${language.pleaseEnter} ${language.title}`
+              }
               value={values.title}
               labelText={language.title}
               required
@@ -156,7 +194,7 @@ const CreateForm: FC<CreateFormProps> = ({
               id="info"
               value={values.info}
               onChange={onChange}
-              labelText={language.niceToKnow}
+              labelText={language.origin}
             />
           </div>
 

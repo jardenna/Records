@@ -24,10 +24,10 @@ export enum LabelKeys {
 }
 
 export enum ValidationMessage {
-  FieldIsRequired = 'fieldIsRequired',
   MustBeGreaterEqual = 'mustBeGreaterEqual',
   PleaseEnter = 'pleaseEnter',
   YearAfter = 'yearAfter',
+  YearBefore = 'yearBefore',
 }
 
 export enum PopupRole {
