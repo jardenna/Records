@@ -8,7 +8,8 @@ import {
   PrimaryActionBtnProps,
   SecondaryActionBtnProps,
 } from '../../components/modal/Modal';
-import { labels, noInfo } from '../../components/recordTable/tableHeaders';
+import { noInfo } from '../../components/recordTable/tableHeaders';
+import useLanguage from '../../features/language/useLanguage';
 import { toggleModal } from '../../features/modalSlice';
 import {
   useDeleteRecordMutation,
@@ -23,6 +24,7 @@ import './_details.scss';
 const DetailsPage: FC = () => {
   const dispatch = useAppDispatch();
   const location = useLocation();
+  const { language } = useLanguage();
   const recordParams = useParams();
   const recordId = recordParams.id;
   const navigate = useNavigate();
@@ -72,35 +74,35 @@ const DetailsPage: FC = () => {
         <div>
           <DetailsContent
             text={selectedRecord.origin?.trim() || noInfo}
-            label={labels.origin}
+            label={language.origin}
           />
           <DetailsContent
             text={selectedRecord.prodYear}
-            label={labels.prodYear}
+            label={language.prodYear}
           />
           <DetailsContent
             text={selectedRecord.prodYear || selectedRecord.released || noInfo}
-            label={labels.released}
+            label={language.released}
           />
           <DetailsContent
             text={selectedRecord.label?.trim() || noInfo}
-            label={labels.label}
+            label={language.label}
           />
           <DetailsContent
             text={selectedRecord.recordNo?.trim() || noInfo}
-            label={labels.recordNo}
+            label={language.recordNo}
           />
           <DetailsContent
             text={selectedRecord.numOfRecords || 1}
-            label={labels.numOfRecords}
+            label={language.numOfRecords}
           />
           <DetailsContent
             text={`${selectedRecord.price?.trim()}` || noInfo}
-            label={labels.price}
+            label={language.price}
             isPrice={!!selectedRecord.price?.trim()}
           />
         </div>
-        <FooterComp className="details-footer" ariaLabel="Record-details">
+        <FooterComp className="details-footer" ariaLabel="Album Details">
           <Link
             id={recordId}
             className="btn-primary"

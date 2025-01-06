@@ -1,7 +1,35 @@
-﻿key;en;da
-createAlbum;Create album;Opret album
-updateAlbum;Update album;Opdater album
-deleteAlbum;Delete album;Slet album
-delete;Delete;Slet
+﻿Albums;Albums;Album
+Album;Album;Album
+albumUpdatedSuccessfully;Album updated successfully;Album blev opdateret
+albumDetails;Album details;Album detaljer
+all;All;alle
+numOfRecords;Number of records;Antal lp(er)
+key;en;da
 details;Details;Detaljer
+dialog;Dialog;Dialog
+wantToDelete;Are you sure you want to delete;Er du sikker på at du vil slette
+error;Error;Fejl
+form;Form;Fomular
+artist;Band / Artist;Gruppe / Kunstner
+noInfo;No info;Ikke oplyst
+insertCover;Insert cover;Indsæt cover
 pleaseEnter;Please enter;Indsæt venligst
+label;Label;Label
+close;Close;Luk
+albumCreatedSuccessfully;Album created successfully;Nyt album blev oprettet
+updateAlbum;Update album;Opdater album
+updateAlbum;Update album;Opdater album
+createAlbum;Create album;Opret album
+origin;Origin;Oprindelse
+recordNo;Record number;Pladenummer
+price;Price;Pris
+prodYear;Production year;Produktions år
+released;Last released;Senest udgivet
+delete;Delete;Slet
+deleteAlbum;Delete album;Slet album
+deleteAlbum;Delete album;Slet album
+deleteAlbum;Delete Album;Slet album
+search;Search;Søg
+createAlbum;Create album;Tilføj album
+title;Title;Titel
+info;Nice to know;Værd at vide
