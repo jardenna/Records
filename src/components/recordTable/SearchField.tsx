@@ -5,6 +5,7 @@ import { ChangeInputType } from '../../types/types';
 import Button from '../Button';
 import Input from '../formElements/Input';
 import Icon, { IconName } from '../icons/Icon';
+import VisuallyHidden from '../VisuallyHidden';
 
 interface SearchFieldProps {
   onFilterRecords: (e: ChangeInputType) => void;
@@ -29,7 +30,11 @@ const SearchField: FC<SearchFieldProps> = ({
         variant={BtnVariant.Ghost}
         onClick={() => onToggleSearchField(title)}
       >
+        <VisuallyHidden>
+          {language.filter} {language[title]}
+        </VisuallyHidden>
         <Icon
+          ariaHidden
           name={IconName.Filter}
           title={`${language.filter} ${language.title}`}
         />
