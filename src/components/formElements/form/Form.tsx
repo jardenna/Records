@@ -22,7 +22,7 @@ const Form: FC<FormProps> = ({
   const { language } = useLanguage();
 
   return (
-    <form onSubmit={onSubmit} noValidate className={className}>
+    <form action={onSubmit} noValidate className={className}>
       {children}
       <FooterComp className="form-footer" ariaLabel={language.form}>
         <Button type="submit" isLoading={isLoading}>
