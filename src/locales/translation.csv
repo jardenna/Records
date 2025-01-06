@@ -1,35 +1,43 @@
-﻿Albums;Albums;Album
-Album;Album;Album
-albumUpdatedSuccessfully;Album updated successfully;Album blev opdateret
-albumDetails;Album details;Album detaljer
-all;All;alle
-numOfRecords;Number of records;Antal lp(er)
-key;en;da
-details;Details;Detaljer
-dialog;Dialog;Dialog
-wantToDelete;Are you sure you want to delete;Er du sikker på at du vil slette
-error;Error;Fejl
-form;Form;Fomular
-artist;Band / Artist;Gruppe / Kunstner
-noInfo;No info;Ikke oplyst
-insertCover;Insert cover;Indsæt cover
-pleaseEnter;Please enter;Indsæt venligst
-label;Label;Label
-close;Close;Luk
+﻿key;en;da
+album;Album;Album
+albumsSmall;albums;album
 albumCreatedSuccessfully;Album created successfully;Nyt album blev oprettet
-updateAlbum;Update album;Opdater album
-updateAlbum;Update album;Opdater album
+albumDetails;Album details;Album detaljer
+albums;Albums;Album
+albumUpdatedSuccessfully;Album updated successfully;Album blev opdateret
+all;All;Alle
+artist;Band / Artist;Gruppe / Kunstner
+close;Close;Luk
 createAlbum;Create album;Opret album
-origin;Origin;Oprindelse
-recordNo;Record number;Pladenummer
-price;Price;Pris
-prodYear;Production year;Produktions år
-released;Last released;Senest udgivet
+createAlbum;Create album;Tilføj album
 delete;Delete;Slet
 deleteAlbum;Delete album;Slet album
 deleteAlbum;Delete album;Slet album
 deleteAlbum;Delete Album;Slet album
-search;Search;Søg
-createAlbum;Create album;Tilføj album
-title;Title;Titel
+details;Details;Detaljer
+dialog;Dialog;Dialog
+error;Error;Fejl
+filter;Filter;Filtrer
+form;Form;Fomular
 info;Nice to know;Værd at vide
+insertCover;Insert cover;Indsæt cover
+label;Label;Label
+mustBeGreaterEqual;Must be greater than or equal to;Skal være større end eller lig med
+noInfo;No info;Ikke oplyst
+numOfRecords;Number of records;Antal lp(er)
+of;of;af
+origin;Origin;Oprindelse
+pleaseEnter;Please enter;Indsæt venligst
+price;Price;Pris
+prodYear;Production year;Produktions år
+recordNo;Record number;Pladenummer
+released;Last released;Senest udgivet
+search;Search;Søg
+showing;Showing;Viser
+sortBy;Sort by;Sorter efter
+title;Title;Titel
+to;to;til
+updateAlbum;Update album;Opdater album
+updateAlbum;Update album;Opdater album
+wantToDelete;Are you sure you want to delete;Er du sikker på at du vil slette
+yearAfter;a year after;et år efter

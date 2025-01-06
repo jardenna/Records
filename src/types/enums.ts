@@ -23,6 +23,13 @@ export enum LabelKeys {
   Title = 'title',
 }
 
+export enum ValidationMessage {
+  FieldIsRequired = 'fieldIsRequired',
+  MustBeGreaterEqual = 'mustBeGreaterEqual',
+  PleaseEnter = 'pleaseEnter',
+  YearAfter = 'yearAfter',
+}
+
 export enum PopupRole {
   Alert = 'alert',
   Status = 'status',

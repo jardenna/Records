@@ -8,7 +8,6 @@ import {
   PrimaryActionBtnProps,
   SecondaryActionBtnProps,
 } from '../../components/modal/Modal';
-import { noInfo } from '../../components/recordTable/tableHeaders';
 import useLanguage from '../../features/language/useLanguage';
 import { toggleModal } from '../../features/modalSlice';
 import {
@@ -73,7 +72,7 @@ const DetailsPage: FC = () => {
       <section className="details-content-container">
         <div>
           <DetailsContent
-            text={selectedRecord.origin?.trim() || noInfo}
+            text={selectedRecord.origin?.trim() || language.noInfo}
             label={language.origin}
           />
           <DetailsContent
@@ -81,15 +80,19 @@ const DetailsPage: FC = () => {
             label={language.prodYear}
           />
           <DetailsContent
-            text={selectedRecord.prodYear || selectedRecord.released || noInfo}
+            text={
+              selectedRecord.prodYear ||
+              selectedRecord.released ||
+              language.noInfo
+            }
             label={language.released}
           />
           <DetailsContent
-            text={selectedRecord.label?.trim() || noInfo}
+            text={selectedRecord.label?.trim() || language.noInfo}
             label={language.label}
           />
           <DetailsContent
-            text={selectedRecord.recordNo?.trim() || noInfo}
+            text={selectedRecord.recordNo?.trim() || language.noInfo}
             label={language.recordNo}
           />
           <DetailsContent
@@ -97,7 +100,7 @@ const DetailsPage: FC = () => {
             label={language.numOfRecords}
           />
           <DetailsContent
-            text={`${selectedRecord.price?.trim()}` || noInfo}
+            text={`${selectedRecord.price?.trim()}` || language.noInfo}
             label={language.price}
             isPrice={!!selectedRecord.price?.trim()}
           />

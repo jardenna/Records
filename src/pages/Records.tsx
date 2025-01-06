@@ -6,12 +6,14 @@ import MetaTags from '../components/MetaTags';
 import Pagination from '../components/pagination/Pagination';
 import usePagination from '../components/pagination/usePagination';
 import RecordTable from '../components/recordTable/RecordTable';
+import useLanguage from '../features/language/useLanguage';
 import { useGetPaginatedRecordsQuery } from '../features/records/recordsApiSlice';
 import useFormValidation from '../hooks/useFormValidation';
 import { ChangeInputType } from '../types/types';
 
 const Records: FC = () => {
   const location = useLocation();
+  const { language } = useLanguage();
   const defaultOptionValue = 10;
   const pageLimit = 5;
   const tableHeaders = ['artist', 'title', 'prodYear', 'label', 'origin'];
@@ -123,7 +125,8 @@ const Records: FC = () => {
 
       <div className="record-select-container">
         <p>
-          Showing {startRow} to {endRow} of {totalRows} albums
+          {language.showing} {startRow} {language.to} {endRow} {language.of}{' '}
+          {totalRows} {language.albumsSmall}
         </p>
         <form onSubmit={(event) => event.preventDefault()}>
           <SelectBox
@@ -135,7 +138,7 @@ const Records: FC = () => {
               },
               { value: 20, label: '20' },
               { value: 50, label: '50' },
-              { value: totalCount, label: 'All' },
+              { value: totalCount, label: language.all },
             ]}
             id="limit"
             onChange={(selectedOptions) =>

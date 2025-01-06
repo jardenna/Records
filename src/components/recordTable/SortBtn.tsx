@@ -1,4 +1,5 @@
 import { FC } from 'react';
+import useLanguage from '../../features/language/useLanguage';
 import { BtnVariant } from '../../types/enums';
 import Button from '../Button';
 import Icon, { IconName } from '../icons/Icon';
@@ -10,17 +11,21 @@ interface SortBtnProps {
   title: string;
 }
 
-const SortBtn: FC<SortBtnProps> = ({ onSort, title, showIcon, sortOrder }) => (
-  <Button variant={BtnVariant.Ghost} onClick={onSort}>
-    {title}
-    {showIcon && (
-      <Icon
-        size="16"
-        name={sortOrder === 'desc' ? IconName.ArrowDown : IconName.ArrowUp}
-        title={`Sort by ${title}`}
-      />
-    )}
-  </Button>
-);
+const SortBtn: FC<SortBtnProps> = ({ onSort, title, showIcon, sortOrder }) => {
+  const { language } = useLanguage();
+
+  return (
+    <Button variant={BtnVariant.Ghost} onClick={onSort}>
+      {language[title]}
+      {showIcon && (
+        <Icon
+          size="16"
+          name={sortOrder === 'desc' ? IconName.ArrowDown : IconName.ArrowUp}
+          title={`${language.sortBy} ${language[title]}`}
+        />
+      )}
+    </Button>
+  );
+};
 
 export default SortBtn;

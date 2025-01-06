@@ -1,4 +1,5 @@
 import { FC } from 'react';
+import useLanguage from '../../features/language/useLanguage';
 import { BtnVariant } from '../../types/enums';
 import { ChangeInputType } from '../../types/types';
 import Button from '../Button';
@@ -19,27 +20,34 @@ const SearchField: FC<SearchFieldProps> = ({
   showSearchField,
   onFilterRecords,
   onToggleSearchField,
-}) => (
-  <>
-    <Button
-      variant={BtnVariant.Ghost}
-      onClick={() => onToggleSearchField(title)}
-    >
-      <Icon name={IconName.Filter} title={`Filter ${title}`} />
-      {value !== '' && <span className="dot" />}
-    </Button>
-    <Input
-      className={`search-field ${showSearchField ? 'active' : ''}`}
-      type="search"
-      name={title}
-      id={title}
-      placeholder="Search"
-      value={value}
-      onChange={onFilterRecords}
-      labelText="Search"
-      inputHasNoLabel
-    />
-  </>
-);
+}) => {
+  const { language } = useLanguage();
+
+  return (
+    <>
+      <Button
+        variant={BtnVariant.Ghost}
+        onClick={() => onToggleSearchField(title)}
+      >
+        <Icon
+          name={IconName.Filter}
+          title={`${language.filter} ${language.title}`}
+        />
+        {value !== '' && <span className="dot" />}
+      </Button>
+      <Input
+        className={`search-field ${showSearchField ? 'active' : ''}`}
+        type="search"
+        name={title}
+        id={title}
+        placeholder="Search"
+        value={value}
+        onChange={onFilterRecords}
+        labelText="Search"
+        inputHasNoLabel
+      />
+    </>
+  );
+};
 
 export default SearchField;
