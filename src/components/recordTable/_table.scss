@@ -5,8 +5,8 @@
   position: relative;
   z-index: 1;
   overflow: auto;
-  width: 300px;
-  max-height: 400px;
+  width: rem(300px);
+  max-height: rem(400px);
   min-width: 100%;
   border: 1px solid $color-border;
 }
@@ -57,7 +57,7 @@
 table {
   width: 100%;
   min-width: rem(380px);
-  min-height: rem(300px);
+  min-height: rem(100px);
   border-spacing: 0;
 
   .detail-table-header {
