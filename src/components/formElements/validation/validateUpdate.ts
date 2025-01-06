@@ -1,37 +1,46 @@
-import { FormValues, ValidationErrors } from '../../../hooks/useFormValidation';
-import { ValidationMessage } from '../../../types/enums';
+import { Records } from '../../../app/api/apiTypes';
+import { ValidationErrors } from '../../../hooks/useFormValidation';
 
 const currentYear = new Date().getFullYear();
 const nextYear = currentYear + 1;
 export const minimumYear = 1889;
+type OmittedProps = Omit<Records, 'id'>;
 
-function validateUpdate(values: FormValues) {
+function validateUpdate(
+  values: OmittedProps,
+  language: Record<string, string>,
+) {
   const errors: ValidationErrors = {};
-  const { artist, title, prodYear, released } = values;
+  if (!values.artist) {
+    errors.artist = `${language.pleaseEnter} ${language.artist}`;
+  }
+  if (!values.title) {
+    errors.title = `${language.pleaseEnter} ${language.title}`;
+  }
 
-  if (!artist) {
-    errors.artist = ValidationMessage.PleaseEnter;
-  }
-  if (!title) {
-    errors.title = ValidationMessage.PleaseEnter;
-  }
-  if (!prodYear) {
-    errors.prodYear = 'Please enter Production year';
+  if (!values.prodYear) {
+    errors.prodYear = `${language.pleaseEnter} ${language.prodYear}`;
   } else if (
-    (prodYear as number) < minimumYear ||
-    (prodYear as number) > nextYear
+    Number(values.prodYear) < minimumYear ||
+    Number(values.prodYear) > nextYear
   ) {
-    errors.prodYear = `Please enter a year before ${nextYear} and after ${minimumYear}`;
+    errors.prodYear = `${language.pleaseEnter} ${language.yearBetween} ${minimumYear} ${language.and} ${nextYear}`;
   }
-  if (released !== 0 && released !== '' && released < prodYear) {
-    errors.released = `Must be greater than or equal to  Production year`;
+
+  if (
+    Number(values.released) !== 0 &&
+    values.released !== '' &&
+    values.released < values.prodYear
+  ) {
+    errors.released = `${language.pleaseEnter} ${language.yearAfterOrEqual}  ${language.prodYear}`;
   } else if (
-    released !== 0 &&
-    released !== '' &&
-    (released as number) < minimumYear
+    Number(values.released) !== 0 &&
+    values.released !== '' &&
+    Number(values.released) < minimumYear
   ) {
-    errors.released = `Please enter a year after ${minimumYear}`;
+    errors.released = `${language.pleaseEnter} ${language.yearAfter} ${minimumYear}`;
   }
+
   return errors;
 }
 

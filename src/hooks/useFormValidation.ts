@@ -17,7 +17,7 @@ interface FormValidationProps<T extends KeyValuePair<any>> {
   initialState: T;
   callback?: (values: T) => void;
   isArray?: boolean;
-  validate?: (values: KeyValuePair<string>) => KeyValuePair<string>;
+  validate?: any;
 }
 
 function useFormValidation<T extends KeyValuePair<any>>({

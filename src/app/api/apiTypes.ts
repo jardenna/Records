@@ -1,16 +1,16 @@
 export interface Records {
   artist: string;
   id: string;
+  info: string;
   label: string;
   numOfRecords: number;
+  price: string;
   prodYear: string;
   recordNo: string;
+  released: string;
   title: string;
   cover?: string;
-  info?: string;
   origin?: string;
-  price?: string;
-  released?: string;
 }
 
 export enum SortOrder {
