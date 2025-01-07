@@ -99,14 +99,18 @@ table {
       gap: 8px;
       font-weight: bold;
 
-      &:hover,
-      &:focus-visible {
+      &:hover {
         outline: transparent;
+        color: $color-green-dark;
+
+        svg {
+          fill: $color-green-dark;
+          stroke: $color-green-dark;
+        }
       }
     }
 
     &:first-child {
-      position: sticky;
       left: 0;
       z-index: 2;
     }
