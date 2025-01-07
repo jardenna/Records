@@ -1,11 +1,14 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { Link, useSearchParams } from 'react-router';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
+import useLanguage from '../../features/language/useLanguage';
 import { selectModalId, toggleModal } from '../../features/modalSlice';
 import useClickOutside from '../../hooks/useClickOutside';
 import { BtnVariant, MainPath } from '../../types/enums';
 import Button from '../Button';
 import DeleteRecordModal from '../DeleteRecordModal';
+import IconBtn from '../IconBtn';
+import IconContent from '../IconContent';
 import Icon, { IconName } from '../icons/Icon';
 import { PrimaryActionBtnProps } from '../modal/Modal';
 import VisuallyHidden from '../VisuallyHidden';
@@ -31,6 +34,7 @@ const Table = <T extends Record<string, any>>({
   onClearAllSearch,
   tableCaption,
 }: TableProps<T>) => {
+  const { language } = useLanguage();
   const modalId = useAppSelector(selectModalId);
   const [searchParams, setSearchParams] = useSearchParams();
   const [showSearchField, setShowSearchField] = useState<string | null>(null);
@@ -124,21 +128,31 @@ const Table = <T extends Record<string, any>>({
                 ))}
                 <td className="detail-table-header">
                   <Link
-                    className="btn btn-primary"
+                    className="btn btn-ghost"
                     to={`/${MainPath.Details}/${data.id}${tableSearchParams}`}
                   >
-                    <Icon title="" name={IconName.Eye} ariaHidden /> Details
+                    <IconContent
+                      iconName={IconName.Eye}
+                      title={language.albumDetails}
+                    />
                   </Link>
                   <Link
-                    className="btn btn-primary"
+                    className="btn btn-ghost"
                     to={`/${MainPath.Update}/${data.id}`}
                   >
-                    <Icon title="" name={IconName.Edit} ariaHidden />
+                    <IconContent
+                      iconName={IconName.Edit}
+                      title={language.updateAlbum}
+                    />
                   </Link>
-                  <Button onClick={() => handleSetSearchParams(data.id)}>
-                    <Icon title="" name={IconName.Trash} ariaHidden />
-                    Delete
-                  </Button>
+
+                  <IconBtn
+                    iconName={IconName.Trash}
+                    className="danger"
+                    title={language.deleteAlbum}
+                    onClick={() => handleSetSearchParams(data.id)}
+                  />
+
                   {id && id === data.id && (
                     <DeleteRecordModal
                       modalId={id}

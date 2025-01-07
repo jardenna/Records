@@ -1,8 +1,8 @@
 import { FC } from 'react';
 import useLanguage from '../../features/language/useLanguage';
+import IconContent from '../IconContent';
 import { IconName } from '../icons/Icon';
 import './_pagination.scss';
-import PaginationContent from './PaginationContent';
 import PaginationItem from './PaginationItem';
 import { PaginationActionEnum } from './usePagination';
 
@@ -35,7 +35,7 @@ const Pagination: FC<PaginationProps> = ({
           }
           disabled={currentPage === 1}
           content={
-            <PaginationContent
+            <IconContent
               iconName={IconName.ChevronsLeft}
               title={language.gotoFirstPage}
             />
@@ -47,7 +47,7 @@ const Pagination: FC<PaginationProps> = ({
           onSetCurrentPage={() => onPaginationAction(PaginationActionEnum.Prev)}
           disabled={currentPage === 1}
           content={
-            <PaginationContent
+            <IconContent
               iconName={IconName.ChevronLeft}
               title={language.gotoPrevPage}
             />
@@ -61,7 +61,7 @@ const Pagination: FC<PaginationProps> = ({
             onPaginationAction(PaginationActionEnum.PrevPaginationItem)
           }
           content={
-            <PaginationContent
+            <IconContent
               iconName={IconName.More}
               title={language.jumpPagesBack}
             />
@@ -88,7 +88,7 @@ const Pagination: FC<PaginationProps> = ({
           }
           disabled={currentPage > totalPageCount - pageLimit}
           content={
-            <PaginationContent
+            <IconContent
               iconName={IconName.More}
               title={language.jumpPagesForth}
             />
@@ -100,7 +100,7 @@ const Pagination: FC<PaginationProps> = ({
           onSetCurrentPage={() => onPaginationAction(PaginationActionEnum.Next)}
           disabled={currentPage === totalPageCount}
           content={
-            <PaginationContent
+            <IconContent
               iconName={IconName.ChevronRight}
               title={language.gotoNextPage}
             />
@@ -113,7 +113,7 @@ const Pagination: FC<PaginationProps> = ({
           disabled={currentPage === totalPageCount}
           className="last-pagination-item"
           content={
-            <PaginationContent
+            <IconContent
               iconName={IconName.ChevronsRight}
               title={language.gotoLastPage}
             />

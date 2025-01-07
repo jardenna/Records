@@ -65,12 +65,18 @@ a[class^='btn-'],
   width: auto;
   border: 0;
 
+  &.danger {
+    svg {
+      stroke: $color-danger;
+    }
+  }
+
   &:hover {
     outline: 1px solid currentcolor;
   }
 
   &:focus-visible {
-    outline: 1px dashed currentcolor;
+    outline: 2px solid currentcolor;
   }
 }
 
