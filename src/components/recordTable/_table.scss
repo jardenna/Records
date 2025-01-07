@@ -6,9 +6,11 @@
   z-index: 1;
   overflow: auto;
   width: rem(300px);
-  max-height: rem(400px);
   min-width: 100%;
-  border: 1px solid $color-border;
+
+  @include max-size($medium) {
+    max-height: rem(400px);
+  }
 }
 
 .record-select-container {
@@ -59,6 +61,7 @@ table {
   min-width: rem(380px);
   min-height: rem(100px);
   border-spacing: 0;
+  border: 1px solid $color-border;
 
   .detail-table-header {
     z-index: 5;
@@ -68,10 +71,6 @@ table {
     padding: 12px;
   }
 
-  tr {
-    height: rem(50px);
-  }
-
   td {
     line-height: rem(24px);
     background-color: $color-white;
@@ -79,8 +78,7 @@ table {
 
   th,
   td {
-    // white-space: nowrap;
-    padding: 8px 12px;
+    padding: 16px 12px;
   }
 
   th {
@@ -88,6 +86,7 @@ table {
     border-bottom: 1px solid #969393;
     text-align: left;
     background-color: $color-white;
+    width: 200px;
 
     &:has(.btn:focus) {
       border-color: $color-placeholder;
@@ -122,10 +121,24 @@ table {
       &:first-child {
         z-index: 5;
       }
+
+      &:last-child {
+        border-right: none;
+      }
     }
   }
 
   tbody {
+    display: flex;
+    flex-direction: column;
+
+    @include max-size($medium) {
+      display: table-row-group;
+    }
+
+    max-height: rem(400px);
+    overflow: auto;
+
     td:first-child {
       border-right: 1px solid $color-border;
       position: sticky;
@@ -145,4 +158,11 @@ table {
       }
     }
   }
+}
+
+thead,
+tbody tr {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
 }
