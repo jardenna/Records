@@ -7,11 +7,14 @@ import ChevronRightIcon from './ChevronRightIcon';
 import ChevronsLeftIcon from './ChevronsLeftIcon';
 import ChevronsRightIcon from './ChevronsRightIcon';
 import CloseIcon from './CloseIcon';
+import EditIcon from './EditIcon';
 import ErrorIcon from './ErrorIcon';
+import EyeIcon from './EyeIcon';
 import FilterIcon from './FilterIcon';
 import InfoIcon from './InfoIcon';
 import SubtractIcon from './SubtractIcon';
 import SuccessIcon from './SuccessIcon';
+import TrashIcon from './TrashIcon';
 import UndoIcon from './UndoIcon';
 import WarningIcon from './WarningIcon';
 
@@ -35,11 +38,14 @@ export enum IconName {
   ChevronsLeft = 'chevronsLeft',
   ChevronsRight = 'chevronsRight',
   Close = 'close',
+  Edit = 'edit',
   Error = 'error',
+  Eye = 'eye',
   Filter = 'filter',
   Info = 'info',
   Subtract = 'subtract',
   Success = 'success',
+  Trash = 'trach',
   Undo = 'undo',
   Warning = 'warning',
 }
@@ -53,11 +59,14 @@ const iconMapping = {
   chevronsLeft: ChevronsLeftIcon,
   chevronsRight: ChevronsRightIcon,
   close: CloseIcon,
+  edit: EditIcon,
   error: ErrorIcon,
+  eye: EyeIcon,
   filter: FilterIcon,
   info: InfoIcon,
   subtract: SubtractIcon,
   success: SuccessIcon,
+  trach: TrashIcon,
   undo: UndoIcon,
   warning: WarningIcon,
 };

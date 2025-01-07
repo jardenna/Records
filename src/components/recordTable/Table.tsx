@@ -135,15 +135,16 @@ const Table = <T extends Record<string, any>>({
                     className="btn btn-primary"
                     to={`/${MainPath.Details}/${data.id}${tableSearchParams}`}
                   >
-                    Details
+                    <Icon title="" name={IconName.Eye} ariaHidden /> Details
                   </Link>
                   <Link
                     className="btn btn-primary"
                     to={`/${MainPath.Update}/${data.id}`}
                   >
-                    Edit
+                    <Icon title="" name={IconName.Edit} ariaHidden />
                   </Link>
                   <Button onClick={() => handleSetSearchParams(data.id)}>
+                    <Icon title="" name={IconName.Trash} ariaHidden />
                     Delete
                   </Button>
                   {id && id === data.id && (
