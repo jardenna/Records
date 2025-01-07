@@ -1,13 +1,13 @@
 import { FC } from 'react';
 import { BtnVariant } from '../types/enums';
-import { ButtonEventType } from '../types/types';
 import Button from './Button';
 import IconContent from './IconContent';
 import { IconName } from './icons/Icon';
 
 interface IconBtnProps {
   iconName: IconName;
-  onClick: (id?: string | ButtonEventType) => void;
+  onClick: any;
+  // onClick: (id?: string | ButtonEventType) => void;
   title: string;
   className?: string;
 }

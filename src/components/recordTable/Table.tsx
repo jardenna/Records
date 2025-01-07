@@ -4,12 +4,11 @@ import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import useLanguage from '../../features/language/useLanguage';
 import { selectModalId, toggleModal } from '../../features/modalSlice';
 import useClickOutside from '../../hooks/useClickOutside';
-import { BtnVariant, MainPath } from '../../types/enums';
-import Button from '../Button';
+import { MainPath } from '../../types/enums';
 import DeleteRecordModal from '../DeleteRecordModal';
 import IconBtn from '../IconBtn';
 import IconContent from '../IconContent';
-import Icon, { IconName } from '../icons/Icon';
+import { IconName } from '../icons/Icon';
 import { PrimaryActionBtnProps } from '../modal/Modal';
 import VisuallyHidden from '../VisuallyHidden';
 import './_table.scss';
@@ -112,10 +111,14 @@ const Table = <T extends Record<string, any>>({
               </th>
             ))}
             <th className="detail-table-header">
-              Details
-              <Button onClick={onClearAllSearch} variant={BtnVariant.Ghost}>
-                <Icon title="" name={IconName.Undo} />
-              </Button>
+              <div className="action-header">
+                Actions
+                <IconBtn
+                  iconName={IconName.Undo}
+                  title={language.clearInputs}
+                  onClick={onClearAllSearch}
+                />
+              </div>
             </th>
           </tr>
         </thead>
@@ -127,38 +130,40 @@ const Table = <T extends Record<string, any>>({
                   <td key={header}>{data[header]}</td>
                 ))}
                 <td className="detail-table-header">
-                  <Link
-                    className="btn btn-ghost"
-                    to={`/${MainPath.Details}/${data.id}${tableSearchParams}`}
-                  >
-                    <IconContent
-                      iconName={IconName.Eye}
-                      title={language.albumDetails}
-                    />
-                  </Link>
-                  <Link
-                    className="btn btn-ghost"
-                    to={`/${MainPath.Update}/${data.id}`}
-                  >
-                    <IconContent
-                      iconName={IconName.Edit}
-                      title={language.updateAlbum}
-                    />
-                  </Link>
+                  <div className="action-container">
+                    <Link
+                      className="btn btn-ghost"
+                      to={`/${MainPath.Details}/${data.id}${tableSearchParams}`}
+                    >
+                      <IconContent
+                        iconName={IconName.Eye}
+                        title={language.albumDetails}
+                      />
+                    </Link>
+                    <Link
+                      className="btn btn-ghost"
+                      to={`/${MainPath.Update}/${data.id}`}
+                    >
+                      <IconContent
+                        iconName={IconName.Edit}
+                        title={language.updateAlbum}
+                      />
+                    </Link>
 
-                  <IconBtn
-                    iconName={IconName.Trash}
-                    className="danger"
-                    title={language.deleteAlbum}
-                    onClick={() => handleSetSearchParams(data.id)}
-                  />
-
-                  {id && id === data.id && (
-                    <DeleteRecordModal
-                      modalId={id}
-                      primaryActionBtn={primaryActionBtn}
+                    <IconBtn
+                      iconName={IconName.Trash}
+                      className="danger"
+                      title={language.deleteAlbum}
+                      onClick={() => handleSetSearchParams(data.id)}
                     />
-                  )}
+
+                    {id && id === data.id && (
+                      <DeleteRecordModal
+                        modalId={id}
+                        primaryActionBtn={primaryActionBtn}
+                      />
+                    )}
+                  </div>
                 </td>
               </tr>
             ))}
