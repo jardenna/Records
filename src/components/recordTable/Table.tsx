@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { Link, useSearchParams } from 'react-router';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { selectModalId, toggleModal } from '../../features/modalSlice';
@@ -51,9 +51,14 @@ const Table = <T extends Record<string, any>>({
   const handleToggleSearchField = (header: string) => {
     setShowSearchField((prev) => (prev === header ? null : header));
   };
-  const handleSetSearchParams = (id: string) => {
-    setSearchParams({ id });
-  };
+
+  const handleSetSearchParams = useCallback(
+    (id: string) => {
+      setSearchParams({ id });
+      dispatch(toggleModal(id));
+    },
+    [dispatch, setSearchParams],
+  );
 
   const id = searchParams.get('id');
 
@@ -62,10 +67,7 @@ const Table = <T extends Record<string, any>>({
       searchParams.delete('id');
       setSearchParams(searchParams);
     }
-    if (id) {
-      dispatch(toggleModal(id));
-    }
-  }, [id, modalId]);
+  }, [modalId]);
 
   const handleDeleteSearchParams = () => {
     console.log('delete');
