@@ -31,8 +31,8 @@ const RecordTable: FC<RecordTableProps> = ({
   tableCaption,
 }) => (
   <Table
-    searchParams={searchParams}
-    headers={tableHeaders}
+    tableSearchParams={searchParams}
+    tableHeaders={tableHeaders}
     tableData={records}
     onSort={onSort}
     sortOrder={sortOrder}
