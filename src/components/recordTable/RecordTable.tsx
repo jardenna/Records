@@ -13,6 +13,7 @@ interface RecordTableProps {
   values: Record<string, string>;
   valuesFromSearch: any;
   className?: string;
+  onClearAllSearch?: () => void;
 }
 
 const RecordTable: FC<RecordTableProps> = ({
@@ -25,6 +26,7 @@ const RecordTable: FC<RecordTableProps> = ({
   valuesFromSearch,
   className,
   tableHeaders,
+  onClearAllSearch,
 }) => (
   <Table
     searchParams={searchParams}
@@ -37,6 +39,7 @@ const RecordTable: FC<RecordTableProps> = ({
     values={values}
     className={className}
     valuesFromSearch={valuesFromSearch}
+    onClearAllSearch={onClearAllSearch}
   />
 );
 

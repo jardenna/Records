@@ -21,6 +21,7 @@ interface TableProps<T> {
   values: Record<string, string>;
   valuesFromSearch: any;
   className?: string;
+  onClearAllSearch?: () => void;
 }
 
 const Table = <T extends Record<string, any>>({
@@ -34,6 +35,7 @@ const Table = <T extends Record<string, any>>({
   onFilterRows,
   valuesFromSearch,
   values,
+  onClearAllSearch,
 }: TableProps<T>) => {
   const [showSearchField, setShowSearchField] = useState<string | null>(null);
   const containerRefs = useRef<any>(new Map());
@@ -83,7 +85,7 @@ const Table = <T extends Record<string, any>>({
             ))}
             <th className="detail-table-header">
               Details
-              <Button variant={BtnVariant.Ghost}>
+              <Button onClick={onClearAllSearch} variant={BtnVariant.Ghost}>
                 <Icon title="" name={IconName.Undo} />
               </Button>
             </th>

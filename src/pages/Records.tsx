@@ -43,7 +43,7 @@ const Records: FC = () => {
     origin: '',
   };
 
-  const { onCustomChange, values, onChange } = useFormValidation({
+  const { onCustomChange, values, onChange, onClearAll } = useFormValidation({
     initialState,
   });
 
@@ -102,6 +102,10 @@ const Records: FC = () => {
     onChange(event);
   };
 
+  const handleClearAllSearch = () => {
+    onClearAll();
+    setSearchParams();
+  };
   const handleSetRowsCount = (name: string, selectedOptions: Option) => {
     if (selectedOptions.value !== defaultOptionValue) {
       searchParams.set('limit', selectedOptions.value.toString());
@@ -164,6 +168,7 @@ const Records: FC = () => {
           values={values}
           valuesFromSearch={Object.fromEntries(searchParams)}
           tableHeaders={tableHeaders}
+          onClearAllSearch={handleClearAllSearch}
         />
       )}
 
