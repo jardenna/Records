@@ -12,6 +12,7 @@ import ErrorIcon from './ErrorIcon';
 import EyeIcon from './EyeIcon';
 import FilterIcon from './FilterIcon';
 import InfoIcon from './InfoIcon';
+import MoreIcon from './MoreIcon';
 import SubtractIcon from './SubtractIcon';
 import SuccessIcon from './SuccessIcon';
 import TrashIcon from './TrashIcon';
@@ -43,6 +44,7 @@ export enum IconName {
   Eye = 'eye',
   Filter = 'filter',
   Info = 'info',
+  More = 'more',
   Subtract = 'subtract',
   Success = 'success',
   Trash = 'trach',
@@ -64,6 +66,7 @@ const iconMapping = {
   eye: EyeIcon,
   filter: FilterIcon,
   info: InfoIcon,
+  more: MoreIcon,
   subtract: SubtractIcon,
   success: SuccessIcon,
   trach: TrashIcon,

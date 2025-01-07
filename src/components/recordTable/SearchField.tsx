@@ -1,11 +1,9 @@
 import { FC } from 'react';
 import useLanguage from '../../features/language/useLanguage';
-import { BtnVariant } from '../../types/enums';
 import { ChangeInputType } from '../../types/types';
-import Button from '../Button';
 import Input from '../formElements/Input';
-import Icon, { IconName } from '../icons/Icon';
-import VisuallyHidden from '../VisuallyHidden';
+import IconBtn from '../IconBtn';
+import { IconName } from '../icons/Icon';
 
 interface SearchFieldProps {
   onFilterRows: (e: ChangeInputType) => void;
@@ -26,20 +24,11 @@ const SearchField: FC<SearchFieldProps> = ({
 
   return (
     <>
-      <Button
-        variant={BtnVariant.Ghost}
+      <IconBtn
+        title={`${language.filter} ${language.title}`}
         onClick={() => onToggleSearchField(title)}
-      >
-        <VisuallyHidden>
-          {language.filter} {language[title]}
-        </VisuallyHidden>
-        <Icon
-          ariaHidden
-          name={IconName.Filter}
-          title={`${language.filter} ${language.title}`}
-        />
-        {value !== '' && <span className="dot" />}
-      </Button>
+        iconName={IconName.Filter}
+      />
       <Input
         className={`search-field ${showSearchField ? 'active' : ''}`}
         type="search"

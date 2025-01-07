@@ -1,8 +1,8 @@
 import { FC } from 'react';
 import useLanguage from '../../features/language/useLanguage';
-import Icon, { IconName } from '../icons/Icon';
-import VisuallyHidden from '../VisuallyHidden';
+import { IconName } from '../icons/Icon';
 import './_pagination.scss';
+import PaginationContent from './PaginationContent';
 import PaginationItem from './PaginationItem';
 import { PaginationActionEnum } from './usePagination';
 
@@ -35,14 +35,10 @@ const Pagination: FC<PaginationProps> = ({
           }
           disabled={currentPage === 1}
           content={
-            <>
-              <Icon
-                name={IconName.ChevronsLeft}
-                title={language.gotoFirstPage}
-                ariaHidden
-              />
-              <VisuallyHidden>{language.gotoFirstPage}</VisuallyHidden>
-            </>
+            <PaginationContent
+              iconName={IconName.ChevronsLeft}
+              title={language.gotoFirstPage}
+            />
           }
         />
 
@@ -51,14 +47,10 @@ const Pagination: FC<PaginationProps> = ({
           onSetCurrentPage={() => onPaginationAction(PaginationActionEnum.Prev)}
           disabled={currentPage === 1}
           content={
-            <>
-              <Icon
-                name={IconName.ChevronLeft}
-                title={language.gotoPrevPage}
-                ariaHidden
-              />
-              <VisuallyHidden>{language.gotoPrevPage}</VisuallyHidden>
-            </>
+            <PaginationContent
+              iconName={IconName.ChevronLeft}
+              title={language.gotoPrevPage}
+            />
           }
         />
 
@@ -69,10 +61,10 @@ const Pagination: FC<PaginationProps> = ({
             onPaginationAction(PaginationActionEnum.PrevPaginationItem)
           }
           content={
-            <>
-              <span aria-hidden="true">...</span>
-              <VisuallyHidden>{language.jumpPagesBack}</VisuallyHidden>
-            </>
+            <PaginationContent
+              iconName={IconName.More}
+              title={language.jumpPagesBack}
+            />
           }
         />
 
@@ -96,10 +88,10 @@ const Pagination: FC<PaginationProps> = ({
           }
           disabled={currentPage > totalPageCount - pageLimit}
           content={
-            <>
-              <span aria-hidden="true">...</span>
-              <VisuallyHidden>{language.jumpPagesForth}</VisuallyHidden>
-            </>
+            <PaginationContent
+              iconName={IconName.More}
+              title={language.jumpPagesForth}
+            />
           }
         />
 
@@ -108,14 +100,10 @@ const Pagination: FC<PaginationProps> = ({
           onSetCurrentPage={() => onPaginationAction(PaginationActionEnum.Next)}
           disabled={currentPage === totalPageCount}
           content={
-            <>
-              <VisuallyHidden>{language.gotoNextPage}</VisuallyHidden>
-              <Icon
-                name={IconName.ChevronRight}
-                title={language.gotoNextPage}
-                ariaHidden
-              />
-            </>
+            <PaginationContent
+              iconName={IconName.ChevronRight}
+              title={language.gotoNextPage}
+            />
           }
         />
 
@@ -125,14 +113,10 @@ const Pagination: FC<PaginationProps> = ({
           disabled={currentPage === totalPageCount}
           className="last-pagination-item"
           content={
-            <>
-              <VisuallyHidden>{language.gotoLastPage}</VisuallyHidden>
-              <Icon
-                name={IconName.ChevronsRight}
-                title={language.gotoLastPage}
-                ariaHidden
-              />
-            </>
+            <PaginationContent
+              iconName={IconName.ChevronsRight}
+              title={language.gotoLastPage}
+            />
           }
         />
       </ul>
