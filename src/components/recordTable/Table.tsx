@@ -11,23 +11,16 @@ import Icon, { IconName } from '../icons/Icon';
 import { PrimaryActionBtnProps } from '../modal/Modal';
 import VisuallyHidden from '../VisuallyHidden';
 import './_table.scss';
+import { BaseTableProps } from './RecordTable';
 import SearchField from './SearchField';
 import SortBtn from './SortBtn';
 
-interface TableProps<T> {
-  onFilterRows: (e: ChangeInputType) => void;
-  onSort: (field: keyof T) => void;
-  sortOrder: string;
-  tableCaption: string;
-  tableData: T[];
-  tableHeaders: string[];
+interface TableProps<T> extends BaseTableProps {
+  onFilterRows: (e: ChangeInputType) => void; // Optionally override
+  onSort: (field: keyof T) => void; // Generic field typing
+  tableData: T[]; // Specific to TableProps
   tableSearchParams: string;
-  values: Record<string, string>;
-  valuesFromSearch: any;
-  className?: string;
-  onClearAllSearch?: () => void;
 }
-
 const Table = <T extends Record<string, any>>({
   tableHeaders,
   tableData,

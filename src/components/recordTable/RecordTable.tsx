@@ -3,11 +3,7 @@ import { Records } from '../../app/api/apiTypes';
 import { ChangeInputType } from '../../types/types';
 import Table from './Table';
 
-interface RecordTableProps {
-  onFilterRecords: (e: ChangeInputType) => void;
-  onSort: (field: string) => void;
-  records: Records[];
-  searchParams: string;
+export interface BaseTableProps {
   sortOrder: string;
   tableCaption: string;
   tableHeaders: string[];
@@ -15,6 +11,13 @@ interface RecordTableProps {
   valuesFromSearch: any;
   className?: string;
   onClearAllSearch?: () => void;
+}
+
+interface RecordTableProps extends BaseTableProps {
+  onFilterRecords: (e: ChangeInputType) => void; // Optionally override
+  onSort: (field: string) => void; // Specific to RecordTableProps
+  records: Records[]; // Specific to RecordTableProps
+  searchParams: string;
 }
 
 const RecordTable: FC<RecordTableProps> = ({
