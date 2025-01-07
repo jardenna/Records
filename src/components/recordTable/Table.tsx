@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { Link, useSearchParams } from 'react-router';
-import { useAppDispatch } from '../../app/hooks';
-import { toggleModal } from '../../features/modalSlice';
+import { useAppDispatch, useAppSelector } from '../../app/hooks';
+import { selectModalId, toggleModal } from '../../features/modalSlice';
 import useClickOutside from '../../hooks/useClickOutside';
 import { BtnVariant, MainPath } from '../../types/enums';
 import { ChangeInputType } from '../../types/types';
@@ -41,6 +41,7 @@ const Table = <T extends Record<string, any>>({
   onClearAllSearch,
   tableCaption,
 }: TableProps<T>) => {
+  const modalId = useAppSelector(selectModalId);
   const [searchParams, setSearchParams] = useSearchParams();
   const [showSearchField, setShowSearchField] = useState<string | null>(null);
   const containerRefs = useRef<any>(new Map());
@@ -57,16 +58,17 @@ const Table = <T extends Record<string, any>>({
   const id = searchParams.get('id');
 
   useEffect(() => {
+    if (!modalId) {
+      searchParams.delete('id');
+      setSearchParams(searchParams);
+    }
     if (id) {
       dispatch(toggleModal(id));
     }
-  }, [id]);
+  }, [id, modalId]);
 
   const handleDeleteSearchParams = () => {
-    if (id) {
-      searchParams.delete('id');
-      //  setSearchParams(searchParams);
-    }
+    console.log('delete');
   };
 
   const primaryActionBtn: PrimaryActionBtnProps = {
@@ -132,6 +134,12 @@ const Table = <T extends Record<string, any>>({
                     to={`/${MainPath.Details}/${data.id}${tableSearchParams}`}
                   >
                     Details
+                  </Link>
+                  <Link
+                    className="btn btn-primary"
+                    to={`/${MainPath.Update}/${data.id}`}
+                  >
+                    Edit
                   </Link>
                   <Button onClick={() => handleSetSearchParams(data.id)}>
                     Delete
