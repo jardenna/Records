@@ -134,7 +134,7 @@ textarea {
   }
 
   &:focus-within {
-    outline: 2px solid rgba($color-blue, 70%);
+    @include outline(rgba($color-blue, 70%));
   }
 
   .form-label-container {

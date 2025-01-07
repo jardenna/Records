@@ -45,7 +45,8 @@ a[class^='btn-'],
   }
 
   &:focus-visible {
-    outline: 2px solid $color-primary-btn-hover;
+    @include outline($color-primary-btn-hover);
+
     border: 1px solid $color-white;
   }
 }
@@ -71,12 +72,8 @@ a[class^='btn-'],
     }
   }
 
-  &:hover {
-    outline: 1px solid currentcolor;
-  }
-
   &:focus-visible {
-    outline: 2px solid currentcolor;
+    @include outline(currentcolor);
   }
 }
 
