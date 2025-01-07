@@ -162,9 +162,9 @@ const Records: FC = () => {
         <RecordTable
           records={records.results}
           onSort={handleSort}
-          searchParams={location.search}
+          tableSearchParams={location.search}
           sortOrder={sortOrder}
-          onFilterRecords={handleFilterRecords}
+          onFilterRows={handleFilterRecords}
           values={values}
           valuesFromSearch={Object.fromEntries(searchParams)}
           tableHeaders={tableHeaders}

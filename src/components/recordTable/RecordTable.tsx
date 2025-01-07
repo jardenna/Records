@@ -4,9 +4,11 @@ import { ChangeInputType } from '../../types/types';
 import Table from './Table';
 
 export interface BaseTableProps {
+  onFilterRows: (e: ChangeInputType) => void; // Optionally override
   sortOrder: string;
   tableCaption: string;
   tableHeaders: string[];
+  tableSearchParams: string;
   values: Record<string, string>;
   valuesFromSearch: any;
   className?: string;
@@ -14,18 +16,16 @@ export interface BaseTableProps {
 }
 
 interface RecordTableProps extends BaseTableProps {
-  onFilterRecords: (e: ChangeInputType) => void; // Optionally override
-  onSort: (field: string) => void; // Specific to RecordTableProps
-  records: Records[]; // Specific to RecordTableProps
-  searchParams: string;
+  onSort: (field: string) => void;
+  records: Records[];
 }
 
 const RecordTable: FC<RecordTableProps> = ({
   records,
   onSort,
-  searchParams,
+  tableSearchParams,
   sortOrder,
-  onFilterRecords,
+  onFilterRows,
   values,
   valuesFromSearch,
   className,
@@ -34,12 +34,12 @@ const RecordTable: FC<RecordTableProps> = ({
   tableCaption,
 }) => (
   <Table
-    tableSearchParams={searchParams}
+    tableSearchParams={tableSearchParams}
     tableHeaders={tableHeaders}
     tableData={records}
     onSort={onSort}
     sortOrder={sortOrder}
-    onFilterRows={onFilterRecords}
+    onFilterRows={onFilterRows}
     values={values}
     className={className}
     valuesFromSearch={valuesFromSearch}

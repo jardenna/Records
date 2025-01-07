@@ -4,7 +4,6 @@ import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { selectModalId, toggleModal } from '../../features/modalSlice';
 import useClickOutside from '../../hooks/useClickOutside';
 import { BtnVariant, MainPath } from '../../types/enums';
-import { ChangeInputType } from '../../types/types';
 import Button from '../Button';
 import DeleteRecordModal from '../DeleteRecordModal';
 import Icon, { IconName } from '../icons/Icon';
@@ -16,10 +15,8 @@ import SearchField from './SearchField';
 import SortBtn from './SortBtn';
 
 interface TableProps<T> extends BaseTableProps {
-  onFilterRows: (e: ChangeInputType) => void; // Optionally override
   onSort: (field: keyof T) => void; // Generic field typing
   tableData: T[]; // Specific to TableProps
-  tableSearchParams: string;
 }
 const Table = <T extends Record<string, any>>({
   tableHeaders,
