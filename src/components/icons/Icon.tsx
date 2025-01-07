@@ -12,6 +12,7 @@ import FilterIcon from './FilterIcon';
 import InfoIcon from './InfoIcon';
 import SubtractIcon from './SubtractIcon';
 import SuccessIcon from './SuccessIcon';
+import UndoIcon from './UndoIcon';
 import WarningIcon from './WarningIcon';
 
 export interface IconDefaultProps {
@@ -39,6 +40,7 @@ export enum IconName {
   Info = 'info',
   Subtract = 'subtract',
   Success = 'success',
+  Undo = 'undo',
   Warning = 'warning',
 }
 
@@ -56,6 +58,7 @@ const iconMapping = {
   info: InfoIcon,
   subtract: SubtractIcon,
   success: SuccessIcon,
+  undo: UndoIcon,
   warning: WarningIcon,
 };
 

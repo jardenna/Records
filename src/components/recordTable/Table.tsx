@@ -1,8 +1,10 @@
 import { useRef, useState } from 'react';
 import { Link } from 'react-router';
 import useClickOutside from '../../hooks/useClickOutside';
-import { MainPath } from '../../types/enums';
+import { BtnVariant, MainPath } from '../../types/enums';
 import { ChangeInputType } from '../../types/types';
+import Button from '../Button';
+import Icon, { IconName } from '../icons/Icon';
 import VisuallyHidden from '../VisuallyHidden';
 import './_table.scss';
 import SearchField from './SearchField';
@@ -79,7 +81,12 @@ const Table = <T extends Record<string, any>>({
                 </div>
               </th>
             ))}
-            <th className="detail-table-header">Details</th>
+            <th className="detail-table-header">
+              Details
+              <Button variant={BtnVariant.Ghost}>
+                <Icon title="" name={IconName.Undo} />
+              </Button>
+            </th>
           </tr>
         </thead>
         {tableData.length > 0 ? (
