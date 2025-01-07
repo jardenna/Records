@@ -160,7 +160,7 @@ const Records: FC = () => {
 
       {records && (
         <RecordTable
-          records={records.results}
+          tableData={records.results}
           onSort={handleSort}
           tableSearchParams={location.search}
           sortOrder={sortOrder}

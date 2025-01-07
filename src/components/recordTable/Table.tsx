@@ -97,7 +97,9 @@ const Table = <T extends Record<string, any>>({
                     <SearchField
                       onFilterRows={onFilterRows}
                       title={header}
-                      value={valuesFromSearch[header] || values[header]}
+                      value={
+                        (valuesFromSearch[header] as string) || values[header]
+                      }
                       onToggleSearchField={handleToggleSearchField}
                       showSearchField={showSearchField === header}
                     />

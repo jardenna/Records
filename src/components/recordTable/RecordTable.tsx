@@ -10,18 +10,18 @@ export interface BaseTableProps {
   tableHeaders: string[];
   tableSearchParams: string;
   values: Record<string, string>;
-  valuesFromSearch: any;
+  valuesFromSearch: Record<string, string | number | boolean>;
   className?: string;
   onClearAllSearch?: () => void;
 }
 
 interface RecordTableProps extends BaseTableProps {
   onSort: (field: string) => void;
-  records: Records[];
+  tableData: Records[];
 }
 
 const RecordTable: FC<RecordTableProps> = ({
-  records,
+  tableData,
   onSort,
   tableSearchParams,
   sortOrder,
@@ -36,7 +36,7 @@ const RecordTable: FC<RecordTableProps> = ({
   <Table
     tableSearchParams={tableSearchParams}
     tableHeaders={tableHeaders}
-    tableData={records}
+    tableData={tableData}
     onSort={onSort}
     sortOrder={sortOrder}
     onFilterRows={onFilterRows}
