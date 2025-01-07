@@ -169,6 +169,7 @@ const Records: FC = () => {
           valuesFromSearch={Object.fromEntries(searchParams)}
           tableHeaders={tableHeaders}
           onClearAllSearch={handleClearAllSearch}
+          tableCaption={language.albumCollection}
         />
       )}
 

@@ -11,12 +11,12 @@ import SearchField from './SearchField';
 import SortBtn from './SortBtn';
 
 interface TableProps<T> {
-  caption: string;
   headers: string[];
   onFilterRows: (e: ChangeInputType) => void;
   onSort: (field: keyof T) => void;
   searchParams: string;
   sortOrder: string;
+  tableCaption: string;
   tableData: T[];
   values: Record<string, string>;
   valuesFromSearch: any;
@@ -25,7 +25,6 @@ interface TableProps<T> {
 }
 
 const Table = <T extends Record<string, any>>({
-  caption,
   headers,
   tableData,
   onSort,
@@ -36,6 +35,7 @@ const Table = <T extends Record<string, any>>({
   valuesFromSearch,
   values,
   onClearAllSearch,
+  tableCaption,
 }: TableProps<T>) => {
   const [showSearchField, setShowSearchField] = useState<string | null>(null);
   const containerRefs = useRef<any>(new Map());
@@ -49,7 +49,7 @@ const Table = <T extends Record<string, any>>({
   return (
     <div className={`table-container ${className}`}>
       <table>
-        <VisuallyHidden as="caption">{caption}</VisuallyHidden>
+        <VisuallyHidden as="caption">{tableCaption}</VisuallyHidden>
         <thead>
           <tr>
             {headers.map((header) => (

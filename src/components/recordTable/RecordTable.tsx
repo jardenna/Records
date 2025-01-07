@@ -9,6 +9,7 @@ interface RecordTableProps {
   records: Records[];
   searchParams: string;
   sortOrder: string;
+  tableCaption: string;
   tableHeaders: string[];
   values: Record<string, string>;
   valuesFromSearch: any;
@@ -27,10 +28,10 @@ const RecordTable: FC<RecordTableProps> = ({
   className,
   tableHeaders,
   onClearAllSearch,
+  tableCaption,
 }) => (
   <Table
     searchParams={searchParams}
-    caption="Records collection"
     headers={tableHeaders}
     tableData={records}
     onSort={onSort}
@@ -40,6 +41,7 @@ const RecordTable: FC<RecordTableProps> = ({
     className={className}
     valuesFromSearch={valuesFromSearch}
     onClearAllSearch={onClearAllSearch}
+    tableCaption={tableCaption}
   />
 );
 
