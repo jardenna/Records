@@ -1,7 +1,8 @@
 import { FC } from 'react';
 import { Link, useLocation, useNavigate, useParams } from 'react-router';
 import { useAppDispatch } from '../../app/hooks';
-import DeleteRecordBtn from '../../components/DeleteRecordBtn';
+import Button from '../../components/Button';
+import DeleteRecordModal from '../../components/DeleteRecordModal';
 import MetaTags from '../../components/MetaTags';
 import {
   PrimaryActionBtnProps,
@@ -114,12 +115,16 @@ const DetailsPage: FC = () => {
           </Link>
 
           {recordId && (
-            <DeleteRecordBtn
-              recordId={recordId}
-              primaryActionBtn={primaryActionBtn}
-              secondaryActionBtn={secondaryActionBtn}
-              onOpenModal={handleOpenModal}
-            />
+            <>
+              <Button className="btn-danger" onClick={handleOpenModal}>
+                {language.deleteAlbum}
+              </Button>
+              <DeleteRecordModal
+                modalId={recordId}
+                primaryActionBtn={primaryActionBtn}
+                secondaryActionBtn={secondaryActionBtn}
+              />
+            </>
           )}
         </FooterComp>
       </section>
