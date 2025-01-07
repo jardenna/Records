@@ -13,7 +13,7 @@ import SortBtn from './SortBtn';
 interface TableProps<T> {
   caption: string;
   headers: string[];
-  onFilterRecords: (e: ChangeInputType) => void;
+  onFilterRows: (e: ChangeInputType) => void;
   onSort: (field: keyof T) => void;
   searchParams: string;
   sortOrder: string;
@@ -31,7 +31,7 @@ const Table = <T extends Record<string, any>>({
   searchParams,
   sortOrder,
   className = '',
-  onFilterRecords,
+  onFilterRows,
   valuesFromSearch,
   values,
 }: TableProps<T>) => {
@@ -71,7 +71,7 @@ const Table = <T extends Record<string, any>>({
 
                   {values[header] !== undefined && (
                     <SearchField
-                      onFilterRecords={onFilterRecords}
+                      onFilterRows={onFilterRows}
                       title={header}
                       value={valuesFromSearch[header] || values[header]}
                       onToggleSearchField={handleToggleSearchField}

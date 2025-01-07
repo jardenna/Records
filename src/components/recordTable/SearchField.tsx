@@ -8,7 +8,7 @@ import Icon, { IconName } from '../icons/Icon';
 import VisuallyHidden from '../VisuallyHidden';
 
 interface SearchFieldProps {
-  onFilterRecords: (e: ChangeInputType) => void;
+  onFilterRows: (e: ChangeInputType) => void;
   onToggleSearchField: (header: string) => void;
   showSearchField: boolean;
   title: string;
@@ -19,7 +19,7 @@ const SearchField: FC<SearchFieldProps> = ({
   title,
   value,
   showSearchField,
-  onFilterRecords,
+  onFilterRows,
   onToggleSearchField,
 }) => {
   const { language } = useLanguage();
@@ -47,7 +47,7 @@ const SearchField: FC<SearchFieldProps> = ({
         id={title}
         placeholder="Search"
         value={value}
-        onChange={onFilterRecords}
+        onChange={onFilterRows}
         labelText="Search"
         inputHasNoLabel
       />
