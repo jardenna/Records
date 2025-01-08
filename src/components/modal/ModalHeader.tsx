@@ -1,7 +1,7 @@
 import { FC } from 'react';
-import HeaderComp from '../../layout/header/HeaderComp';
-import BtnClose from '../BtnClose';
 import useLanguage from '../../features/language/useLanguage';
+import LayoutElement from '../../layout/LayoutElement';
+import BtnClose from '../BtnClose';
 
 interface ModalHeaderProps {
   modalHeadertext: string;
@@ -16,14 +16,14 @@ const ModalHeader: FC<ModalHeaderProps> = ({
 }) => {
   const { language } = useLanguage();
   return (
-    <HeaderComp className="modal-header" ariaLabel="Dialog">
+    <LayoutElement as="header" className="modal-header" ariaLabel="Dialog">
       <h2 className="modal-title" id="modal-title">
         {modalHeadertext}
       </h2>
       {showCloseIcon && (
         <BtnClose onClick={onCloseModal} ariaLabel={language.closeDialog} />
       )}
-    </HeaderComp>
+    </LayoutElement>
   );
 };
 

@@ -15,7 +15,6 @@ import {
   useGetRecordByIdQuery,
 } from '../../features/records/recordsApiSlice';
 import LayoutElement from '../../layout/LayoutElement';
-import HeaderComp from '../../layout/header/HeaderComp';
 import { MainPath } from '../../types/enums';
 import DetailsContent from './DetailsContent';
 import './_details.scss';
@@ -63,10 +62,14 @@ const DetailsPage: FC = () => {
         title={language.albumDetails}
       />
       <section className="details-img-container">
-        <HeaderComp className="details-header" ariaLabel="Record details">
+        <LayoutElement
+          as="header"
+          className="details-header"
+          ariaLabel="Record details"
+        >
           <h2 className="details-artist">{selectedRecord.artist}</h2>
           <span className="details-title"> / {selectedRecord.title}</span>
-        </HeaderComp>
+        </LayoutElement>
         <img src="/images/default.png" alt="" className="block-img" />
       </section>
       <section className="details-content-container">

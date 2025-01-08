@@ -2,7 +2,7 @@ import { FC } from 'react';
 import { isRouteErrorResponse, useRouteError } from 'react-router';
 import MetaTags from '../../components/MetaTags';
 import useLanguage from '../../features/language/useLanguage';
-import HeaderComp from '../../layout/header/HeaderComp';
+import LayoutElement from '../../layout/LayoutElement';
 import './_error-page.scss';
 
 const ErrorPage: FC = () => {
@@ -22,7 +22,7 @@ const ErrorPage: FC = () => {
         keywords="records, music, artists"
         title={language.error}
       />
-      <HeaderComp ariaLabel="Error">
+      <LayoutElement as="header" ariaLabel={language.error}>
         <img
           className="emoji"
           src="/images/sad_smiley.png"
@@ -30,7 +30,7 @@ const ErrorPage: FC = () => {
         />
 
         <h1>ErrorText</h1>
-      </HeaderComp>
+      </LayoutElement>
 
       <h2>{error.data}</h2>
     </main>
