@@ -19,10 +19,6 @@ $animation-timing-function: ease-in-out;
   }
 }
 
-@mixin rotate($deg: 45deg) {
-  transform: rotate($deg);
-}
-
 @mixin transition($what: all, $time: 0.3s, $how: $animation-timing-function) {
   transition: $what $time $how;
 
@@ -40,29 +36,6 @@ $animation-timing-function: ease-in-out;
 
   @media (prefers-reduced-motion) {
     animation-name: none;
-  }
-}
-
-@mixin chevron($size: 7px, $weight: 1px, $color: $color-gray-dark, $dir: up) {
-  width: $size;
-  height: $size;
-  border: $weight solid $color;
-  display: inline-block;
-
-  @include rotate(45deg);
-
-  @if $dir == up {
-    border-bottom: transparent;
-    border-right: transparent;
-  } @else if $dir == down {
-    border-top: transparent;
-    border-left: transparent;
-  } @else if $dir == right {
-    border-bottom: transparent;
-    border-left: transparent;
-  } @else if $dir == left {
-    border-top: transparent;
-    border-right: transparent;
   }
 }
 
