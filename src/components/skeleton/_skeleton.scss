@@ -1,0 +1,73 @@
+@use '../../scss/common' as *;
+
+.skeleton-container {
+  display: flex;
+  gap: 20px;
+  width: 100%;
+}
+
+.skeleton-content {
+  display: flex;
+  gap: 8px;
+  width: 100%;
+  flex-direction: column;
+}
+
+.skeleton {
+  background-color: $color-gray-500;
+  width: 100%;
+  border-radius: 4px;
+  display: flex;
+
+  &.skeleton-heading {
+    height: rem(28px);
+    margin-bottom: 4px;
+  }
+
+  &.skeleton-paragraph {
+    height: rem(12px);
+
+    &:last-of-type {
+      width: 80%;
+    }
+  }
+
+  &.skeleton-paragraph-small {
+    height: rem(8px);
+  }
+
+  &.skeleton-img {
+    height: rem(70px);
+    width: rem(70px);
+  }
+
+  &.skeleton-img-rounded {
+    height: rem(24px);
+    width: rem(24px);
+    border-radius: 50%;
+  }
+
+  @include animation(
+    skeleton-animation,
+    $duration: 1s,
+    $timing: linear infinite alternate
+  );
+}
+
+@keyframes skeleton-animation {
+  0% {
+    opacity: 0.2;
+  }
+
+  100% {
+    opacity: 0.4;
+  }
+}
+
+.skeleton-list {
+  display: flex;
+  gap: 30px;
+  padding-right: 30px;
+  flex-direction: column;
+  margin-top: 20px;
+}
