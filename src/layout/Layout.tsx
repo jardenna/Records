@@ -1,8 +1,9 @@
 import { FC, ReactNode } from 'react';
 import { Outlet } from 'react-router';
+import SkipLink from '../components/skipLinks/SkipLinks';
+import useLanguage from '../features/language/useLanguage';
 import FooterComp from './FooterComp';
 import Header from './header/Header';
-import useLanguage from '../features/language/useLanguage';
 
 export interface LayoutElementProps {
   ariaLabel: string;
@@ -14,8 +15,9 @@ const Layout: FC = () => {
   const { language } = useLanguage();
   return (
     <div className="main-container">
+      <SkipLink />
       <Header />
-      <main>
+      <main id="main">
         <div className="container">
           <Outlet />
         </div>
