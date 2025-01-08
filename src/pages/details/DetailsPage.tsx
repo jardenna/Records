@@ -67,8 +67,8 @@ const DetailsPage: FC = () => {
           className="details-header"
           ariaLabel="Record details"
         >
-          <h2 className="details-artist">{selectedRecord.artist}</h2>
-          <span className="details-title"> / {selectedRecord.title}</span>
+          <h2 className="details-artist">{selectedRecord.artist} / </h2>
+          <span className="details-title">{selectedRecord.title}</span>
         </LayoutElement>
         <img src="/images/default.png" alt="" className="block-img" />
       </section>
