@@ -2,8 +2,8 @@ import { FC, ReactNode } from 'react';
 import { Outlet } from 'react-router';
 import SkipLink from '../components/skipLinks/SkipLinks';
 import useLanguage from '../features/language/useLanguage';
-import FooterComp from './FooterComp';
 import Header from './header/Header';
+import LayoutElement from './LayoutElement';
 
 export interface LayoutElementProps {
   ariaLabel: string;
@@ -22,9 +22,9 @@ const Layout: FC = () => {
           <Outlet />
         </div>
       </main>
-      <FooterComp className="main-footer" ariaLabel={language.main}>
+      <LayoutElement className="main-footer" ariaLabel={language.main}>
         footer
-      </FooterComp>
+      </LayoutElement>
     </div>
   );
 };

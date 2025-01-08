@@ -14,7 +14,7 @@ import {
   useDeleteRecordMutation,
   useGetRecordByIdQuery,
 } from '../../features/records/recordsApiSlice';
-import FooterComp from '../../layout/FooterComp';
+import LayoutElement from '../../layout/LayoutElement';
 import HeaderComp from '../../layout/header/HeaderComp';
 import { MainPath } from '../../types/enums';
 import DetailsContent from './DetailsContent';
@@ -105,7 +105,7 @@ const DetailsPage: FC = () => {
             isPrice={!!selectedRecord.price?.trim()}
           />
         </div>
-        <FooterComp className="details-footer" ariaLabel="Album Details">
+        <LayoutElement className="details-footer" ariaLabel="Album Details">
           <Link
             id={recordId}
             className="btn-primary"
@@ -126,7 +126,7 @@ const DetailsPage: FC = () => {
               />
             </>
           )}
-        </FooterComp>
+        </LayoutElement>
       </section>
     </article>
   ) : (

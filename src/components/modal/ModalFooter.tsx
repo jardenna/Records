@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import FooterComp from '../../layout/FooterComp';
+import LayoutElement from '../../layout/LayoutElement';
 import Button from '../Button';
 import { PrimaryActionBtnProps, SecondaryActionBtnProps } from './Modal';
 
@@ -22,7 +22,7 @@ const ModalFooter: FC<modalFooterProps> = ({
   };
 
   return (
-    <FooterComp className="modal-footer" ariaLabel="dialog">
+    <LayoutElement className="modal-footer" ariaLabel="dialog">
       <Button
         onClick={handlePrimaryBtnClick}
         type={primaryActionBtn.buttonType}
@@ -38,7 +38,7 @@ const ModalFooter: FC<modalFooterProps> = ({
           {secondaryActionBtn.label}
         </Button>
       )}
-    </FooterComp>
+    </LayoutElement>
   );
 };
 

@@ -1,6 +1,6 @@
 import { FC, ReactNode } from 'react';
 import useLanguage from '../../../features/language/useLanguage';
-import FooterComp from '../../../layout/FooterComp';
+import LayoutElement from '../../../layout/LayoutElement';
 import { FormEventType } from '../../../types/types';
 import Button from '../../Button';
 import './_form.scss';
@@ -25,11 +25,11 @@ const Form: FC<FormProps> = ({
   return (
     <form onSubmit={onSubmit} noValidate className={className}>
       {children}
-      <FooterComp className="form-footer" ariaLabel={language.form}>
+      <LayoutElement className="form-footer" ariaLabel={language.form}>
         <Button type="submit" isLoading={isLoading}>
           {labelText}
         </Button>
-      </FooterComp>
+      </LayoutElement>
     </form>
   );
 };
