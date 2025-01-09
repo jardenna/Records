@@ -162,7 +162,7 @@ const CreateForm: FC<CreateFormProps> = ({
               id="info"
               value={values.info}
               onChange={onChange}
-              labelText={language.origin}
+              labelText={language.niceToKnow}
             />
           </div>
 

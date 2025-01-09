@@ -3,13 +3,13 @@ import { useLocation, useNavigate, useParams } from 'react-router';
 import { useAppDispatch } from '../app/hooks';
 import Button from '../components/Button';
 import DeleteRecordModal from '../components/DeleteRecordModal';
-import MetaTags from '../components/MetaTags';
-import DetailLink from '../components/details/DetailLink';
 import DetailsContent from '../components/details/DetailsContent';
+import MetaTags from '../components/MetaTags';
 import {
   PrimaryActionBtnProps,
   SecondaryActionBtnProps,
 } from '../components/modal/Modal';
+import DetailLink from '../components/shared/DetailLink';
 import RecordImg from '../components/shared/recordImg/RecordImg';
 import useLanguage from '../features/language/useLanguage';
 import { toggleModal } from '../features/modalSlice';
@@ -71,10 +71,6 @@ const DetailsPage: FC = () => {
       <section className="details-content-container">
         <div>
           <DetailsContent
-            text={selectedRecord.origin?.trim() || language.noInfo}
-            label={language.origin}
-          />
-          <DetailsContent
             text={selectedRecord.prodYear}
             label={language.prodYear}
           />
@@ -97,6 +93,14 @@ const DetailsPage: FC = () => {
           <DetailsContent
             text={selectedRecord.numOfRecords || 1}
             label={language.numOfRecords}
+          />
+          <DetailsContent
+            text={selectedRecord.origin?.trim() || language.noInfo}
+            label={language.origin}
+          />
+          <DetailsContent
+            text={selectedRecord.info?.trim() || language.noInfo}
+            label={language.niceToKnow}
           />
           <DetailsContent
             text={`${selectedRecord.price?.trim()}` || language.noInfo}
