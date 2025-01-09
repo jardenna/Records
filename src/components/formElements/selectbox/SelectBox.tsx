@@ -6,6 +6,7 @@ import Select, {
   SelectComponentsConfig,
   SingleValue,
 } from 'react-select';
+import variables from '../../../scss/variables.module.scss';
 import FormLabel from '../FormLabel';
 import './_select-box.scss';
 
@@ -57,6 +58,8 @@ const SelectBox: FC<SelectBoxProps> = ({
     }
   };
 
+  const { colorBackground, colorPrimary } = variables;
+
   return (
     <div className="input-container">
       <FormLabel
@@ -71,9 +74,9 @@ const SelectBox: FC<SelectBoxProps> = ({
             ...theme,
             colors: {
               ...theme.colors,
-              primary: '#0b6b7c',
-              primary25: ' #f5f5f3',
-              primary50: '#f5f5f3',
+              primary: colorPrimary,
+              primary25: colorBackground,
+              primary50: colorBackground,
             },
           })}
           name={name}
