@@ -15,7 +15,7 @@ const RecordList: FC<RecordListProps> = ({ records }) => {
   const { language } = useLanguage();
 
   return (
-    <ul className="record-list">
+    <ul className="record-list grid three-col">
       {records.map((record) => (
         <li className="record-item" key={record.id}>
           <RecordImg
@@ -24,7 +24,10 @@ const RecordList: FC<RecordListProps> = ({ records }) => {
             Subtitle={record.title}
             alt=""
           />
-          <LayoutElement ariaLabel={language.albumInfo}>
+          <LayoutElement
+            ariaLabel={language.albumInfo}
+            className="record-img-footer"
+          >
             <DetailLink
               btnVariant={BtnVariant.Secondary}
               to={`/${MainPath.Details}/${record.id}`}

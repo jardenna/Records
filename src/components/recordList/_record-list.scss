@@ -2,7 +2,13 @@
 
 .record-list {
   .record-item {
-    color: #fff;
+    color: $color-white;
+    width: 100%;
+    min-width: rem(450px);
+
+    .btn {
+      width: auto;
+    }
 
     &:nth-child(1) {
       background-color: $color-blue;
@@ -24,8 +30,8 @@
       background-color: $color-gray-light;
       color: $color-black;
 
-      button {
-        color: $color-black;
+      .btn-secondary {
+        color: $color-primary-text;
       }
     }
 
@@ -33,5 +39,17 @@
       background-color: $color-blue;
       margin-right: 15px;
     }
+  }
+
+  .record-img-footer {
+    display: flex;
+    justify-content: flex-end;
+    padding: 16px;
+    padding-top: 0;
+  }
+
+  .record-img-container {
+    padding: 12px;
+    padding-top: 20px;
   }
 }
