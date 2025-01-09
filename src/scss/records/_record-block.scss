@@ -1,17 +1,11 @@
 ﻿@use '../globals' as *;
 
-.index-block-footer {
+.block-container {
   .btn-primary {
     background: none;
     text-align: right;
-    font-size: rem(14px);
+    font-size: 14px;
     font-weight: 200;
-  }
-}
-
-.block-container {
-  .flex-item {
-    margin: 0 15px;
   }
 
   .block-item {
@@ -20,29 +14,6 @@
     color: #fff;
     padding: 25px;
     margin-bottom: 30px;
-
-    @include max-size($small) {
-      min-width: 100%;
-      margin: 10px 0;
-    }
-
-    .index-block-btn {
-      margin-right: 30px;
-    }
-
-    .index-block-btn,
-    .index-block-danger {
-      background: none;
-      font-weight: 300;
-      min-width: 30px;
-      padding: 0;
-      max-width: 40px;
-      font-size: rem(14px);
-
-      &:hover {
-        text-decoration: underline;
-      }
-    }
 
     &:nth-child(1) {
       background-color: $color-blue;
@@ -61,7 +32,7 @@
     }
 
     &:nth-child(5) {
-      background-color: $color-background;
+      background-color: $color-gray-light;
       color: $color-black;
 
       button {
@@ -75,27 +46,22 @@
     }
 
     h1 {
-      font-size: rem(24px);
+      font-size: 25px;
       font-weight: 200;
       margin: 0;
     }
 
     h2 {
-      font-size: rem(18px);
+      font-size: 18px;
       font-weight: 200;
     }
   }
+}
 
-  .content-footer {
-    text-align: right;
-    margin-top: 10px;
+.block-img {
+  text-align: center;
 
-    @include max-size($small) {
-      text-align: center;
-    }
-
-    .popup-wrapper {
-      margin-right: 10px;
-    }
+  img {
+    max-width: 300px;
   }
 }

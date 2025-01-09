@@ -1,10 +1,10 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { Link, useSearchParams } from 'react-router';
+import { useSearchParams } from 'react-router';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import useLanguage from '../../features/language/useLanguage';
 import { selectModalId, toggleModal } from '../../features/modalSlice';
 import useClickOutside from '../../hooks/useClickOutside';
-import { MainPath } from '../../types/enums';
+import DetailLink from '../../pages/details/DetailLink';
 import DeleteRecordModal from '../DeleteRecordModal';
 import IconBtn from '../IconBtn';
 import IconContent from '../IconContent';
@@ -131,32 +131,24 @@ const Table = <T extends Record<string, any>>({
                 ))}
                 <td className="detail-table-header">
                   <div className="action-container">
-                    <Link
-                      className="btn btn-ghost"
-                      to={`/${MainPath.Details}/${data.id}${tableSearchParams}`}
-                    >
+                    <DetailLink params={tableSearchParams} recordId={data.id}>
                       <IconContent
                         iconName={IconName.Eye}
                         title={language.albumDetails}
                       />
-                    </Link>
-                    <Link
-                      className="btn btn-ghost"
-                      to={`/${MainPath.Update}/${data.id}`}
-                    >
+                    </DetailLink>
+                    <DetailLink recordId={data.id}>
                       <IconContent
                         iconName={IconName.Edit}
                         title={language.updateAlbum}
                       />
-                    </Link>
-
+                    </DetailLink>
                     <IconBtn
                       iconName={IconName.Trash}
                       className="danger"
                       title={language.deleteAlbum}
                       onClick={() => handleSetSearchParams(data.id)}
                     />
-
                     {id && id === data.id && (
                       <DeleteRecordModal
                         modalId={id}
