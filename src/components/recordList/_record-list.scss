@@ -1,19 +1,8 @@
 @use '../../scss/globals' as *;
 
-.block-container {
-  .btn-primary {
-    background: none;
-    text-align: right;
-    font-size: 14px;
-    font-weight: 200;
-  }
-
-  .block-item {
-    min-width: 380px;
-    position: relative;
+.record-list {
+  .record-item {
     color: #fff;
-    padding: 25px;
-    margin-bottom: 30px;
 
     &:nth-child(1) {
       background-color: $color-blue;

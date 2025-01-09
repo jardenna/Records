@@ -51,6 +51,20 @@ a[class^='btn-'],
   }
 }
 
+.btn-secondary {
+  background-color: transparent;
+
+  &:hover {
+    background-color: $color-primary-btn-hover;
+  }
+
+  &:focus-visible {
+    @include outline($color-primary-btn-hover);
+
+    border: 1px solid $color-white;
+  }
+}
+
 .btn-danger {
   background-color: $color-danger;
 

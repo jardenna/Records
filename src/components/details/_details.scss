@@ -6,6 +6,11 @@
   align-items: center;
   gap: 40px;
 
+  .record-img-container {
+    background-color: $color-blue;
+    color: $color-white;
+  }
+
   .details-label {
     min-width: rem(200px);
     font-weight: bold;

@@ -2,7 +2,7 @@ import { FC } from 'react';
 import { Records } from '../../app/api/apiTypes';
 import useLanguage from '../../features/language/useLanguage';
 import LayoutElement from '../../layout/LayoutElement';
-import { MainPath } from '../../types/enums';
+import { BtnVariant, MainPath } from '../../types/enums';
 import DetailLink from '../shared/DetailLink';
 import RecordImg from '../shared/recordImg/RecordImg';
 import './_record-list.scss';
@@ -15,9 +15,9 @@ const RecordList: FC<RecordListProps> = ({ records }) => {
   const { language } = useLanguage();
 
   return (
-    <ul className="block-container">
+    <ul className="record-list">
       {records.map((record) => (
-        <li className="block-item" key={record.id}>
+        <li className="record-item" key={record.id}>
           <RecordImg
             src="/images/default.png"
             title={record.artist}
@@ -25,7 +25,10 @@ const RecordList: FC<RecordListProps> = ({ records }) => {
             alt=""
           />
           <LayoutElement ariaLabel={language.albumInfo}>
-            <DetailLink to={`/${MainPath.Details}/${record.id}`}>
+            <DetailLink
+              btnVariant={BtnVariant.Secondary}
+              to={`/${MainPath.Details}/${record.id}`}
+            >
               {language.details}
             </DetailLink>
           </LayoutElement>
