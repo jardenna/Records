@@ -31,9 +31,9 @@ a[class^='btn-'],
 
   &:disabled {
     pointer-events: none;
-    background-color: $color-gray-light;
+    background-color: $color-background;
     color: $color-gray-dark;
-    border-color: $color-gray-light;
+    border-color: $color-border;
   }
 }
 

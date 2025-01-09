@@ -4,7 +4,7 @@
   .btn-primary {
     background: none;
     text-align: right;
-    font-size: 14px;
+    font-size: rem(14px);
     font-weight: 200;
   }
 }
@@ -37,7 +37,7 @@
       min-width: 30px;
       padding: 0;
       max-width: 40px;
-      font-size: 14px;
+      font-size: rem(14px);
 
       &:hover {
         text-decoration: underline;
@@ -61,7 +61,7 @@
     }
 
     &:nth-child(5) {
-      background-color: $color-gray-light;
+      background-color: $color-background;
       color: $color-black;
 
       button {
@@ -75,13 +75,13 @@
     }
 
     h1 {
-      font-size: 25px;
+      font-size: rem(24px);
       font-weight: 200;
       margin: 0;
     }
 
     h2 {
-      font-size: 18px;
+      font-size: rem(18px);
       font-weight: 200;
     }
   }

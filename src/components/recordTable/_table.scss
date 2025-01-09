@@ -168,7 +168,7 @@ table {
     tr:nth-child(odd) {
       th,
       td {
-        background-color: $color-gray-light;
+        background-color: $color-background;
 
         &.no-records-table-field {
           background-color: $color-white;
