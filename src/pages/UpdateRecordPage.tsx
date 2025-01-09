@@ -3,13 +3,13 @@ import { FC } from 'react';
 import { useLocation, useNavigate, useParams } from 'react-router';
 import { Records } from '../app/api/apiTypes';
 import useMessagePopup from '../components/messagePopup/useMessagePopup';
+import CreateForm from '../components/shared/CreateForm';
 import useLanguage from '../features/language/useLanguage';
 import {
   useGetRecordByIdQuery,
   useUpdateRecordMutation,
 } from '../features/records/recordsApiSlice';
 import { MainPath } from '../types/enums';
-import CreateForm from '../components/shared/CreateForm';
 
 const UpdateRecord: FC = () => {
   const navigate = useNavigate();
@@ -46,16 +46,14 @@ const UpdateRecord: FC = () => {
   }
 
   return (
-    <section className="create-album-page">
-      {recordDetails && (
-        <CreateForm
-          recordDetails={recordDetails}
-          onUpdateRecord={handleUpdateRecord}
-          isLoading={isLoading}
-          title={language.updateAlbum}
-        />
-      )}
-    </section>
+    recordDetails && (
+      <CreateForm
+        recordDetails={recordDetails}
+        onUpdateRecord={handleUpdateRecord}
+        isLoading={isLoading}
+        title={language.updateAlbum}
+      />
+    )
   );
 };
 
