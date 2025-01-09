@@ -13,7 +13,7 @@ import { useGetPaginatedRecordsQuery } from '../features/records/recordsApiSlice
 import useFormValidation from '../hooks/useFormValidation';
 import { ChangeInputType } from '../types/types';
 
-const Records: FC = () => {
+const RecordTablePage: FC = () => {
   const location = useLocation();
   const { language } = useLanguage();
   const defaultOptionValue = 10;
@@ -187,4 +187,4 @@ const Records: FC = () => {
   );
 };
 
-export default Records;
+export default RecordTablePage;

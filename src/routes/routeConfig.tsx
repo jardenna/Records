@@ -1,11 +1,11 @@
 import { createBrowserRouter } from 'react-router';
 import Layout from '../layout/Layout';
-import CreateRecord from '../pages/CreateRecord';
+import CreateRecordPage from '../pages/CreateRecordPage';
 import DetailsPage from '../pages/details/DetailsPage';
 import ErrorPage from '../pages/errorPage/ErrorPage';
 import HomePage from '../pages/HomePage';
-import Records from '../pages/Records';
-import Update from '../pages/UpdateRecord';
+import RecordTablePage from '../pages/RecordTablePage';
+import UpdateRecordPage from '../pages/UpdateRecordPage';
 import { MainPath } from '../types/enums';
 
 const routeConfig = createBrowserRouter([
@@ -20,7 +20,7 @@ const routeConfig = createBrowserRouter([
       },
       {
         path: MainPath.Records,
-        element: <Records />,
+        element: <RecordTablePage />,
       },
       {
         path: `${MainPath.Details}/:id`,
@@ -28,11 +28,11 @@ const routeConfig = createBrowserRouter([
       },
       {
         path: `${MainPath.Update}/:id`,
-        element: <Update />,
+        element: <UpdateRecordPage />,
       },
       {
         path: MainPath.Create,
-        element: <CreateRecord />,
+        element: <CreateRecordPage />,
       },
     ],
   },

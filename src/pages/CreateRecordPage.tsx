@@ -8,7 +8,7 @@ import { useCreateNewRecordMutation } from '../features/records/recordsApiSlice'
 import { MainPath } from '../types/enums';
 import CreateForm from './CreateForm';
 
-const CreateRecord: FC = () => {
+const CreateRecordPage: FC = () => {
   const navigate = useNavigate();
   const [createRecord, { isLoading }] = useCreateNewRecordMutation();
   const { addMessagePopup } = useMessagePopup();
@@ -39,4 +39,4 @@ const CreateRecord: FC = () => {
   );
 };
 
-export default CreateRecord;
+export default CreateRecordPage;
