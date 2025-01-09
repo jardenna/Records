@@ -1,15 +1,15 @@
 import { FC } from 'react';
-import { OmittedRecordRequest, Records } from '../app/api/apiTypes';
-import Form from '../components/formElements/form/Form';
-import Input from '../components/formElements/Input';
-import Textarea from '../components/formElements/Textarea';
+import { OmittedRecordRequest, Records } from '../../app/api/apiTypes';
+import useLanguage from '../../features/language/useLanguage';
+import useFormValidation from '../../hooks/useFormValidation';
+import ImagePreview from '../ImagePreview';
+import MetaTags from '../MetaTags';
+import Input from '../formElements/Input';
+import Textarea from '../formElements/Textarea';
+import Form from '../formElements/form/Form';
 import validateUpdate, {
   minimumYear,
-} from '../components/formElements/validation/validateUpdate';
-import ImagePreview from '../components/ImagePreview';
-import MetaTags from '../components/MetaTags';
-import useLanguage from '../features/language/useLanguage';
-import useFormValidation from '../hooks/useFormValidation';
+} from '../formElements/validation/validateUpdate';
 
 interface CreateFormProps {
   title: string;

@@ -9,7 +9,7 @@ import {
   useUpdateRecordMutation,
 } from '../features/records/recordsApiSlice';
 import { MainPath } from '../types/enums';
-import CreateForm from './CreateForm';
+import CreateForm from '../components/shared/CreateForm';
 
 const UpdateRecord: FC = () => {
   const navigate = useNavigate();
