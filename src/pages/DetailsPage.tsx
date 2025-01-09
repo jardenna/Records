@@ -5,11 +5,11 @@ import Button from '../components/Button';
 import DeleteRecordModal from '../components/DeleteRecordModal';
 import MetaTags from '../components/MetaTags';
 import DetailsContent from '../components/details/DetailsContent';
-import Figure from '../components/figure/Figure';
 import {
   PrimaryActionBtnProps,
   SecondaryActionBtnProps,
 } from '../components/modal/Modal';
+import RecordImgContainer from '../components/shared/RecordImgContainer';
 import useLanguage from '../features/language/useLanguage';
 import { toggleModal } from '../features/modalSlice';
 import {
@@ -61,16 +61,12 @@ const DetailsPage: FC = () => {
         keywords="records, music, artists"
         title={language.albumDetails}
       />
-      <section className="details-img-container">
-        <Figure
-          figcaption={
-            <section className="details-header">
-              <h2 className="details-artist">{selectedRecord.artist} / </h2>
-              <h3 className="details-title">{selectedRecord.title}</h3>
-            </section>
-          }
-        />
-      </section>
+      <RecordImgContainer
+        src="/images/default.png"
+        artist={selectedRecord.artist}
+        title={selectedRecord.title}
+      />
+
       <section className="details-content-container">
         <div>
           <DetailsContent

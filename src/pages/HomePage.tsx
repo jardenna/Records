@@ -1,8 +1,9 @@
 import { FC } from 'react';
 import DetailLink from '../components/details/DetailLink';
-import Figure from '../components/figure/Figure';
+import RecordImgContainer from '../components/shared/RecordImgContainer';
 import useLanguage from '../features/language/useLanguage';
 import { useGetFirstSixRecordsQuery } from '../features/records/recordsApiSlice';
+import LayoutElement from '../layout/LayoutElement';
 
 const HomePage: FC = () => {
   const { language } = useLanguage();
@@ -13,14 +14,15 @@ const HomePage: FC = () => {
       {records?.results &&
         records?.results.map((six: any) => (
           <div className="block-item" key={six.id}>
-            <h1>{six.artist}</h1>
-            <h2> {six.title}</h2>
-            <div className="block-img">
-              <Figure src="/images/default.png" alt={six.artist} />
-            </div>
-            <footer className="index-block-footer">
+            <RecordImgContainer
+              src="/images/default.png"
+              artist={six.artist}
+              title={six.title}
+            />
+
+            <LayoutElement ariaLabel={language.albumInfo}>
               <DetailLink recordId={six.id}>{language.details}</DetailLink>
-            </footer>
+            </LayoutElement>
           </div>
         ))}
     </section>

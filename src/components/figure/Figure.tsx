@@ -2,15 +2,15 @@ import { FC, ReactNode } from 'react';
 import './_figure.scss';
 
 interface FigureProps {
+  src: string;
   alt?: string;
   className?: string;
   figcaption?: string | ReactNode;
-  src?: string;
 }
 
 const Figure: FC<FigureProps> = ({
   figcaption,
-  src = '/images/default.png',
+  src,
   alt = '',
   className = '',
 }) => (
