@@ -5,6 +5,7 @@ import LayoutElement from '../../layout/LayoutElement';
 import { MainPath } from '../../types/enums';
 import DetailLink from '../shared/DetailLink';
 import RecordImg from '../shared/recordImg/RecordImg';
+import './_record-list.scss';
 
 interface RecordListProps {
   records: Records[];
@@ -13,21 +14,25 @@ interface RecordListProps {
 const RecordList: FC<RecordListProps> = ({ records }) => {
   const { language } = useLanguage();
 
-  return records.map((record) => (
-    <li className="block-item" key={record.id}>
-      <RecordImg
-        src="/images/default.png"
-        title={record.artist}
-        Subtitle={record.title}
-        alt=""
-      />
-      <LayoutElement ariaLabel={language.albumInfo}>
-        <DetailLink to={`/${MainPath.Details}/${record.id}`}>
-          {language.details}
-        </DetailLink>
-      </LayoutElement>
-    </li>
-  ));
+  return (
+    <ul className="block-container">
+      {records.map((record) => (
+        <li className="block-item" key={record.id}>
+          <RecordImg
+            src="/images/default.png"
+            title={record.artist}
+            Subtitle={record.title}
+            alt=""
+          />
+          <LayoutElement ariaLabel={language.albumInfo}>
+            <DetailLink to={`/${MainPath.Details}/${record.id}`}>
+              {language.details}
+            </DetailLink>
+          </LayoutElement>
+        </li>
+      ))}
+    </ul>
+  );
 };
 
 export default RecordList;

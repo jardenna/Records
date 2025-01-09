@@ -6,13 +6,11 @@ const HomePage: FC = () => {
   const { data: records, isLoading } = useGetFirstSixRecordsQuery();
 
   return (
-    <section className="block-container">
+    <section>
       {isLoading ? (
         <span>loading...</span>
       ) : (
-        <ul>
-          <RecordList records={records.results} />
-        </ul>
+        <RecordList records={records.results} />
       )}
     </section>
   );
