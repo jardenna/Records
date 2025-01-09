@@ -68,7 +68,7 @@ const Table = <T extends Record<string, any>>({
   };
 
   const primaryActionBtn: PrimaryActionBtnProps = {
-    label: 'delete',
+    label: language.delete,
     onClick: handleDeleteSearchParams,
   };
 
@@ -160,6 +160,7 @@ const Table = <T extends Record<string, any>>({
                       <DeleteRecordModal
                         modalId={id}
                         primaryActionBtn={primaryActionBtn}
+                        name={data.artist}
                       />
                     )}
                   </div>

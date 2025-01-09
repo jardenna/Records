@@ -126,6 +126,7 @@ const DetailsPage: FC = () => {
                 modalId={recordId}
                 primaryActionBtn={primaryActionBtn}
                 secondaryActionBtn={secondaryActionBtn}
+                name={selectedRecord.artist}
               />
             </>
           )}

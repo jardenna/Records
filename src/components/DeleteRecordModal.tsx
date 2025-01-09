@@ -8,6 +8,7 @@ import Modal, {
 
 export interface DeleteRecordModalProps {
   modalId: string;
+  name: string;
   primaryActionBtn: PrimaryActionBtnProps;
   secondaryActionBtn?: SecondaryActionBtnProps;
 }
@@ -16,6 +17,7 @@ const DeleteRecordModal: FC<DeleteRecordModalProps> = ({
   modalId,
   primaryActionBtn,
   secondaryActionBtn,
+  name,
 }) => {
   const { language } = useLanguage();
   return (
@@ -27,7 +29,7 @@ const DeleteRecordModal: FC<DeleteRecordModalProps> = ({
         secondaryActionBtn={secondaryActionBtn}
         showCloseIcon
       >
-        {language.sureToDelete}
+        {language.sureToDelete} {name}
       </Modal>
     )
   );
