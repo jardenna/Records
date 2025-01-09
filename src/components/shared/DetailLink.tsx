@@ -10,7 +10,6 @@ interface DetailLinkProps {
 
 const DetailLink: FC<DetailLinkProps> = ({
   children,
-
   btnVariant = BtnVariant.Primary,
   to,
 }) => (
