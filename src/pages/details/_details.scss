@@ -6,10 +6,6 @@
   align-items: center;
   gap: 40px;
 
-  .block-img {
-    margin-top: 12px;
-  }
-
   .details-header {
     margin-bottom: 12px;
     display: flex;
@@ -37,6 +33,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    gap: 12px;
   }
 
   .details-info {
