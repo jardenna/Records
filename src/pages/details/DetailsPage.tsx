@@ -65,7 +65,7 @@ const DetailsPage: FC = () => {
         <LayoutElement
           as="header"
           className="details-header"
-          ariaLabel="Record details"
+          ariaLabel={language.albumDetails}
         >
           <h2 className="details-artist">{selectedRecord.artist} / </h2>
           <span className="details-title">{selectedRecord.title}</span>
@@ -108,7 +108,10 @@ const DetailsPage: FC = () => {
             isPrice={!!selectedRecord.price?.trim()}
           />
         </div>
-        <LayoutElement className="details-footer" ariaLabel="Album Details">
+        <LayoutElement
+          className="details-footer"
+          ariaLabel={language.albumDetails}
+        >
           <Link
             id={recordId}
             className="btn-primary"

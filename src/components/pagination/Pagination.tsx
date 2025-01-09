@@ -74,7 +74,7 @@ const Pagination: FC<PaginationProps> = ({
             key={page}
             onSetCurrentPage={() => onPaginationItemClick(page)}
             paginationCount={page}
-            ariaLabel={`Page ${page} of ${totalPageCount}`}
+            ariaLabel={`${language.page} ${page} ${language.of} ${totalPageCount}`}
             isBtnSelected={page === currentPage}
             ariaDescribedby="current-status"
             disabled={page === currentPage}
