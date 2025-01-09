@@ -1,7 +1,7 @@
 import { createBrowserRouter } from 'react-router';
 import Layout from '../layout/Layout';
 import CreateRecordPage from '../pages/CreateRecordPage';
-import DetailsPage from '../pages/details/DetailsPage';
+import DetailsPage from '../pages/DetailsPage';
 import ErrorPage from '../pages/errorPage/ErrorPage';
 import HomePage from '../pages/HomePage';
 import RecordTablePage from '../pages/RecordTablePage';

@@ -1,8 +1,8 @@
 import { FC } from 'react';
+import DetailLink from '../components/details/DetailLink';
 import Figure from '../components/figure/Figure';
 import useLanguage from '../features/language/useLanguage';
 import { useGetFirstSixRecordsQuery } from '../features/records/recordsApiSlice';
-import DetailLink from './details/DetailLink';
 
 const HomePage: FC = () => {
   const { language } = useLanguage();

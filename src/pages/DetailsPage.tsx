@@ -1,24 +1,23 @@
 import { FC } from 'react';
 import { Link, useLocation, useNavigate, useParams } from 'react-router';
-import { useAppDispatch } from '../../app/hooks';
-import Button from '../../components/Button';
-import DeleteRecordModal from '../../components/DeleteRecordModal';
-import MetaTags from '../../components/MetaTags';
-import Figure from '../../components/figure/Figure';
+import { useAppDispatch } from '../app/hooks';
+import Button from '../components/Button';
+import DeleteRecordModal from '../components/DeleteRecordModal';
+import MetaTags from '../components/MetaTags';
+import DetailsContent from '../components/details/DetailsContent';
+import Figure from '../components/figure/Figure';
 import {
   PrimaryActionBtnProps,
   SecondaryActionBtnProps,
-} from '../../components/modal/Modal';
-import useLanguage from '../../features/language/useLanguage';
-import { toggleModal } from '../../features/modalSlice';
+} from '../components/modal/Modal';
+import useLanguage from '../features/language/useLanguage';
+import { toggleModal } from '../features/modalSlice';
 import {
   useDeleteRecordMutation,
   useGetRecordByIdQuery,
-} from '../../features/records/recordsApiSlice';
-import LayoutElement from '../../layout/LayoutElement';
-import { MainPath } from '../../types/enums';
-import DetailsContent from './DetailsContent';
-import './_details.scss';
+} from '../features/records/recordsApiSlice';
+import LayoutElement from '../layout/LayoutElement';
+import { MainPath } from '../types/enums';
 
 const DetailsPage: FC = () => {
   const dispatch = useAppDispatch();

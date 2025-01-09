@@ -1,4 +1,5 @@
 import { FC } from 'react';
+import './_details.scss';
 
 interface DetailsContentProps {
   label: string;
