@@ -21,6 +21,9 @@ const Nav: FC = () => {
     if (pathname.includes(`/${MainPath.Update}`)) {
       return language.updateAlbum;
     }
+    if (pathname === MainPath.Root) {
+      return language.home;
+    }
     return '';
   };
 
