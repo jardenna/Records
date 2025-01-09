@@ -3,10 +3,10 @@ import { FC } from 'react';
 import { useNavigate } from 'react-router';
 import { Records } from '../app/api/apiTypes';
 import useMessagePopup from '../components/messagePopup/useMessagePopup';
+import CreateForm from '../components/shared/CreateForm';
 import useLanguage from '../features/language/useLanguage';
 import { useCreateNewRecordMutation } from '../features/records/recordsApiSlice';
 import { MainPath } from '../types/enums';
-import CreateForm from '../components/shared/CreateForm';
 
 const CreateRecordPage: FC = () => {
   const navigate = useNavigate();
@@ -29,13 +29,11 @@ const CreateRecordPage: FC = () => {
   const { language } = useLanguage();
 
   return (
-    <section className="create-album-page">
-      <CreateForm
-        onCreateRecord={handleCreateRecord}
-        isLoading={isLoading}
-        title={language.createAlbum}
-      />
-    </section>
+    <CreateForm
+      onCreateRecord={handleCreateRecord}
+      isLoading={isLoading}
+      title={language.createAlbum}
+    />
   );
 };
 

@@ -4,12 +4,13 @@ import { useAppDispatch } from '../app/hooks';
 import Button from '../components/Button';
 import DeleteRecordModal from '../components/DeleteRecordModal';
 import MetaTags from '../components/MetaTags';
+import DetailLink from '../components/details/DetailLink';
 import DetailsContent from '../components/details/DetailsContent';
 import {
   PrimaryActionBtnProps,
   SecondaryActionBtnProps,
 } from '../components/modal/Modal';
-import RecordImgContainer from '../components/shared/RecordImgContainer';
+import RecordImgContainer from '../components/shared/recordImgContainer/RecordImgContainer';
 import useLanguage from '../features/language/useLanguage';
 import { toggleModal } from '../features/modalSlice';
 import {
@@ -18,7 +19,6 @@ import {
 } from '../features/records/recordsApiSlice';
 import LayoutElement from '../layout/LayoutElement';
 import { MainPath } from '../types/enums';
-import DetailLink from '../components/details/DetailLink';
 
 const DetailsPage: FC = () => {
   const dispatch = useAppDispatch();

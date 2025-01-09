@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import Figure from '../figure/Figure';
+import Figure from '../../figure/Figure';
 
 interface RecordImgContainerProps {
   artist: string;

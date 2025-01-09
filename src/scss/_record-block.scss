@@ -1,4 +1,4 @@
-﻿@use '../globals' as *;
+﻿@use './globals' as *;
 
 .block-container {
   .btn-primary {
@@ -59,9 +59,24 @@
 }
 
 .block-img {
-  text-align: center;
+  max-width: 300px;
+}
 
-  img {
-    max-width: 300px;
+.image-preview-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+
+  /* stylelint-disable-next-line no-descending-specificity */
+  h2 {
+    margin: 0;
+  }
+}
+
+.create-album-page {
+  textarea {
+    min-height: rem(117px);
   }
 }

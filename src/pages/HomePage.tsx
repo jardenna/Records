@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import DetailLink from '../components/details/DetailLink';
-import RecordImgContainer from '../components/shared/RecordImgContainer';
+import RecordImgContainer from '../components/shared/recordImgContainer/RecordImgContainer';
 import useLanguage from '../features/language/useLanguage';
 import { useGetFirstSixRecordsQuery } from '../features/records/recordsApiSlice';
 import LayoutElement from '../layout/LayoutElement';
