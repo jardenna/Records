@@ -4,6 +4,7 @@ import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import useLanguage from '../../features/language/useLanguage';
 import { selectModalId, toggleModal } from '../../features/modalSlice';
 import useClickOutside from '../../hooks/useClickOutside';
+import { BtnVariant, MainPath } from '../../types/enums';
 import DeleteRecordModal from '../DeleteRecordModal';
 import DetailLink from '../details/DetailLink';
 import IconBtn from '../IconBtn';
@@ -131,13 +132,19 @@ const Table = <T extends Record<string, any>>({
                 ))}
                 <td className="detail-table-header">
                   <div className="action-container">
-                    <DetailLink params={tableSearchParams} recordId={data.id}>
+                    <DetailLink
+                      btnVariant={BtnVariant.Ghost}
+                      to={`/${MainPath.Details}/${data.id}${tableSearchParams}`}
+                    >
                       <IconContent
                         iconName={IconName.Eye}
                         title={language.albumDetails}
                       />
                     </DetailLink>
-                    <DetailLink recordId={data.id}>
+                    <DetailLink
+                      btnVariant={BtnVariant.Ghost}
+                      to={`/${MainPath.Update}/${data.id}`}
+                    >
                       <IconContent
                         iconName={IconName.Edit}
                         title={language.updateAlbum}

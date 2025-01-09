@@ -4,6 +4,7 @@ import RecordImgContainer from '../components/shared/RecordImgContainer';
 import useLanguage from '../features/language/useLanguage';
 import { useGetFirstSixRecordsQuery } from '../features/records/recordsApiSlice';
 import LayoutElement from '../layout/LayoutElement';
+import { MainPath } from '../types/enums';
 
 const HomePage: FC = () => {
   const { language } = useLanguage();
@@ -21,7 +22,9 @@ const HomePage: FC = () => {
             />
 
             <LayoutElement ariaLabel={language.albumInfo}>
-              <DetailLink recordId={six.id}>{language.details}</DetailLink>
+              <DetailLink to={`/${MainPath.Details}/${six.id}`}>
+                {language.details}
+              </DetailLink>
             </LayoutElement>
           </div>
         ))}

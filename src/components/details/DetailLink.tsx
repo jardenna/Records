@@ -1,25 +1,20 @@
 import { FC, ReactNode } from 'react';
 import { Link } from 'react-router';
-import { BtnVariant, MainPath } from '../../types/enums';
+import { BtnVariant } from '../../types/enums';
 
 interface DetailLinkProps {
   children: ReactNode;
-  recordId: number;
+  to: string;
   btnVariant?: BtnVariant;
-  params?: string;
 }
 
 const DetailLink: FC<DetailLinkProps> = ({
-  recordId,
   children,
-  params = '',
+
   btnVariant = BtnVariant.Primary,
+  to,
 }) => (
-  <Link
-    className={`btn btn-${btnVariant}`}
-    // className="btn btn-ghost"
-    to={`/${MainPath.Details}/${recordId}${params}`}
-  >
+  <Link className={`btn btn-${btnVariant}`} to={to}>
     {children}
   </Link>
 );
