@@ -1,17 +1,22 @@
-import { FC } from 'react';
+import { FC, ReactNode } from 'react';
 import './_figure.scss';
 
 interface FigureProps {
-  alt: string;
-  src: string;
+  alt?: string;
   className?: string;
-  figcaption?: string;
+  figcaption?: string | ReactNode;
+  src?: string;
 }
 
-const Figure: FC<FigureProps> = ({ figcaption, src, alt, className = '' }) => (
+const Figure: FC<FigureProps> = ({
+  figcaption,
+  src = '/images/default.png',
+  alt = '',
+  className = '',
+}) => (
   <figure className={className}>
-    <img src={src} alt={alt} />
     {figcaption && <figcaption>{figcaption}</figcaption>}
+    <img src={src} alt={alt} />
   </figure>
 );
 

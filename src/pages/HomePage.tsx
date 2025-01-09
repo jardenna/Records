@@ -15,7 +15,6 @@ const HomePage: FC = () => {
           <div className="block-item" key={six.id}>
             <h1>{six.artist}</h1>
             <h2> {six.title}</h2>
-
             <div className="block-img">
               <Figure src="/images/default.png" alt={six.artist} />
             </div>

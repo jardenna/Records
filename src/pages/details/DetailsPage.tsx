@@ -4,6 +4,7 @@ import { useAppDispatch } from '../../app/hooks';
 import Button from '../../components/Button';
 import DeleteRecordModal from '../../components/DeleteRecordModal';
 import MetaTags from '../../components/MetaTags';
+import Figure from '../../components/figure/Figure';
 import {
   PrimaryActionBtnProps,
   SecondaryActionBtnProps,
@@ -62,15 +63,14 @@ const DetailsPage: FC = () => {
         title={language.albumDetails}
       />
       <section className="details-img-container">
-        <LayoutElement
-          as="header"
-          className="details-header"
-          ariaLabel={language.albumDetails}
-        >
-          <h2 className="details-artist">{selectedRecord.artist} / </h2>
-          <span className="details-title">{selectedRecord.title}</span>
-        </LayoutElement>
-        <img src="/images/default.png" alt="" className="block-img" />
+        <Figure
+          figcaption={
+            <section className="details-header">
+              <h2 className="details-artist">{selectedRecord.artist} / </h2>
+              <h3 className="details-title">{selectedRecord.title}</h3>
+            </section>
+          }
+        />
       </section>
       <section className="details-content-container">
         <div>
