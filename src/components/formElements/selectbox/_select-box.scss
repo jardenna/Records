@@ -1,0 +1,8 @@
+@use '../../../scss/globals' as *;
+
+.select-box {
+  /* stylelint-disable-next-line selector-class-pattern */
+  .select-box__option {
+    border-bottom: 1px solid $color-border;
+  }
+}

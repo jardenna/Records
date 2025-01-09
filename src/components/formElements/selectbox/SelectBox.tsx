@@ -6,7 +6,8 @@ import Select, {
   SelectComponentsConfig,
   SingleValue,
 } from 'react-select';
-import FormLabel from './FormLabel';
+import FormLabel from '../FormLabel';
+import './_select-box.scss';
 
 export type Option = { label: string; value: number | string; count?: number };
 export type SelectedOption = SingleValue<Option> | MultiValue<Option>;
@@ -64,24 +65,35 @@ const SelectBox: FC<SelectBoxProps> = ({
         id={id}
         inputHasNoLabel={inputHasNoLabel}
       />
-      <Select
-        name={name}
-        options={options}
-        inputId={id}
-        onChange={handleChange}
-        placeholder={placeholder}
-        classNamePrefix="select-box"
-        hideSelectedOptions={false}
-        onInputChange={onInputChange}
-        closeMenuOnSelect={closeMenuOnSelect}
-        isMulti={isMulti}
-        className={className}
-        inputValue={inputValue}
-        menuPlacement="auto"
-        defaultValue={defaultValue}
-        isSearchable={isSearchable}
-        components={components}
-      />
+      <div className="select-box">
+        <Select
+          theme={(theme) => ({
+            ...theme,
+            colors: {
+              ...theme.colors,
+              primary: '#0b6b7c',
+              primary25: ' #f5f5f3',
+              primary50: '#f5f5f3',
+            },
+          })}
+          name={name}
+          options={options}
+          inputId={id}
+          onChange={handleChange}
+          placeholder={placeholder}
+          classNamePrefix="select-box"
+          hideSelectedOptions={false}
+          onInputChange={onInputChange}
+          closeMenuOnSelect={closeMenuOnSelect}
+          isMulti={isMulti}
+          className={className}
+          inputValue={inputValue}
+          menuPlacement="auto"
+          defaultValue={defaultValue}
+          isSearchable={isSearchable}
+          components={components}
+        />
+      </div>
     </div>
   );
 };

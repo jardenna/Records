@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import { OptionProps } from 'react-select';
-import { Option } from './SelectBox';
+import { Option } from './selectbox/SelectBox';
 
 const OptionCheckbox: FC<OptionProps<Option>> = ({
   data,

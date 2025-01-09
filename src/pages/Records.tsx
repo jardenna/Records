@@ -1,7 +1,9 @@
 import { FC, useState } from 'react';
 import { useLocation, useSearchParams } from 'react-router';
 import { SortOrder } from '../app/api/apiTypes';
-import SelectBox, { Option } from '../components/formElements/SelectBox';
+import SelectBox, {
+  Option,
+} from '../components/formElements/selectbox/SelectBox';
 import MetaTags from '../components/MetaTags';
 import Pagination from '../components/pagination/Pagination';
 import usePagination from '../components/pagination/usePagination';
