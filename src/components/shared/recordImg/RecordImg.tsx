@@ -3,19 +3,22 @@ import Figure from '../../figure/Figure';
 import './_record-img.scss';
 
 interface RecordImgProps {
-  artist: string;
+  alt: string;
   src: string;
   title: string;
+  Subtitle?: string;
 }
 
-const RecordImg: FC<RecordImgProps> = ({ artist, title, src }) => (
+const RecordImg: FC<RecordImgProps> = ({ title, Subtitle, src, alt }) => (
   <section className="record-img-container">
     <Figure
       src={src}
+      alt={alt}
       figcaption={
         <div className="record-img-header">
-          <h2 className="record-img-artist">{artist} / </h2>
-          <h3 className="record-img-title">{title}</h3>
+          <h2 className="record-img-title">{title}</h2>
+          {Subtitle && <span>/</span>}
+          <h3 className="record-img-sub-title">{Subtitle}</h3>
         </div>
       }
     />

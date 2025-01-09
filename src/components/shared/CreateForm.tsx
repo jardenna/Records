@@ -2,7 +2,6 @@ import { FC } from 'react';
 import { OmittedRecordRequest, Records } from '../../app/api/apiTypes';
 import useLanguage from '../../features/language/useLanguage';
 import useFormValidation from '../../hooks/useFormValidation';
-import ImagePreview from '../ImagePreview';
 import MetaTags from '../MetaTags';
 import Input from '../formElements/Input';
 import Textarea from '../formElements/Textarea';
@@ -10,6 +9,7 @@ import Form from '../formElements/form/Form';
 import validateUpdate, {
   minimumYear,
 } from '../formElements/validation/validateUpdate';
+import RecordImg from './recordImg/RecordImg';
 
 interface CreateFormProps {
   title: string;
@@ -60,7 +60,7 @@ const CreateForm: FC<CreateFormProps> = ({
   const maxYear = new Date().getFullYear() + 1;
 
   return (
-    <section className="create-album-page">
+    <section>
       <MetaTags
         description="This is the records page description"
         keywords="records, music, artists"
@@ -166,11 +166,12 @@ const CreateForm: FC<CreateFormProps> = ({
             />
           </div>
 
-          <ImagePreview
+          {/* <ImagePreview
             fileName="record"
             previewUrl="/images/default.png"
             uploadedPhoto="/images/default.png"
-          />
+          /> */}
+          <RecordImg src="/images/default.png" title="Billede upload" alt="" />
         </div>
       </Form>
     </section>

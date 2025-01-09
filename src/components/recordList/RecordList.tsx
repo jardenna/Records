@@ -17,8 +17,9 @@ const RecordList: FC<RecordListProps> = ({ records }) => {
     <li className="block-item" key={record.id}>
       <RecordImg
         src="/images/default.png"
-        artist={record.artist}
-        title={record.title}
+        title={record.artist}
+        Subtitle={record.title}
+        alt=""
       />
       <LayoutElement ariaLabel={language.albumInfo}>
         <DetailLink to={`/${MainPath.Details}/${record.id}`}>

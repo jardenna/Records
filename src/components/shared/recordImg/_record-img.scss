@@ -5,11 +5,12 @@
   background-color: $color-blue;
   color: $color-white;
   border-radius: 4px;
-  width: rem(500px);
+  max-width: rem(500px);
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 12px;
+  width: 100%;
 }
 
 .record-img-header {
@@ -18,14 +19,14 @@
   align-items: center;
   gap: 4px;
 
-  .record-img-artist {
+  .record-img-title {
     text-wrap: nowrap;
     font-size: rem(28px);
     font-weight: 400;
     margin: 0;
   }
 
-  .record-img-title {
+  .record-img-sub-title {
     font-weight: normal;
   }
 }

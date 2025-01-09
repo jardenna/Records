@@ -64,8 +64,9 @@ const DetailsPage: FC = () => {
       />
       <RecordImg
         src="/images/default.png"
-        artist={selectedRecord.artist}
-        title={selectedRecord.title}
+        alt=""
+        title={selectedRecord.artist}
+        Subtitle={selectedRecord.title}
       />
 
       <section className="details-content-container">
