@@ -10,7 +10,7 @@ import {
   PrimaryActionBtnProps,
   SecondaryActionBtnProps,
 } from '../components/modal/Modal';
-import RecordImgContainer from '../components/shared/recordImgContainer/RecordImgContainer';
+import RecordImg from '../components/shared/recordImg/RecordImg';
 import useLanguage from '../features/language/useLanguage';
 import { toggleModal } from '../features/modalSlice';
 import {
@@ -62,7 +62,7 @@ const DetailsPage: FC = () => {
         keywords="records, music, artists"
         title={language.albumDetails}
       />
-      <RecordImgContainer
+      <RecordImg
         src="/images/default.png"
         artist={selectedRecord.artist}
         title={selectedRecord.title}

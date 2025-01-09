@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import DetailLink from '../components/details/DetailLink';
-import RecordImgContainer from '../components/shared/recordImgContainer/RecordImgContainer';
+import RecordImg from '../components/shared/recordImg/RecordImg';
 import useLanguage from '../features/language/useLanguage';
 import { useGetFirstSixRecordsQuery } from '../features/records/recordsApiSlice';
 import LayoutElement from '../layout/LayoutElement';
@@ -15,7 +15,7 @@ const HomePage: FC = () => {
       {records?.results &&
         records?.results.map((six: any) => (
           <div className="block-item" key={six.id}>
-            <RecordImgContainer
+            <RecordImg
               src="/images/default.png"
               artist={six.artist}
               title={six.title}

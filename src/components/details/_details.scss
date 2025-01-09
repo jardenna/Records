@@ -6,35 +6,9 @@
   align-items: center;
   gap: 40px;
 
-  .details-header {
-    margin-bottom: 12px;
-    display: flex;
-    align-items: center;
-    gap: 4px;
-
-    .details-artist {
-      text-wrap: nowrap;
-      font-size: rem(28px);
-      font-weight: 400;
-      margin: 0;
-    }
-  }
-
   .details-label {
     min-width: rem(200px);
     font-weight: bold;
-  }
-
-  .details-img-container {
-    padding: 30px 50px;
-    background-color: $color-blue;
-    color: $color-white;
-    border-radius: 4px;
-    width: rem(500px);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 12px;
   }
 
   .details-info {
