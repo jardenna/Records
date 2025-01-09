@@ -3,7 +3,7 @@ import Record from '../models/RecordsModel.js';
 const getFirstSixRecords = async (_, res) => {
   try {
     const latestRecords = await Record.find().sort({ _id: -1 }).limit(6);
-    res.json(latestRecords);
+    res.json({ results: latestRecords });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }

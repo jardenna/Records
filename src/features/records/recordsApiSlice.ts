@@ -10,6 +10,11 @@ import endpoints from '../../app/endpoints';
 
 export const recordsApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
+    getFirstSixRecords: builder.query<any, void>({
+      query: () => `${endpoints.firstSix}`,
+      transformResponse: (responseData: Records[]) => transformId(responseData),
+      providesTags: ['Records'],
+    }),
     getPaginatedRecords: builder.query<RecordsResponse, RecordsRequest>({
       query: ({
         page,
@@ -69,6 +74,7 @@ export const recordsApiSlice = apiSlice.injectEndpoints({
 });
 
 export const {
+  useGetFirstSixRecordsQuery,
   useGetPaginatedRecordsQuery,
   useGetRecordByIdQuery,
   useCreateNewRecordMutation,
