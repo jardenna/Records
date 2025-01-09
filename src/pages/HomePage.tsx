@@ -20,7 +20,6 @@ const HomePage: FC = () => {
               artist={six.artist}
               title={six.title}
             />
-
             <LayoutElement ariaLabel={language.albumInfo}>
               <DetailLink to={`/${MainPath.Details}/${six.id}`}>
                 {language.details}
@@ -31,4 +30,5 @@ const HomePage: FC = () => {
     </section>
   );
 };
+
 export default HomePage;

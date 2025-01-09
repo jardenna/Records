@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { Link, useLocation, useNavigate, useParams } from 'react-router';
+import { useLocation, useNavigate, useParams } from 'react-router';
 import { useAppDispatch } from '../app/hooks';
 import Button from '../components/Button';
 import DeleteRecordModal from '../components/DeleteRecordModal';
@@ -18,6 +18,7 @@ import {
 } from '../features/records/recordsApiSlice';
 import LayoutElement from '../layout/LayoutElement';
 import { MainPath } from '../types/enums';
+import DetailLink from '../components/details/DetailLink';
 
 const DetailsPage: FC = () => {
   const dispatch = useAppDispatch();
@@ -107,13 +108,9 @@ const DetailsPage: FC = () => {
           className="details-footer"
           ariaLabel={language.albumDetails}
         >
-          <Link
-            id={recordId}
-            className="btn-primary"
-            to={`/update/${recordId}${location.search}`}
-          >
+          <DetailLink to={`/update/${recordId}${location.search}`}>
             {language.updateAlbum}
-          </Link>
+          </DetailLink>
 
           {recordId && (
             <>
