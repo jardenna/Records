@@ -39,6 +39,6 @@ $animation-timing-function: ease-in-out;
   }
 }
 
-@mixin outline($color: $color-hilight, $size: 2px) {
+@mixin outline($color: $color-blue, $size: 2px) {
   outline: $size solid $color;
 }

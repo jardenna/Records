@@ -4,12 +4,10 @@ $color-green: #7fd0c9;
 $color-green-dark: #26989b;
 $color-gray: #e1e1e1;
 $color-gray-light: #f4f7f6;
-$color-gray-lighter: #f5f5f3;
 $color-gray-darker: #363636;
 $color-gray-dark: #555;
 $color-blue: #0b6b7c;
 $color-blue-dark: #04515f;
-$color-blue-darkest: #0b373f;
 $color-red: #a71b1b;
 $color-red-light: #d20917;
 
@@ -23,14 +21,12 @@ $color-primary-btn-hover: $color-blue;
 $color-danger: $color-red;
 $color-border: $color-gray;
 $color-background: $color-gray-light;
-$color-background-rgba: rgb(53 53 53 / 85%);
 $color-overlay: rgb($color-black, 0.6);
 
 // $color-mics
-$color-hilight: #bd5800;
 $color-placeholder: #8f8f8f;
 $color-error: $color-danger;
 $color-success: $color-green-dark;
 $color-info: $color-blue;
 $color-warning: $color-blue;
-$color-error-light: #f41b0b;
+$color-error-light: $color-red-light;
