@@ -1,4 +1,5 @@
 import { FC } from 'react';
+import './_figure.scss';
 
 interface FigureProps {
   alt: string;

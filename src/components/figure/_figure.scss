@@ -1,0 +1,13 @@
+@use '../../scss/globals/functions' as *;
+
+figure {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+
+  img {
+    max-width: rem(330px);
+  }
+}
