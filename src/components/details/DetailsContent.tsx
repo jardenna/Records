@@ -8,7 +8,7 @@ interface DetailsContentProps {
 }
 
 const DetailsContent: FC<DetailsContentProps> = ({ text, label, isPrice }) => (
-  <div className="flex details-info">
+  <div className="details-info">
     <span className="details-label">{label}:</span>
     <span>
       {text}
