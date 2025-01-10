@@ -23,7 +23,7 @@ const FileUpload = () => {
 
     try {
       const response = await axios.post(
-        `http://localhost:5000/api/records/update/5e9c0315e966f834a4d22e75`, // Updated endpoint
+        `http://localhost:5000/api/records/5e9c0315e966f834a4d22e75`, // Updated endpoint
         formData,
         {
           headers: { 'Content-Type': 'multipart/form-data' },
@@ -39,7 +39,7 @@ const FileUpload = () => {
     <div>
       <h1>Image Upload</h1>
       <form onSubmit={handleSubmit}>
-        <input type="file" onChange={handleFileChange} />
+        <input type="file" onChange={handleFileChange} name="photo" />
         <button type="submit">Upload</button>
       </form>
       {message && <p>{message}</p>}

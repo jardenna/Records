@@ -24,7 +24,7 @@ router.get('/firstSix', getFirstSixRecords);
 router.get('/:recordId', getRecordById);
 
 //post photo
-router.post('/update/:recordId', upload.single('photo'), postPhoto);
+router.post('/:recordId', upload.single('photo'), postPhoto);
 
 //Add new record
 router.post('/', postCreateRecord);
