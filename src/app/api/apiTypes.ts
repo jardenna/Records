@@ -20,6 +20,14 @@ export enum SortOrder {
 
 export type OmittedRecordRequest = Omit<Records, 'id'>;
 
+export interface AlbumCoverRequest {
+  file: File | null;
+  fileName: string;
+  id: string;
+  imgUpdated: boolean;
+  records: Records;
+}
+
 export interface RecordsRequest {
   artist: string;
   label: string;

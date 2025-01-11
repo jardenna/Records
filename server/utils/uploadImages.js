@@ -43,5 +43,4 @@ function checkFileType(file, cb) {
   }
 }
 
-// export { checkFileType, errorMsg, upload };
 export default upload;

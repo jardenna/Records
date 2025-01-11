@@ -22,7 +22,7 @@ const UpdateRecord: FC = () => {
   const { addMessagePopup } = useMessagePopup();
 
   async function handleUpdateRecord(
-    values: Records,
+    records: Records,
     file: File | null,
     fileName: string,
     imgUpdated: boolean,
@@ -31,7 +31,7 @@ const UpdateRecord: FC = () => {
       try {
         const result = await updateRecord({
           id: recordId,
-          record: values,
+          records,
           file,
           fileName,
           imgUpdated,

@@ -1,12 +1,14 @@
 import apiSlice from '../../app/api/apiSlice';
 import {
+  AlbumCoverRequest,
+  OmittedRecordRequest,
   Records,
   RecordsRequest,
   RecordsResponse,
 } from '../../app/api/apiTypes';
 import transformId from '../../app/api/transformResponse';
 import endpoints from '../../app/endpoints';
-// update any to OmittedRecordRequest  createNewRecord: builder.mutation<Records, any>
+
 export const recordsApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     getFirstSixRecords: builder.query<any, void>({
@@ -46,7 +48,7 @@ export const recordsApiSlice = apiSlice.injectEndpoints({
       query: (id) => `${endpoints.records}/${id}`,
       providesTags: ['Records'],
     }),
-    createNewRecord: builder.mutation<Records, any>({
+    createNewRecord: builder.mutation<Records, OmittedRecordRequest>({
       query: (record) => ({
         url: `/${endpoints.records}`,
         method: 'POST',
@@ -54,23 +56,14 @@ export const recordsApiSlice = apiSlice.injectEndpoints({
       }),
       invalidatesTags: ['Records'],
     }),
-    updateRecord: builder.mutation<
-      Records,
-      {
-        file: File | null;
-        fileName: string;
-        id: string;
-        imgUpdated: boolean;
-        record: Records;
-      }
-    >({
-      query: ({ id, record, imgUpdated, file, fileName }) => {
+    updateRecord: builder.mutation<Records, AlbumCoverRequest>({
+      query: ({ id, records, imgUpdated, file, fileName }) => {
         if (imgUpdated && file && fileName) {
           const fd = new FormData();
           fd.append(fileName, file);
 
-          Object.keys(record).forEach((key) => {
-            fd.append(key, record[key as keyof Records] as string);
+          Object.keys(records).forEach((key) => {
+            fd.append(key, records[key as keyof Records] as string);
           });
 
           return {
@@ -83,7 +76,7 @@ export const recordsApiSlice = apiSlice.injectEndpoints({
         return {
           url: `/${endpoints.records}/${id}`,
           method: 'PUT',
-          body: record,
+          body: records,
         };
       },
       invalidatesTags: ['Records'],
