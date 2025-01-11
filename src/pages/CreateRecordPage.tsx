@@ -5,17 +5,17 @@ import { Records } from '../app/api/apiTypes';
 import useMessagePopup from '../components/messagePopup/useMessagePopup';
 import CreateForm from '../components/shared/CreateForm';
 import useLanguage from '../features/language/useLanguage';
-import { useCreateNewRecordMutation } from '../features/records/recordsApiSlice';
+import { useUpdateRecordMutation } from '../features/records/recordsApiSlice';
 import { MainPath } from '../types/enums';
 
 const CreateRecordPage: FC = () => {
   const navigate = useNavigate();
-  const [createRecord, { isLoading }] = useCreateNewRecordMutation();
+  const [createRecord, { isLoading }] = useUpdateRecordMutation();
   const { addMessagePopup } = useMessagePopup();
 
-  const handleCreateRecord = async (values: Records) => {
+  const handleCreateRecord = async (records: Records) => {
     try {
-      const result = await createRecord(values).unwrap();
+      const result = await createRecord({ records }).unwrap();
       navigate(`/${MainPath.Records}`);
       addMessagePopup({
         message: 'Record Created successfully',

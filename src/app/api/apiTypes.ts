@@ -23,9 +23,9 @@ export type OmittedRecordRequest = Omit<Records, 'id'>;
 export interface AlbumCoverRequest {
   file: File | null;
   fileName: string;
-  id: string;
   imgUpdated: boolean;
   records: Records;
+  id?: string;
 }
 
 export interface RecordsRequest {

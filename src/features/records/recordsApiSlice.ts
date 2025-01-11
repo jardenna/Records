@@ -1,6 +1,5 @@
 import apiSlice from '../../app/api/apiSlice';
 import {
-  AlbumCoverRequest,
   OmittedRecordRequest,
   Records,
   RecordsRequest,
@@ -56,7 +55,7 @@ export const recordsApiSlice = apiSlice.injectEndpoints({
       }),
       invalidatesTags: ['Records'],
     }),
-    updateRecord: builder.mutation<Records, AlbumCoverRequest>({
+    updateRecord: builder.mutation<Records, any>({
       query: ({ id, records, imgUpdated, file, fileName }) => {
         if (imgUpdated && file && fileName) {
           const fd = new FormData();
@@ -72,7 +71,13 @@ export const recordsApiSlice = apiSlice.injectEndpoints({
             body: fd,
           };
         }
-
+        if (!id) {
+          return {
+            url: `/${endpoints.records}`,
+            method: 'POST',
+            body: records,
+          };
+        }
         return {
           url: `/${endpoints.records}/${id}`,
           method: 'PUT',
