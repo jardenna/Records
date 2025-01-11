@@ -1,5 +1,5 @@
 import express from 'express';
-import { upload } from '../utils/uploadImages.js';
+import upload from '../utils/uploadImages.js';
 const router = express.Router();
 
 import {
@@ -27,7 +27,8 @@ router.get('/:recordId', getRecordById);
 router.post('/:recordId', upload.single('photo'), postPhoto);
 
 //Add new record
-router.post('/', postCreateRecord);
+// router.post('/', postCreateRecord);
+router.post('/', upload.single('photo'), postCreateRecord);
 
 //Delete Record
 router.delete('/delete/:recordId', deleteRecord);

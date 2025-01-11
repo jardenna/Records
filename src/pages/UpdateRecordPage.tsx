@@ -21,12 +21,20 @@ const UpdateRecord: FC = () => {
   const [updateRecord, { isLoading }] = useUpdateRecordMutation();
   const { addMessagePopup } = useMessagePopup();
 
-  async function handleUpdateRecord(values: Records) {
+  async function handleUpdateRecord(
+    values: Records,
+    file: File | null,
+    fileName: string,
+    imgUpdated: boolean,
+  ) {
     if (recordId) {
       try {
         const result = await updateRecord({
           id: recordId,
           record: values,
+          file,
+          fileName,
+          imgUpdated,
         }).unwrap();
         if (location.search) {
           navigate(`/${MainPath.Records}${location.search}`);

@@ -11,6 +11,7 @@ export interface Records {
   title: string;
   cover?: string;
   origin?: string;
+  photo?: any;
 }
 
 export enum SortOrder {

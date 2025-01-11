@@ -2,7 +2,7 @@ import multer from 'multer';
 import path from 'path';
 
 //Global error message
-const errorMsg = (error, res) => {
+export const errorMsg = (error, res) => {
   res.status(500).json({
     error,
   });
@@ -43,4 +43,5 @@ function checkFileType(file, cb) {
   }
 }
 
-export { checkFileType, errorMsg, upload };
+// export { checkFileType, errorMsg, upload };
+export default upload;
