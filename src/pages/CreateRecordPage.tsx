@@ -7,7 +7,6 @@ import CreateForm from '../components/shared/CreateForm';
 import useLanguage from '../features/language/useLanguage';
 import { useCreateNewRecordMutation } from '../features/records/recordsApiSlice';
 import { MainPath } from '../types/enums';
-import PhotoTest from './PhotoTest';
 
 const CreateRecordPage: FC = () => {
   const navigate = useNavigate();
@@ -30,14 +29,11 @@ const CreateRecordPage: FC = () => {
   const { language } = useLanguage();
 
   return (
-    <>
-      <PhotoTest />
-      <CreateForm
-        onCreateRecord={handleCreateRecord}
-        isLoading={isLoading}
-        title={language.createAlbum}
-      />
-    </>
+    <CreateForm
+      onCreateRecord={handleCreateRecord}
+      isLoading={isLoading}
+      title={language.createAlbum}
+    />
   );
 };
 
