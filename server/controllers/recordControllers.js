@@ -42,13 +42,13 @@ const postCreateRecord = async (req, res) => {
   }
 };
 
-const postPhoto = async (req, res) => {
-  const file = req.file ? req.file.filename : req.body.photo;
+const postCover = async (req, res) => {
+  const file = req.file ? req.file.filename : req.body.cover;
 
   try {
     const record = await Record.updateOne(
       { _id: req.params.recordId },
-      { $set: { photo: file } },
+      { $set: { cover: file } },
     );
     res.json(record);
   } catch (error) {
@@ -85,7 +85,7 @@ export {
   getFirstSixRecords,
   getPaginatedRecords,
   getRecordById,
+  postCover,
   postCreateRecord,
-  postPhoto,
   postUpdateRecord,
 };

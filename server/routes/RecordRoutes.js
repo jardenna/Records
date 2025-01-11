@@ -7,8 +7,8 @@ import {
   getFirstSixRecords,
   getPaginatedRecords,
   getRecordById,
+  postCover,
   postCreateRecord,
-  postPhoto,
   postUpdateRecord,
 } from '../controllers/recordControllers.js';
 import paginatedResults from '../middleware/paginatedResults.js';
@@ -23,12 +23,12 @@ router.get('/firstSix', getFirstSixRecords);
 //Get record by Id
 router.get('/:recordId', getRecordById);
 
-//post photo
-router.post('/:recordId', upload.single('photo'), postPhoto);
+//post cover
+router.post('/:recordId', upload.single('cover'), postCover);
 
 //Add new record
 // router.post('/', postCreateRecord);
-router.post('/', upload.single('photo'), postCreateRecord);
+router.post('/', upload.single('cover'), postCreateRecord);
 
 //Delete Record
 router.delete('/delete/:recordId', deleteRecord);

@@ -74,7 +74,7 @@ function useFormValidation<T extends KeyValuePair<any>>({
       setTouched([...touched, name]);
     }
 
-    if (name === 'photo' && files && files[0]) {
+    if (name === 'cover' && files && files[0]) {
       const reader = new FileReader();
       reader.onloadend = (readerEvent: ProgressEvent<FileReader>) => {
         if (readerEvent?.target?.result) {

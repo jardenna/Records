@@ -39,7 +39,7 @@ const CreateForm: FC<CreateFormProps> = ({
     numOfRecords: recordDetails?.numOfRecords ?? 1,
     released: recordDetails?.released ?? '',
     info: recordDetails?.info ?? '',
-    photo: recordDetails?.photo ?? '',
+    cover: recordDetails?.cover ?? '',
   };
 
   const {
@@ -83,8 +83,8 @@ const CreateForm: FC<CreateFormProps> = ({
       <Form onSubmit={onSubmit} labelText={title} isLoading={isLoading}>
         <div className="flex">
           <div className="flex column">
-            <label htmlFor="photo">Cover</label>
-            <input type="file" onChange={onChange} name="photo" id="photo" />
+            <label htmlFor="cover">Cover</label>
+            <input type="file" onChange={onChange} name="cover" id="cover" />
             <Input
               name="artist"
               id="artist"
@@ -185,7 +185,7 @@ const CreateForm: FC<CreateFormProps> = ({
           {/* <ImagePreview
             fileName="record"
             previewUrl="/images/default.png"
-            uploadedPhoto="/images/default.png"
+            uploadedCover="/images/default.png"
           /> */}
           <RecordImg src="/images/default.png" title="Billede upload" alt="" />
         </div>

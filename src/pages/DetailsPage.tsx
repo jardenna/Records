@@ -55,11 +55,6 @@ const DetailsPage: FC = () => {
     label: language.cancel,
   };
 
-  // const x = selectedRecord
-  //   ? `http://localhost:5000/api/uploads/${selectedRecord.photo}`
-  //   : '';
-  // console.log(x);
-
   return selectedRecord ? (
     <article className="details">
       <MetaTags
