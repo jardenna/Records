@@ -29,6 +29,7 @@ const SearchField: FC<SearchFieldProps> = ({
         onClick={() => onToggleSearchField(title)}
         iconName={IconName.Filter}
       />
+      {value && <span className="dot" />}
       <Input
         className={`search-field ${showSearchField ? 'active' : ''}`}
         type="search"
