@@ -3,6 +3,7 @@ import { useSearchParams } from 'react-router';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import useLanguage from '../../features/language/useLanguage';
 import { selectModalId, toggleModal } from '../../features/modalSlice';
+import { useDeleteRecordMutation } from '../../features/records/recordsApiSlice';
 import useClickOutside from '../../hooks/useClickOutside';
 import { BtnVariant, MainPath } from '../../types/enums';
 import DeleteRecordModal from '../DeleteRecordModal';
@@ -39,6 +40,7 @@ const Table = <T extends Record<string, any>>({
   const [searchParams, setSearchParams] = useSearchParams();
   const [showSearchField, setShowSearchField] = useState<string | null>(null);
   const containerRefs = useRef<any>(new Map());
+  const [deleteRecord] = useDeleteRecordMutation();
   useClickOutside(containerRefs, () => setShowSearchField(null));
   const dispatch = useAppDispatch();
 
@@ -61,10 +63,11 @@ const Table = <T extends Record<string, any>>({
       searchParams.delete('id');
       setSearchParams(searchParams);
     }
-  }, [modalId]);
+  }, [modalId, id]);
 
   const handleDeleteSearchParams = () => {
-    console.log('delete');
+    deleteRecord(id);
+    dispatch(toggleModal(null));
   };
 
   const primaryActionBtn: PrimaryActionBtnProps = {
