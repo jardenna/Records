@@ -15,7 +15,6 @@ import RecordImg from './recordImg/RecordImg';
 interface CreateFormProps {
   title: string;
   isLoading?: boolean;
-  onCreateRecord?: (values: Records) => void;
   onUpdateRecord?: any;
   recordDetails?: OmittedRecordRequest;
 }
@@ -23,7 +22,6 @@ interface CreateFormProps {
 const CreateForm: FC<CreateFormProps> = ({
   recordDetails,
   onUpdateRecord,
-  onCreateRecord,
   isLoading,
   title,
 }) => {
@@ -65,8 +63,6 @@ const CreateForm: FC<CreateFormProps> = ({
   function handleSubmit() {
     if (onUpdateRecord) {
       onUpdateRecord(values as Records, file, fileName, imgUpdated, previewUrl);
-    } else if (onCreateRecord) {
-      onCreateRecord(values as Records);
     }
   }
   const maxYear = new Date().getFullYear() + 1;

@@ -1,6 +1,5 @@
 import apiSlice from '../../app/api/apiSlice';
 import {
-  OmittedRecordRequest,
   Records,
   RecordsRequest,
   RecordsResponse,
@@ -47,12 +46,28 @@ export const recordsApiSlice = apiSlice.injectEndpoints({
       query: (id) => `${endpoints.records}/${id}`,
       providesTags: ['Records'],
     }),
-    createNewRecord: builder.mutation<Records, OmittedRecordRequest>({
-      query: (record) => ({
-        url: `/${endpoints.records}`,
-        method: 'POST',
-        body: record,
-      }),
+    createNewRecord: builder.mutation<Records, any>({
+      query: ({ records, file, fileName }) => {
+        if (file && fileName) {
+          const fd = new FormData();
+          fd.append(fileName, file);
+
+          Object.keys(records).forEach((key) => {
+            fd.append(key, records[key as keyof Records] as string);
+          });
+
+          return {
+            url: `/${endpoints.records}`,
+            method: 'POST',
+            body: fd,
+          };
+        }
+        return {
+          url: `/${endpoints.records}`,
+          method: 'POST',
+          body: records,
+        };
+      },
       invalidatesTags: ['Records'],
     }),
     updateRecord: builder.mutation<Records, any>({

@@ -26,13 +26,13 @@ router.get('/:recordId', getRecordById);
 //post cover
 router.post('/:recordId', upload.single('cover'), postCover);
 
-//Add new record
-// router.post('/', postCreateRecord);
+//Create record
 router.post('/', upload.single('cover'), postCreateRecord);
+
+//Update record
+router.put('/:recordId', postUpdateRecord);
 
 //Delete Record
 router.delete('/delete/:recordId', deleteRecord);
 
-//Update record
-router.put('/:recordId', postUpdateRecord);
 export default router;
