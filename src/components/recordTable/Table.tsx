@@ -3,9 +3,9 @@ import { useNavigate, useSearchParams } from 'react-router';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import useLanguage from '../../features/language/useLanguage';
 import { selectModalId, toggleModal } from '../../features/modalSlice';
-import { useDeleteRecordMutation } from '../../features/records/recordsApiSlice';
 import useClickOutside from '../../hooks/useClickOutside';
 import { BtnVariant, MainPath } from '../../types/enums';
+import { ChangeInputType } from '../../types/types';
 import DeleteRecordModal from '../DeleteRecordModal';
 import IconBtn from '../IconBtn';
 import IconContent from '../IconContent';
@@ -14,10 +14,23 @@ import { PrimaryActionBtnProps } from '../modal/Modal';
 import DetailLink from '../shared/DetailLink';
 import VisuallyHidden from '../VisuallyHidden';
 import './_table.scss';
-import { BaseTableProps } from './RecordTable';
 import SearchField from './SearchField';
 import SortBtn from './SortBtn';
 
+interface BaseTableProps {
+  idFromSearchParams: string | null;
+  onFilterRows: (e: ChangeInputType) => void;
+  primaryActionBtn: PrimaryActionBtnProps;
+  // Optionally override
+  sortOrder: string;
+  tableCaption: string;
+  tableHeaders: string[];
+  tableSearchParams: string;
+  values: Record<string, string>;
+  valuesFromSearch: Record<string, string | number | boolean>;
+  className?: string;
+  onClearAllSearch?: () => void;
+}
 interface TableProps<T> extends BaseTableProps {
   onSort: (field: keyof T) => void; // Generic field typing
   tableData: T[]; // Specific to TableProps
@@ -34,6 +47,8 @@ const Table = <T extends Record<string, any>>({
   values,
   onClearAllSearch,
   tableCaption,
+  primaryActionBtn,
+  idFromSearchParams,
 }: TableProps<T>) => {
   const { language } = useLanguage();
   const navigate = useNavigate();
@@ -41,7 +56,6 @@ const Table = <T extends Record<string, any>>({
   const [searchParams, setSearchParams] = useSearchParams();
   const [showSearchField, setShowSearchField] = useState<string | null>(null);
   const containerRefs = useRef<any>(new Map());
-  const [deleteRecord] = useDeleteRecordMutation();
   useClickOutside(containerRefs, () => setShowSearchField(null));
   const dispatch = useAppDispatch();
 
@@ -57,23 +71,12 @@ const Table = <T extends Record<string, any>>({
     [dispatch, setSearchParams],
   );
 
-  const id = searchParams.get('id');
-
   useEffect(() => {
     if (!modalId) {
       searchParams.delete('id');
       setSearchParams(searchParams);
     }
-  }, [modalId, id]);
-
-  const handleDeleteAlbum = () => {
-    deleteRecord(id);
-  };
-
-  const primaryActionBtn: PrimaryActionBtnProps = {
-    label: language.delete,
-    onClick: handleDeleteAlbum,
-  };
+  }, [modalId, idFromSearchParams]);
 
   const handleEditAlbum = (id: string) => {
     searchParams.delete('id');
@@ -114,14 +117,16 @@ const Table = <T extends Record<string, any>>({
                       value={
                         (valuesFromSearch[header] as string) || values[header]
                       }
-                      onToggleSearchField={handleToggleSearchField}
+                      onToggleSearchField={() =>
+                        handleToggleSearchField(header)
+                      }
                       showSearchField={showSearchField === header}
                     />
                   )}
                 </div>
               </th>
             ))}
-            <th className="detail-table-header">
+            <th>
               <div className="action-header">
                 Actions
                 <IconBtn
@@ -140,7 +145,7 @@ const Table = <T extends Record<string, any>>({
                 {tableHeaders.map((header) => (
                   <td key={header}>{data[header]}</td>
                 ))}
-                <td className="detail-table-header">
+                <td>
                   <div className="action-container">
                     <IconBtn
                       iconName={IconName.Eye}
@@ -163,9 +168,9 @@ const Table = <T extends Record<string, any>>({
                       title={language.deleteAlbum}
                       onClick={() => handleSetSearchParams(data.id)}
                     />
-                    {id && id === data.id && (
+                    {idFromSearchParams && idFromSearchParams === data.id && (
                       <DeleteRecordModal
-                        modalId={id}
+                        modalId={idFromSearchParams}
                         primaryActionBtn={primaryActionBtn}
                         name={data.artist}
                       />

@@ -7,7 +7,7 @@ import { IconName } from '../icons/Icon';
 
 interface SearchFieldProps {
   onFilterRows: (e: ChangeInputType) => void;
-  onToggleSearchField: (header: string) => void;
+  onToggleSearchField: () => void;
   showSearchField: boolean;
   title: string;
   value: string;
@@ -26,7 +26,7 @@ const SearchField: FC<SearchFieldProps> = ({
     <>
       <IconBtn
         title={`${language.filter} ${language.title}`}
-        onClick={() => onToggleSearchField(title)}
+        onClick={onToggleSearchField}
         iconName={IconName.Filter}
       />
       {value && <span className="dot" />}
