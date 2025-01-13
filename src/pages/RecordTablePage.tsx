@@ -1,13 +1,11 @@
 import { FC, useState } from 'react';
 import { useLocation, useSearchParams } from 'react-router';
 import { SortOrder } from '../app/api/apiTypes';
-import SelectBox, {
-  Option,
-} from '../components/formElements/selectbox/SelectBox';
 import MetaTags from '../components/MetaTags';
 import Pagination from '../components/pagination/Pagination';
 import usePagination from '../components/pagination/usePagination';
 import RecordTable from '../components/recordTable/RecordTable';
+import SelectBox, { Option } from '../components/SelectBox';
 import useLanguage from '../features/language/useLanguage';
 import { useGetPaginatedRecordsQuery } from '../features/records/recordsApiSlice';
 import useFormValidation from '../hooks/useFormValidation';
