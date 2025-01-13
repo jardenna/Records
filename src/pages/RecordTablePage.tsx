@@ -3,7 +3,6 @@ import { useLocation, useSearchParams } from 'react-router';
 import { SortOrder } from '../app/api/apiTypes';
 import MetaTags from '../components/MetaTags';
 import Pagination from '../components/pagination/Pagination';
-import usePagination from '../components/pagination/usePagination';
 import RecordTable from '../components/recordTable/RecordTable';
 import SelectBox, { Option } from '../components/SelectBox';
 import useLanguage from '../features/language/useLanguage';
@@ -62,19 +61,9 @@ const RecordTablePage: FC = () => {
   });
 
   const totalCount = records ? records.recordsCount : shownRows;
-  const {
-    pageRange,
-    totalPageCount,
-    onPaginationItemClick,
-    onPaginationAction,
-  } = usePagination({
-    totalCount,
-    rowsPerPage: shownRows,
-    pageLimit,
-    currentPage: selectedPage,
-    setCurrentPage,
-    addCurrentPageToParams: true,
-  });
+  const totalRows = records?.recordsCount || 0;
+  const startRow = (selectedPage - 1) * shownRows + 1;
+  const endRow = Math.min(selectedPage * shownRows, totalRows);
 
   const handleSort = (field: string) => {
     searchParams.set('sortField', field);
@@ -106,6 +95,7 @@ const RecordTablePage: FC = () => {
     onClearAll();
     setSearchParams();
   };
+
   const handleSetRowsCount = (name: string, selectedOptions: Option) => {
     if (selectedOptions.value !== defaultOptionValue) {
       searchParams.set('limit', selectedOptions.value.toString());
@@ -115,9 +105,6 @@ const RecordTablePage: FC = () => {
     setSearchParams(searchParams);
     onCustomChange(name, selectedOptions.value);
   };
-  const totalRows = records?.recordsCount || 0;
-  const startRow = (selectedPage - 1) * shownRows + 1;
-  const endRow = Math.min(selectedPage * shownRows, totalRows);
 
   return (
     <section>
@@ -175,11 +162,11 @@ const RecordTablePage: FC = () => {
 
       <Pagination
         currentPage={selectedPage}
-        onPaginationItemClick={onPaginationItemClick}
-        onPaginationAction={onPaginationAction}
+        totalCount={totalCount}
+        setCurrentPage={setCurrentPage}
+        selectedPage={selectedPage}
         pageLimit={pageLimit}
-        pageRange={pageRange}
-        totalPageCount={totalPageCount}
+        rowsPerPage={shownRows}
       />
     </section>
   );

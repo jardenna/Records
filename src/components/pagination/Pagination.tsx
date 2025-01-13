@@ -4,26 +4,39 @@ import IconContent from '../IconContent';
 import { IconName } from '../icons/Icon';
 import './_pagination.scss';
 import PaginationItem from './PaginationItem';
-import { PaginationActionEnum } from './usePagination';
+import usePagination, { PaginationActionEnum } from './usePagination';
 
 interface PaginationProps {
   currentPage: number;
-  onPaginationAction: (action: PaginationActionEnum) => void;
-  onPaginationItemClick: (page: number) => void;
   pageLimit: number;
-  pageRange: number[];
-  totalPageCount: number;
+  rowsPerPage: number;
+  selectedPage: any;
+  setCurrentPage: any;
+  totalCount: number;
 }
 
 const Pagination: FC<PaginationProps> = ({
   currentPage,
-  pageRange,
-  totalPageCount,
+  totalCount,
   pageLimit,
-  onPaginationAction,
-  onPaginationItemClick,
+  selectedPage,
+  setCurrentPage,
+  rowsPerPage,
 }) => {
   const { language } = useLanguage();
+  const {
+    pageRange,
+    totalPageCount,
+    onPaginationItemClick,
+    onPaginationAction,
+  } = usePagination({
+    totalCount,
+    rowsPerPage,
+    pageLimit,
+    currentPage: selectedPage,
+    setCurrentPage,
+    addCurrentPageToParams: true,
+  });
 
   return (
     <ul className="pagination">
