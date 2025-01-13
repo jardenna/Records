@@ -184,7 +184,7 @@ const CreateForm: FC<CreateFormProps> = ({
               onChange={onChange}
               name="cover"
               id="cover"
-              labelText="Upload image"
+              labelText={language.upLoadCover}
               value=""
             />
           </div>

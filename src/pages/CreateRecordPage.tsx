@@ -10,6 +10,7 @@ import { MainPath } from '../types/enums';
 
 const CreateRecordPage: FC = () => {
   const navigate = useNavigate();
+  const { language } = useLanguage();
   const [createRecord, { isLoading }] = useCreateNewRecordMutation();
   const { addMessagePopup } = useMessagePopup();
 
@@ -26,7 +27,7 @@ const CreateRecordPage: FC = () => {
       }
 
       addMessagePopup({
-        message: 'Record Created successfully',
+        message: language.albumCreatedSuccessfully,
         messagePopupType: 'success',
       });
       return result;
@@ -34,7 +35,6 @@ const CreateRecordPage: FC = () => {
       console.log(error);
     }
   };
-  const { language } = useLanguage();
 
   return (
     <CreateForm
