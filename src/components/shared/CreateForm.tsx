@@ -3,7 +3,6 @@ import { OmittedRecordRequest, Records } from '../../app/api/apiTypes';
 import useLanguage from '../../features/language/useLanguage';
 import useFormValidation from '../../hooks/useFormValidation';
 import MetaTags from '../MetaTags';
-import Figure from '../figure/Figure';
 import Input from '../formElements/Input';
 import Textarea from '../formElements/Textarea';
 import Form from '../formElements/form/Form';
@@ -69,8 +68,6 @@ const CreateForm: FC<CreateFormProps> = ({
 
   return (
     <section>
-      {previewUrl && <Figure src={previewUrl} alt="" figcaption="file.name" />}
-
       <MetaTags
         description="This is the records page description"
         keywords="records, music, artists"
@@ -79,8 +76,6 @@ const CreateForm: FC<CreateFormProps> = ({
       <Form onSubmit={onSubmit} labelText={title} isLoading={isLoading}>
         <div className="flex">
           <div className="flex column">
-            <label htmlFor="cover">Cover</label>
-            <input type="file" onChange={onChange} name="cover" id="cover" />
             <Input
               name="artist"
               id="artist"
@@ -178,12 +173,21 @@ const CreateForm: FC<CreateFormProps> = ({
             />
           </div>
 
-          {/* <ImagePreview
-            fileName="record"
-            previewUrl="/images/default.png"
-            uploadedCover="/images/default.png"
-          /> */}
-          <RecordImg src="/images/default.png" title="Billede upload" alt="" />
+          <div className="file-container">
+            <RecordImg
+              src={previewUrl || '/images/default.png'}
+              title={file?.name || null}
+              alt=""
+            />
+            <Input
+              type="file"
+              onChange={onChange}
+              name="cover"
+              id="cover"
+              labelText="Upload image"
+              value=""
+            />
+          </div>
         </div>
       </Form>
     </section>

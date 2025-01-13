@@ -5,7 +5,7 @@ import './_record-img.scss';
 interface RecordImgProps {
   alt: string;
   src: string;
-  title: string;
+  title: string | null;
   Subtitle?: string;
 }
 

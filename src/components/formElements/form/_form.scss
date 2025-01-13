@@ -56,11 +56,7 @@ textarea {
     font-family: $font-primary;
 
     &:focus-visible {
-      background:
-        /* stylelint-disable-next-line scss/operator-no-newline-after */
-        linear-gradient($color-blue, $color-blue-dark) bottom -12px left 0 /
-          100% 3px content-box padding-box repeat-x,
-        $color-white;
+      box-shadow: inset 0 -0.16rem 0 $color-blue;
     }
 
     &:disabled {
@@ -77,8 +73,8 @@ textarea {
     @include outline($color-danger);
 
     &:focus-visible {
-      background: linear-gradient($color-danger, $color-error-light)
-        bottom -12px left 0 / 100% 3px content-box padding-box repeat-x;
+      box-shadow: inset 0 -0.16rem 0 $color-danger;
+      outline: transparent;
     }
   }
 }
@@ -171,5 +167,42 @@ legend {
 
   .btn {
     width: auto;
+  }
+}
+
+.file-container {
+  width: 100%;
+
+  .record-img-title {
+    font-size: rem(16px);
+  }
+
+  .input-container {
+    overflow: hidden;
+    border-radius: 4px;
+    border: 1px solid $color-border;
+
+    &:has(input:focus-visible) {
+      box-shadow: inset 0 -0.16rem 0 $color-blue;
+    }
+  }
+
+  .form-label-container {
+    position: absolute;
+    z-index: 2;
+    padding: 12px;
+    color: $color-white;
+    background: $color-blue;
+    display: block;
+  }
+
+  .form-label {
+    margin: 0;
+    cursor: pointer;
+  }
+
+  input[type='file'] {
+    opacity: 0;
+    max-height: rem(37px);
   }
 }
