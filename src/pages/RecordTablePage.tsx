@@ -4,7 +4,7 @@ import { SortOrder } from '../app/api/apiTypes';
 import MetaTags from '../components/MetaTags';
 import { PrimaryActionBtnProps } from '../components/modal/Modal';
 import Pagination from '../components/pagination/Pagination';
-import Table from '../components/recordTable/Table';
+import RecordTable from '../components/recordTable/RecordTable';
 import SelectBox, { Option } from '../components/SelectBox';
 import useLanguage from '../features/language/useLanguage';
 import {
@@ -162,7 +162,7 @@ const RecordTablePage: FC = () => {
       </div>
 
       {records && (
-        <Table
+        <RecordTable
           tableData={records.results}
           onSort={handleSort}
           tableSearchParams={location.search}
