@@ -3,6 +3,7 @@ import { OmittedRecordRequest, Records } from '../../app/api/apiTypes';
 import useLanguage from '../../features/language/useLanguage';
 import useFormValidation from '../../hooks/useFormValidation';
 import MetaTags from '../MetaTags';
+import Figure from '../figure/Figure';
 import Input from '../formElements/Input';
 import Textarea from '../formElements/Textarea';
 import Form from '../formElements/form/Form';
@@ -10,19 +11,17 @@ import validateUpdate, {
   minimumYear,
 } from '../formElements/validation/validateUpdate';
 import RecordImg from './recordImg/RecordImg';
-
+//  onUpdateRecord?: (values: Records) => void;
 interface CreateFormProps {
   title: string;
   isLoading?: boolean;
-  onCreateRecord?: (values: Records) => void;
-  onUpdateRecord?: (values: Records) => void;
+  onUpdateRecord?: any;
   recordDetails?: OmittedRecordRequest;
 }
 
 const CreateForm: FC<CreateFormProps> = ({
   recordDetails,
   onUpdateRecord,
-  onCreateRecord,
   isLoading,
   title,
 }) => {
@@ -38,9 +37,20 @@ const CreateForm: FC<CreateFormProps> = ({
     numOfRecords: recordDetails?.numOfRecords ?? 1,
     released: recordDetails?.released ?? '',
     info: recordDetails?.info ?? '',
+    cover: recordDetails?.cover ?? '',
   };
 
-  const { onSubmit, onChange, onBlur, values, errors } = useFormValidation({
+  const {
+    onSubmit,
+    onChange,
+    onBlur,
+    values,
+    errors,
+    file,
+    fileName,
+    imgUpdated,
+    previewUrl,
+  } = useFormValidation({
     initialState,
     callback: handleSubmit,
     validate,
@@ -52,15 +62,15 @@ const CreateForm: FC<CreateFormProps> = ({
 
   function handleSubmit() {
     if (onUpdateRecord) {
-      onUpdateRecord(values as Records);
-    } else if (onCreateRecord) {
-      onCreateRecord(values as Records);
+      onUpdateRecord(values as Records, file, fileName, imgUpdated, previewUrl);
     }
   }
   const maxYear = new Date().getFullYear() + 1;
 
   return (
     <section>
+      {previewUrl && <Figure src={previewUrl} alt="" figcaption="file.name" />}
+
       <MetaTags
         description="This is the records page description"
         keywords="records, music, artists"
@@ -69,6 +79,8 @@ const CreateForm: FC<CreateFormProps> = ({
       <Form onSubmit={onSubmit} labelText={title} isLoading={isLoading}>
         <div className="flex">
           <div className="flex column">
+            <label htmlFor="cover">Cover</label>
+            <input type="file" onChange={onChange} name="cover" id="cover" />
             <Input
               name="artist"
               id="artist"
@@ -169,7 +181,7 @@ const CreateForm: FC<CreateFormProps> = ({
           {/* <ImagePreview
             fileName="record"
             previewUrl="/images/default.png"
-            uploadedPhoto="/images/default.png"
+            uploadedCover="/images/default.png"
           /> */}
           <RecordImg src="/images/default.png" title="Billede upload" alt="" />
         </div>

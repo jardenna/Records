@@ -2,7 +2,7 @@ import multer from 'multer';
 import path from 'path';
 
 //Global error message
-const errorMsg = (error, res) => {
+export const errorMsg = (error, res) => {
   res.status(500).json({
     error,
   });
@@ -10,7 +10,7 @@ const errorMsg = (error, res) => {
 
 //Storage
 const storage = multer.diskStorage({
-  destination: './server/public/uploads/',
+  destination: './public/images/uploads/',
   filename: function (req, file, cb) {
     cb(
       null,
@@ -43,4 +43,4 @@ function checkFileType(file, cb) {
   }
 }
 
-export { checkFileType, errorMsg, upload };
+export default upload;

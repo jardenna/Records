@@ -76,7 +76,7 @@ const usePagination = ({
       searchParams.set('page', '1');
       setSearchParams(searchParams);
     }
-    setPageRange([]);
+    // setPageRange([]);
   }, [rowsPerPage, totalCount]);
 
   const handlePaginationItemClick = useCallback(

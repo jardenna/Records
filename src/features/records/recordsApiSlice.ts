@@ -1,6 +1,5 @@
 import apiSlice from '../../app/api/apiSlice';
 import {
-  OmittedRecordRequest,
   Records,
   RecordsRequest,
   RecordsResponse,
@@ -47,22 +46,62 @@ export const recordsApiSlice = apiSlice.injectEndpoints({
       query: (id) => `${endpoints.records}/${id}`,
       providesTags: ['Records'],
     }),
-    createNewRecord: builder.mutation<Records, OmittedRecordRequest>({
-      query: (record) => ({
-        url: `/${endpoints.records}`,
-        method: 'POST',
-        body: record,
-      }),
+    createNewRecord: builder.mutation<Records, any>({
+      query: ({ records, file, fileName }) => {
+        if (file && fileName) {
+          const fd = new FormData();
+          fd.append(fileName, file);
+
+          Object.keys(records).forEach((key) => {
+            fd.append(key, records[key as keyof Records] as string);
+          });
+
+          return {
+            url: `/${endpoints.records}`,
+            method: 'POST',
+            body: fd,
+          };
+        }
+        return {
+          url: `/${endpoints.records}`,
+          method: 'POST',
+          body: records,
+        };
+      },
       invalidatesTags: ['Records'],
     }),
-    updateRecord: builder.mutation<Records, { id: string; record: Records }>({
-      query: ({ id, record }) => ({
-        url: `/${endpoints.records}/${id}`,
-        method: 'PUT',
-        body: record,
-      }),
+    updateRecord: builder.mutation<Records, any>({
+      query: ({ id, records, imgUpdated, file, fileName }) => {
+        if (imgUpdated && file && fileName) {
+          const fd = new FormData();
+          fd.append(fileName, file);
+
+          Object.keys(records).forEach((key) => {
+            fd.append(key, records[key as keyof Records] as string);
+          });
+
+          return {
+            url: `/${endpoints.records}/${id}`,
+            method: 'POST',
+            body: fd,
+          };
+        }
+        // if (!id) {
+        //   return {
+        //     url: `/${endpoints.records}`,
+        //     method: 'POST',
+        //     body: records,
+        //   };
+        // }
+        return {
+          url: `/${endpoints.records}/${id}`,
+          method: 'PUT',
+          body: records,
+        };
+      },
       invalidatesTags: ['Records'],
     }),
+
     deleteRecord: builder.mutation({
       query: (id) => ({
         url: `${endpoints.deleteRecord}/${id}`,

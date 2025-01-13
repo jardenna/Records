@@ -30,6 +30,10 @@ function useFormValidation<T extends KeyValuePair<any>>({
   const [errors, setErrors] = useState<KeyValuePair<string>>({});
   const [touched, setTouched] = useState<string[]>([]);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [file, setFile] = useState<File | null>(null);
+  const [fileName, setFileName] = useState('');
+  const [imgUpdated, setImgUpdated] = useState(false);
+  const [previewUrl, setPreviewUrl] = useState('');
   const inputRefs = useRef<Record<string, HTMLInputElement | null>>({});
 
   useEffect(() => {
@@ -43,7 +47,7 @@ function useFormValidation<T extends KeyValuePair<any>>({
   }, [errors]);
 
   function onChange(event: ChangeInputType) {
-    const { name, value, type, checked } = event.target;
+    const { name, value, type, checked, files } = event.target;
 
     setValues({
       ...values,
@@ -68,6 +72,21 @@ function useFormValidation<T extends KeyValuePair<any>>({
 
     if (!touched.includes(name)) {
       setTouched([...touched, name]);
+    }
+
+    if (name === 'cover' && files && files[0]) {
+      const reader = new FileReader();
+      reader.onloadend = (readerEvent: ProgressEvent<FileReader>) => {
+        if (readerEvent?.target?.result) {
+          if (typeof reader.result === 'string') {
+            setPreviewUrl(reader.result);
+          }
+        }
+      };
+      reader.readAsDataURL(files[0]);
+      setFile(files[0]);
+      setFileName(name);
+      setImgUpdated(true);
     }
 
     // Clear the error message when typing
@@ -147,6 +166,10 @@ function useFormValidation<T extends KeyValuePair<any>>({
     errors,
     onClearAll,
     inputRefs,
+    file,
+    fileName,
+    imgUpdated,
+    previewUrl,
   };
 }
 

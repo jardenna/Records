@@ -29,26 +29,28 @@ const getRecordById = async (req, res) => {
 
 // Post requests
 const postCreateRecord = async (req, res) => {
-  const recordData = {
-    ...req.body,
-  };
+  const file = req.file ? req.file.filename : req.body.cover;
 
   try {
-    const record = new Record(recordData);
-    const savedRecord = await record.save();
+    const newRecord = new Record({
+      ...req.body,
+      cover: file,
+    });
+    const savedRecord = await newRecord.save();
+
     res.json(savedRecord);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
 };
 
-const postPhoto = async (req, res) => {
-  const file = req.file ? req.file.filename : req.body.photo;
+const postUpdateRecord = async (req, res) => {
+  const file = req.file ? req.file.filename : req.body.cover;
 
   try {
     const record = await Record.updateOne(
       { _id: req.params.recordId },
-      { $set: { photo: file } },
+      { $set: { cover: file, ...req.body } },
     );
     res.json(record);
   } catch (error) {
@@ -56,16 +58,25 @@ const postPhoto = async (req, res) => {
   }
 };
 
-const postUpdateRecord = async (req, res) => {
-  const updatedData = { ...req.body };
+const postCover = async (req, res) => {
+  const file = req.file ? req.file.filename : req.body.cover;
 
   try {
-    const updatedRecord = await Record.updateOne(
-      { _id: req.params.recordId },
-      { $set: updatedData },
-      { runValidators: true }, // Ensure validation is run during update
-    );
-    res.json(updatedRecord);
+    const recordId = req.params.recordId;
+
+    if (recordId) {
+      // Update existing record
+      const record = await Record.updateOne(
+        { _id: recordId },
+        { $set: { cover: file } },
+      );
+      res.json(record);
+    } else {
+      // Create new record
+      const newRecord = new Record({ cover: file, ...req.body });
+      const savedRecord = await newRecord.save();
+      res.json(savedRecord);
+    }
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
@@ -85,7 +96,7 @@ export {
   getFirstSixRecords,
   getPaginatedRecords,
   getRecordById,
+  postCover,
   postCreateRecord,
-  postPhoto,
   postUpdateRecord,
 };

@@ -1,8 +1,9 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { useSearchParams } from 'react-router';
+import { useNavigate, useSearchParams } from 'react-router';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import useLanguage from '../../features/language/useLanguage';
 import { selectModalId, toggleModal } from '../../features/modalSlice';
+import { useDeleteRecordMutation } from '../../features/records/recordsApiSlice';
 import useClickOutside from '../../hooks/useClickOutside';
 import { BtnVariant, MainPath } from '../../types/enums';
 import DeleteRecordModal from '../DeleteRecordModal';
@@ -35,10 +36,12 @@ const Table = <T extends Record<string, any>>({
   tableCaption,
 }: TableProps<T>) => {
   const { language } = useLanguage();
+  const navigate = useNavigate();
   const modalId = useAppSelector(selectModalId);
   const [searchParams, setSearchParams] = useSearchParams();
   const [showSearchField, setShowSearchField] = useState<string | null>(null);
   const containerRefs = useRef<any>(new Map());
+  const [deleteRecord] = useDeleteRecordMutation();
   useClickOutside(containerRefs, () => setShowSearchField(null));
   const dispatch = useAppDispatch();
 
@@ -61,15 +64,22 @@ const Table = <T extends Record<string, any>>({
       searchParams.delete('id');
       setSearchParams(searchParams);
     }
-  }, [modalId]);
+  }, [modalId, id]);
 
-  const handleDeleteSearchParams = () => {
-    console.log('delete');
+  const handleDeleteAlbum = () => {
+    deleteRecord(id);
   };
 
   const primaryActionBtn: PrimaryActionBtnProps = {
     label: language.delete,
-    onClick: handleDeleteSearchParams,
+    onClick: handleDeleteAlbum,
+  };
+
+  const handleEditAlbum = (id: string) => {
+    searchParams.delete('id');
+    setSearchParams(searchParams);
+    dispatch(toggleModal(null));
+    navigate(`/${MainPath.Details}/${id}${tableSearchParams}`);
   };
 
   return (
@@ -132,15 +142,12 @@ const Table = <T extends Record<string, any>>({
                 ))}
                 <td className="detail-table-header">
                   <div className="action-container">
-                    <DetailLink
-                      btnVariant={BtnVariant.Ghost}
-                      to={`/${MainPath.Details}/${data.id}${tableSearchParams}`}
-                    >
-                      <IconContent
-                        iconName={IconName.Eye}
-                        title={language.albumDetails}
-                      />
-                    </DetailLink>
+                    <IconBtn
+                      iconName={IconName.Eye}
+                      title={language.albumDetails}
+                      onClick={() => handleEditAlbum(data.id)}
+                    />
+
                     <DetailLink
                       btnVariant={BtnVariant.Ghost}
                       to={`/${MainPath.Update}/${data.id}`}
