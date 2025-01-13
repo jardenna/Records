@@ -21,7 +21,10 @@ const CreateRecordPage: FC = () => {
     try {
       const result = await createRecord({ records, file, fileName }).unwrap();
 
-      navigate(`/${MainPath.Records}`);
+      if (result) {
+        navigate(`/${MainPath.Records}`);
+      }
+
       addMessagePopup({
         message: 'Record Created successfully',
         messagePopupType: 'success',
