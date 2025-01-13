@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { useSearchParams } from 'react-router';
+import { useNavigate, useSearchParams } from 'react-router';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import useLanguage from '../../features/language/useLanguage';
 import { selectModalId, toggleModal } from '../../features/modalSlice';
@@ -36,6 +36,7 @@ const Table = <T extends Record<string, any>>({
   tableCaption,
 }: TableProps<T>) => {
   const { language } = useLanguage();
+  const navigate = useNavigate();
   const modalId = useAppSelector(selectModalId);
   const [searchParams, setSearchParams] = useSearchParams();
   const [showSearchField, setShowSearchField] = useState<string | null>(null);
@@ -65,14 +66,20 @@ const Table = <T extends Record<string, any>>({
     }
   }, [modalId, id]);
 
-  const handleDeleteSearchParams = () => {
+  const handleDeleteAlbum = () => {
     deleteRecord(id);
-    dispatch(toggleModal(null));
   };
 
   const primaryActionBtn: PrimaryActionBtnProps = {
     label: language.delete,
-    onClick: handleDeleteSearchParams,
+    onClick: handleDeleteAlbum,
+  };
+
+  const handleEditAlbum = (id: string) => {
+    searchParams.delete('id');
+    setSearchParams(searchParams);
+    dispatch(toggleModal(null));
+    navigate(`/${MainPath.Details}/${id}${tableSearchParams}`);
   };
 
   return (
@@ -135,15 +142,12 @@ const Table = <T extends Record<string, any>>({
                 ))}
                 <td className="detail-table-header">
                   <div className="action-container">
-                    <DetailLink
-                      btnVariant={BtnVariant.Ghost}
-                      to={`/${MainPath.Details}/${data.id}${tableSearchParams}`}
-                    >
-                      <IconContent
-                        iconName={IconName.Eye}
-                        title={language.albumDetails}
-                      />
-                    </DetailLink>
+                    <IconBtn
+                      iconName={IconName.Eye}
+                      title={language.albumDetails}
+                      onClick={() => handleEditAlbum(data.id)}
+                    />
+
                     <DetailLink
                       btnVariant={BtnVariant.Ghost}
                       to={`/${MainPath.Update}/${data.id}`}
