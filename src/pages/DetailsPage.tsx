@@ -63,7 +63,7 @@ const DetailsPage: FC = () => {
         title={language.albumDetails}
       />
       <RecordImg
-        src="/images/default.png"
+        src={`/images/uploads/${selectedRecord.cover}` || 'default.png'}
         alt=""
         title={selectedRecord.artist}
         Subtitle={selectedRecord.title}
