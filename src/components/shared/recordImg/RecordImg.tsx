@@ -12,7 +12,7 @@ interface RecordImgProps {
 const RecordImg: FC<RecordImgProps> = ({ title, Subtitle, src, alt }) => (
   <section className="record-img-container">
     <Figure
-      src={src}
+      src={`/images/${src}`}
       alt={alt}
       figcaption={
         <div className="record-img-header">
@@ -24,5 +24,4 @@ const RecordImg: FC<RecordImgProps> = ({ title, Subtitle, src, alt }) => (
     />
   </section>
 );
-
 export default RecordImg;

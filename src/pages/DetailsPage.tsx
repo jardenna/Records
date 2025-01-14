@@ -55,6 +55,11 @@ const DetailsPage: FC = () => {
     label: language.cancel,
   };
 
+  const imageSource =
+    selectedRecord && selectedRecord.cover && selectedRecord.cover.trim() !== ''
+      ? selectedRecord.cover
+      : 'default.png';
+
   return selectedRecord ? (
     <article className="details">
       <MetaTags
@@ -63,7 +68,7 @@ const DetailsPage: FC = () => {
         title={language.albumDetails}
       />
       <RecordImg
-        src={`/images/uploads/${selectedRecord.cover}` || 'default.png'}
+        src={imageSource}
         alt=""
         title={selectedRecord.artist}
         Subtitle={selectedRecord.title}
