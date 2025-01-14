@@ -1,14 +1,15 @@
 import { FC } from 'react';
-import Icon, { IconName } from '../../components/icons/Icon';
+import { IconName } from '../../components/icons/Icon';
 
 import useLanguage from '../../features/language/useLanguage';
+import LayoutElement from '../../layout/LayoutElement';
 import IconBtn from '../IconBtn';
 import MetaTags from '../MetaTags';
 import './_error-boundary.scss';
 
 export interface FallbackProps {
-  error: Error;
-  resetErrorBoundary: () => void;
+  error: any;
+  resetErrorBoundary?: () => void;
 }
 
 const ErrorBoundaryFallback: FC<FallbackProps> = ({
@@ -26,34 +27,27 @@ const ErrorBoundaryFallback: FC<FallbackProps> = ({
       />
 
       <section className="error-boundary">
-        <p className="error-boundary-info">
-          <span className="error-boundary-icon">
-            <Icon
-              iconName={IconName.Warning}
-              title={language.error}
-              ariaHidden
-            />
-          </span>
-          {language.somethingWentWrong} {error.message}.
-        </p>
-        <IconBtn
-          iconName={IconName.Undo}
-          title={language.retry}
-          onClick={resetErrorBoundary}
-        />
-        {/* <Button
-          type="button"
-          onClick={resetErrorBoundary}
-          variant={BtnVariant.Secondary}
-        >
-          <Icon
-            iconName={IconName.Undo}
-            title={language.refresh}
-            ariaHidden
-            size="16"
+        <div>
+          <img
+            className="emoji"
+            src="/images/sad_smiley.png"
+            alt="Really guilty emoji"
+            loading="lazy"
           />
-          {language.refresh}
-        </Button> */}
+          <div className="flex">
+            <LayoutElement as="header" ariaLabel={language.error}>
+              <h3 className="error-boundary-info">
+                UPS {language.somethingWentWrong}
+              </h3>
+              <p className="error-boundary-info">{error.message}</p>
+            </LayoutElement>
+            <IconBtn
+              iconName={IconName.Undo}
+              title={language.retry}
+              onClick={resetErrorBoundary}
+            />
+          </div>
+        </div>
       </section>
     </>
   );

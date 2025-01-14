@@ -69,7 +69,7 @@ const CreateForm: FC<CreateFormProps> = ({
   const maxYear = new Date().getFullYear() + 1;
 
   return (
-    <section>
+    <>
       <MetaTags
         description="This is the records page description"
         keywords="records, music, artists"
@@ -198,7 +198,7 @@ const CreateForm: FC<CreateFormProps> = ({
           </div>
         </Form>
       </ErrorBoundary>
-    </section>
+    </>
   );
 };
 

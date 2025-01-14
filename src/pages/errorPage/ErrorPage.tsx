@@ -20,7 +20,7 @@ const ErrorPage: FC = () => {
       <MetaTags
         description="This is the records page description"
         keywords="records, music, artists"
-        title={language.error}
+        title={`${language.somethingWentWrong} ${error.data}`}
       />
       <LayoutElement as="header" ariaLabel={language.error}>
         <img
@@ -29,8 +29,6 @@ const ErrorPage: FC = () => {
           alt="Really guilty emoji"
           loading="lazy"
         />
-
-        <h1>ErrorText</h1>
       </LayoutElement>
 
       <h2>{error.data}</h2>
