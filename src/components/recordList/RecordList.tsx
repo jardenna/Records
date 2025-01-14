@@ -19,7 +19,7 @@ const RecordList: FC<RecordListProps> = ({ records }) => {
       {records.map((record) => (
         <li className="record-item" key={record.id}>
           <RecordImg
-            src="/images/default.png"
+            src={record.cover !== '' ? record.cover : ''}
             title={record.artist}
             Subtitle={record.title}
             alt=""

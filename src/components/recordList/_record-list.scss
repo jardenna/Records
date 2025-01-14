@@ -4,7 +4,10 @@
   .record-item {
     color: $color-white;
     width: 100%;
-    min-width: rem(450px);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 
     .btn {
       width: auto;
@@ -44,12 +47,9 @@
   .record-img-footer {
     display: flex;
     justify-content: flex-end;
-    padding: 16px;
-    padding-top: 0;
   }
 
   .record-img-container {
-    padding: 12px;
-    padding-top: 20px;
+    padding: 0;
   }
 }

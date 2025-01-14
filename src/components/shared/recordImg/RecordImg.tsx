@@ -9,19 +9,23 @@ interface RecordImgProps {
   Subtitle?: string;
 }
 
-const RecordImg: FC<RecordImgProps> = ({ title, Subtitle, src, alt }) => (
-  <section className="record-img-container">
-    <Figure
-      src={`/images/${src}`}
-      alt={alt}
-      figcaption={
-        <div className="record-img-header">
-          <h2 className="record-img-title">{title}</h2>
-          {Subtitle && <span>/</span>}
-          <h3 className="record-img-sub-title">{Subtitle}</h3>
-        </div>
-      }
-    />
-  </section>
-);
+const RecordImg: FC<RecordImgProps> = ({ title, Subtitle, src, alt }) => {
+  const imageSource = src.trim() !== '' ? src : 'default.png';
+
+  return (
+    <section className="record-img-container">
+      <Figure
+        src={`/images/${imageSource}`}
+        alt={alt}
+        figcaption={
+          <div className="record-img-header">
+            <h2 className="record-img-title">{title}</h2>
+            {Subtitle && <span>/</span>}
+            <h3 className="record-img-sub-title">{Subtitle}</h3>
+          </div>
+        }
+      />
+    </section>
+  );
+};
 export default RecordImg;
