@@ -1,0 +1,21 @@
+@use '../../scss/globals' as *;
+
+.error-boundary {
+  padding: 12px;
+  background-color: $color-white;
+  border-radius: 4px;
+  display: flex;
+  justify-content: space-between;
+
+  .error-boundary-info {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    margin: 0;
+  }
+}
+
+.error-boundary-icon {
+  display: flex;
+  border-radius: 50%;
+}

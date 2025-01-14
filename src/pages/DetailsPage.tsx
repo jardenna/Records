@@ -1,9 +1,11 @@
 import { FC } from 'react';
+import { ErrorBoundary } from 'react-error-boundary';
 import { useLocation, useNavigate, useParams } from 'react-router';
 import { useAppDispatch } from '../app/hooks';
 import Button from '../components/Button';
 import DeleteRecordModal from '../components/DeleteRecordModal';
 import DetailsContent from '../components/details/DetailsContent';
+import ErrorBoundaryFallback from '../components/errorBoundary/ErrorBoundaryFallback';
 import MetaTags from '../components/MetaTags';
 import {
   PrimaryActionBtnProps,
@@ -68,70 +70,74 @@ const DetailsPage: FC = () => {
         title={selectedRecord.artist}
         Subtitle={selectedRecord.title}
       />
+      <ErrorBoundary
+        FallbackComponent={ErrorBoundaryFallback}
+        onReset={() => console.log(123)}
+      >
+        <section className="details-content-container">
+          <div>
+            <DetailsContent
+              text={selectedRecord.prodYear}
+              label={language.prodYear}
+            />
+            <DetailsContent
+              text={
+                selectedRecord.prodYear ||
+                selectedRecord.released ||
+                language.noInfo
+              }
+              label={language.released}
+            />
+            <DetailsContent
+              text={selectedRecord.label?.trim() || language.noInfo}
+              label={language.label}
+            />
+            <DetailsContent
+              text={selectedRecord.recordNo?.trim() || language.noInfo}
+              label={language.recordNo}
+            />
+            <DetailsContent
+              text={selectedRecord.numOfRecords || 1}
+              label={language.numOfRecords}
+            />
+            <DetailsContent
+              text={selectedRecord.origin?.trim() || language.noInfo}
+              label={language.origin}
+            />
+            <DetailsContent
+              text={selectedRecord.info?.trim() || language.noInfo}
+              label={language.niceToKnow}
+            />
+            <DetailsContent
+              text={`${selectedRecord.price?.trim()}` || language.noInfo}
+              label={language.price}
+              isPrice={!!selectedRecord.price?.trim()}
+            />
+          </div>
+          <LayoutElement
+            className="details-footer"
+            ariaLabel={language.albumDetails}
+          >
+            <DetailLink to={`/update/${recordId}${location.search}`}>
+              {language.updateAlbum}
+            </DetailLink>
 
-      <section className="details-content-container">
-        <div>
-          <DetailsContent
-            text={selectedRecord.prodYear}
-            label={language.prodYear}
-          />
-          <DetailsContent
-            text={
-              selectedRecord.prodYear ||
-              selectedRecord.released ||
-              language.noInfo
-            }
-            label={language.released}
-          />
-          <DetailsContent
-            text={selectedRecord.label?.trim() || language.noInfo}
-            label={language.label}
-          />
-          <DetailsContent
-            text={selectedRecord.recordNo?.trim() || language.noInfo}
-            label={language.recordNo}
-          />
-          <DetailsContent
-            text={selectedRecord.numOfRecords || 1}
-            label={language.numOfRecords}
-          />
-          <DetailsContent
-            text={selectedRecord.origin?.trim() || language.noInfo}
-            label={language.origin}
-          />
-          <DetailsContent
-            text={selectedRecord.info?.trim() || language.noInfo}
-            label={language.niceToKnow}
-          />
-          <DetailsContent
-            text={`${selectedRecord.price?.trim()}` || language.noInfo}
-            label={language.price}
-            isPrice={!!selectedRecord.price?.trim()}
-          />
-        </div>
-        <LayoutElement
-          className="details-footer"
-          ariaLabel={language.albumDetails}
-        >
-          <DetailLink to={`/update/${recordId}${location.search}`}>
-            {language.updateAlbum}
-          </DetailLink>
-
-          {recordId && (
-            <>
-              <Button className="btn-danger" onClick={handleOpenModal}>
-                {language.deleteAlbum}
-              </Button>
-              <DeleteRecordModal
-                modalId={recordId}
-                primaryActionBtn={primaryActionBtn}
-                secondaryActionBtn={secondaryActionBtn}
-                name={selectedRecord.artist}
-              />
-            </>
-          )}
-        </LayoutElement>
-      </section>
+            {recordId && (
+              <>
+                <Button className="btn-danger" onClick={handleOpenModal}>
+                  {language.deleteAlbum}
+                </Button>
+                <DeleteRecordModal
+                  modalId={recordId}
+                  primaryActionBtn={primaryActionBtn}
+                  secondaryActionBtn={secondaryActionBtn}
+                  name={selectedRecord.artist}
+                />
+              </>
+            )}
+          </LayoutElement>
+        </section>
+      </ErrorBoundary>
     </article>
   ) : (
     <span>Loading...</span>

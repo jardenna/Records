@@ -1,8 +1,10 @@
 import { FC } from 'react';
+import { ErrorBoundary } from 'react-error-boundary';
 import { Records } from '../../app/api/apiTypes';
 import useLanguage from '../../features/language/useLanguage';
 import LayoutElement from '../../layout/LayoutElement';
 import { BtnVariant, MainPath } from '../../types/enums';
+import ErrorBoundaryFallback from '../errorBoundary/ErrorBoundaryFallback';
 import DetailLink from '../shared/DetailLink';
 import RecordImg from '../shared/recordImg/RecordImg';
 import './_record-list.scss';
@@ -18,23 +20,28 @@ const RecordList: FC<RecordListProps> = ({ records }) => {
     <ul className="record-list grid three-col">
       {records.map((record) => (
         <li className="record-item" key={record.id}>
-          <RecordImg
-            src={record.cover !== '' ? record.cover : ''}
-            title={record.artist}
-            Subtitle={record.title}
-            alt=""
-          />
-          <LayoutElement
-            ariaLabel={language.albumInfo}
-            className="record-img-footer"
+          <ErrorBoundary
+            FallbackComponent={ErrorBoundaryFallback}
+            onReset={() => console.log(123)}
           >
-            <DetailLink
-              btnVariant={BtnVariant.Secondary}
-              to={`/${MainPath.Details}/${record.id}`}
+            <RecordImg
+              src={record.cover !== '' ? record.cover : ''}
+              title={record.artist}
+              Subtitle={record.title}
+              alt=""
+            />
+            <LayoutElement
+              ariaLabel={language.albumInfo}
+              className="record-img-footer"
             >
-              {language.details}
-            </DetailLink>
-          </LayoutElement>
+              <DetailLink
+                btnVariant={BtnVariant.Secondary}
+                to={`/${MainPath.Details}/${record.id}`}
+              >
+                {language.details}
+              </DetailLink>
+            </LayoutElement>
+          </ErrorBoundary>
         </li>
       ))}
     </ul>

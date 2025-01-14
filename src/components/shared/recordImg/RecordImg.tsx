@@ -1,4 +1,6 @@
 import { FC } from 'react';
+import { ErrorBoundary } from 'react-error-boundary';
+import ErrorBoundaryFallback from '../../errorBoundary/ErrorBoundaryFallback';
 import Figure from '../../figure/Figure';
 import './_record-img.scss';
 
@@ -27,17 +29,22 @@ const RecordImg: FC<RecordImgProps> = ({
 
   return (
     <section className="record-img-container">
-      <Figure
-        src={imageSource}
-        alt={alt}
-        figcaption={
-          <div className="record-img-header">
-            <h2 className="record-img-title">{title}</h2>
-            {Subtitle && <span>/</span>}
-            <h3 className="record-img-sub-title">{Subtitle}</h3>
-          </div>
-        }
-      />
+      <ErrorBoundary
+        FallbackComponent={ErrorBoundaryFallback}
+        onReset={() => console.log(123)}
+      >
+        <Figure
+          src={imageSource}
+          alt={alt}
+          figcaption={
+            <div className="record-img-header">
+              <h2 className="record-img-title">{title}</h2>
+              {Subtitle && <span>/</span>}
+              <h3 className="record-img-sub-title">{Subtitle}</h3>
+            </div>
+          }
+        />
+      </ErrorBoundary>
     </section>
   );
 };
