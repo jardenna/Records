@@ -9,7 +9,7 @@ interface IconContentProps {
 
 const IconContent: FC<IconContentProps> = ({ iconName, title }) => (
   <>
-    <Icon name={iconName} title={title} ariaHidden />
+    <Icon iconName={iconName} title={title} ariaHidden />
     <VisuallyHidden>{title}</VisuallyHidden>
   </>
 );

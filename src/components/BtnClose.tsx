@@ -25,7 +25,7 @@ const BtnClose: FC<BtnCloseProps> = ({
       autoFocus={autoFocus}
       className="btn-close"
     >
-      <Icon name={IconName.Close} title={language.close} />
+      <Icon iconName={IconName.Close} title={language.close} />
     </Button>
   );
 };

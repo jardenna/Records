@@ -51,7 +51,7 @@ const MessagePopupListItem: FC<MessagePopupListItemProps> = ({
       className={`message-popup-item ${messagePopup.componentType || ''} animate-${messagePopup.position} ${popupClass} ${messagePopup.messagePopupType}`}
     >
       <span className="message-popup-item-info">
-        <Icon name={iconName} title={title} />
+        <Icon iconName={iconName} title={title} />
         <p className="message-popup-message">{messagePopup.message}</p>
       </span>
       <BtnClose onClick={deleteMessagePopup} />

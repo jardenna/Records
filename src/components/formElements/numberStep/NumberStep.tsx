@@ -49,7 +49,7 @@ const NumberStep: FC<NumberStepProps> = ({
           onNumberStepChange(event, value !== Number(min) ? -initCount : 0)
         }
       >
-        <Icon name={IconName.Subtract} title="Subtract" />
+        <Icon iconName={IconName.Subtract} title="Subtract" />
       </Button>
       <Input
         type="number"
@@ -71,7 +71,7 @@ const NumberStep: FC<NumberStepProps> = ({
         id="subtract"
         name={id}
       >
-        <Icon name={IconName.Add} title="Add" />
+        <Icon iconName={IconName.Add} title="Add" />
       </Button>
     </div>
   </article>

@@ -20,7 +20,9 @@ const SortBtn: FC<SortBtnProps> = ({ onSort, title, showIcon, sortOrder }) => {
       {showIcon && (
         <Icon
           size="16"
-          name={sortOrder === 'desc' ? IconName.ArrowDown : IconName.ArrowUp}
+          iconName={
+            sortOrder === 'desc' ? IconName.ArrowDown : IconName.ArrowUp
+          }
           title={`${language.sortBy} ${language[title]}`}
         />
       )}

@@ -27,7 +27,7 @@ export interface IconDefaultProps {
 }
 
 interface IconProps extends IconDefaultProps {
-  name: IconName;
+  iconName: IconName;
 }
 
 export enum IconName {
@@ -75,13 +75,13 @@ const iconMapping = {
 };
 
 const Icon: FC<IconProps> = ({
-  name,
+  iconName,
   size = '20',
   title,
   className = '',
   ariaHidden,
 }) => {
-  const IconComponent = iconMapping[name];
+  const IconComponent = iconMapping[iconName];
   return (
     <IconComponent
       size={size}
