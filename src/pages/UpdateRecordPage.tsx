@@ -42,7 +42,7 @@ const UpdateRecord: FC = () => {
           navigate(`/${MainPath.Records}`);
         }
         addMessagePopup({
-          message: 'Record updated successfully',
+          message: language.albumUpdatedSuccessfully,
           messagePopupType: 'success',
         });
 
