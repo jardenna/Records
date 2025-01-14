@@ -14,7 +14,7 @@
     }
 
     &:nth-child(1) {
-      background-color: $color-blue;
+      background-color: $color-blue-dark;
     }
 
     &:nth-child(2) {
@@ -39,8 +39,7 @@
     }
 
     &:nth-child(6) {
-      background-color: $color-blue;
-      margin-right: 15px;
+      background-color: $color-blue-dark;
     }
   }
 
