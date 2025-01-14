@@ -27,6 +27,7 @@ const ErrorPage: FC = () => {
           className="emoji"
           src="/images/sad_smiley.png"
           alt="Really guilty emoji"
+          loading="lazy"
         />
 
         <h1>ErrorText</h1>
