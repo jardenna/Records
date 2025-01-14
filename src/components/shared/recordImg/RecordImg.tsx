@@ -7,15 +7,28 @@ interface RecordImgProps {
   src: string;
   title: string | null;
   Subtitle?: string;
+  previewUrl?: string | null;
 }
 
-const RecordImg: FC<RecordImgProps> = ({ title, Subtitle, src, alt }) => {
-  const imageSource = src.trim() !== '' ? src : 'default.png';
+const RecordImg: FC<RecordImgProps> = ({
+  title,
+  Subtitle,
+  src,
+  alt,
+  previewUrl,
+}) => {
+  let imageSource = '/images/default.png';
+
+  if (previewUrl?.trim()) {
+    imageSource = previewUrl;
+  } else if (src.trim()) {
+    imageSource = `/images/${src}`;
+  }
 
   return (
     <section className="record-img-container">
       <Figure
-        src={`/images/${imageSource}`}
+        src={imageSource}
         alt={alt}
         figcaption={
           <div className="record-img-header">

@@ -46,6 +46,14 @@ function useFormValidation<T extends KeyValuePair<any>>({
     }
   }, [errors]);
 
+  function uploadFile(file: File) {
+    const tempFileUrl = URL.createObjectURL(file);
+    setPreviewUrl(tempFileUrl);
+
+    // Clean up Object URL when done (if using URL.createObjectURL)
+    return () => URL.revokeObjectURL(tempFileUrl);
+  }
+
   function onChange(event: ChangeInputType) {
     const { name, value, type, checked, files } = event.target;
 
@@ -73,18 +81,10 @@ function useFormValidation<T extends KeyValuePair<any>>({
     if (!touched.includes(name)) {
       setTouched([...touched, name]);
     }
-
-    if (name === 'cover' && files && files[0]) {
-      const reader = new FileReader();
-      reader.onloadend = (readerEvent: ProgressEvent<FileReader>) => {
-        if (readerEvent?.target?.result) {
-          if (typeof reader.result === 'string') {
-            setPreviewUrl(reader.result);
-          }
-        }
-      };
-      reader.readAsDataURL(files[0]);
-      setFile(files[0]);
+    const file = files?.[0];
+    if (file) {
+      uploadFile(file);
+      setFile(file);
       setFileName(name);
       setImgUpdated(true);
     }

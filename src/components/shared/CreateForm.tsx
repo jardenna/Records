@@ -175,7 +175,8 @@ const CreateForm: FC<CreateFormProps> = ({
 
           <div className="file-container">
             <RecordImg
-              src={previewUrl || '/images/default.png'}
+              src={recordDetails?.cover || 'default.png'}
+              previewUrl={imgUpdated ? previewUrl : null}
               title={file?.name || null}
               alt=""
             />
