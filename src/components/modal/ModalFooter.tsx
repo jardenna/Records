@@ -30,7 +30,7 @@ const ModalFooter: FC<modalFooterProps> = ({
       >
         {primaryActionBtn.label}
       </Button>
-      {secondaryActionBtn && secondaryActionBtn.label && (
+      {secondaryActionBtn && (
         <Button
           onClick={secondaryActionBtn.onClick || onCloseModal}
           variant={secondaryActionBtn.variant}

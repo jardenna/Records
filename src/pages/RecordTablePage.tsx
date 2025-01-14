@@ -2,12 +2,18 @@ import { FC, useState } from 'react';
 import { useLocation, useSearchParams } from 'react-router';
 import { SortOrder } from '../app/api/apiTypes';
 import MetaTags from '../components/MetaTags';
+import {
+  PrimaryActionBtnProps,
+  SecondaryActionBtnProps,
+} from '../components/modal/Modal';
 import Pagination from '../components/pagination/Pagination';
-import usePagination from '../components/pagination/usePagination';
 import RecordTable from '../components/recordTable/RecordTable';
 import SelectBox, { Option } from '../components/SelectBox';
 import useLanguage from '../features/language/useLanguage';
-import { useGetPaginatedRecordsQuery } from '../features/records/recordsApiSlice';
+import {
+  useDeleteRecordMutation,
+  useGetPaginatedRecordsQuery,
+} from '../features/records/recordsApiSlice';
 import useFormValidation from '../hooks/useFormValidation';
 import { ChangeInputType } from '../types/types';
 
@@ -21,6 +27,7 @@ const RecordTablePage: FC = () => {
   const [sortingOrder, setSortingOrder] = useState(SortOrder.Desc);
   const [currentPage, setCurrentPage] = useState(1);
   const [searchParams, setSearchParams] = useSearchParams();
+  const [deleteRecord] = useDeleteRecordMutation();
 
   const {
     artist,
@@ -62,19 +69,9 @@ const RecordTablePage: FC = () => {
   });
 
   const totalCount = records ? records.recordsCount : shownRows;
-  const {
-    pageRange,
-    totalPageCount,
-    onPaginationItemClick,
-    onPaginationAction,
-  } = usePagination({
-    totalCount,
-    rowsPerPage: shownRows,
-    pageLimit,
-    currentPage: selectedPage,
-    setCurrentPage,
-    addCurrentPageToParams: true,
-  });
+  const totalRows = records?.recordsCount || 0;
+  const startRow = (selectedPage - 1) * shownRows + 1;
+  const endRow = Math.min(selectedPage * shownRows, totalRows);
 
   const handleSort = (field: string) => {
     searchParams.set('sortField', field);
@@ -106,6 +103,22 @@ const RecordTablePage: FC = () => {
     onClearAll();
     setSearchParams();
   };
+
+  const idFromSearchParams = searchParams.get('id');
+
+  const handleDeleteAlbum = () => {
+    deleteRecord(idFromSearchParams);
+  };
+
+  const primaryActionBtn: PrimaryActionBtnProps = {
+    label: language.delete,
+    onClick: handleDeleteAlbum,
+  };
+
+  const secondaryActionBtn: SecondaryActionBtnProps = {
+    label: language.cancel,
+  };
+
   const handleSetRowsCount = (name: string, selectedOptions: Option) => {
     if (selectedOptions.value !== defaultOptionValue) {
       searchParams.set('limit', selectedOptions.value.toString());
@@ -115,9 +128,6 @@ const RecordTablePage: FC = () => {
     setSearchParams(searchParams);
     onCustomChange(name, selectedOptions.value);
   };
-  const totalRows = records?.recordsCount || 0;
-  const startRow = (selectedPage - 1) * shownRows + 1;
-  const endRow = Math.min(selectedPage * shownRows, totalRows);
 
   return (
     <section>
@@ -170,16 +180,19 @@ const RecordTablePage: FC = () => {
           tableHeaders={tableHeaders}
           onClearAllSearch={handleClearAllSearch}
           tableCaption={language.albumCollection}
+          primaryActionBtn={primaryActionBtn}
+          secondaryActionBtn={secondaryActionBtn}
+          idFromSearchParams={idFromSearchParams}
         />
       )}
 
       <Pagination
         currentPage={selectedPage}
-        onPaginationItemClick={onPaginationItemClick}
-        onPaginationAction={onPaginationAction}
+        totalCount={totalCount}
+        setCurrentPage={setCurrentPage}
+        selectedPage={selectedPage}
         pageLimit={pageLimit}
-        pageRange={pageRange}
-        totalPageCount={totalPageCount}
+        rowsPerPage={shownRows}
       />
     </section>
   );
