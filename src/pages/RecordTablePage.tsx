@@ -2,7 +2,10 @@ import { FC, useState } from 'react';
 import { useLocation, useSearchParams } from 'react-router';
 import { SortOrder } from '../app/api/apiTypes';
 import MetaTags from '../components/MetaTags';
-import { PrimaryActionBtnProps } from '../components/modal/Modal';
+import {
+  PrimaryActionBtnProps,
+  SecondaryActionBtnProps,
+} from '../components/modal/Modal';
 import Pagination from '../components/pagination/Pagination';
 import RecordTable from '../components/recordTable/RecordTable';
 import SelectBox, { Option } from '../components/SelectBox';
@@ -112,6 +115,10 @@ const RecordTablePage: FC = () => {
     onClick: handleDeleteAlbum,
   };
 
+  const secondaryActionBtn: SecondaryActionBtnProps = {
+    label: language.cancel,
+  };
+
   const handleSetRowsCount = (name: string, selectedOptions: Option) => {
     if (selectedOptions.value !== defaultOptionValue) {
       searchParams.set('limit', selectedOptions.value.toString());
@@ -174,6 +181,7 @@ const RecordTablePage: FC = () => {
           onClearAllSearch={handleClearAllSearch}
           tableCaption={language.albumCollection}
           primaryActionBtn={primaryActionBtn}
+          secondaryActionBtn={secondaryActionBtn}
           idFromSearchParams={idFromSearchParams}
         />
       )}

@@ -10,7 +10,7 @@ import DeleteRecordModal from '../DeleteRecordModal';
 import IconBtn from '../IconBtn';
 import IconContent from '../IconContent';
 import { IconName } from '../icons/Icon';
-import { PrimaryActionBtnProps } from '../modal/Modal';
+import { PrimaryActionBtnProps, SecondaryActionBtnProps } from '../modal/Modal';
 import DetailLink from '../shared/DetailLink';
 import VisuallyHidden from '../VisuallyHidden';
 import './_table.scss';
@@ -21,6 +21,7 @@ interface BaseTableProps {
   idFromSearchParams: string | null;
   onFilterRows: (e: ChangeInputType) => void;
   primaryActionBtn: PrimaryActionBtnProps;
+  secondaryActionBtn: SecondaryActionBtnProps;
   sortOrder: string;
   tableCaption: string;
   tableHeaders: string[];
@@ -47,6 +48,7 @@ const RecordTable = <T extends Record<string, any>>({
   onClearAllSearch,
   tableCaption,
   primaryActionBtn,
+  secondaryActionBtn,
   idFromSearchParams,
 }: RecordTableProps<T>) => {
   const { language } = useLanguage();
@@ -171,6 +173,7 @@ const RecordTable = <T extends Record<string, any>>({
                       <DeleteRecordModal
                         modalId={idFromSearchParams}
                         primaryActionBtn={primaryActionBtn}
+                        secondaryActionBtn={secondaryActionBtn}
                         name={data.artist}
                       />
                     )}
