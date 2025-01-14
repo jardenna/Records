@@ -86,13 +86,6 @@ export const recordsApiSlice = apiSlice.injectEndpoints({
             body: fd,
           };
         }
-        // if (!id) {
-        //   return {
-        //     url: `/${endpoints.records}`,
-        //     method: 'POST',
-        //     body: records,
-        //   };
-        // }
         return {
           url: `/${endpoints.records}/${id}`,
           method: 'PUT',
