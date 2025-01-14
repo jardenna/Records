@@ -29,7 +29,7 @@ const RecordList: FC<RecordListProps> = ({ records, refetch }) => {
               src={record.cover !== '' ? record.cover : ''}
               title={record.artist}
               Subtitle={record.title}
-              onReset={() => refetch}
+              refetch={() => refetch}
               alt=""
             />
             <LayoutElement

@@ -1,18 +1,17 @@
 import { FC } from 'react';
-import { ErrorBoundary } from 'react-error-boundary';
 import { useLocation, useNavigate, useParams } from 'react-router';
 import { useAppDispatch } from '../app/hooks';
 import Button from '../components/Button';
 import DeleteRecordModal from '../components/DeleteRecordModal';
-import DetailsContent from '../components/details/DetailsContent';
-import ErrorBoundaryFallback from '../components/errorBoundary/ErrorBoundaryFallback';
 import MetaTags from '../components/MetaTags';
 import {
   PrimaryActionBtnProps,
   SecondaryActionBtnProps,
 } from '../components/modal/Modal';
+import RecordDetailsList from '../components/RecordDetailsList';
 import DetailLink from '../components/shared/DetailLink';
 import RecordImg from '../components/shared/recordImg/RecordImg';
+import Skeleton from '../components/skeleton/Skeleton';
 import useLanguage from '../features/language/useLanguage';
 import { toggleModal } from '../features/modalSlice';
 import {
@@ -29,7 +28,11 @@ const DetailsPage: FC = () => {
   const recordParams = useParams();
   const recordId = recordParams.id;
   const navigate = useNavigate();
-  const { data: selectedRecord, refetch } = useGetRecordByIdQuery(recordId);
+  const {
+    data: selectedRecord,
+    refetch,
+    isLoading,
+  } = useGetRecordByIdQuery(recordId);
   const [deleteRecord] = useDeleteRecordMutation();
 
   const handleOpenModal = () => {
@@ -57,90 +60,66 @@ const DetailsPage: FC = () => {
     label: language.cancel,
   };
 
-  return selectedRecord ? (
+  return (
     <article className="details">
       <MetaTags
         description="This is the records page description"
         keywords="records, music, artists"
         title={language.albumDetails}
       />
-      <RecordImg
-        src={selectedRecord.cover}
-        alt=""
-        title={selectedRecord.artist}
-        Subtitle={selectedRecord.title}
-      />
-      <ErrorBoundary
-        FallbackComponent={ErrorBoundaryFallback}
-        onReset={() => refetch}
-      >
-        <section className="details-content-container">
-          <div>
-            <DetailsContent
-              text={selectedRecord.prodYear}
-              label={language.prodYear}
+      {isLoading ? (
+        <Skeleton height={30} width={30} />
+      ) : (
+        <div>
+          {selectedRecord && (
+            <RecordImg
+              src={selectedRecord.cover}
+              alt=""
+              title={selectedRecord.artist}
+              Subtitle={selectedRecord.title}
+              refetch={() => refetch}
             />
-            <DetailsContent
-              text={
-                selectedRecord.prodYear ||
-                selectedRecord.released ||
-                language.noInfo
-              }
-              label={language.released}
-            />
-            <DetailsContent
-              text={selectedRecord.label?.trim() || language.noInfo}
-              label={language.label}
-            />
-            <DetailsContent
-              text={selectedRecord.recordNo?.trim() || language.noInfo}
-              label={language.recordNo}
-            />
-            <DetailsContent
-              text={selectedRecord.numOfRecords || 1}
-              label={language.numOfRecords}
-            />
-            <DetailsContent
-              text={selectedRecord.origin?.trim() || language.noInfo}
-              label={language.origin}
-            />
-            <DetailsContent
-              text={selectedRecord.info?.trim() || language.noInfo}
-              label={language.niceToKnow}
-            />
-            <DetailsContent
-              text={`${selectedRecord.price?.trim()}` || language.noInfo}
-              label={language.price}
-              isPrice={!!selectedRecord.price?.trim()}
-            />
-          </div>
-          <LayoutElement
-            className="details-footer"
-            ariaLabel={language.albumDetails}
-          >
-            <DetailLink to={`/update/${recordId}${location.search}`}>
-              {language.updateAlbum}
-            </DetailLink>
+          )}
+        </div>
+      )}
 
-            {recordId && (
-              <>
-                <Button className="btn-danger" onClick={handleOpenModal}>
-                  {language.deleteAlbum}
-                </Button>
-                <DeleteRecordModal
-                  modalId={recordId}
-                  primaryActionBtn={primaryActionBtn}
-                  secondaryActionBtn={secondaryActionBtn}
-                  name={selectedRecord.artist}
-                />
-              </>
-            )}
-          </LayoutElement>
+      {isLoading ? (
+        <Skeleton count={8} />
+      ) : (
+        <section className="details-content-container">
+          {selectedRecord && (
+            <RecordDetailsList
+              selectedRecord={selectedRecord}
+              refetch={() => refetch}
+            />
+          )}
+          {selectedRecord && (
+            <LayoutElement
+              className="details-footer"
+              ariaLabel={language.albumDetails}
+            >
+              <DetailLink to={`/update/${recordId}${location.search}`}>
+                {language.updateAlbum}
+              </DetailLink>
+
+              {recordId && (
+                <>
+                  <Button className="btn-danger" onClick={handleOpenModal}>
+                    {language.deleteAlbum}
+                  </Button>
+                  <DeleteRecordModal
+                    modalId={recordId}
+                    primaryActionBtn={primaryActionBtn}
+                    secondaryActionBtn={secondaryActionBtn}
+                    name={selectedRecord.artist}
+                  />
+                </>
+              )}
+            </LayoutElement>
+          )}
         </section>
-      </ErrorBoundary>
+      )}
     </article>
-  ) : (
-    <span>Loading...</span>
   );
 };
 

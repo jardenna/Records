@@ -9,6 +9,7 @@ interface RecordImgProps {
   src: string;
   title: string | null;
   Subtitle?: string;
+
   previewUrl?: string | null;
   refetch?: () => void;
 }

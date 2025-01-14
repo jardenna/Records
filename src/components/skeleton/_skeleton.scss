@@ -1,4 +1,4 @@
-@use '../../scss/common' as *;
+@use '../../scss/globals' as *;
 
 .skeleton-container {
   display: flex;
@@ -14,7 +14,7 @@
 }
 
 .skeleton {
-  background-color: $color-gray-500;
+  background-color: $color-gray;
   width: 100%;
   border-radius: 4px;
   display: flex;
@@ -49,18 +49,18 @@
 
   @include animation(
     skeleton-animation,
-    $duration: 1s,
+    $duration: 1.5s,
     $timing: linear infinite alternate
   );
 }
 
 @keyframes skeleton-animation {
   0% {
-    opacity: 0.2;
+    opacity: 0.3;
   }
 
   100% {
-    opacity: 0.4;
+    opacity: 0.6;
   }
 }
 
