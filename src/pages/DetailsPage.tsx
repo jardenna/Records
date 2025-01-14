@@ -29,7 +29,7 @@ const DetailsPage: FC = () => {
   const recordParams = useParams();
   const recordId = recordParams.id;
   const navigate = useNavigate();
-  const { data: selectedRecord } = useGetRecordByIdQuery(recordId);
+  const { data: selectedRecord, refetch } = useGetRecordByIdQuery(recordId);
   const [deleteRecord] = useDeleteRecordMutation();
 
   const handleOpenModal = () => {
@@ -72,7 +72,7 @@ const DetailsPage: FC = () => {
       />
       <ErrorBoundary
         FallbackComponent={ErrorBoundaryFallback}
-        onReset={() => console.log(123)}
+        onReset={() => refetch}
       >
         <section className="details-content-container">
           <div>

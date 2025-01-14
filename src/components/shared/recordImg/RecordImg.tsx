@@ -10,6 +10,7 @@ interface RecordImgProps {
   title: string | null;
   Subtitle?: string;
   previewUrl?: string | null;
+  refetch?: () => void;
 }
 
 const RecordImg: FC<RecordImgProps> = ({
@@ -18,6 +19,7 @@ const RecordImg: FC<RecordImgProps> = ({
   src,
   alt,
   previewUrl,
+  refetch,
 }) => {
   let imageSource = '/images/default.png';
 
@@ -31,7 +33,7 @@ const RecordImg: FC<RecordImgProps> = ({
     <section className="record-img-container">
       <ErrorBoundary
         FallbackComponent={ErrorBoundaryFallback}
-        onReset={() => console.log(123)}
+        onReset={() => refetch}
       >
         <Figure
           src={imageSource}

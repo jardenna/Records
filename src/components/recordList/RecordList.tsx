@@ -11,9 +11,10 @@ import './_record-list.scss';
 
 interface RecordListProps {
   records: Records[];
+  refetch: () => void;
 }
 
-const RecordList: FC<RecordListProps> = ({ records }) => {
+const RecordList: FC<RecordListProps> = ({ records, refetch }) => {
   const { language } = useLanguage();
 
   return (
@@ -22,12 +23,13 @@ const RecordList: FC<RecordListProps> = ({ records }) => {
         <li className="record-item" key={record.id}>
           <ErrorBoundary
             FallbackComponent={ErrorBoundaryFallback}
-            onReset={() => console.log(123)}
+            onReset={() => refetch}
           >
             <RecordImg
               src={record.cover !== '' ? record.cover : ''}
               title={record.artist}
               Subtitle={record.title}
+              onReset={() => refetch}
               alt=""
             />
             <LayoutElement
