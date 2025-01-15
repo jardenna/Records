@@ -21,7 +21,7 @@ const RecordDetailsList: FC<RecordDetailsListProps> = ({
       FallbackComponent={ErrorBoundaryFallback}
       onReset={() => refetch}
     >
-      <div>
+      <>
         <DetailsContent
           text={selectedRecord.prodYear}
           label={language.prodYear}
@@ -59,7 +59,7 @@ const RecordDetailsList: FC<RecordDetailsListProps> = ({
           label={language.price}
           isPrice={!!selectedRecord.price?.trim()}
         />
-      </div>
+      </>
     </ErrorBoundary>
   );
 };

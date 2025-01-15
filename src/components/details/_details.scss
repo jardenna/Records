@@ -9,8 +9,8 @@
   .record-img-container {
     background-color: $color-blue;
     color: $color-white;
-    max-width: rem(500px);
     border-radius: 4px;
+    min-width: rem(496px);
   }
 
   .details-label {
@@ -25,6 +25,7 @@
     margin-top: 10px;
     display: flex;
     align-items: center;
+    height: rem(44px);
   }
 
   .details-content-container {
@@ -32,7 +33,7 @@
     flex-direction: column;
     gap: 12px;
     width: 100%;
-    max-width: 500px;
+    max-width: rem(500px);
   }
 
   .details-footer {

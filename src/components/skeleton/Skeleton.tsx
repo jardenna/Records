@@ -1,3 +1,4 @@
+/* eslint-disable arrow-body-style */
 import { FC } from 'react';
 import './_skeleton.scss';
 
@@ -13,23 +14,21 @@ const Skeleton: FC<SkeletonProps> = ({
   height = 2,
   width = 4,
   count,
-}) => (
-  <div className="flex column">
-    {!count ? (
+}) => {
+  return !count ? (
+    <span
+      style={{ height: `${height}rem`, width: `${width}rem` }}
+      className={`skeleton ${className}`}
+    />
+  ) : (
+    Array.from({ length: count }).map((_, index) => (
       <span
-        style={{ height: `${height}rem`, width: `${width}rem` }}
+        key={index}
+        style={{ height: `${height}rem` }}
         className={`skeleton ${className}`}
       />
-    ) : (
-      Array.from({ length: count }).map((_, index) => (
-        <span
-          key={index}
-          style={{ height: `${height}rem` }}
-          className={`skeleton ${className}`}
-        />
-      ))
-    )}
-  </div>
-);
+    ))
+  );
+};
 
 export default Skeleton;

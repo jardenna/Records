@@ -16,16 +16,6 @@
     gap: 12px;
   }
 
-  &.open-nav {
-    @include transition;
-
-    .main-nav {
-      @include max-size($small) {
-        right: 0;
-      }
-    }
-  }
-
   .main-nav-items {
     text-transform: uppercase;
     font-size: rem(14px);
@@ -38,15 +28,6 @@
 
     .active {
       color: $color-blue-dark;
-    }
-
-    @include max-size($small) {
-      margin: 20px;
-      display: block;
-    }
-
-    &:last-child {
-      margin-right: 0;
     }
   }
 }
