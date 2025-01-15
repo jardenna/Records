@@ -2,9 +2,9 @@ import { FC } from 'react';
 import Skeleton from './Skeleton';
 
 export interface SkeletonListProps {
-  count: number;
   height: number;
   width: number;
+  count?: number;
 }
 
 const SkeletonList: FC<SkeletonListProps> = ({ count = 2, width, height }) => {

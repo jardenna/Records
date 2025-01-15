@@ -13,14 +13,14 @@
 
   @include animation(
     skeleton-animation,
-    $duration: 1.5s,
+    $duration: 1.2s,
     $timing: linear infinite alternate
   );
 }
 
 @keyframes skeleton-animation {
   0% {
-    opacity: 0.3;
+    opacity: 0.2;
   }
 
   100% {
