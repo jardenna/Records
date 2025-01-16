@@ -4,9 +4,7 @@
 :-webkit-autofill,
 :-webkit-autofill:hover,
 :-webkit-autofill:focus {
-  box-shadow:
-    0 0 0 1000px rgba($color-white, 50%) inset,
-    0 0 0 1000px $color-white inset;
+  transition: background-color 5000s ease-in-out 0s;
 }
 
 /* Chrome, Safari, Edge, Opera */
@@ -44,13 +42,13 @@ textarea {
   input,
   select,
   textarea {
+    padding: 12px;
     width: 100%;
     background-color: $color-white;
     color: $color-gray-darker;
     position: relative;
     border: 1px solid $color-border;
     font-size: rem(14px);
-    padding: 12px;
     border-radius: 4px;
     outline: transparent;
     font-family: $font-primary;
@@ -144,7 +142,6 @@ fieldset {
   margin: 10px 0;
   position: relative;
   padding: 0;
-  padding-top: 50px;
 }
 
 legend {
@@ -163,16 +160,14 @@ legend {
 .form-footer {
   display: flex;
   gap: 12px;
-  margin-top: 20px;
+  margin-top: 28px;
 
   .btn {
-    width: auto;
+    max-width: rem(250px);
   }
 }
 
 .file-container {
-  width: 100%;
-
   .record-img-title {
     font-size: rem(16px);
   }
@@ -204,5 +199,6 @@ legend {
   input[type='file'] {
     opacity: 0;
     max-height: rem(37px);
+    cursor: pointer;
   }
 }

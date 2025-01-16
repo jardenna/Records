@@ -8,7 +8,7 @@ import Modal, {
 
 export interface DeleteRecordModalProps {
   modalId: string;
-  name: string;
+  name: string | null;
   primaryActionBtn: PrimaryActionBtnProps;
   secondaryActionBtn?: SecondaryActionBtnProps;
 }

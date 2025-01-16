@@ -2,8 +2,8 @@
 import { FC } from 'react';
 import { useNavigate } from 'react-router';
 import { Records } from '../app/api/apiTypes';
+import CreateOrUpdateForm from '../components/createOrUpdateForm/CreateOrUpdateForm';
 import useMessagePopup from '../components/messagePopup/useMessagePopup';
-import CreateForm from '../components/shared/CreateForm';
 import useLanguage from '../features/language/useLanguage';
 import { useCreateNewRecordMutation } from '../features/records/recordsApiSlice';
 import { MainPath } from '../types/enums';
@@ -37,7 +37,7 @@ const CreateRecordPage: FC = () => {
   };
 
   return (
-    <CreateForm
+    <CreateOrUpdateForm
       onUpdateRecord={handleCreateRecord}
       isLoading={isLoading}
       title={language.createAlbum}

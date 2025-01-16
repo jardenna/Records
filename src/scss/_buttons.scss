@@ -2,6 +2,8 @@
 
 a[class^='btn-'],
 .btn {
+  display: flex;
+  justify-content: center;
   position: relative;
   font-family: $font-primary;
   font-size: rem(14px);
@@ -14,7 +16,6 @@ a[class^='btn-'],
   min-width: 150px;
   border: 1px solid currentcolor;
   cursor: pointer;
-  text-align: center;
 
   @include transition;
 
@@ -51,27 +52,16 @@ a[class^='btn-'],
   }
 }
 
-a {
-  &.btn-secondary {
-    &:hover {
-      background-color: transparent;
-    }
-
-    &:focus-visible {
-      @include outline(currentColor);
-    }
-  }
-}
-
 .btn-secondary {
   background-color: transparent;
+  color: $color-primary-btn;
 
   &:hover {
-    background-color: $color-primary-btn-hover;
+    color: $color-green;
   }
 
   &:focus-visible {
-    @include outline($color-primary-btn-hover);
+    @include outline(currentColor);
 
     border: 1px solid $color-white;
   }
@@ -100,17 +90,5 @@ a {
 
   &:focus-visible {
     @include outline(currentcolor);
-  }
-}
-
-.btn-rounded {
-  background-color: $color-primary-btn;
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  display: inline-block;
-
-  &:hover {
-    background-color: $color-primary-btn-hover;
   }
 }

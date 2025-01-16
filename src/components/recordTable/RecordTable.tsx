@@ -33,7 +33,7 @@ interface BaseTableProps {
 }
 interface RecordTableProps<T> extends BaseTableProps {
   onSort: (field: keyof T) => void;
-  tableData: T[];
+  tableData: T[] | null;
 }
 const RecordTable = <T extends Record<string, any>>({
   tableHeaders,
@@ -51,8 +51,8 @@ const RecordTable = <T extends Record<string, any>>({
   secondaryActionBtn,
   idFromSearchParams,
 }: RecordTableProps<T>) => {
-  const { language } = useLanguage();
   const navigate = useNavigate();
+  const { language } = useLanguage();
   const modalId = useAppSelector(selectModalId);
   const [searchParams, setSearchParams] = useSearchParams();
   const [showSearchField, setShowSearchField] = useState<string | null>(null);
@@ -139,7 +139,7 @@ const RecordTable = <T extends Record<string, any>>({
             </th>
           </tr>
         </thead>
-        {tableData.length > 0 ? (
+        {tableData && tableData.length > 0 ? (
           <tbody>
             {tableData.map((data, rowIndex) => (
               <tr key={rowIndex}>
@@ -185,7 +185,9 @@ const RecordTable = <T extends Record<string, any>>({
         ) : (
           <tbody>
             <tr>
-              <td className="no-records-table-field">No records found</td>
+              <td colSpan={6} className="no-records-table-field">
+                {language.noAlbumFound}
+              </td>
             </tr>
           </tbody>
         )}

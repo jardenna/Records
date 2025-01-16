@@ -6,6 +6,7 @@ import {
 } from '../../app/api/apiTypes';
 import transformId from '../../app/api/transformResponse';
 import endpoints from '../../app/endpoints';
+import { createFormData, createQueryOptions } from './utils';
 
 export const recordsApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
@@ -47,51 +48,21 @@ export const recordsApiSlice = apiSlice.injectEndpoints({
       providesTags: ['Records'],
     }),
     createNewRecord: builder.mutation<Records, any>({
-      query: ({ records, file, fileName }) => {
-        if (file && fileName) {
-          const fd = new FormData();
-          fd.append(fileName, file);
-
-          Object.keys(records).forEach((key) => {
-            fd.append(key, records[key as keyof Records] as string);
-          });
-
-          return {
-            url: `/${endpoints.records}`,
-            method: 'POST',
-            body: fd,
-          };
-        }
-        return {
-          url: `/${endpoints.records}`,
-          method: 'POST',
-          body: records,
-        };
-      },
+      query: ({ records, file, fileName }) =>
+        createQueryOptions(
+          `/${endpoints.records}`,
+          'POST',
+          createFormData(records, file, fileName),
+        ),
       invalidatesTags: ['Records'],
     }),
     updateRecord: builder.mutation<Records, any>({
-      query: ({ id, records, imgUpdated, file, fileName }) => {
-        if (imgUpdated && file && fileName) {
-          const fd = new FormData();
-          fd.append(fileName, file);
-
-          Object.keys(records).forEach((key) => {
-            fd.append(key, records[key as keyof Records] as string);
-          });
-
-          return {
-            url: `/${endpoints.records}/${id}`,
-            method: 'POST',
-            body: fd,
-          };
-        }
-        return {
-          url: `/${endpoints.records}/${id}`,
-          method: 'PUT',
-          body: records,
-        };
-      },
+      query: ({ id, records, imgUpdated, file, fileName }) =>
+        createQueryOptions(
+          `/${endpoints.records}/${id}`,
+          imgUpdated && file && fileName ? 'POST' : 'PUT',
+          createFormData(records, file, fileName),
+        ),
       invalidatesTags: ['Records'],
     }),
 

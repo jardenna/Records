@@ -9,6 +9,7 @@ import {
 import Pagination from '../components/pagination/Pagination';
 import RecordTable from '../components/recordTable/RecordTable';
 import SelectBox, { Option } from '../components/SelectBox';
+import SkeletonList from '../components/skeleton/SkeletonList';
 import useLanguage from '../features/language/useLanguage';
 import {
   useDeleteRecordMutation,
@@ -63,7 +64,7 @@ const RecordTablePage: FC = () => {
 
   const shownRows = Number(limit) || Number(values.limit);
   const selectedPage = Number(page) || currentPage;
-  const { data: records } = useGetPaginatedRecordsQuery({
+  const { data: records, isLoading } = useGetPaginatedRecordsQuery({
     page: selectedPage,
     limit: shownRows,
     sortField: sortField || sortingField,
@@ -165,7 +166,7 @@ const RecordTablePage: FC = () => {
             onChange={(selectedOptions) =>
               handleSetRowsCount('limit', selectedOptions as Option)
             }
-            labelText="Results per page"
+            labelText={language.resultsPerPage}
             inputHasNoLabel
             defaultValue={{
               value: Number(limit) || 10,
@@ -175,9 +176,9 @@ const RecordTablePage: FC = () => {
         </form>
       </div>
 
-      {records && (
+      {!isLoading ? (
         <RecordTable
-          tableData={records.results}
+          tableData={records?.results || null}
           onSort={handleSort}
           tableSearchParams={location.search}
           sortOrder={sortOrder}
@@ -191,6 +192,8 @@ const RecordTablePage: FC = () => {
           secondaryActionBtn={secondaryActionBtn}
           idFromSearchParams={idFromSearchParams}
         />
+      ) : (
+        <SkeletonList count={8} className="column" variant="secondary" />
       )}
 
       <Pagination
