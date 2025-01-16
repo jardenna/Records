@@ -11,8 +11,8 @@ interface SkeletonProps {
 
 const Skeleton: FC<SkeletonProps> = ({
   className = '',
-  height = 2,
-  width = 4,
+  height,
+  width,
   count,
 }) => {
   return !count ? (
