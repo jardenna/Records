@@ -24,12 +24,14 @@ const SearchField: FC<SearchFieldProps> = ({
 
   return (
     <>
-      <IconBtn
-        title={`${language.filter} ${language.title}`}
-        onClick={onToggleSearchField}
-        iconName={IconName.Filter}
-      />
-      {value && <span className="dot" />}
+      <div className="position-relative">
+        <IconBtn
+          title={`${language.filter} ${language.title}`}
+          onClick={onToggleSearchField}
+          iconName={IconName.Filter}
+        />
+        {value && <span className="dot" />}
+      </div>
       <Input
         className={`search-field ${showSearchField ? 'active' : ''}`}
         type="search"
