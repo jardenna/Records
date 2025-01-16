@@ -1,5 +1,6 @@
 import { FC } from 'react';
 import RecordList from '../components/recordList/RecordList';
+import SkeletonList from '../components/skeleton/SkeletonList';
 import { useGetFirstSixRecordsQuery } from '../features/records/recordsApiSlice';
 
 const HomePage: FC = () => {
@@ -8,7 +9,7 @@ const HomePage: FC = () => {
   return (
     <section>
       {isLoading ? (
-        <span>loading...</span>
+        <SkeletonList count={6} height={2.25} width={2.25} />
       ) : (
         <RecordList records={records.results} refetch={refetch} />
       )}
