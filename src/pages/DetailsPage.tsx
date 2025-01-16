@@ -91,36 +91,32 @@ const DetailsPage: FC = () => {
           </>
         ) : (
           <div>
-            {selectedRecord && (
-              <RecordDetailsList
-                selectedRecord={selectedRecord}
-                refetch={() => refetch}
-              />
-            )}
-            {selectedRecord && (
-              <LayoutElement
-                className="details-footer"
-                ariaLabel={language.albumDetails}
-              >
-                <DetailLink to={`/update/${recordId}${location.search}`}>
-                  {language.updateAlbum}
-                </DetailLink>
+            <RecordDetailsList
+              selectedRecord={selectedRecord || null}
+              refetch={() => refetch}
+            />
+            <LayoutElement
+              className="details-footer"
+              ariaLabel={language.albumDetails}
+            >
+              <DetailLink to={`/update/${recordId}${location.search}`}>
+                {language.updateAlbum}
+              </DetailLink>
 
-                {recordId && (
-                  <>
-                    <Button className="btn-danger" onClick={handleOpenModal}>
-                      {language.deleteAlbum}
-                    </Button>
-                    <DeleteRecordModal
-                      modalId={recordId}
-                      primaryActionBtn={primaryActionBtn}
-                      secondaryActionBtn={secondaryActionBtn}
-                      name={selectedRecord.artist}
-                    />
-                  </>
-                )}
-              </LayoutElement>
-            )}
+              {recordId && (
+                <>
+                  <Button className="btn-danger" onClick={handleOpenModal}>
+                    {language.deleteAlbum}
+                  </Button>
+                  <DeleteRecordModal
+                    modalId={recordId}
+                    primaryActionBtn={primaryActionBtn}
+                    secondaryActionBtn={secondaryActionBtn}
+                    name={selectedRecord?.artist || null}
+                  />
+                </>
+              )}
+            </LayoutElement>
           </div>
         )}
       </section>

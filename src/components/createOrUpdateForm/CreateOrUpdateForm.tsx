@@ -12,6 +12,7 @@ import validateUpdate, {
   minimumYear,
 } from '../formElements/validation/validateUpdate';
 import RecordImg from '../shared/recordImg/RecordImg';
+import Skeleton from '../skeleton/Skeleton';
 import './_create-update-form.scss';
 
 //  onUpdateRecord?: (values: Records) => void;
@@ -193,12 +194,16 @@ const CreateOrUpdateForm: FC<CreateOrUpdateFormProps> = ({
 
             <fieldset className="file-container flex column">
               <VisuallyHidden as="legend">{language.cover}</VisuallyHidden>
-              <RecordImg
-                src={recordDetails?.cover || 'default.png'}
-                previewUrl={imgUpdated ? previewUrl : null}
-                title={file?.name || null}
-                alt=""
-              />
+              {!isLoading ? (
+                <RecordImg
+                  src={recordDetails?.cover || 'default.png'}
+                  previewUrl={imgUpdated ? previewUrl : null}
+                  title={file?.name || null}
+                  alt=""
+                />
+              ) : (
+                <Skeleton variant="img" />
+              )}
               <Input
                 type="file"
                 onChange={onChange}

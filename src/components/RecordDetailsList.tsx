@@ -7,7 +7,7 @@ import ErrorBoundaryFallback from './errorBoundary/ErrorBoundaryFallback';
 
 interface RecordDetailsListProps {
   refetch: () => void;
-  selectedRecord: Records;
+  selectedRecord: Records | null;
 }
 
 const RecordDetailsList: FC<RecordDetailsListProps> = ({
@@ -21,45 +21,47 @@ const RecordDetailsList: FC<RecordDetailsListProps> = ({
       FallbackComponent={ErrorBoundaryFallback}
       onReset={() => refetch}
     >
-      <>
-        <DetailsContent
-          text={selectedRecord.prodYear}
-          label={language.prodYear}
-        />
-        <DetailsContent
-          text={
-            selectedRecord.prodYear ||
-            selectedRecord.released ||
-            language.noInfo
-          }
-          label={language.released}
-        />
-        <DetailsContent
-          text={selectedRecord.label?.trim() || language.noInfo}
-          label={language.label}
-        />
-        <DetailsContent
-          text={selectedRecord.recordNo?.trim() || language.noInfo}
-          label={language.recordNo}
-        />
-        <DetailsContent
-          text={selectedRecord.numOfRecords || 1}
-          label={language.numOfRecords}
-        />
-        <DetailsContent
-          text={selectedRecord.origin?.trim() || language.noInfo}
-          label={language.origin}
-        />
-        <DetailsContent
-          text={selectedRecord.info?.trim() || language.noInfo}
-          label={language.niceToKnow}
-        />
-        <DetailsContent
-          text={`${selectedRecord.price?.trim()}` || language.noInfo}
-          label={language.price}
-          isPrice={!!selectedRecord.price?.trim()}
-        />
-      </>
+      {selectedRecord && (
+        <>
+          <DetailsContent
+            text={selectedRecord.prodYear}
+            label={language.prodYear}
+          />
+          <DetailsContent
+            text={
+              selectedRecord.prodYear ||
+              selectedRecord.released ||
+              language.noInfo
+            }
+            label={language.released}
+          />
+          <DetailsContent
+            text={selectedRecord.label?.trim() || language.noInfo}
+            label={language.label}
+          />
+          <DetailsContent
+            text={selectedRecord.recordNo?.trim() || language.noInfo}
+            label={language.recordNo}
+          />
+          <DetailsContent
+            text={selectedRecord.numOfRecords || 1}
+            label={language.numOfRecords}
+          />
+          <DetailsContent
+            text={selectedRecord.origin?.trim() || language.noInfo}
+            label={language.origin}
+          />
+          <DetailsContent
+            text={selectedRecord.info?.trim() || language.noInfo}
+            label={language.niceToKnow}
+          />
+          <DetailsContent
+            text={`${selectedRecord.price?.trim()}` || language.noInfo}
+            label={language.price}
+            isPrice={!!selectedRecord.price?.trim()}
+          />
+        </>
+      )}
     </ErrorBoundary>
   );
 };
