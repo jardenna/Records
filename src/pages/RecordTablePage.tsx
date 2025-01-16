@@ -1,6 +1,8 @@
 import { FC, useState } from 'react';
+import { ErrorBoundary } from 'react-error-boundary';
 import { useLocation, useSearchParams } from 'react-router';
 import { SortOrder } from '../app/api/apiTypes';
+import ErrorBoundaryFallback from '../components/errorBoundary/ErrorBoundaryFallback';
 import MetaTags from '../components/MetaTags';
 import {
   PrimaryActionBtnProps,
@@ -64,7 +66,11 @@ const RecordTablePage: FC = () => {
 
   const shownRows = Number(limit) || Number(values.limit);
   const selectedPage = Number(page) || currentPage;
-  const { data: records, isLoading } = useGetPaginatedRecordsQuery({
+  const {
+    data: records,
+    isLoading,
+    refetch,
+  } = useGetPaginatedRecordsQuery({
     page: selectedPage,
     limit: shownRows,
     sortField: sortField || sortingField,
@@ -177,21 +183,26 @@ const RecordTablePage: FC = () => {
       </div>
 
       {!isLoading ? (
-        <RecordTable
-          tableData={records?.results || null}
-          onSort={handleSort}
-          tableSearchParams={location.search}
-          sortOrder={sortOrder}
-          onFilterRows={handleFilterRecords}
-          values={values}
-          valuesFromSearch={Object.fromEntries(searchParams)}
-          tableHeaders={tableHeaders}
-          onClearAllSearch={handleClearAllSearch}
-          tableCaption={language.albumCollection}
-          primaryActionBtn={primaryActionBtn}
-          secondaryActionBtn={secondaryActionBtn}
-          idFromSearchParams={idFromSearchParams}
-        />
+        <ErrorBoundary
+          FallbackComponent={ErrorBoundaryFallback}
+          onReset={() => refetch}
+        >
+          <RecordTable
+            tableData={records?.results || null}
+            onSort={handleSort}
+            tableSearchParams={location.search}
+            sortOrder={sortOrder}
+            onFilterRows={handleFilterRecords}
+            values={values}
+            valuesFromSearch={Object.fromEntries(searchParams)}
+            tableHeaders={tableHeaders}
+            onClearAllSearch={handleClearAllSearch}
+            tableCaption={language.albumCollection}
+            primaryActionBtn={primaryActionBtn}
+            secondaryActionBtn={secondaryActionBtn}
+            idFromSearchParams={idFromSearchParams}
+          />
+        </ErrorBoundary>
       ) : (
         <SkeletonList count={8} className="column" variant="secondary" />
       )}
