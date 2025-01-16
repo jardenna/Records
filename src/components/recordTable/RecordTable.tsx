@@ -186,7 +186,7 @@ const RecordTable = <T extends Record<string, any>>({
           <tbody>
             <tr>
               <td colSpan={6} className="no-records-table-field">
-                No records found
+                {language.noAlbumFound}
               </td>
             </tr>
           </tbody>

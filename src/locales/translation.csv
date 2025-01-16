@@ -40,6 +40,7 @@ main;Main;Primær
 mustBeGreaterEqual;Must be greater than or equal to;Skal være større end eller lig med
 niceToKnow;Nice to know;Værd at vide
 noInfo;No info;Ikke oplyst
+noAlbumFound;No Albums found;Ingen albums blev fundet
 numOfRecords;Number of records;Antal lp(er)
 of;of;af
 origin;Origin;Oprindelse
