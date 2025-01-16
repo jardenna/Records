@@ -41,7 +41,12 @@ textarea {
     margin-bottom: 4px;
   }
 
+  input {
+    padding: 12px;
+  }
+
   textarea {
+    padding: 12px;
     padding-top: 0;
   }
 
@@ -54,7 +59,6 @@ textarea {
     position: relative;
     border: 1px solid $color-border;
     font-size: rem(14px);
-    padding: 12px;
     border-radius: 4px;
     outline: transparent;
     font-family: $font-primary;
