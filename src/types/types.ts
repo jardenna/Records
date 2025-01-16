@@ -2,11 +2,10 @@ import { ChangeEvent, FormEvent, MouseEvent } from 'react';
 
 export type ButtonEventType = MouseEvent<HTMLButtonElement>;
 export type ChangeInputType = ChangeEvent<HTMLInputElement>;
-
 export type BtnType = 'submit' | 'reset' | 'button';
-
 export type BlurEventType = { target: { name: string } };
 export type FormEventType = FormEvent<HTMLFormElement>;
+
 export type InputType =
   | 'button'
   | 'checkbox'

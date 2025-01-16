@@ -12,6 +12,7 @@ import RecordDetailsList from '../components/RecordDetailsList';
 import DetailLink from '../components/shared/DetailLink';
 import RecordImg from '../components/shared/recordImg/RecordImg';
 import Skeleton from '../components/skeleton/Skeleton';
+import SkeletonList from '../components/skeleton/SkeletonList';
 import useLanguage from '../features/language/useLanguage';
 import { toggleModal } from '../features/modalSlice';
 import {
@@ -68,57 +69,61 @@ const DetailsPage: FC = () => {
         title={language.albumDetails}
       />
       {isLoading ? (
-        <Skeleton height={30} width={30} />
-      ) : (
         <div>
-          {selectedRecord && (
-            <RecordImg
-              src={selectedRecord.cover}
-              alt=""
-              title={selectedRecord.artist}
-              Subtitle={selectedRecord.title}
-              refetch={() => refetch}
-            />
-          )}
+          <Skeleton variant="img" />
         </div>
-      )}
-
-      {isLoading ? (
-        <Skeleton count={8} />
       ) : (
-        <section className="details-content-container">
-          {selectedRecord && (
-            <RecordDetailsList
-              selectedRecord={selectedRecord}
-              refetch={() => refetch}
-            />
-          )}
-          {selectedRecord && (
-            <LayoutElement
-              className="details-footer"
-              ariaLabel={language.albumDetails}
-            >
-              <DetailLink to={`/update/${recordId}${location.search}`}>
-                {language.updateAlbum}
-              </DetailLink>
-
-              {recordId && (
-                <>
-                  <Button className="btn-danger" onClick={handleOpenModal}>
-                    {language.deleteAlbum}
-                  </Button>
-                  <DeleteRecordModal
-                    modalId={recordId}
-                    primaryActionBtn={primaryActionBtn}
-                    secondaryActionBtn={secondaryActionBtn}
-                    name={selectedRecord.artist}
-                  />
-                </>
-              )}
-            </LayoutElement>
-          )}
-        </section>
+        selectedRecord && (
+          <RecordImg
+            src={selectedRecord.cover}
+            alt=""
+            title={selectedRecord.artist}
+            Subtitle={selectedRecord.title}
+            refetch={() => refetch}
+          />
+        )
       )}
+      <section className="details-content-container">
+        {isLoading ? (
+          <>
+            <Skeleton count={8} />
+            <SkeletonList count={2} width={14} variant="secondary" />
+          </>
+        ) : (
+          <div>
+            {selectedRecord && (
+              <RecordDetailsList
+                selectedRecord={selectedRecord}
+                refetch={() => refetch}
+              />
+            )}
+            {selectedRecord && (
+              <LayoutElement
+                className="details-footer"
+                ariaLabel={language.albumDetails}
+              >
+                <DetailLink to={`/update/${recordId}${location.search}`}>
+                  {language.updateAlbum}
+                </DetailLink>
+
+                {recordId && (
+                  <>
+                    <Button className="btn-danger" onClick={handleOpenModal}>
+                      {language.deleteAlbum}
+                    </Button>
+                    <DeleteRecordModal
+                      modalId={recordId}
+                      primaryActionBtn={primaryActionBtn}
+                      secondaryActionBtn={secondaryActionBtn}
+                      name={selectedRecord.artist}
+                    />
+                  </>
+                )}
+              </LayoutElement>
+            )}
+          </div>
+        )}
+      </section>
     </article>
   );
 };

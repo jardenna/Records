@@ -15,6 +15,7 @@ import {
   useGetPaginatedRecordsQuery,
 } from '../features/records/recordsApiSlice';
 import useFormValidation from '../hooks/useFormValidation';
+import { LabelKeys } from '../types/enums';
 import { ChangeInputType } from '../types/types';
 
 const RecordTablePage: FC = () => {
@@ -22,7 +23,13 @@ const RecordTablePage: FC = () => {
   const { language } = useLanguage();
   const defaultOptionValue = 10;
   const pageLimit = 5;
-  const tableHeaders = ['artist', 'title', 'prodYear', 'label', 'origin'];
+  const tableHeaders = [
+    LabelKeys.Artist,
+    LabelKeys.Title,
+    LabelKeys.ProdYear,
+    LabelKeys.Label,
+    LabelKeys.Origin,
+  ];
   const [sortingField, setSortingField] = useState('createdAt');
   const [sortingOrder, setSortingOrder] = useState(SortOrder.Desc);
   const [currentPage, setCurrentPage] = useState(1);
