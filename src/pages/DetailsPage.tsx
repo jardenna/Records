@@ -70,7 +70,7 @@ const DetailsPage: FC = () => {
       />
       {isLoading ? (
         <div>
-          <Skeleton className="skeleton-img" />
+          <Skeleton variant="img" />
         </div>
       ) : (
         selectedRecord && (
@@ -86,8 +86,8 @@ const DetailsPage: FC = () => {
       <section className="details-content-container">
         {isLoading ? (
           <>
-            <Skeleton count={8} height={2.25} />
-            <SkeletonList count={2} width={14} height={2.75} />
+            <Skeleton count={8} />
+            <SkeletonList count={2} width={14} variant="secondary" />
           </>
         ) : (
           <div>

@@ -6,6 +6,10 @@
   align-items: center;
   gap: 40px;
 
+  .skeleton-img {
+    min-width: rem(496px);
+  }
+
   .record-img-container {
     background-color: $color-blue;
     color: $color-white;

@@ -1,11 +1,13 @@
-/* eslint-disable arrow-body-style */
 import { FC } from 'react';
 import './_skeleton.scss';
 
-interface SkeletonProps {
+export type SkeletonType = 'primary' | 'secondary' | 'img';
+
+export interface SkeletonProps {
   className?: string;
   count?: number;
   height?: number;
+  variant?: SkeletonType;
   width?: number;
 }
 
@@ -14,21 +16,21 @@ const Skeleton: FC<SkeletonProps> = ({
   height,
   width,
   count,
-}) => {
-  return !count ? (
+  variant = 'primary',
+}) =>
+  !count ? (
     <span
       style={{ height: `${height}rem`, width: `${width}rem` }}
-      className={`skeleton ${className}`}
+      className={`skeleton skeleton-${variant}  ${className}`}
     />
   ) : (
     Array.from({ length: count }).map((_, index) => (
       <span
         key={index}
         style={{ height: `${height}rem` }}
-        className={`skeleton ${className}`}
+        className={`skeleton skeleton-${variant} ${className}`}
       />
     ))
   );
-};
 
 export default Skeleton;

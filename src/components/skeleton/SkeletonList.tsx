@@ -1,29 +1,18 @@
 import { FC } from 'react';
-import Skeleton from './Skeleton';
+import Skeleton, { SkeletonProps } from './Skeleton';
 
-export interface SkeletonListProps {
-  className?: string;
-  count?: number;
-  height?: number;
-  width?: number;
-}
-
-const SkeletonList: FC<SkeletonListProps> = ({
+const SkeletonList: FC<SkeletonProps> = ({
   count = 2,
   width,
   height,
   className = '',
+  variant,
 }) => {
   const skeletons = Array.from({ length: count });
   return (
-    <span className="skeleton-list">
+    <span className={`skeleton-list ${className}`}>
       {skeletons.map((_, index) => (
-        <Skeleton
-          key={index}
-          height={height}
-          width={width}
-          className={className}
-        />
+        <Skeleton key={index} height={height} width={width} variant={variant} />
       ))}
     </span>
   );

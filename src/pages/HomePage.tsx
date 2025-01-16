@@ -9,7 +9,7 @@ const HomePage: FC = () => {
   return (
     <section>
       {isLoading ? (
-        <SkeletonList count={6} height={2.25} width={2.25} />
+        <SkeletonList count={6} variant="img" className="grid three-col" />
       ) : (
         <RecordList records={records.results} refetch={refetch} />
       )}
