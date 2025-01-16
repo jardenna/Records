@@ -69,7 +69,9 @@ const DetailsPage: FC = () => {
         title={language.albumDetails}
       />
       {isLoading ? (
-        <Skeleton className="skeleton-img" />
+        <div>
+          <Skeleton className="skeleton-img" />
+        </div>
       ) : (
         selectedRecord && (
           <RecordImg
@@ -81,7 +83,6 @@ const DetailsPage: FC = () => {
           />
         )
       )}
-
       <section className="details-content-container">
         {isLoading ? (
           <>
