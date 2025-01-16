@@ -193,7 +193,7 @@ const RecordTablePage: FC = () => {
           idFromSearchParams={idFromSearchParams}
         />
       ) : (
-        <SkeletonList count={10} className="column" variant="secondary" />
+        <SkeletonList count={8} className="column" variant="secondary" />
       )}
 
       <Pagination
