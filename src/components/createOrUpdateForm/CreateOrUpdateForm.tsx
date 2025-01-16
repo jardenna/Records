@@ -7,6 +7,7 @@ import MetaTags from '../MetaTags';
 import VisuallyHidden from '../VisuallyHidden';
 import Input from '../formElements/Input';
 import Textarea from '../formElements/Textarea';
+import FileInput from '../formElements/fileInput/FileInput';
 import Form from '../formElements/form/Form';
 import validateUpdate, {
   minimumYear,
@@ -192,7 +193,7 @@ const CreateOrUpdateForm: FC<CreateOrUpdateFormProps> = ({
               />
             </fieldset>
 
-            <fieldset className="file-container flex column">
+            <fieldset className="flex column">
               <VisuallyHidden as="legend">{language.cover}</VisuallyHidden>
               {!isLoading ? (
                 <RecordImg
@@ -204,8 +205,7 @@ const CreateOrUpdateForm: FC<CreateOrUpdateFormProps> = ({
               ) : (
                 <Skeleton variant="img" />
               )}
-              <Input
-                type="file"
+              <FileInput
                 onChange={onChange}
                 name="cover"
                 id="cover"

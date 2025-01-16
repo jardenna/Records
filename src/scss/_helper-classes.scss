@@ -36,3 +36,9 @@
     grid-template-columns: repeat(3, 1fr);
   }
 }
+
+.text-ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

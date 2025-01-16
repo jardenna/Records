@@ -41,7 +41,7 @@ const RecordImg: FC<RecordImgProps> = ({
           alt={alt}
           figcaption={
             <div className="record-img-header">
-              <h2 className="record-img-title">{title}</h2>
+              <h2 className="record-img-title text-ellipsis">{title}</h2>
               {Subtitle && <span>/</span>}
               <h3 className="record-img-sub-title">{Subtitle}</h3>
             </div>
