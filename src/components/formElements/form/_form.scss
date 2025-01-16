@@ -4,9 +4,7 @@
 :-webkit-autofill,
 :-webkit-autofill:hover,
 :-webkit-autofill:focus {
-  box-shadow:
-    0 0 0 1000px rgba($color-white, 50%) inset,
-    0 0 0 1000px $color-white inset;
+  transition: background-color 5000s ease-in-out 0s;
 }
 
 /* Chrome, Safari, Edge, Opera */
@@ -41,18 +39,10 @@ textarea {
     margin-bottom: 4px;
   }
 
-  input {
-    padding: 12px;
-  }
-
-  textarea {
-    padding: 12px;
-    padding-top: 0;
-  }
-
   input,
   select,
   textarea {
+    padding: 12px;
     width: 100%;
     background-color: $color-white;
     color: $color-gray-darker;
@@ -209,5 +199,6 @@ legend {
   input[type='file'] {
     opacity: 0;
     max-height: rem(37px);
+    cursor: pointer;
   }
 }
