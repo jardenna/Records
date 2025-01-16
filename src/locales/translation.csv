@@ -3,6 +3,7 @@ album;Album;Album
 albumCreatedSuccessfully;Album created successfully;Nyt album blev oprettet
 albumDetails;Album details;Album detaljer
 albumInfo;Album info;Album info
+additionalInfo;Additional info;Supplerende information
 albums;Albums;Album
 albumCollection;Records collection;Pladesamling
 albumDetails;Album details;Album detaljer
@@ -17,6 +18,7 @@ close;Close;Luk
 sureToDelete;Are you sure you want to Delete;Er du sikker på at du vil slette
 clearInputs;Clear inputs;Ryd inputfelter
 closeDialog;Close dialog;Luk dialog
+cover;Cover;Cover
 createAlbum;Create album;Opret album
 currentlySelected;Currently selected;Valgt
 delete;Delete;Slet

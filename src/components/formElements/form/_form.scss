@@ -41,6 +41,10 @@ textarea {
     margin-bottom: 4px;
   }
 
+  textarea {
+    padding-top: 0;
+  }
+
   input,
   select,
   textarea {
@@ -144,7 +148,6 @@ fieldset {
   margin: 10px 0;
   position: relative;
   padding: 0;
-  padding-top: 50px;
 }
 
 legend {
@@ -171,8 +174,6 @@ legend {
 }
 
 .file-container {
-  width: 100%;
-
   .record-img-title {
     font-size: rem(16px);
   }

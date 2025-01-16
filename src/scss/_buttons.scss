@@ -2,6 +2,8 @@
 
 a[class^='btn-'],
 .btn {
+  display: flex;
+  justify-content: center;
   position: relative;
   font-family: $font-primary;
   font-size: rem(14px);
@@ -14,7 +16,6 @@ a[class^='btn-'],
   min-width: 150px;
   border: 1px solid currentcolor;
   cursor: pointer;
-  text-align: center;
 
   @include transition;
 

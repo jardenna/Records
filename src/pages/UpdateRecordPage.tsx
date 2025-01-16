@@ -2,8 +2,8 @@
 import { FC } from 'react';
 import { useLocation, useNavigate, useParams } from 'react-router';
 import { Records } from '../app/api/apiTypes';
+import CreateOrUpdateForm from '../components/createOrUpdateForm/CreateOrUpdateForm';
 import useMessagePopup from '../components/messagePopup/useMessagePopup';
-import CreateForm from '../components/shared/CreateForm';
 import useLanguage from '../features/language/useLanguage';
 import {
   useGetRecordByIdQuery,
@@ -55,7 +55,7 @@ const UpdateRecord: FC = () => {
 
   return (
     recordDetails && (
-      <CreateForm
+      <CreateOrUpdateForm
         recordDetails={recordDetails}
         onUpdateRecord={handleUpdateRecord}
         isLoading={isLoading}

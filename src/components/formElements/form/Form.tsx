@@ -9,6 +9,7 @@ interface FormProps {
   children: ReactNode;
   labelText: string;
   onSubmit: (event: FormEventType) => void;
+  ariaLabel?: string;
   className?: string;
   isLoading?: boolean;
 }
@@ -19,14 +20,16 @@ const Form: FC<FormProps> = ({
   labelText,
   className = '',
   isLoading,
+  ariaLabel,
 }) => {
   const { language } = useLanguage();
+  console.log(ariaLabel);
 
   return (
     <form onSubmit={onSubmit} noValidate className={className}>
       {children}
       <LayoutElement className="form-footer" ariaLabel={language.form}>
-        <Button type="submit" isLoading={isLoading}>
+        <Button type="submit" isLoading={isLoading} ariaLabel={ariaLabel}>
           {labelText}
         </Button>
       </LayoutElement>

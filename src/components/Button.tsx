@@ -4,6 +4,7 @@ import { FC, ReactNode } from 'react';
 import { BtnVariant } from '../types/enums';
 import { BtnType, ButtonEventType } from '../types/types';
 import VisuallyHidden from './VisuallyHidden';
+import Loader from './loader/Loader';
 
 interface ButtonProps {
   children: ReactNode;
@@ -59,14 +60,20 @@ const Button: FC<ButtonProps> = ({
     aria-expanded={ariaExpanded}
     aria-controls={ariaControls}
     autoFocus={autoFocus}
-    aria-disabled={disabled || undefined}
+    aria-disabled={disabled || isLoading || undefined}
     className={`btn btn-${variant} ${className}`}
     disabled={disabled || isLoading}
     name={name}
     aria-describedby={isBtnSelected ? ariaDescribedby : undefined}
   >
     {ariaLabel && <VisuallyHidden>{ariaLabel}</VisuallyHidden>}
-    {!isLoading ? children : <span aria-busy="true">...Loading</span>}
+    {!isLoading ? (
+      children
+    ) : (
+      <span aria-hidden>
+        <Loader />
+      </span>
+    )}
   </button>
 );
 

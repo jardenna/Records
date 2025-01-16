@@ -3,22 +3,25 @@ import { OmittedRecordRequest, Records } from '../../app/api/apiTypes';
 import useLanguage from '../../features/language/useLanguage';
 import useFormValidation from '../../hooks/useFormValidation';
 import MetaTags from '../MetaTags';
+import VisuallyHidden from '../VisuallyHidden';
 import Input from '../formElements/Input';
 import Textarea from '../formElements/Textarea';
 import Form from '../formElements/form/Form';
 import validateUpdate, {
   minimumYear,
 } from '../formElements/validation/validateUpdate';
-import RecordImg from './recordImg/RecordImg';
+import RecordImg from '../shared/recordImg/RecordImg';
+import './_create-update-form.scss';
+
 //  onUpdateRecord?: (values: Records) => void;
-interface CreateFormProps {
+interface CreateOrUpdateFormProps {
   title: string;
   isLoading?: boolean;
   onUpdateRecord?: any;
   recordDetails?: OmittedRecordRequest;
 }
 
-const CreateForm: FC<CreateFormProps> = ({
+const CreateOrUpdateForm: FC<CreateOrUpdateFormProps> = ({
   recordDetails,
   onUpdateRecord,
   isLoading,
@@ -78,11 +81,13 @@ const CreateForm: FC<CreateFormProps> = ({
         <Form
           onSubmit={onSubmit}
           labelText={title}
+          ariaLabel={isLoading ? 'Loading' : undefined}
           isLoading={isLoading}
-          className="create-form"
+          className="create-update-form"
         >
           <div className="grid three-col">
-            <div className="flex column">
+            <fieldset className="flex column">
+              <VisuallyHidden as="legend">{language.albumInfo}</VisuallyHidden>
               <Input
                 name="artist"
                 id="artist"
@@ -146,9 +151,12 @@ const CreateForm: FC<CreateFormProps> = ({
                 value={values.recordNo}
                 labelText={language.recordNo}
               />
-            </div>
+            </fieldset>
 
-            <div className="flex column">
+            <fieldset className="flex column">
+              <VisuallyHidden as="legend">
+                {language.additionalInfo}
+              </VisuallyHidden>
               <Input
                 name="numOfRecords"
                 id="numOfRecords"
@@ -178,9 +186,10 @@ const CreateForm: FC<CreateFormProps> = ({
                 onChange={onChange}
                 labelText={language.niceToKnow}
               />
-            </div>
+            </fieldset>
 
-            <div className="file-container flex column">
+            <fieldset className="file-container flex column">
+              <VisuallyHidden as="legend">{language.cover}</VisuallyHidden>
               <RecordImg
                 src={recordDetails?.cover || 'default.png'}
                 previewUrl={imgUpdated ? previewUrl : null}
@@ -195,7 +204,7 @@ const CreateForm: FC<CreateFormProps> = ({
                 labelText={language.upLoadCover}
                 value=""
               />
-            </div>
+            </fieldset>
           </div>
         </Form>
       </section>
@@ -203,4 +212,4 @@ const CreateForm: FC<CreateFormProps> = ({
   );
 };
 
-export default CreateForm;
+export default CreateOrUpdateForm;
