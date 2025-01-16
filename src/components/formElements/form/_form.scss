@@ -166,10 +166,10 @@ legend {
 .form-footer {
   display: flex;
   gap: 12px;
-  margin-top: 20px;
+  margin-top: 28px;
 
   .btn {
-    width: auto;
+    max-width: 300px;
   }
 }
 
