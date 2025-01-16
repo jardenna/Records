@@ -1,4 +1,5 @@
 import { FC } from 'react';
+import { useNavigate } from 'react-router';
 import { OmittedRecordRequest, Records } from '../../app/api/apiTypes';
 import useLanguage from '../../features/language/useLanguage';
 import useFormValidation from '../../hooks/useFormValidation';
@@ -27,7 +28,9 @@ const CreateOrUpdateForm: FC<CreateOrUpdateFormProps> = ({
   isLoading,
   title,
 }) => {
+  const navigate = useNavigate();
   const { language } = useLanguage();
+  const maxYear = new Date().getFullYear() + 1;
   const initialState = {
     artist: recordDetails?.artist ?? '',
     title: recordDetails?.title ?? '',
@@ -67,7 +70,6 @@ const CreateOrUpdateForm: FC<CreateOrUpdateFormProps> = ({
       onUpdateRecord(values as Records, file, fileName, imgUpdated, previewUrl);
     }
   }
-  const maxYear = new Date().getFullYear() + 1;
 
   return (
     <>
@@ -80,6 +82,7 @@ const CreateOrUpdateForm: FC<CreateOrUpdateFormProps> = ({
       <section>
         <Form
           onSubmit={onSubmit}
+          onCancel={() => navigate(-1)}
           labelText={title}
           ariaLabel={isLoading ? 'Loading' : undefined}
           isLoading={isLoading}

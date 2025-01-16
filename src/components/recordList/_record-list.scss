@@ -17,6 +17,14 @@
 
     .btn {
       width: auto;
+
+      &.btn-secondary {
+        color: $color-white;
+
+        &:hover {
+          color: $color-primary-btn-hover;
+        }
+      }
     }
 
     &:nth-child(1) {

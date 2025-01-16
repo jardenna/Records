@@ -13,6 +13,7 @@ interface FormProps {
   ariaLabel?: string;
   className?: string;
   isLoading?: boolean;
+  onCancel?: () => void;
 }
 
 const Form: FC<FormProps> = ({
@@ -22,6 +23,7 @@ const Form: FC<FormProps> = ({
   className = '',
   isLoading,
   ariaLabel,
+  onCancel,
 }) => {
   const { language } = useLanguage();
 
@@ -30,7 +32,7 @@ const Form: FC<FormProps> = ({
       {children}
       <LayoutElement className="form-footer" ariaLabel={language.form}>
         <Button
-          type="submit"
+          onClick={onCancel}
           isLoading={isLoading}
           ariaLabel={ariaLabel}
           variant={BtnVariant.Secondary}

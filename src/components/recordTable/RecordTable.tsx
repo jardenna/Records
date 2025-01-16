@@ -51,8 +51,8 @@ const RecordTable = <T extends Record<string, any>>({
   secondaryActionBtn,
   idFromSearchParams,
 }: RecordTableProps<T>) => {
-  const { language } = useLanguage();
   const navigate = useNavigate();
+  const { language } = useLanguage();
   const modalId = useAppSelector(selectModalId);
   const [searchParams, setSearchParams] = useSearchParams();
   const [showSearchField, setShowSearchField] = useState<string | null>(null);
