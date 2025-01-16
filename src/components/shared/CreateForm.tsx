@@ -74,124 +74,131 @@ const CreateForm: FC<CreateFormProps> = ({
         title={title}
       />
 
-      <Form onSubmit={onSubmit} labelText={title} isLoading={isLoading}>
-        <div className="flex">
-          <div className="flex column">
-            <Input
-              name="artist"
-              id="artist"
-              onChange={onChange}
-              onBlur={onBlur}
-              errorText={errors.artist}
-              value={values.artist}
-              labelText={language.artist}
-              required
-            />
-            <Input
-              name="title"
-              id="title"
-              onChange={onChange}
-              onBlur={onBlur}
-              errorText={
-                errors.title && `${language.pleaseEnter} ${language.title}`
-              }
-              value={values.title}
-              labelText={language.title}
-              required
-            />
-            <Input
-              name="prodYear"
-              id="prodYear"
-              onChange={onChange}
-              onBlur={onBlur}
-              errorText={errors.prodYear}
-              type="number"
-              min={minimumYear}
-              max={maxYear}
-              value={values.prodYear || ''}
-              labelText={language.prodYear}
-              maxLength={4}
-              required
-            />
-            <Input
-              name="released"
-              id="released"
-              onChange={onChange}
-              value={values.released || ''}
-              labelText={language.released}
-              min={Number(values.prodYear) + 1 && minimumYear}
-              max={maxYear}
-              type="number"
-              maxLength={4}
-              errorText={errors.released}
-              onBlur={onBlur}
-            />
-            <Input
-              name="label"
-              id="label"
-              onChange={onChange}
-              value={values.label}
-              labelText={language.label}
-            />
-            <Input
-              name="recordNo"
-              id="recordNo"
-              onChange={onChange}
-              value={values.recordNo}
-              labelText={language.recordNo}
-            />
-          </div>
+      <section>
+        <Form
+          onSubmit={onSubmit}
+          labelText={title}
+          isLoading={isLoading}
+          className="create-form"
+        >
+          <div className="grid three-col">
+            <div className="flex column">
+              <Input
+                name="artist"
+                id="artist"
+                onChange={onChange}
+                onBlur={onBlur}
+                errorText={errors.artist}
+                value={values.artist}
+                labelText={language.artist}
+                required
+              />
+              <Input
+                name="title"
+                id="title"
+                onChange={onChange}
+                onBlur={onBlur}
+                errorText={
+                  errors.title && `${language.pleaseEnter} ${language.title}`
+                }
+                value={values.title}
+                labelText={language.title}
+                required
+              />
+              <Input
+                name="prodYear"
+                id="prodYear"
+                onChange={onChange}
+                onBlur={onBlur}
+                errorText={errors.prodYear}
+                type="number"
+                min={minimumYear}
+                max={maxYear}
+                value={values.prodYear || ''}
+                labelText={language.prodYear}
+                maxLength={4}
+                required
+              />
+              <Input
+                name="released"
+                id="released"
+                onChange={onChange}
+                value={values.released || ''}
+                labelText={language.released}
+                min={Number(values.prodYear) + 1 && minimumYear}
+                max={maxYear}
+                type="number"
+                maxLength={4}
+                errorText={errors.released}
+                onBlur={onBlur}
+              />
+              <Input
+                name="label"
+                id="label"
+                onChange={onChange}
+                value={values.label}
+                labelText={language.label}
+              />
+              <Input
+                name="recordNo"
+                id="recordNo"
+                onChange={onChange}
+                value={values.recordNo}
+                labelText={language.recordNo}
+              />
+            </div>
 
-          <div className="flex column">
-            <Input
-              name="numOfRecords"
-              id="numOfRecords"
-              onChange={onChange}
-              labelText={language.numOfRecords}
-              type="number"
-              value={values.numOfRecords || ''}
-            />
-            <Input
-              name="price"
-              id="price"
-              onChange={onChange}
-              labelText={language.price}
-              value={values.price}
-            />
-            <Textarea
-              name="origin"
-              id="origin"
-              value={values.origin}
-              onChange={onChange}
-              labelText={language.origin}
-            />
-            <Textarea
-              name="info"
-              id="info"
-              value={values.info}
-              onChange={onChange}
-              labelText={language.niceToKnow}
-            />
-          </div>
+            <div className="flex column">
+              <Input
+                name="numOfRecords"
+                id="numOfRecords"
+                onChange={onChange}
+                labelText={language.numOfRecords}
+                type="number"
+                value={values.numOfRecords || ''}
+              />
+              <Input
+                name="price"
+                id="price"
+                onChange={onChange}
+                labelText={language.price}
+                value={values.price}
+              />
+              <Textarea
+                name="origin"
+                id="origin"
+                value={values.origin}
+                onChange={onChange}
+                labelText={language.origin}
+              />
+              <Textarea
+                name="info"
+                id="info"
+                value={values.info}
+                onChange={onChange}
+                labelText={language.niceToKnow}
+              />
+            </div>
 
-          <div className="file-container">
-            <RecordImg
-              src={recordDetails?.cover || 'default.png'}
-              previewUrl={imgUpdated ? previewUrl : null}
-              title={file?.name || null}
-              alt=""
-            />
-            <Input
-              type="file"
-              onChange={onChange}
-              name="cover"
-              id="cover"
-              labelText={language.upLoadCover}
-              value=""
-            />
+            <div className="file-container flex column">
+              <RecordImg
+                src={recordDetails?.cover || 'default.png'}
+                previewUrl={imgUpdated ? previewUrl : null}
+                title={file?.name || null}
+                alt=""
+              />
+              <Input
+                type="file"
+                onChange={onChange}
+                name="cover"
+                id="cover"
+                labelText={language.upLoadCover}
+                value=""
+              />
+            </div>
           </div>
-        </div>
-      </Form>
+        </Form>
+      </section>
     </>
   );
 };
