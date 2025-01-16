@@ -165,7 +165,7 @@ const RecordTablePage: FC = () => {
             onChange={(selectedOptions) =>
               handleSetRowsCount('limit', selectedOptions as Option)
             }
-            labelText="Results per page"
+            labelText={language.resultsPerPage}
             inputHasNoLabel
             defaultValue={{
               value: Number(limit) || 10,
