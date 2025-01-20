@@ -5,6 +5,11 @@
   color: $color-white;
   border-radius: 4px;
   min-width: rem(496px);
+
+  @include max-size($medium) {
+    min-width: auto;
+  }
+
   padding: 30px 50px;
 }
 
@@ -13,6 +18,10 @@
   align-items: center;
   gap: 4px;
   max-width: rem(396px);
+
+  @include max-size($small) {
+    max-width: rem(296px);
+  }
 }
 
 .record-img-title {
