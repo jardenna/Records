@@ -206,7 +206,7 @@ const CreateOrUpdateForm: FC<CreateOrUpdateFormProps> = ({
                 <RecordImg
                   src={recordDetails?.cover || 'default.png'}
                   previewUrl={imgUpdated ? previewUrl : null}
-                  title={file?.name || null}
+                  title={file?.name || 'Preview'}
                   alt=""
                 />
               ) : (

@@ -1,11 +1,14 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import { useAppSelector } from '../../app/hooks';
-import { selectModalId } from '../../features/modalSlice';
 import useVisibility from '../../hooks/useVisibility';
-import { BtnVariant, SizeVariant } from '../../types/enums';
+
+import { selectModalId } from '../../features/modalSlice';
+import useWindowDimensions from '../../hooks/useWindowDimensions ';
+import { BtnVariant, PopupRole, SizeVariant } from '../../types/enums';
 import { BtnType } from '../../types/types';
 import Overlay from '../overlay/Overlay';
 import Portal from '../Portal';
+import SwipeContainer from '../SwipeContainer';
 import './_modal.scss';
 import ModalFooter from './ModalFooter';
 import ModalHeader from './ModalHeader';
@@ -21,7 +24,6 @@ export interface PrimaryActionBtnProps {
 
 export interface SecondaryActionBtnProps {
   label: string | null;
-  buttonType?: BtnType;
   onClick?: () => void;
   variant?: BtnVariant;
 }
@@ -33,6 +35,7 @@ interface ModalProps {
   primaryActionBtn: PrimaryActionBtnProps;
   className?: string;
   isAlert?: boolean;
+  modalInfo?: ReactNode;
   modalSize?: SizeVariant;
   secondaryActionBtn?: SecondaryActionBtnProps;
   showCloseIcon?: boolean;
@@ -48,7 +51,9 @@ const Modal: React.FC<ModalProps> = ({
   showCloseIcon = true,
   secondaryActionBtn,
   primaryActionBtn,
+  modalInfo,
 }) => {
+  const { isMobileSize } = useWindowDimensions();
   const modalId = useAppSelector(selectModalId);
   const { handleCloseModal, modalRef } = useModal(modalId);
 
@@ -61,35 +66,51 @@ const Modal: React.FC<ModalProps> = ({
     return null;
   }
 
+  console.log(isMobileSize);
+
+  const ModalContent = (
+    <>
+      <ModalHeader
+        modalHeadertext={modalHeaderText}
+        onCloseModal={handleClosePopup}
+        showCloseIcon={showCloseIcon}
+      />
+      {primaryActionBtn?.buttonType !== 'submit' ? (
+        <>
+          <div className="modal-body">{children}</div>
+          <ModalFooter
+            onCloseModal={handleClosePopup}
+            primaryActionBtn={primaryActionBtn}
+            secondaryActionBtn={secondaryActionBtn}
+          />
+        </>
+      ) : (
+        <form method="modal" className="modal-form">
+          {children}
+          <ModalFooter
+            onCloseModal={handleClosePopup}
+            primaryActionBtn={primaryActionBtn}
+            secondaryActionBtn={secondaryActionBtn}
+          />
+        </form>
+      )}
+      {modalInfo && modalInfo}
+    </>
+  );
+
   return (
     <Portal portalId="modal">
       <dialog
         ref={modalRef}
-        className={`modal animate-top-center modal-${modalSize} ${className} ${popupClass}`}
-        role={isAlert ? 'alert' : undefined}
+        className={`modal modal-${modalSize} ${className} ${popupClass} ${isMobileSize ? 'animate-top-right' : 'animate-top-center'}`}
+        role={isAlert ? PopupRole.Alert : undefined}
       >
-        <ModalHeader
-          modalHeadertext={modalHeaderText}
-          onCloseModal={handleClosePopup}
-          showCloseIcon={showCloseIcon}
-        />
-        {primaryActionBtn?.buttonType !== 'submit' ? (
-          <>
-            <div className="modal-body">{children}</div>
-            <ModalFooter
-              onCloseModal={handleClosePopup}
-              primaryActionBtn={primaryActionBtn}
-              secondaryActionBtn={secondaryActionBtn}
-            />
-          </>
+        {isMobileSize ? (
+          <SwipeContainer onSwipeRight={handleClosePopup}>
+            {ModalContent}
+          </SwipeContainer>
         ) : (
-          <form method="modal" className="modal-form">
-            {children}
-            <ModalFooter
-              primaryActionBtn={primaryActionBtn}
-              secondaryActionBtn={secondaryActionBtn}
-            />
-          </form>
+          ModalContent
         )}
       </dialog>
       <Overlay />

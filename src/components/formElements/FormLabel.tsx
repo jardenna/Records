@@ -15,7 +15,9 @@ const FormLabel: FC<FormLabelProps> = ({
   inputHasNoLabel,
 }) =>
   inputHasNoLabel ? (
-    <VisuallyHidden>{inputLabel}</VisuallyHidden>
+    <VisuallyHidden htmlFor={id} as="label">
+      {inputLabel}
+    </VisuallyHidden>
   ) : (
     <label className="form-label" htmlFor={id}>
       {inputLabel}
