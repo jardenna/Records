@@ -1,9 +1,7 @@
 @use '../../scss/globals' as *;
 
 .details {
-  display: flex;
   justify-content: center;
-  align-items: center;
   gap: 40px;
 
   .skeleton-img {

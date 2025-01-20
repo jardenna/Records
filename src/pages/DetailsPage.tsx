@@ -62,7 +62,7 @@ const DetailsPage: FC = () => {
   };
 
   return (
-    <article className="details">
+    <article className="details flex">
       <MetaTags
         description="This is the records page description"
         keywords="records, music, artists"

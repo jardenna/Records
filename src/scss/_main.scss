@@ -38,11 +38,19 @@ body {
   font-size: rem(14px);
   color: $color-primary-text;
   font-family: $font-primary;
+
+  @include max-size($medium) {
+    font-size: rem(16px);
+  }
 }
 
 h1 {
   font-size: rem(32px);
   margin: 0;
+
+  @include max-size($medium) {
+    font-size: rem(24px);
+  }
 }
 
 .container {

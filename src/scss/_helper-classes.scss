@@ -5,6 +5,10 @@
   align-items: center;
   gap: 20px;
   width: 100%;
+
+  @include max-size($medium) {
+    flex-direction: column;
+  }
 }
 
 .column {
@@ -33,7 +37,7 @@
   }
 
   &.three-col {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
   }
 }
 
