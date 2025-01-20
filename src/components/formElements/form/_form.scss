@@ -163,5 +163,9 @@ legend {
 
   .btn {
     max-width: rem(250px);
+
+    @include max-size($medium) {
+      max-width: 100%;
+    }
   }
 }

@@ -17,6 +17,10 @@ a[class^='btn-'],
   border: 1px solid currentcolor;
   cursor: pointer;
 
+  @include max-size($medium) {
+    font-size: rem(16px);
+  }
+
   @include transition;
 
   &::after {

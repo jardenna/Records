@@ -23,7 +23,8 @@
     @include max-size($medium) {
       display: flex;
       justify-content: center;
-      font-size: rem(40px);
+
+      // font-size: rem(40px);
 
       span {
         display: flex;
