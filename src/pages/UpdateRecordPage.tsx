@@ -54,12 +54,14 @@ const UpdateRecord: FC = () => {
   }
 
   return (
-    <CreateOrUpdateForm
-      recordDetails={recordDetails}
-      onUpdateRecord={handleUpdateRecord}
-      isLoading={isLoading}
-      title={language.updateAlbum}
-    />
+    recordDetails && (
+      <CreateOrUpdateForm
+        recordDetails={recordDetails}
+        onUpdateRecord={handleUpdateRecord}
+        isLoading={isLoading}
+        title={language.updateAlbum}
+      />
+    )
   );
 };
 
