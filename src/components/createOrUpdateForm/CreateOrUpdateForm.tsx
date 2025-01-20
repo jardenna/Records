@@ -195,6 +195,13 @@ const CreateOrUpdateForm: FC<CreateOrUpdateFormProps> = ({
 
             <fieldset className="flex column">
               <VisuallyHidden as="legend">{language.cover}</VisuallyHidden>
+              <FileInput
+                onChange={onChange}
+                name="cover"
+                id="cover"
+                labelText={language.upLoadCover}
+                value=""
+              />
               {!isLoading ? (
                 <RecordImg
                   src={recordDetails?.cover || 'default.png'}
@@ -205,13 +212,6 @@ const CreateOrUpdateForm: FC<CreateOrUpdateFormProps> = ({
               ) : (
                 <Skeleton variant="img" />
               )}
-              <FileInput
-                onChange={onChange}
-                name="cover"
-                id="cover"
-                labelText={language.upLoadCover}
-                value=""
-              />
             </fieldset>
           </div>
         </Form>
