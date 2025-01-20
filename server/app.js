@@ -5,7 +5,6 @@ import express from 'express';
 import mongoose from 'mongoose';
 import path from 'path';
 import RecordRoutes from './routes/RecordRoutes.js';
-import userRoutes from './routes/UserRoutes.js';
 import dbConnect from './utils/dbConnect.js';
 dotenv.config();
 
@@ -25,7 +24,6 @@ app.use('/', express.static(path.join(__dirname, 'public')));
 
 //Custom routes middleware
 app.use('/api/records', RecordRoutes);
-app.use('/api/user', userRoutes);
 
 mongoose.connection.once('open', () => {
   console.log('Connected to MongoDB');
