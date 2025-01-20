@@ -52,8 +52,6 @@ fs.readFile(filePath, 'utf8', (err, data) => {
           'src/locales/da.json',
           JSON.stringify(daJson, null, 2),
         );
-
-        console.log('JSON files created successfully!');
       } catch (error) {
         console.error('Error processing CSV:', error);
       }

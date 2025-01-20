@@ -66,8 +66,6 @@ const Modal: React.FC<ModalProps> = ({
     return null;
   }
 
-  console.log(isMobileSize);
-
   const ModalContent = (
     <>
       <ModalHeader
