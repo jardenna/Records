@@ -9,7 +9,6 @@ interface RecordImgProps {
   src: string;
   title: string | null;
   Subtitle?: string;
-
   previewUrl?: string | null;
   refetch?: () => void;
 }
@@ -42,7 +41,6 @@ const RecordImg: FC<RecordImgProps> = ({
           figcaption={
             <div className="record-img-header">
               <h2 className="record-img-title text-ellipsis">{title}</h2>
-
               {Subtitle && (
                 <h3 className="record-img-sub-title">
                   <span> / </span>
@@ -56,4 +54,5 @@ const RecordImg: FC<RecordImgProps> = ({
     </section>
   );
 };
+
 export default RecordImg;
