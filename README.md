@@ -1,3 +1,3 @@
-# React + TypeScript + Vite
+# React/RTK Query + TypeScript + Vite + Node.js
 
-This template provides a minimal setup to get React/Typescript working in Vite with linting and type checking.
+An CRUD app for creating albums
