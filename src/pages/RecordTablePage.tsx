@@ -188,6 +188,7 @@ const RecordTablePage: FC = () => {
           onReset={() => refetch}
         >
           <RecordTable
+            isLoading={isLoading}
             tableData={records?.results || null}
             onSort={handleSort}
             tableSearchParams={location.search}

@@ -82,7 +82,7 @@ const CreateOrUpdateForm: FC<CreateOrUpdateFormProps> = ({
         title={title}
       />
 
-      <section>
+      <section aria-label={isLoading ? 'Loading' : undefined}>
         {isLoading ? (
           <SkeletonGrid />
         ) : (

@@ -62,7 +62,10 @@ const DetailsPage: FC = () => {
   };
 
   return (
-    <article className="details flex">
+    <article
+      className="details flex"
+      aria-label={isLoading ? 'Loading' : undefined}
+    >
       <MetaTags
         description="This is the records page description"
         keywords="records, music, artists"
@@ -83,7 +86,10 @@ const DetailsPage: FC = () => {
           />
         )
       )}
-      <section className="details-content-container">
+      <section
+        className="details-content-container"
+        aria-label={isLoading ? 'Loading' : undefined}
+      >
         {isLoading ? (
           <>
             <Skeleton count={8} />

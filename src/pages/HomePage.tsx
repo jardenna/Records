@@ -7,7 +7,7 @@ const HomePage: FC = () => {
   const { data: records, isLoading, refetch } = useGetFirstSixRecordsQuery();
 
   return (
-    <section>
+    <section aria-label={isLoading ? 'Loading' : undefined}>
       {isLoading ? (
         <SkeletonList count={6} variant="img" className="grid three-col" />
       ) : (

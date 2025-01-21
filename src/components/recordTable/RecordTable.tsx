@@ -29,6 +29,7 @@ interface BaseTableProps {
   values: Record<string, string>;
   valuesFromSearch: Record<string, string | number | boolean>;
   className?: string;
+  isLoading?: boolean;
   onClearAllSearch?: () => void;
 }
 interface RecordTableProps<T> extends BaseTableProps {
@@ -50,6 +51,7 @@ const RecordTable = <T extends Record<string, any>>({
   primaryActionBtn,
   secondaryActionBtn,
   idFromSearchParams,
+  isLoading,
 }: RecordTableProps<T>) => {
   const navigate = useNavigate();
   const { language } = useLanguage();
@@ -88,7 +90,7 @@ const RecordTable = <T extends Record<string, any>>({
 
   return (
     <div className={`table-container ${className}`}>
-      <table>
+      <table aria-label={isLoading ? 'Loading' : undefined}>
         <VisuallyHidden as="caption">{tableCaption}</VisuallyHidden>
         <thead>
           <tr>
