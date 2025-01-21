@@ -8,7 +8,10 @@ export enum SortOrder {
 }
 
 export type OmittedRecordRequest = Omit<Records, 'id'>;
-export type OmittedCreateAlbumRequest = Omit<UpdateAlbumRequest, 'id'>;
+export type OmittedCreateAlbumRequest = Omit<
+  UpdateAlbumRequest,
+  'id' | 'imgUpdated'
+>;
 
 export interface UpdateAlbumRequest {
   file: File | null;
