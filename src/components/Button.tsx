@@ -60,11 +60,11 @@ const Button: FC<ButtonProps> = ({
     aria-expanded={ariaExpanded}
     aria-controls={ariaControls}
     autoFocus={autoFocus}
-    aria-disabled={disabled || isLoading || undefined}
+    aria-disabled={disabled || isLoading}
     className={`btn btn-${variant} ${className}`}
-    disabled={disabled || isLoading}
     name={name}
     aria-describedby={isBtnSelected ? ariaDescribedby : undefined}
+    aria-label={isLoading ? 'Loading' : ''}
   >
     {ariaLabel && <VisuallyHidden>{ariaLabel}</VisuallyHidden>}
     {!isLoading ? (

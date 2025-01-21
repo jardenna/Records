@@ -17,6 +17,7 @@ interface FormValidationProps<T extends KeyValuePair<any>> {
   initialState: T;
   callback?: (values: T) => void;
   isArray?: boolean;
+  isLoading?: boolean;
   validate?: any;
 }
 
@@ -25,6 +26,7 @@ function useFormValidation<T extends KeyValuePair<any>>({
   callback,
   validate,
   isArray,
+  isLoading,
 }: FormValidationProps<T>) {
   const [values, setValues] = useState<T>(initialState);
   const [errors, setErrors] = useState<KeyValuePair<string>>({});
@@ -145,7 +147,9 @@ function useFormValidation<T extends KeyValuePair<any>>({
     event.preventDefault();
     const validationErrors = validate ? validate(values) : {};
     const formHasNoErrors = !Object.keys(validationErrors).length;
-
+    if (isLoading) {
+      return;
+    }
     if (formHasNoErrors) {
       setIsSubmitting(true);
       if (callback) {

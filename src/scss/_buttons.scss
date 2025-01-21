@@ -1,5 +1,12 @@
 @use './globals' as *;
 
+button[aria-disabled='true'] {
+  pointer-events: none;
+  background-color: $color-background;
+  color: $color-gray-dark;
+  border-color: $color-border;
+}
+
 a[class^='btn-'],
 .btn {
   display: flex;
@@ -32,13 +39,6 @@ a[class^='btn-'],
     height: 144%;
     min-width: rem(48px);
     min-height: rem(48px);
-  }
-
-  &:disabled {
-    pointer-events: none;
-    background-color: $color-background;
-    color: $color-gray-dark;
-    border-color: $color-border;
   }
 }
 

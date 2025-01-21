@@ -61,6 +61,7 @@ const CreateOrUpdateForm: FC<CreateOrUpdateFormProps> = ({
     initialState,
     callback: handleSubmit,
     validate,
+    isLoading,
   });
 
   function validate() {
