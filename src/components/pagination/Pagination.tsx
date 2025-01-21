@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { Dispatch, FC, SetStateAction } from 'react';
 import useLanguage from '../../features/language/useLanguage';
 import IconContent from '../IconContent';
 import { IconName } from '../icons/Icon';
@@ -10,8 +10,8 @@ interface PaginationProps {
   currentPage: number;
   pageLimit: number;
   rowsPerPage: number;
-  selectedPage: any;
-  setCurrentPage: any;
+  selectedPage: number;
+  setCurrentPage: Dispatch<SetStateAction<number>>;
   totalCount: number;
 }
 
