@@ -16,11 +16,16 @@ const CreateRecordPage: FC = () => {
 
   const handleCreateRecord = async (
     records: Records,
-    file: File | null,
     fileName: string,
+    file?: File,
   ) => {
     try {
-      const result = await createRecord({ records, file, fileName }).unwrap();
+      const result = await createRecord({
+        records,
+        file,
+        fileName,
+        imgUpdated: false,
+      }).unwrap();
 
       if (result) {
         navigate(`/${MainPath.Records}`);
