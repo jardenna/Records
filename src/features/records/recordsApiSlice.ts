@@ -1,9 +1,11 @@
 import apiSlice from '../../app/api/apiSlice';
 import {
-  AlbumCoverRequest,
+  FirstSixRecordsResponse,
+  OmittedCreateAlbumRequest,
   Records,
   RecordsRequest,
   RecordsResponse,
+  UpdateAlbumRequest,
 } from '../../app/api/apiTypes';
 import transformId from '../../app/api/transformResponse';
 import endpoints from '../../app/endpoints';
@@ -11,7 +13,7 @@ import { createFormData, createQueryOptions } from './utils';
 
 export const recordsApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
-    getFirstSixRecords: builder.query<any, void>({
+    getFirstSixRecords: builder.query<FirstSixRecordsResponse, void>({
       query: () => `${endpoints.firstSix}`,
       transformResponse: (responseData: Records[]) => transformId(responseData),
       providesTags: ['Records'],
@@ -41,14 +43,15 @@ export const recordsApiSlice = apiSlice.injectEndpoints({
         });
         return `${endpoints.records}?${params.toString()}`;
       },
-      transformResponse: (responseData: any) => transformId(responseData),
+      transformResponse: (responseData: FirstSixRecordsResponse) =>
+        transformId(responseData),
       providesTags: ['Records'],
     }),
     getRecordById: builder.query<Records, string | undefined>({
       query: (id) => `${endpoints.records}/${id}`,
       providesTags: ['Records'],
     }),
-    createNewRecord: builder.mutation<Records, AlbumCoverRequest>({
+    createNewRecord: builder.mutation<Records, OmittedCreateAlbumRequest>({
       query: ({ records, file, fileName }) =>
         createQueryOptions(
           `/${endpoints.records}`,
@@ -57,7 +60,7 @@ export const recordsApiSlice = apiSlice.injectEndpoints({
         ),
       invalidatesTags: ['Records'],
     }),
-    updateRecord: builder.mutation<Records, AlbumCoverRequest>({
+    updateRecord: builder.mutation<Records, UpdateAlbumRequest>({
       query: ({ id, records, imgUpdated, file, fileName }) =>
         createQueryOptions(
           `/${endpoints.records}/${id}`,

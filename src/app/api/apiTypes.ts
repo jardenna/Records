@@ -1,3 +1,35 @@
+export interface FirstSixRecordsResponse {
+  results: Records[];
+}
+
+export enum SortOrder {
+  Asc = 'asc',
+  Desc = 'desc',
+}
+
+export type OmittedRecordRequest = Omit<Records, 'id'>;
+export type OmittedCreateAlbumRequest = Omit<UpdateAlbumRequest, 'id'>;
+
+export interface UpdateAlbumRequest {
+  fileName: string;
+  id: string;
+  imgUpdated: boolean;
+  records: Records;
+  file?: File;
+}
+
+export interface RecordsRequest {
+  artist: string;
+  label: string;
+  limit: number;
+  origin: string;
+  page: number;
+  prodYear: string;
+  sortField: string;
+  sortOrder: SortOrder;
+  title: string;
+}
+
 export interface Records {
   artist: string;
   cover: string;
@@ -13,36 +45,9 @@ export interface Records {
   title: string;
 }
 
-export enum SortOrder {
-  Asc = 'asc',
-  Desc = 'desc',
-}
-
-export type OmittedRecordRequest = Omit<Records, 'id'>;
-
-export interface AlbumCoverRequest {
-  fileName: string;
-  imgUpdated: boolean;
-  records: Records;
-  file?: File;
-  id?: string;
-}
-
-export interface RecordsRequest {
-  artist: string;
-  label: string;
-  limit: number;
-  origin: string;
-  page: number;
-  prodYear: string;
-  sortField: string;
-  sortOrder: SortOrder;
-  title: string;
-}
-
 export interface RecordsResponse {
   next: RecordsRequest;
   previous: RecordsRequest;
   recordsCount: number;
-  results: any;
+  results: Records[];
 }
