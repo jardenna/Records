@@ -24,7 +24,6 @@ const CreateRecordPage: FC = () => {
         records,
         file,
         fileName,
-        imgUpdated: false,
       }).unwrap();
 
       if (result) {
