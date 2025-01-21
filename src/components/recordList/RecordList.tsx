@@ -10,8 +10,8 @@ import RecordImg from '../shared/recordImg/RecordImg';
 import './_record-list.scss';
 
 interface RecordListProps {
-  records: Records[];
   refetch: () => void;
+  records?: Records[];
 }
 
 const RecordList: FC<RecordListProps> = ({ records, refetch }) => {
@@ -19,33 +19,34 @@ const RecordList: FC<RecordListProps> = ({ records, refetch }) => {
 
   return (
     <ul className="record-list grid three-col">
-      {records.map((record) => (
-        <li className="record-item" key={record.id}>
-          <ErrorBoundary
-            FallbackComponent={ErrorBoundaryFallback}
-            onReset={() => refetch}
-          >
-            <RecordImg
-              src={record.cover !== '' ? record.cover : ''}
-              title={record.artist}
-              Subtitle={record.title}
-              refetch={() => refetch}
-              alt=""
-            />
-            <LayoutElement
-              ariaLabel={language.albumInfo}
-              className="record-img-footer"
+      {records &&
+        records.map((record) => (
+          <li className="record-item" key={record.id}>
+            <ErrorBoundary
+              FallbackComponent={ErrorBoundaryFallback}
+              onReset={() => refetch}
             >
-              <DetailLink
-                btnVariant={BtnVariant.Secondary}
-                to={`/${MainPath.Details}/${record.id}`}
+              <RecordImg
+                src={record.cover !== '' ? record.cover : ''}
+                title={record.artist}
+                Subtitle={record.title}
+                refetch={() => refetch}
+                alt=""
+              />
+              <LayoutElement
+                ariaLabel={language.albumInfo}
+                className="record-img-footer"
               >
-                {language.details}
-              </DetailLink>
-            </LayoutElement>
-          </ErrorBoundary>
-        </li>
-      ))}
+                <DetailLink
+                  btnVariant={BtnVariant.Secondary}
+                  to={`/${MainPath.Details}/${record.id}`}
+                >
+                  {language.details}
+                </DetailLink>
+              </LayoutElement>
+            </ErrorBoundary>
+          </li>
+        ))}
     </ul>
   );
 };

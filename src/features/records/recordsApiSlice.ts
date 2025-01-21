@@ -10,7 +10,7 @@ import { createFormData, createQueryOptions } from './utils';
 
 export const recordsApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
-    getFirstSixRecords: builder.query<any, void>({
+    getFirstSixRecords: builder.query<Records[], void>({
       query: () => `${endpoints.firstSix}`,
       transformResponse: (responseData: Records[]) => transformId(responseData),
       providesTags: ['Records'],
