@@ -16,8 +16,8 @@ const CreateRecordPage: FC = () => {
 
   const handleCreateRecord = async (
     records: Records,
+    file: File | null,
     fileName: string,
-    file?: File,
   ) => {
     try {
       const result = await createRecord({

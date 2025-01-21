@@ -23,9 +23,9 @@ const UpdateRecord: FC = () => {
 
   async function handleUpdateRecord(
     records: Records,
+    file: File | null,
     fileName: string,
     imgUpdated: boolean,
-    file?: File,
   ) {
     if (recordId) {
       try {
