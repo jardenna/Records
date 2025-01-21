@@ -1,6 +1,5 @@
 import { FC } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
-import { Records } from '../../app/api/apiTypes';
 import useLanguage from '../../features/language/useLanguage';
 import LayoutElement from '../../layout/LayoutElement';
 import { BtnVariant, MainPath } from '../../types/enums';
@@ -11,7 +10,7 @@ import './_record-list.scss';
 
 interface RecordListProps {
   refetch: () => void;
-  records?: Records[];
+  records?: any;
 }
 
 const RecordList: FC<RecordListProps> = ({ records, refetch }) => {
@@ -20,7 +19,7 @@ const RecordList: FC<RecordListProps> = ({ records, refetch }) => {
   return (
     <ul className="record-list grid three-col">
       {records &&
-        records.map((record) => (
+        records.map((record: any) => (
           <li className="record-item" key={record.id}>
             <ErrorBoundary
               FallbackComponent={ErrorBoundaryFallback}

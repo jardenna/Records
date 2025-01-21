@@ -33,7 +33,7 @@ interface BaseTableProps {
   onClearAllSearch?: () => void;
 }
 interface RecordTableProps<T> extends BaseTableProps {
-  onSort: (field: keyof T) => void;
+  onSort: any;
   tableData: T[] | null;
 }
 const RecordTable = <T extends Record<string, any>>({

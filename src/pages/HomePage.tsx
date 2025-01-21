@@ -11,7 +11,7 @@ const HomePage: FC = () => {
       {isLoading ? (
         <SkeletonList count={6} variant="img" className="grid three-col" />
       ) : (
-        <RecordList records={records} refetch={refetch} />
+        <RecordList records={records?.results} refetch={refetch} />
       )}
     </section>
   );
