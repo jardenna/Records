@@ -16,11 +16,15 @@ import RecordImg from '../shared/recordImg/RecordImg';
 import SkeletonGrid from '../skeleton/SkeletonGrid';
 import './_create-update-form.scss';
 
-//  onUpdateRecord?: (values: Records) => void;
 interface CreateOrUpdateFormProps {
+  onUpdateRecord: (
+    records: Records,
+    file: File | null,
+    fileName: string,
+    previewUrl: string | null,
+  ) => void;
   title: string;
   isLoading?: boolean;
-  onUpdateRecord?: any;
   recordDetails?: OmittedRecordRequest;
 }
 
@@ -68,9 +72,7 @@ const CreateOrUpdateForm: FC<CreateOrUpdateFormProps> = ({
   }
 
   function handleSubmit() {
-    if (onUpdateRecord) {
-      onUpdateRecord(values as Records, file, fileName, previewUrl);
-    }
+    onUpdateRecord(values as Records, file, fileName, previewUrl);
   }
 
   return (
