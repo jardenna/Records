@@ -27,32 +27,27 @@ const getRecordById = async (req, res) => {
   }
 };
 
-// Post requests
-const postCreateRecord = async (req, res) => {
+const postCreateOrUpdateRecord = async (req, res) => {
   const file = req.file ? req.file.filename : req.body.cover;
 
   try {
-    const newRecord = new Record({
-      ...req.body,
-      cover: file,
-    });
-    const savedRecord = await newRecord.save();
-    res.json(savedRecord);
-  } catch (error) {
-    res.status(500).json({ message: error.message });
-  }
-};
-
-const postUpdateRecord = async (req, res) => {
-  const file = req.file ? req.file.filename : req.body.cover;
-
-  try {
-    const recordId = req.params.recordId;
-    const record = await Record.updateOne(
-      { _id: recordId },
-      { $set: { cover: file } },
-    );
-    res.json(record);
+    if (req.params.recordId) {
+      // Update an existing record
+      const recordId = req.params.recordId;
+      const updatedRecord = await Record.updateOne(
+        { _id: recordId },
+        { $set: { ...req.body, cover: file } },
+      );
+      res.json(updatedRecord);
+    } else {
+      // Create a new record
+      const newRecord = new Record({
+        ...req.body,
+        cover: file,
+      });
+      const savedRecord = await newRecord.save();
+      res.json(savedRecord);
+    }
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
@@ -72,6 +67,5 @@ export {
   getFirstSixRecords,
   getPaginatedRecords,
   getRecordById,
-  postCreateRecord,
-  postUpdateRecord,
+  postCreateOrUpdateRecord,
 };
