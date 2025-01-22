@@ -48,7 +48,7 @@ const Modal: React.FC<ModalProps> = ({
   isAlert,
   modalSize = 'sm',
   className = '',
-  showCloseIcon = true,
+  showCloseIcon,
   secondaryActionBtn,
   primaryActionBtn,
   modalInfo,
