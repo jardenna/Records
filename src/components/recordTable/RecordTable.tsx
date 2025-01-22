@@ -34,7 +34,7 @@ interface BaseTableProps {
 }
 interface RecordTableProps<T> extends BaseTableProps {
   onSort: (id: string) => void;
-  tableData: T[] | null;
+  tableData: T[];
 }
 const RecordTable = <T extends Record<string, any>>({
   tableHeaders,

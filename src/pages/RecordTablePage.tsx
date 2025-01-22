@@ -187,22 +187,24 @@ const RecordTablePage: FC = () => {
           FallbackComponent={ErrorBoundaryFallback}
           onReset={() => refetch}
         >
-          <RecordTable
-            isLoading={isLoading}
-            tableData={records?.results || null}
-            onSort={handleSort}
-            tableSearchParams={location.search}
-            sortOrder={sortOrder}
-            onFilterRows={handleFilterRecords}
-            values={values}
-            valuesFromSearch={Object.fromEntries(searchParams)}
-            tableHeaders={tableHeaders}
-            onClearAllSearch={handleClearAllSearch}
-            tableCaption={language.albumCollection}
-            primaryActionBtn={primaryActionBtn}
-            secondaryActionBtn={secondaryActionBtn}
-            idFromSearchParams={idFromSearchParams}
-          />
+          {records && (
+            <RecordTable
+              isLoading={isLoading}
+              tableData={records.results}
+              onSort={handleSort}
+              tableSearchParams={location.search}
+              sortOrder={sortOrder}
+              onFilterRows={handleFilterRecords}
+              values={values}
+              valuesFromSearch={Object.fromEntries(searchParams)}
+              tableHeaders={tableHeaders}
+              onClearAllSearch={handleClearAllSearch}
+              tableCaption={language.albumCollection}
+              primaryActionBtn={primaryActionBtn}
+              secondaryActionBtn={secondaryActionBtn}
+              idFromSearchParams={idFromSearchParams}
+            />
+          )}
         </ErrorBoundary>
       ) : (
         <SkeletonList count={8} className="column" variant="secondary" />
