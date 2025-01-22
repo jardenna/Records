@@ -58,7 +58,7 @@ const RecordTable = <T extends Record<string, any>>({
   const modalId = useAppSelector(selectModalId);
   const [searchParams, setSearchParams] = useSearchParams();
   const [showSearchField, setShowSearchField] = useState<string | null>(null);
-  const containerRefs = useRef<any>(new Map());
+  const containerRefs = useRef<Map<HTMLElement, HTMLElement>>(new Map());
   useClickOutside(containerRefs, () => setShowSearchField(null));
   const dispatch = useAppDispatch();
 
@@ -98,11 +98,11 @@ const RecordTable = <T extends Record<string, any>>({
               <th scope="col" key={header}>
                 <div
                   className="table-header-container"
-                  ref={(el) => {
-                    if (el) {
-                      containerRefs.current.set(header, el);
+                  ref={(header: HTMLElement | null) => {
+                    if (header) {
+                      containerRefs.current.set(header, header);
                     } else {
-                      containerRefs.current.delete(header);
+                      containerRefs.current.delete(header!);
                     }
                   }}
                 >
