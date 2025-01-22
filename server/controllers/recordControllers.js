@@ -44,20 +44,6 @@ const postCreateRecord = async (req, res) => {
   }
 };
 
-const postUpdateRecord = async (req, res) => {
-  const file = req.file ? req.file.filename : req.body.cover;
-
-  try {
-    const record = await Record.updateOne(
-      { _id: req.params.recordId },
-      { $set: { cover: file, ...req.body } },
-    );
-    res.json(record);
-  } catch (error) {
-    res.status(500).json({ message: error.message });
-  }
-};
-
 const postCover = async (req, res) => {
   const file = req.file ? req.file.filename : req.body.cover;
 
@@ -98,5 +84,4 @@ export {
   getRecordById,
   postCover,
   postCreateRecord,
-  postUpdateRecord,
 };

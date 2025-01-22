@@ -9,7 +9,6 @@ import {
   getRecordById,
   postCover,
   postCreateRecord,
-  postUpdateRecord,
 } from '../controllers/recordControllers.js';
 import paginatedResults from '../middleware/paginatedResults.js';
 import Record from '../models/RecordsModel.js';
@@ -28,9 +27,6 @@ router.post('/:recordId', upload.single('cover'), postCover);
 
 //Create record
 router.post('/', upload.single('cover'), postCreateRecord);
-
-//Update record
-router.put('/:recordId', postUpdateRecord);
 
 //Delete Record
 router.delete('/delete/:recordId', deleteRecord);
