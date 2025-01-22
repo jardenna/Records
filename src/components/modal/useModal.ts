@@ -11,19 +11,19 @@ const useModal = (modalId: string | null) => {
     dispatch(toggleModal(null));
   };
 
-  // eslint-disable-next-line consistent-return
   useEffect(() => {
-    if (modalRef.current && modalId) {
-      const focusableElements = modalRef.current.querySelectorAll(
-        'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])',
-      );
+    const handleTabKeyPress = (event: KeyboardEvent) => {
+      if (modalRef.current && modalId) {
+        const focusableElements = modalRef.current.querySelectorAll(
+          'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])',
+        );
 
-      const firstFocusableElement = focusableElements[0] as HTMLElement | null;
-      const lastFocusableElement = focusableElements[
-        focusableElements.length - 1
-      ] as HTMLElement | null;
+        const firstFocusableElement =
+          focusableElements[0] as HTMLElement | null;
+        const lastFocusableElement = focusableElements[
+          focusableElements.length - 1
+        ] as HTMLElement | null;
 
-      const handleTabKeyPress = (event: KeyboardEvent) => {
         if (event.key === KeyCode.Tab) {
           if (
             event.shiftKey &&
@@ -39,15 +39,15 @@ const useModal = (modalId: string | null) => {
             firstFocusableElement?.focus();
           }
         }
-      };
+      }
+    };
 
-      modalRef.current.addEventListener('keydown', handleTabKeyPress);
+    document.addEventListener('keydown', handleTabKeyPress);
 
-      return () => {
-        modalRef.current?.removeEventListener('keydown', handleTabKeyPress);
-      };
-    }
-  }, [modalId, modalRef]);
+    return () => {
+      document.removeEventListener('keydown', handleTabKeyPress);
+    };
+  }, [modalId]);
 
   return { handleCloseModal, modalRef };
 };
