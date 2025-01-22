@@ -6,8 +6,7 @@ import { IconName } from './icons/Icon';
 
 interface IconBtnProps {
   iconName: IconName;
-  onClick: any;
-  // onClick: (id?: string | ButtonEventType) => void;
+  onClick: () => void;
   title: string;
   className?: string;
 }

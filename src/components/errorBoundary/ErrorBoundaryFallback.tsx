@@ -9,7 +9,7 @@ import './_error-boundary.scss';
 
 export interface FallbackProps {
   error: any;
-  resetErrorBoundary?: () => void;
+  resetErrorBoundary: () => void;
 }
 
 const ErrorBoundaryFallback: FC<FallbackProps> = ({

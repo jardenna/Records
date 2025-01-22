@@ -19,6 +19,7 @@ import SortBtn from './SortBtn';
 
 interface BaseTableProps {
   idFromSearchParams: string | null;
+  onClearAllSearch: () => void;
   onFilterRows: (e: ChangeInputType) => void;
   primaryActionBtn: PrimaryActionBtnProps;
   secondaryActionBtn: SecondaryActionBtnProps;
@@ -30,7 +31,6 @@ interface BaseTableProps {
   valuesFromSearch: Record<string, string | number | boolean>;
   className?: string;
   isLoading?: boolean;
-  onClearAllSearch?: () => void;
 }
 interface RecordTableProps<T> extends BaseTableProps {
   onSort: any;
