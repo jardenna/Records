@@ -55,7 +55,6 @@ const CreateOrUpdateForm: FC<CreateOrUpdateFormProps> = ({
     errors,
     file,
     fileName,
-    imgUpdated,
     previewUrl,
   } = useFormValidation({
     initialState,
@@ -70,7 +69,7 @@ const CreateOrUpdateForm: FC<CreateOrUpdateFormProps> = ({
 
   function handleSubmit() {
     if (onUpdateRecord) {
-      onUpdateRecord(values as Records, file, fileName, imgUpdated, previewUrl);
+      onUpdateRecord(values as Records, file, fileName, previewUrl);
     }
   }
 
@@ -210,7 +209,7 @@ const CreateOrUpdateForm: FC<CreateOrUpdateFormProps> = ({
                 />
                 <RecordImg
                   src={recordDetails?.cover || 'default.png'}
-                  previewUrl={imgUpdated ? previewUrl : null}
+                  previewUrl={previewUrl || null}
                   title={file?.name || 'Preview'}
                   alt=""
                 />

@@ -34,7 +34,7 @@ function useFormValidation<T extends KeyValuePair<any>>({
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [file, setFile] = useState<File | null>(null);
   const [fileName, setFileName] = useState('');
-  const [imgUpdated, setImgUpdated] = useState(false);
+
   const [previewUrl, setPreviewUrl] = useState('');
   const inputRefs = useRef<Record<string, HTMLInputElement | null>>({});
 
@@ -88,7 +88,6 @@ function useFormValidation<T extends KeyValuePair<any>>({
       uploadFile(file);
       setFile(file);
       setFileName(name);
-      setImgUpdated(true);
     }
 
     // Clear the error message when typing
@@ -172,7 +171,7 @@ function useFormValidation<T extends KeyValuePair<any>>({
     inputRefs,
     file,
     fileName,
-    imgUpdated,
+
     previewUrl,
   };
 }

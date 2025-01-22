@@ -1,5 +1,6 @@
 import apiSlice from '../../app/api/apiSlice';
 import {
+  FirstSixRecordsResponse,
   OmittedCreateAlbumRequest,
   Records,
   RecordsRequest,
@@ -12,7 +13,7 @@ import { createFormData, createQueryOptions } from './utils';
 
 export const recordsApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
-    getFirstSixRecords: builder.query<any, void>({
+    getFirstSixRecords: builder.query<FirstSixRecordsResponse, void>({
       query: () => `${endpoints.firstSix}`,
       transformResponse: (responseData: Records[]) => transformId(responseData),
       providesTags: ['Records'],
@@ -59,10 +60,10 @@ export const recordsApiSlice = apiSlice.injectEndpoints({
       invalidatesTags: ['Records'],
     }),
     updateRecord: builder.mutation<Records, UpdateAlbumRequest>({
-      query: ({ id, records, imgUpdated, file, fileName }) =>
+      query: ({ id, records, file, fileName }) =>
         createQueryOptions(
           `/${endpoints.records}/${id}`,
-          imgUpdated && file && fileName ? 'POST' : 'PUT',
+          'POST',
           createFormData(records, file || undefined, fileName),
         ),
       invalidatesTags: ['Records'],

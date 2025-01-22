@@ -25,7 +25,6 @@ const UpdateRecord: FC = () => {
     records: Records,
     file: File | null,
     fileName: string,
-    imgUpdated: boolean,
   ) {
     if (recordId) {
       try {
@@ -34,7 +33,6 @@ const UpdateRecord: FC = () => {
           records,
           file,
           fileName,
-          imgUpdated,
         }).unwrap();
         if (location.search) {
           navigate(`/${MainPath.Records}${location.search}`);
