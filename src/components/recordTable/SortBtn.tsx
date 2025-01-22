@@ -5,7 +5,7 @@ import Button from '../Button';
 import Icon, { IconName } from '../icons/Icon';
 
 interface SortBtnProps {
-  onSort: any;
+  onSort: (id: string) => void;
   showIcon: boolean;
   sortOrder: string;
   title: string;
@@ -15,7 +15,7 @@ const SortBtn: FC<SortBtnProps> = ({ onSort, title, showIcon, sortOrder }) => {
   const { language } = useLanguage();
 
   return (
-    <Button variant={BtnVariant.Ghost} onClick={onSort}>
+    <Button variant={BtnVariant.Ghost} onClick={() => onSort(title)}>
       {language[title]}
       {showIcon && (
         <Icon

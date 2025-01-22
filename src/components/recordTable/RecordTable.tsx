@@ -107,7 +107,7 @@ const RecordTable = <T extends Record<string, any>>({
                   }}
                 >
                   <SortBtn
-                    onSort={() => onSort(header)}
+                    onSort={onSort}
                     showIcon={valuesFromSearch.sortField === header}
                     sortOrder={sortOrder}
                     title={header}
