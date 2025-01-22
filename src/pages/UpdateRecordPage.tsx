@@ -7,7 +7,7 @@ import useMessagePopup from '../components/messagePopup/useMessagePopup';
 import useLanguage from '../features/language/useLanguage';
 import {
   useGetRecordByIdQuery,
-  useUpdateRecordMutation,
+  useRecordMutationMutation,
 } from '../features/records/recordsApiSlice';
 import { MainPath } from '../types/enums';
 
@@ -18,7 +18,7 @@ const UpdateRecord: FC = () => {
   const recordParams = useParams();
   const recordId = recordParams.id;
   const { data: recordDetails } = useGetRecordByIdQuery(recordId);
-  const [updateRecord, { isLoading }] = useUpdateRecordMutation();
+  const [updateRecord, { isLoading }] = useRecordMutationMutation();
   const { addMessagePopup } = useMessagePopup();
 
   async function handleUpdateRecord(

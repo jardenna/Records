@@ -1,7 +1,6 @@
 import apiSlice from '../../app/api/apiSlice';
 import {
   FirstSixRecordsResponse,
-  OmittedCreateAlbumRequest,
   Records,
   RecordsRequest,
   RecordsResponse,
@@ -50,25 +49,20 @@ export const recordsApiSlice = apiSlice.injectEndpoints({
       query: (id) => `${endpoints.records}/${id}`,
       providesTags: ['Records'],
     }),
-    createNewRecord: builder.mutation<Records, OmittedCreateAlbumRequest>({
-      query: ({ records, file, fileName }) =>
-        createQueryOptions(
-          `/${endpoints.records}`,
-          'POST',
-          createFormData(records, file || undefined, fileName), // Convert null to undefined
-        ),
-      invalidatesTags: ['Records'],
-    }),
-    updateRecord: builder.mutation<Records, UpdateAlbumRequest>({
-      query: ({ id, records, file, fileName }) =>
-        createQueryOptions(
-          `/${endpoints.records}/${id}`,
+
+    recordMutation: builder.mutation<Records, UpdateAlbumRequest>({
+      query: ({ id, records, file, fileName }) => {
+        const url = id
+          ? `/${endpoints.records}/${id}`
+          : `/${endpoints.records}`;
+        return createQueryOptions(
+          url,
           'POST',
           createFormData(records, file || undefined, fileName),
-        ),
+        );
+      },
       invalidatesTags: ['Records'],
     }),
-
     deleteRecord: builder.mutation({
       query: (id) => ({
         url: `${endpoints.deleteRecord}/${id}`,
@@ -83,7 +77,6 @@ export const {
   useGetFirstSixRecordsQuery,
   useGetPaginatedRecordsQuery,
   useGetRecordByIdQuery,
-  useCreateNewRecordMutation,
-  useUpdateRecordMutation,
+  useRecordMutationMutation,
   useDeleteRecordMutation,
 } = recordsApiSlice;

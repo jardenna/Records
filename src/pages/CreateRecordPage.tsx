@@ -5,13 +5,13 @@ import { Records } from '../app/api/apiTypes';
 import CreateOrUpdateForm from '../components/createOrUpdateForm/CreateOrUpdateForm';
 import useMessagePopup from '../components/messagePopup/useMessagePopup';
 import useLanguage from '../features/language/useLanguage';
-import { useCreateNewRecordMutation } from '../features/records/recordsApiSlice';
+import { useRecordMutationMutation } from '../features/records/recordsApiSlice';
 import { MainPath } from '../types/enums';
 
 const CreateRecordPage: FC = () => {
   const navigate = useNavigate();
   const { language } = useLanguage();
-  const [createRecord, { isLoading }] = useCreateNewRecordMutation();
+  const [createRecord, { isLoading }] = useRecordMutationMutation();
   const { addMessagePopup } = useMessagePopup();
 
   const handleCreateRecord = async (
