@@ -29,36 +29,36 @@ const RecordDetailsList: FC<RecordDetailsListProps> = ({
           />
           <DetailsContent
             text={
-              selectedRecord.prodYear ||
-              selectedRecord.released ||
-              language.noInfo
+              selectedRecord.released.trim() && selectedRecord.released !== '0'
+                ? selectedRecord.released
+                : selectedRecord.prodYear
             }
             label={language.released}
-          />
-          <DetailsContent
-            text={selectedRecord.label?.trim() || language.noInfo}
-            label={language.label}
-          />
-          <DetailsContent
-            text={selectedRecord.recordNo?.trim() || language.noInfo}
-            label={language.recordNo}
           />
           <DetailsContent
             text={selectedRecord.numOfRecords || 1}
             label={language.numOfRecords}
           />
           <DetailsContent
-            text={selectedRecord.origin?.trim() || language.noInfo}
+            text={selectedRecord.label.trim() || language.noInfo}
+            label={language.label}
+          />
+          <DetailsContent
+            text={selectedRecord.recordNo.trim() || language.noInfo}
+            label={language.recordNo}
+          />
+          <DetailsContent
+            text={selectedRecord.origin.trim() || language.noInfo}
             label={language.origin}
           />
           <DetailsContent
-            text={selectedRecord.info?.trim() || language.noInfo}
+            text={selectedRecord.info.trim() || language.noInfo}
             label={language.niceToKnow}
           />
           <DetailsContent
-            text={`${selectedRecord.price?.trim()}` || language.noInfo}
+            text={`${selectedRecord.price.trim()}` || language.noInfo}
             label={language.price}
-            isPrice={!!selectedRecord.price?.trim()}
+            isPrice={!!selectedRecord.price.trim()}
           />
         </>
       )}

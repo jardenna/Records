@@ -1,6 +1,5 @@
 import { FC } from 'react';
 import { IconName } from '../../components/icons/Icon';
-
 import useLanguage from '../../features/language/useLanguage';
 import LayoutElement from '../../layout/LayoutElement';
 import IconBtn from '../IconBtn';
@@ -9,7 +8,7 @@ import './_error-boundary.scss';
 
 export interface FallbackProps {
   error: any;
-  resetErrorBoundary?: () => void;
+  resetErrorBoundary: () => void;
 }
 
 const ErrorBoundaryFallback: FC<FallbackProps> = ({

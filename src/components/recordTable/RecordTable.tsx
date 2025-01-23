@@ -1,8 +1,5 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
-import { useNavigate, useSearchParams } from 'react-router';
-import { useAppDispatch, useAppSelector } from '../../app/hooks';
+import { useRef, useState } from 'react';
 import useLanguage from '../../features/language/useLanguage';
-import { selectModalId, toggleModal } from '../../features/modalSlice';
 import useClickOutside from '../../hooks/useClickOutside';
 import { BtnVariant, MainPath } from '../../types/enums';
 import { ChangeInputType } from '../../types/types';
@@ -18,29 +15,29 @@ import SearchField from './SearchField';
 import SortBtn from './SortBtn';
 
 interface BaseTableProps {
-  idFromSearchParams: string | null;
+  id: string | null;
+  onClearAllSearch: () => void;
   onFilterRows: (e: ChangeInputType) => void;
+  onOpenModal: (id: string) => void;
+  onViewAlbum: (id: string) => void;
   primaryActionBtn: PrimaryActionBtnProps;
   secondaryActionBtn: SecondaryActionBtnProps;
   sortOrder: string;
   tableCaption: string;
   tableHeaders: string[];
-  tableSearchParams: string;
   values: Record<string, string>;
   valuesFromSearch: Record<string, string | number | boolean>;
   className?: string;
   isLoading?: boolean;
-  onClearAllSearch?: () => void;
 }
 interface RecordTableProps<T> extends BaseTableProps {
-  onSort: any;
-  tableData: T[] | null;
+  onSort: (id: string) => void;
+  tableData: T[];
 }
 const RecordTable = <T extends Record<string, any>>({
   tableHeaders,
   tableData,
   onSort,
-  tableSearchParams,
   sortOrder,
   className = '',
   onFilterRows,
@@ -50,42 +47,18 @@ const RecordTable = <T extends Record<string, any>>({
   tableCaption,
   primaryActionBtn,
   secondaryActionBtn,
-  idFromSearchParams,
   isLoading,
+  id,
+  onViewAlbum,
+  onOpenModal,
 }: RecordTableProps<T>) => {
-  const navigate = useNavigate();
   const { language } = useLanguage();
-  const modalId = useAppSelector(selectModalId);
-  const [searchParams, setSearchParams] = useSearchParams();
   const [showSearchField, setShowSearchField] = useState<string | null>(null);
-  const containerRefs = useRef<any>(new Map());
+  const containerRefs = useRef<Map<HTMLElement, HTMLElement>>(new Map());
   useClickOutside(containerRefs, () => setShowSearchField(null));
-  const dispatch = useAppDispatch();
 
   const handleToggleSearchField = (header: string) => {
     setShowSearchField((prev) => (prev === header ? null : header));
-  };
-
-  const handleSetSearchParams = useCallback(
-    (id: string) => {
-      setSearchParams({ id });
-      dispatch(toggleModal(id));
-    },
-    [dispatch, setSearchParams],
-  );
-
-  useEffect(() => {
-    if (!modalId) {
-      searchParams.delete('id');
-      setSearchParams(searchParams);
-    }
-  }, [modalId, idFromSearchParams]);
-
-  const handleEditAlbum = (id: string) => {
-    searchParams.delete('id');
-    setSearchParams(searchParams);
-    dispatch(toggleModal(null));
-    navigate(`/${MainPath.Details}/${id}${tableSearchParams}`);
   };
 
   return (
@@ -98,16 +71,16 @@ const RecordTable = <T extends Record<string, any>>({
               <th scope="col" key={header}>
                 <div
                   className="table-header-container"
-                  ref={(el) => {
-                    if (el) {
-                      containerRefs.current.set(header, el);
+                  ref={(header: HTMLElement | null) => {
+                    if (header) {
+                      containerRefs.current.set(header, header);
                     } else {
-                      containerRefs.current.delete(header);
+                      containerRefs.current.delete(header!);
                     }
                   }}
                 >
                   <SortBtn
-                    onSort={() => onSort(header)}
+                    onSort={onSort}
                     showIcon={valuesFromSearch.sortField === header}
                     sortOrder={sortOrder}
                     title={header}
@@ -153,7 +126,7 @@ const RecordTable = <T extends Record<string, any>>({
                     <IconBtn
                       iconName={IconName.Eye}
                       title={language.albumDetails}
-                      onClick={() => handleEditAlbum(data.id)}
+                      onClick={() => onViewAlbum(data.id)}
                     />
 
                     <DetailLink
@@ -169,16 +142,14 @@ const RecordTable = <T extends Record<string, any>>({
                       iconName={IconName.Trash}
                       className="danger"
                       title={language.deleteAlbum}
-                      onClick={() => handleSetSearchParams(data.id)}
+                      onClick={() => onOpenModal(data.id)}
                     />
-                    {idFromSearchParams && idFromSearchParams === data.id && (
-                      <DeleteRecordModal
-                        modalId={idFromSearchParams}
-                        primaryActionBtn={primaryActionBtn}
-                        secondaryActionBtn={secondaryActionBtn}
-                        name={data.artist}
-                      />
-                    )}
+                    <DeleteRecordModal
+                      modalId={id === data.id ? data.id : null}
+                      primaryActionBtn={primaryActionBtn}
+                      secondaryActionBtn={secondaryActionBtn}
+                      name={data.artist}
+                    />
                   </div>
                 </td>
               </tr>

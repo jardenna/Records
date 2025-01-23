@@ -1,5 +1,6 @@
 import { FC } from 'react';
 
+import { ChangeInputType } from '../../types/types';
 import FormLabel from './FormLabel';
 import { InputProps } from './Input';
 
@@ -8,7 +9,7 @@ type OmittedProps = Omit<
   'className' | 'type' | 'checked' | 'placeholder' | 'autoComplete' | 'onChange'
 >;
 interface TextareaProps extends OmittedProps {
-  onChange: (event: any) => void;
+  onChange: (event: ChangeInputType) => void;
 }
 
 const Textarea: FC<TextareaProps> = ({

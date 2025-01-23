@@ -5,7 +5,7 @@ import Button from './Button';
 import Icon, { IconName } from './icons/Icon';
 
 interface BtnCloseProps {
-  onClick: any;
+  onClick: () => void;
   ariaLabel?: string;
   autoFocus?: boolean;
 }

@@ -16,11 +16,15 @@ import RecordImg from '../shared/recordImg/RecordImg';
 import SkeletonGrid from '../skeleton/SkeletonGrid';
 import './_create-update-form.scss';
 
-//  onUpdateRecord?: (values: Records) => void;
 interface CreateOrUpdateFormProps {
+  onUpdateRecord: (
+    records: Records,
+    file: File | null,
+    fileName: string,
+    previewUrl: string | null,
+  ) => void;
   title: string;
   isLoading?: boolean;
-  onUpdateRecord?: any;
   recordDetails?: OmittedRecordRequest;
 }
 
@@ -68,9 +72,7 @@ const CreateOrUpdateForm: FC<CreateOrUpdateFormProps> = ({
   }
 
   function handleSubmit() {
-    if (onUpdateRecord) {
-      onUpdateRecord(values as Records, file, fileName, previewUrl);
-    }
+    onUpdateRecord(values as Records, file, fileName, previewUrl);
   }
 
   return (
@@ -138,7 +140,7 @@ const CreateOrUpdateForm: FC<CreateOrUpdateFormProps> = ({
                   name="released"
                   id="released"
                   onChange={onChange}
-                  value={values.released || ''}
+                  value={values.released !== '0' ? values.released || '' : ''}
                   labelText={language.released}
                   min={Number(values.prodYear) + 1 && minimumYear}
                   max={maxYear}

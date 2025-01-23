@@ -20,7 +20,7 @@ interface ButtonProps {
   isBtnSelected?: boolean;
   isLoading?: boolean;
   name?: string;
-  onClick?: (event?: ButtonEventType) => void;
+  onClick?: (event: ButtonEventType) => void | ((id: string) => void);
   ref?: (el: HTMLButtonElement | null) => void;
   role?: string;
   tabIndex?: 0 | -1;

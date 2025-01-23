@@ -57,7 +57,8 @@ function useFormValidation<T extends KeyValuePair<any>>({
   }
 
   function onChange(event: ChangeInputType) {
-    const { name, value, type, checked, files } = event.target;
+    const { name, value, type, checked, files } =
+      event.target as HTMLInputElement;
 
     setValues({
       ...values,

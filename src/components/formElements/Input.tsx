@@ -1,4 +1,4 @@
-import { FC, RefObject } from 'react';
+import { ChangeEvent, FC, RefObject } from 'react';
 import { BlurEventType, ChangeInputType, InputType } from '../../types/types';
 import FormError from './FormError';
 import FormLabel from './FormLabel';
@@ -45,7 +45,7 @@ const Input: FC<InputProps> = ({
   autoComplete = 'on',
 }) => {
   const inputClassName = `${type === 'checkbox' || type === 'radio' ? 'checkbox-radio-container' : 'input-container'}`;
-  const handleOnInput = (event: ChangeInputType) => {
+  const handleOnInput = (event: ChangeEvent<HTMLInputElement>) => {
     const inputValue = event.target.value;
     if (maxLength && inputValue.length > maxLength) {
       // eslint-disable-next-line no-param-reassign
