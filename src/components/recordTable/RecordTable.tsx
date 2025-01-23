@@ -1,8 +1,8 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useRef, useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router';
-import { useAppDispatch, useAppSelector } from '../../app/hooks';
+import { useAppDispatch } from '../../app/hooks';
 import useLanguage from '../../features/language/useLanguage';
-import { selectModalId, toggleModal } from '../../features/modalSlice';
+import { toggleModal } from '../../features/modalSlice';
 import useClickOutside from '../../hooks/useClickOutside';
 import { BtnVariant, MainPath } from '../../types/enums';
 import { ChangeInputType } from '../../types/types';
@@ -18,7 +18,7 @@ import SearchField from './SearchField';
 import SortBtn from './SortBtn';
 
 interface BaseTableProps {
-  idFromSearchParams: string | null;
+  id: string | null;
   onClearAllSearch: () => void;
   onFilterRows: (e: ChangeInputType) => void;
   primaryActionBtn: PrimaryActionBtnProps;
@@ -50,12 +50,11 @@ const RecordTable = <T extends Record<string, any>>({
   tableCaption,
   primaryActionBtn,
   secondaryActionBtn,
-  idFromSearchParams,
   isLoading,
+  id,
 }: RecordTableProps<T>) => {
   const navigate = useNavigate();
   const { language } = useLanguage();
-  const modalId = useAppSelector(selectModalId);
   const [searchParams, setSearchParams] = useSearchParams();
   const [showSearchField, setShowSearchField] = useState<string | null>(null);
   const containerRefs = useRef<Map<HTMLElement, HTMLElement>>(new Map());
@@ -68,18 +67,10 @@ const RecordTable = <T extends Record<string, any>>({
 
   const handleSetSearchParams = useCallback(
     (id: string) => {
-      setSearchParams({ id });
       dispatch(toggleModal(id));
     },
-    [dispatch, setSearchParams],
+    [dispatch],
   );
-
-  useEffect(() => {
-    if (!modalId) {
-      searchParams.delete('id');
-      setSearchParams(searchParams);
-    }
-  }, [modalId, idFromSearchParams]);
 
   const handleEditAlbum = (id: string) => {
     searchParams.delete('id');
@@ -171,14 +162,12 @@ const RecordTable = <T extends Record<string, any>>({
                       title={language.deleteAlbum}
                       onClick={() => handleSetSearchParams(data.id)}
                     />
-                    {idFromSearchParams && idFromSearchParams === data.id && (
-                      <DeleteRecordModal
-                        modalId={idFromSearchParams}
-                        primaryActionBtn={primaryActionBtn}
-                        secondaryActionBtn={secondaryActionBtn}
-                        name={data.artist}
-                      />
-                    )}
+                    <DeleteRecordModal
+                      modalId={id === data.id ? data.id : null}
+                      primaryActionBtn={primaryActionBtn}
+                      secondaryActionBtn={secondaryActionBtn}
+                      name={data.artist}
+                    />
                   </div>
                 </td>
               </tr>

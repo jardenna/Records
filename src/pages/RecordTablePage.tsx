@@ -2,6 +2,7 @@ import { FC, useState } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
 import { useLocation, useSearchParams } from 'react-router';
 import { SortOrder } from '../app/api/apiTypes';
+import { useAppSelector } from '../app/hooks';
 import ErrorBoundaryFallback from '../components/errorBoundary/ErrorBoundaryFallback';
 import MetaTags from '../components/MetaTags';
 import {
@@ -13,6 +14,7 @@ import RecordTable from '../components/recordTable/RecordTable';
 import SelectBox, { Option } from '../components/SelectBox';
 import SkeletonList from '../components/skeleton/SkeletonList';
 import useLanguage from '../features/language/useLanguage';
+import { selectModalId } from '../features/modalSlice';
 import {
   useDeleteRecordMutation,
   useGetPaginatedRecordsQuery,
@@ -86,6 +88,7 @@ const RecordTablePage: FC = () => {
   const totalRows = records?.recordsCount || 0;
   const startRow = (selectedPage - 1) * shownRows + 1;
   const endRow = Math.min(selectedPage * shownRows, totalRows);
+  const modalId = useAppSelector(selectModalId);
 
   const handleSort = (field: string) => {
     searchParams.set('sortField', field);
@@ -118,10 +121,8 @@ const RecordTablePage: FC = () => {
     setSearchParams();
   };
 
-  const idFromSearchParams = searchParams.get('id');
-
   const handleDeleteAlbum = () => {
-    deleteRecord(idFromSearchParams);
+    deleteRecord(modalId);
   };
 
   const primaryActionBtn: PrimaryActionBtnProps = {
@@ -202,7 +203,7 @@ const RecordTablePage: FC = () => {
               tableCaption={language.albumCollection}
               primaryActionBtn={primaryActionBtn}
               secondaryActionBtn={secondaryActionBtn}
-              idFromSearchParams={idFromSearchParams}
+              id={modalId}
             />
           )}
         </ErrorBoundary>

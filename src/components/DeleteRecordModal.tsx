@@ -7,7 +7,7 @@ import Modal, {
 } from './modal/Modal';
 
 export interface DeleteRecordModalProps {
-  modalId: string;
+  modalId: string | null;
   name: string | null;
   primaryActionBtn: PrimaryActionBtnProps;
   secondaryActionBtn?: SecondaryActionBtnProps;
@@ -20,6 +20,7 @@ const DeleteRecordModal: FC<DeleteRecordModalProps> = ({
   name,
 }) => {
   const { language } = useLanguage();
+
   return (
     modalId && (
       <Modal
