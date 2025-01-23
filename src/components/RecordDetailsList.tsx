@@ -28,7 +28,11 @@ const RecordDetailsList: FC<RecordDetailsListProps> = ({
             label={language.prodYear}
           />
           <DetailsContent
-            text={selectedRecord.released || selectedRecord.prodYear}
+            text={
+              selectedRecord.released.trim() && selectedRecord.released !== '0'
+                ? selectedRecord.released
+                : selectedRecord.prodYear
+            }
             label={language.released}
           />
           <DetailsContent
