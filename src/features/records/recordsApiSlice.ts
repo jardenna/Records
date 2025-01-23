@@ -49,8 +49,7 @@ export const recordsApiSlice = apiSlice.injectEndpoints({
       query: (id) => `${endpoints.records}/${id}`,
       providesTags: ['Records'],
     }),
-
-    recordMutation: builder.mutation<Records, UpdateAlbumRequest>({
+    createOrUpdateRecord: builder.mutation<Records, UpdateAlbumRequest>({
       query: ({ id, records, file, fileName }) => {
         const url = id
           ? `/${endpoints.records}/${id}`
@@ -77,6 +76,6 @@ export const {
   useGetFirstSixRecordsQuery,
   useGetPaginatedRecordsQuery,
   useGetRecordByIdQuery,
-  useRecordMutationMutation,
+  useCreateOrUpdateRecordMutation,
   useDeleteRecordMutation,
 } = recordsApiSlice;

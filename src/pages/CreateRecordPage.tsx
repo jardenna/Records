@@ -5,13 +5,13 @@ import { Records } from '../app/api/apiTypes';
 import CreateOrUpdateForm from '../components/createOrUpdateForm/CreateOrUpdateForm';
 import useMessagePopup from '../components/messagePopup/useMessagePopup';
 import useLanguage from '../features/language/useLanguage';
-import { useRecordMutationMutation } from '../features/records/recordsApiSlice';
+import { useCreateOrUpdateRecordMutation } from '../features/records/recordsApiSlice';
 import { MainPath } from '../types/enums';
 
 const CreateRecordPage: FC = () => {
   const navigate = useNavigate();
   const { language } = useLanguage();
-  const [createRecord, { isLoading }] = useRecordMutationMutation();
+  const [createRecord, { isLoading }] = useCreateOrUpdateRecordMutation();
   const { addMessagePopup } = useMessagePopup();
 
   const handleCreateRecord = async (
@@ -34,6 +34,7 @@ const CreateRecordPage: FC = () => {
         message: language.albumCreatedSuccessfully,
         messagePopupType: 'success',
       });
+
       return result;
     } catch (error) {
       console.log(error);
