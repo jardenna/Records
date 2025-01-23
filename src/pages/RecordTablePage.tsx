@@ -1,8 +1,8 @@
-import { FC, useState } from 'react';
+import { FC, useCallback, useState } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
-import { useLocation, useSearchParams } from 'react-router';
+import { useLocation, useNavigate, useSearchParams } from 'react-router';
 import { SortOrder } from '../app/api/apiTypes';
-import { useAppSelector } from '../app/hooks';
+import { useAppDispatch, useAppSelector } from '../app/hooks';
 import ErrorBoundaryFallback from '../components/errorBoundary/ErrorBoundaryFallback';
 import MetaTags from '../components/MetaTags';
 import {
@@ -14,13 +14,13 @@ import RecordTable from '../components/recordTable/RecordTable';
 import SelectBox, { Option } from '../components/SelectBox';
 import SkeletonList from '../components/skeleton/SkeletonList';
 import useLanguage from '../features/language/useLanguage';
-import { selectModalId } from '../features/modalSlice';
+import { selectModalId, toggleModal } from '../features/modalSlice';
 import {
   useDeleteRecordMutation,
   useGetPaginatedRecordsQuery,
 } from '../features/records/recordsApiSlice';
 import useFormValidation from '../hooks/useFormValidation';
-import { LabelKeys } from '../types/enums';
+import { LabelKeys, MainPath } from '../types/enums';
 import { ChangeInputType } from '../types/types';
 
 const RecordTablePage: FC = () => {
@@ -83,7 +83,8 @@ const RecordTablePage: FC = () => {
     prodYear: prodYear || values.prodYear,
     origin: origin || values.origin,
   });
-
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   const totalCount = records ? records.recordsCount : shownRows;
   const totalRows = records?.recordsCount || 0;
   const startRow = (selectedPage - 1) * shownRows + 1;
@@ -103,6 +104,13 @@ const RecordTablePage: FC = () => {
       setSortingOrder(SortOrder.Asc);
     }
   };
+
+  const handleOpenModal = useCallback(
+    (id: string) => {
+      dispatch(toggleModal(id));
+    },
+    [dispatch],
+  );
 
   const handleFilterRecords = (event: ChangeInputType) => {
     const { name, value } = event.target;
@@ -142,6 +150,11 @@ const RecordTablePage: FC = () => {
     }
     setSearchParams(searchParams);
     onCustomChange(name, selectedOptions.value);
+  };
+
+  const handleViewAlbum = (id: string) => {
+    dispatch(toggleModal(null));
+    navigate(`/${MainPath.Details}/${id}${location.search}`);
   };
 
   return (
@@ -193,7 +206,6 @@ const RecordTablePage: FC = () => {
               isLoading={isLoading}
               tableData={records.results}
               onSort={handleSort}
-              tableSearchParams={location.search}
               sortOrder={sortOrder}
               onFilterRows={handleFilterRecords}
               values={values}
@@ -204,6 +216,8 @@ const RecordTablePage: FC = () => {
               primaryActionBtn={primaryActionBtn}
               secondaryActionBtn={secondaryActionBtn}
               id={modalId}
+              onOpenModal={handleOpenModal}
+              onViewAlbum={handleViewAlbum}
             />
           )}
         </ErrorBoundary>

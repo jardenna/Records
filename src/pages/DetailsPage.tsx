@@ -105,7 +105,9 @@ const DetailsPage: FC = () => {
               className="details-footer"
               ariaLabel={language.albumDetails}
             >
-              <DetailLink to={`/update/${recordId}${location.search}`}>
+              <DetailLink
+                to={`/${MainPath.Update}/${recordId}${location.search}`}
+              >
                 {language.updateAlbum}
               </DetailLink>
 

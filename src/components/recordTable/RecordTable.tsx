@@ -1,8 +1,5 @@
-import { useCallback, useRef, useState } from 'react';
-import { useNavigate, useSearchParams } from 'react-router';
-import { useAppDispatch } from '../../app/hooks';
+import { useRef, useState } from 'react';
 import useLanguage from '../../features/language/useLanguage';
-import { toggleModal } from '../../features/modalSlice';
 import useClickOutside from '../../hooks/useClickOutside';
 import { BtnVariant, MainPath } from '../../types/enums';
 import { ChangeInputType } from '../../types/types';
@@ -21,12 +18,13 @@ interface BaseTableProps {
   id: string | null;
   onClearAllSearch: () => void;
   onFilterRows: (e: ChangeInputType) => void;
+  onOpenModal: (id: string) => void;
+  onViewAlbum: (id: string) => void;
   primaryActionBtn: PrimaryActionBtnProps;
   secondaryActionBtn: SecondaryActionBtnProps;
   sortOrder: string;
   tableCaption: string;
   tableHeaders: string[];
-  tableSearchParams: string;
   values: Record<string, string>;
   valuesFromSearch: Record<string, string | number | boolean>;
   className?: string;
@@ -40,7 +38,6 @@ const RecordTable = <T extends Record<string, any>>({
   tableHeaders,
   tableData,
   onSort,
-  tableSearchParams,
   sortOrder,
   className = '',
   onFilterRows,
@@ -52,31 +49,16 @@ const RecordTable = <T extends Record<string, any>>({
   secondaryActionBtn,
   isLoading,
   id,
+  onViewAlbum,
+  onOpenModal,
 }: RecordTableProps<T>) => {
-  const navigate = useNavigate();
   const { language } = useLanguage();
-  const [searchParams, setSearchParams] = useSearchParams();
   const [showSearchField, setShowSearchField] = useState<string | null>(null);
   const containerRefs = useRef<Map<HTMLElement, HTMLElement>>(new Map());
   useClickOutside(containerRefs, () => setShowSearchField(null));
-  const dispatch = useAppDispatch();
 
   const handleToggleSearchField = (header: string) => {
     setShowSearchField((prev) => (prev === header ? null : header));
-  };
-
-  const handleSetSearchParams = useCallback(
-    (id: string) => {
-      dispatch(toggleModal(id));
-    },
-    [dispatch],
-  );
-
-  const handleEditAlbum = (id: string) => {
-    searchParams.delete('id');
-    setSearchParams(searchParams);
-    dispatch(toggleModal(null));
-    navigate(`/${MainPath.Details}/${id}${tableSearchParams}`);
   };
 
   return (
@@ -144,7 +126,7 @@ const RecordTable = <T extends Record<string, any>>({
                     <IconBtn
                       iconName={IconName.Eye}
                       title={language.albumDetails}
-                      onClick={() => handleEditAlbum(data.id)}
+                      onClick={() => onViewAlbum(data.id)}
                     />
 
                     <DetailLink
@@ -160,7 +142,7 @@ const RecordTable = <T extends Record<string, any>>({
                       iconName={IconName.Trash}
                       className="danger"
                       title={language.deleteAlbum}
-                      onClick={() => handleSetSearchParams(data.id)}
+                      onClick={() => onOpenModal(data.id)}
                     />
                     <DeleteRecordModal
                       modalId={id === data.id ? data.id : null}
