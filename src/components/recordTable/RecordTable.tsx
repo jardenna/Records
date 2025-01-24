@@ -114,7 +114,7 @@ const RecordTable = <T extends Record<string, any>>({
             </th>
           </tr>
         </thead>
-        {tableData && tableData.length > 0 ? (
+        {tableData.length > 0 ? (
           <tbody>
             {tableData.map((data, rowIndex) => (
               <tr key={rowIndex}>
