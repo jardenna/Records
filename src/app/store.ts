@@ -1,22 +1,50 @@
-import { configureStore } from '@reduxjs/toolkit';
-
-import messagePopupReducer from '../features/messagePopupSlice';
-
+import type { Middleware } from '@reduxjs/toolkit';
+import { configureStore, isRejectedWithValue } from '@reduxjs/toolkit';
 import languageReducer from '../features/language/languageSlice';
+import messagePopupReducer, {
+  addMessagePopup,
+} from '../features/messagePopupSlice';
 import modalReducer from '../features/modalSlice';
-import toastReducer from '../features/toastSlice';
 import apiSlice from './api/apiSlice';
+
+export const rtkQueryErrorLogger: Middleware =
+  ({ dispatch }) =>
+  (next) =>
+  (action) => {
+    if (isRejectedWithValue(action)) {
+      if (
+        action.payload &&
+        typeof action.payload === 'object' &&
+        'error' in action.payload
+      ) {
+        const errorMessage = (action.payload as { error: string }).error;
+
+        dispatch(
+          addMessagePopup({
+            messagePopupType: 'error',
+            message: `Error: ${errorMessage}`,
+            componentType: 'notification',
+            position: 'top-center',
+          }),
+        );
+        setTimeout(() => {
+          dispatch(apiSlice.util.invalidateTags(['Records']));
+        }, 5000); // Optional delay
+      }
+    }
+
+    return next(action);
+  };
 
 export const store = configureStore({
   reducer: {
     [apiSlice.reducerPath]: apiSlice.reducer,
     modal: modalReducer,
-    toast: toastReducer,
     messagePopup: messagePopupReducer,
     language: languageReducer,
   },
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(apiSlice.middleware),
+    getDefaultMiddleware().concat(apiSlice.middleware, rtkQueryErrorLogger),
   devTools: true,
 });
 
