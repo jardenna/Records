@@ -8,6 +8,7 @@ import {
 } from '../../app/api/apiTypes';
 import transformId from '../../app/api/transformResponse';
 import endpoints from '../../app/endpoints';
+import { TagTypesEnum } from '../../types/types';
 import { createFormData, createQueryOptions } from './utils';
 
 export const recordsApiSlice = apiSlice.injectEndpoints({
@@ -15,7 +16,7 @@ export const recordsApiSlice = apiSlice.injectEndpoints({
     getFirstSixRecords: builder.query<FirstSixRecordsResponse, void>({
       query: () => `${endpoints.firstSix}`,
       transformResponse: (responseData: Records[]) => transformId(responseData),
-      providesTags: ['Records'],
+      providesTags: [TagTypesEnum.Records],
     }),
     getPaginatedRecords: builder.query<RecordsResponse, RecordsRequest>({
       query: ({
@@ -43,11 +44,11 @@ export const recordsApiSlice = apiSlice.injectEndpoints({
         return `${endpoints.records}?${params.toString()}`;
       },
       transformResponse: (responseData: Records[]) => transformId(responseData),
-      providesTags: ['Records'],
+      providesTags: [TagTypesEnum.Records],
     }),
     getRecordById: builder.query<Records, string | undefined>({
       query: (id) => `${endpoints.records}/${id}`,
-      providesTags: ['Records'],
+      providesTags: [TagTypesEnum.Records],
     }),
     createOrUpdateRecord: builder.mutation<Records, UpdateAlbumRequest>({
       query: ({ id, records, file, fileName }) => {
@@ -60,14 +61,14 @@ export const recordsApiSlice = apiSlice.injectEndpoints({
           createFormData(records, file || undefined, fileName),
         );
       },
-      invalidatesTags: ['Records'],
+      invalidatesTags: [TagTypesEnum.Records],
     }),
     deleteRecord: builder.mutation({
       query: (id) => ({
         url: `${endpoints.deleteRecord}/${id}`,
         method: 'DELETE',
       }),
-      invalidatesTags: ['Records'],
+      invalidatesTags: [TagTypesEnum.Records],
     }),
   }),
 });

@@ -5,6 +5,7 @@ import messagePopupReducer, {
   addMessagePopup,
 } from '../features/messagePopupSlice';
 import modalReducer from '../features/modalSlice';
+import { TagTypesEnum } from '../types/types';
 import apiSlice from './api/apiSlice';
 
 export const rtkQueryErrorLogger: Middleware =
@@ -28,8 +29,8 @@ export const rtkQueryErrorLogger: Middleware =
           }),
         );
         setTimeout(() => {
-          dispatch(apiSlice.util.invalidateTags(['Records']));
-        }, 5000); // Optional delay
+          dispatch(apiSlice.util.invalidateTags([TagTypesEnum.Records]));
+        }, 5000); // Invalidate the cache for the 'Records' endpoint after 5 seconds
       }
     }
 
