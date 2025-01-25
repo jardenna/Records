@@ -48,7 +48,7 @@ const UpdateRecord: FC = () => {
       } catch (error: any) {
         addMessagePopup({
           messagePopupType: 'error',
-          message: `Error: ${error.data.message}`,
+          message: error.data.message,
           componentType: 'notification',
           position: 'top-center',
         });

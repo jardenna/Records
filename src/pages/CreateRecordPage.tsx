@@ -39,7 +39,7 @@ const CreateRecordPage: FC = () => {
     } catch (error: any) {
       addMessagePopup({
         messagePopupType: 'error',
-        message: `${error.data.message}`,
+        message: error.data.message,
         componentType: 'notification',
         position: 'top-center',
       });
