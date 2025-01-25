@@ -10,28 +10,43 @@ const registerUser = async (req, res) => {
     const hashedPassword = await bcrypt.hash(password, 12);
     const newUser = new User({ userName, email, password: hashedPassword });
     await newUser.save();
+    const checkUser = await User.findOne({ email });
+    console.log(checkUser, 'HELLE');
+    if (checkUser) {
+      return res.json({
+        success: false,
+        message: 'User already exists',
+      });
+    }
 
     res.status(200).json({
       success: true,
       message: 'Registration successful',
     });
   } catch (error) {
-    console.log(error);
-
     res.status(500).json({
       success: false,
-      message: `${error.message} - User registration failed`,
+      message: `User registration failed`,
     });
   }
 };
 
 // login
 
-const login = async (req, res) => {
-  const { userName, email, password } = req.body;
+const loginUser = async (req, res) => {
+  const { email, password } = req.body;
   try {
-    const user = await User.create({ userName, email, password });
-    res.status(201).json({ user });
+    const checkUser = await User.findOne({ email });
+
+    if (!checkUser) {
+      return res.json({
+        success: false,
+        message: 'User not found',
+      });
+    }
+
+    // const user = await User.create({ userName, email, password });
+    // res.status(201).json({ user });
   } catch (error) {
     console.log(error);
 
@@ -42,4 +57,4 @@ const login = async (req, res) => {
   }
 };
 
-export { registerUser };
+export { loginUser, registerUser };
