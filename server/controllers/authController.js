@@ -6,12 +6,9 @@ import User from '../models/UserModel.js';
 
 const registerUser = async (req, res) => {
   const { userName, email, password } = req.body;
+
   try {
-    const hashedPassword = await bcrypt.hash(password, 12);
-    const newUser = new User({ userName, email, password: hashedPassword });
-    await newUser.save();
     const checkUser = await User.findOne({ email });
-    console.log(checkUser, 'HELLE');
     if (checkUser) {
       return res.json({
         success: false,
@@ -19,6 +16,14 @@ const registerUser = async (req, res) => {
       });
     }
 
+    const hashPassword = await bcrypt.hash(password, 12);
+    const newUser = new User({
+      userName,
+      email,
+      password: hashPassword,
+    });
+
+    await newUser.save();
     res.status(200).json({
       success: true,
       message: 'Registration successful',
