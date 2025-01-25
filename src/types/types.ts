@@ -9,6 +9,10 @@ export type BtnType = 'submit' | 'reset' | 'button';
 export type BlurEventType = { target: { name: string } };
 export type FormEventType = FormEvent<HTMLFormElement>;
 
+export enum TagTypesEnum {
+  Records = 'Records',
+}
+
 export type InputType =
   | 'button'
   | 'checkbox'

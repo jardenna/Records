@@ -36,8 +36,13 @@ const CreateRecordPage: FC = () => {
       });
 
       return result;
-    } catch (error) {
-      console.log(error);
+    } catch (error: any) {
+      addMessagePopup({
+        messagePopupType: 'error',
+        message: `${error.data.message}`,
+        componentType: 'notification',
+        position: 'top-center',
+      });
     }
   };
 

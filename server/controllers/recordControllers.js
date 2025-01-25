@@ -37,6 +37,7 @@ const postCreateOrUpdateRecord = async (req, res) => {
       const updatedRecord = await Record.updateOne(
         { _id: recordId },
         { $set: { ...req.body, cover: file } },
+        { runValidators: true },
       );
       res.json(updatedRecord);
     } else {
