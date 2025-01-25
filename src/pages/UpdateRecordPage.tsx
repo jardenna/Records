@@ -45,8 +45,13 @@ const UpdateRecord: FC = () => {
         });
 
         return result;
-      } catch (error) {
-        console.log(error);
+      } catch (error: any) {
+        addMessagePopup({
+          messagePopupType: 'error',
+          message: `Error: ${error.data.message}`,
+          componentType: 'notification',
+          position: 'top-center',
+        });
       }
     }
   }
