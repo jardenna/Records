@@ -1,21 +1,59 @@
 import { FC } from 'react';
+import Form from '../../../components/formElements/form/Form';
+import Input from '../../../components/formElements/Input';
+import VisuallyHidden from '../../../components/VisuallyHidden';
+import useFormValidation from '../../../hooks/useFormValidation';
+import useLanguage from '../../language/useLanguage';
 import { useRegisterMutation } from '../authApiSlice';
 
 const RegisterPage: FC = () => {
-  const user = { username: 'Per', email: 'per@mail.com', password: 'per123' };
-
-  const [registerUser] = useRegisterMutation();
-
-  const handleRegisterUser = () => {
-    registerUser(user);
+  const { language } = useLanguage();
+  const initialState = {
+    username: '',
+    email: '',
+    password: '',
   };
 
+  const { values, onChange, onSubmit } = useFormValidation({
+    initialState,
+    callback: handleRegisterUser,
+  });
+  const [registerUser] = useRegisterMutation();
+
+  function handleRegisterUser() {
+    registerUser(values);
+  }
+
   return (
-    <section>
-      <button type="button" onClick={handleRegisterUser}>
-        klik
-      </button>
-    </section>
+    <Form labelText="Sign up" onSubmit={onSubmit}>
+      <fieldset className="flex column">
+        <VisuallyHidden as="legend">{language.additionalInfo}</VisuallyHidden>
+        <Input
+          name="username"
+          id="username"
+          value={values.username}
+          labelText="User name"
+          onChange={onChange}
+          required
+        />
+        <Input
+          name="email"
+          id="email"
+          value={values.email}
+          labelText="Email"
+          onChange={onChange}
+          required
+        />
+        <Input
+          name="password"
+          id="username"
+          value={values.password}
+          labelText="Password"
+          onChange={onChange}
+          required
+        />
+      </fieldset>
+    </Form>
   );
 };
 
