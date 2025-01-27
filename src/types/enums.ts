@@ -3,6 +3,7 @@ export enum MainPath {
   Details = 'details',
   Login = 'login',
   Records = 'records',
+  Register = 'register',
   Root = '/',
   Update = 'update',
 }
