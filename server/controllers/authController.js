@@ -88,5 +88,36 @@ const loginUser = async (req, res) => {
     });
   }
 };
+// Middleware to check if user is logged in
 
-export { loginUser, registerUser };
+const authMiddleware = async (req, res, next) => {
+  const token = req.cookies.token;
+
+  if (!token) {
+    return res.status(401).json({
+      success: false,
+      message: 'Unauthorized user',
+    });
+  }
+
+  try {
+    const decoded = jwt.verify(token, 'CLIENT_SECRET_KEY');
+    req.user = decoded;
+    next();
+  } catch (error) {
+    return res.status(401).json({
+      success: false,
+      message: 'Unauthorized user',
+    });
+  }
+};
+
+// Logout
+const logoutUser = (req, res) => {
+  res.clearCookie('token').json({
+    success: true,
+    message: 'Logged out successfully!',
+  });
+};
+
+export { authMiddleware, loginUser, logoutUser, registerUser };
