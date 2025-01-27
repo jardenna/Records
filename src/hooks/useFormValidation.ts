@@ -103,9 +103,7 @@ function useFormValidation<T extends KeyValuePair<any>>({
     if (isArray) {
       setValues({
         ...values,
-        [name]: values[name]?.includes(value)
-          ? values[name] // Don't add if it already exists
-          : [...values[name], value], // Add the new value if it's not in the array
+        [name]: [...new Set([...(values[name] || []), value])],
       });
     } else {
       setValues({
@@ -172,7 +170,6 @@ function useFormValidation<T extends KeyValuePair<any>>({
     inputRefs,
     file,
     fileName,
-
     previewUrl,
   };
 }
