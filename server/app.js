@@ -16,14 +16,20 @@ dbConnect();
 
 const PORT = process.env.PORT || 5000;
 
+// Configure CORS
+const corsOptions = {
+  origin: process.env.CLIENT_URL || 'http://localhost:3000',
+  credentials: true, // Allow credentials (cookies, authorization headers, etc.)
+};
+
 app.use(cookieParser());
-app.use(cors());
+app.use(cors(corsOptions)); // Use the CORS middleware with options
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use('/', express.static(path.join(__dirname, 'public')));
 
-//Custom routes middleware
+// Custom routes middleware
 app.use('/api/records', RecordRoutes);
 app.use('/api/auth', authRouter);
 
