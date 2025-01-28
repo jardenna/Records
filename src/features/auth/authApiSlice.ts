@@ -1,5 +1,9 @@
 import apiSlice from '../../app/api/apiSlice';
-import { AuthResponse, UserRequest } from '../../app/api/apiTypes';
+import {
+  AuthResponse,
+  OmittedRegisterRequest,
+  UserRequest,
+} from '../../app/api/apiTypes';
 import authEndpoints from '../../app/authEndpoints';
 
 export const authApiSlice = apiSlice.injectEndpoints({
@@ -11,7 +15,18 @@ export const authApiSlice = apiSlice.injectEndpoints({
         body: user,
       }),
     }),
+    login: builder.mutation<AuthResponse, OmittedRegisterRequest>({
+      query: (user) => ({
+        url: authEndpoints.login,
+        method: 'POST',
+        body: user,
+      }),
+    }),
+    checkAuth: builder.query<AuthResponse, void>({
+      query: () => authEndpoints.checkAuth,
+    }),
   }),
 });
 
-export const { useRegisterMutation } = authApiSlice;
+export const { useRegisterMutation, useLoginMutation, useCheckAuthQuery } =
+  authApiSlice;

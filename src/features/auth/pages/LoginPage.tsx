@@ -4,42 +4,34 @@ import Input from '../../../components/formElements/Input';
 import VisuallyHidden from '../../../components/VisuallyHidden';
 import useFormValidation from '../../../hooks/useFormValidation';
 import useLanguage from '../../language/useLanguage';
-import { useRegisterMutation } from '../authApiSlice';
+import { useLoginMutation } from '../authApiSlice';
 
-const RegisterPage: FC = () => {
+interface LoginPageProps {}
+
+const LoginPage: FC<LoginPageProps> = () => {
   const { language } = useLanguage();
   const initialState = {
-    username: '',
     email: '',
     password: '',
-    confirmPassword: '',
   };
 
   const { values, onChange, onSubmit } = useFormValidation({
     initialState,
     callback: handleRegisterUser,
   });
-  const [registerUser, { isLoading }] = useRegisterMutation();
+  const [loginUser, { isLoading }] = useLoginMutation();
+
+  // const { data: user } = useCheckAuthQuery();
+  // console.log(user);
 
   function handleRegisterUser() {
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const { confirmPassword, ...rest } = values;
-
-    registerUser(rest);
+    loginUser(values);
   }
 
   return (
     <Form labelText="Sign up" onSubmit={onSubmit} isLoading={isLoading}>
       <fieldset className="flex column">
         <VisuallyHidden as="legend">{language.additionalInfo}</VisuallyHidden>
-        <Input
-          name="username"
-          id="username"
-          value={values.username}
-          labelText="User name"
-          onChange={onChange}
-          required
-        />
         <Input
           name="email"
           id="email"
@@ -50,17 +42,9 @@ const RegisterPage: FC = () => {
         />
         <Input
           name="password"
-          id="password"
+          id="username"
           value={values.password}
           labelText="Password"
-          onChange={onChange}
-          required
-        />
-        <Input
-          name="confirmPassword"
-          id="confirmPassword"
-          value={values.confirmPassword}
-          labelText="Confirm Password"
           onChange={onChange}
           required
         />
@@ -69,4 +53,4 @@ const RegisterPage: FC = () => {
   );
 };
 
-export default RegisterPage;
+export default LoginPage;

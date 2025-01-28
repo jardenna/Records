@@ -1,4 +1,7 @@
 import { createBrowserRouter } from 'react-router';
+import LoginPage from '../features/auth/pages/LoginPage';
+import ProtectedRoute from '../features/auth/pages/ProtectedRoute';
+import RegisterPage from '../features/auth/pages/RegisterPage';
 import Layout from '../layout/Layout';
 import CreateRecordPage from '../pages/CreateRecordPage';
 import DetailsPage from '../pages/DetailsPage';
@@ -7,7 +10,6 @@ import HomePage from '../pages/HomePage';
 import RecordTablePage from '../pages/RecordTablePage';
 import UpdateRecordPage from '../pages/UpdateRecordPage';
 import { MainPath } from '../types/enums';
-import RegisterPage from '../features/auth/pages/RegisterPage';
 
 const routeConfig = createBrowserRouter([
   {
@@ -38,6 +40,14 @@ const routeConfig = createBrowserRouter([
       {
         path: MainPath.Register,
         element: <RegisterPage />,
+      },
+      {
+        path: 'protected',
+        element: <ProtectedRoute />,
+      },
+      {
+        path: MainPath.Login,
+        element: <LoginPage />,
       },
     ],
   },
