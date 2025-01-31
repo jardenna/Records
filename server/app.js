@@ -19,6 +19,13 @@ const PORT = process.env.PORT || 5000;
 // Configure CORS
 const corsOptions = {
   origin: process.env.CLIENT_URL || 'http://localhost:3000',
+  allowedHeaders: [
+    'Content-Type',
+    'Authorization',
+    'Cache-Control',
+    'Expires',
+    'Pragma',
+  ],
   credentials: true, // Allow credentials (cookies, authorization headers, etc.)
 };
 
