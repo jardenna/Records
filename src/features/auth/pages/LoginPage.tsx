@@ -29,9 +29,9 @@ const LoginPage: FC<LoginPageProps> = () => {
   }
 
   return (
-    <Form labelText="Sign up" onSubmit={onSubmit} isLoading={isLoading}>
+    <Form labelText={language.login} onSubmit={onSubmit} isLoading={isLoading}>
       <fieldset className="flex column">
-        <VisuallyHidden as="legend">{language.additionalInfo}</VisuallyHidden>
+        <VisuallyHidden as="legend">{language.userInfo}</VisuallyHidden>
         <Input
           name="email"
           id="email"

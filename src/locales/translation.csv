@@ -14,6 +14,7 @@ all;All;Alle
 and;and;og
 artist;Band / Artist;Gruppe / Kunstner
 cancel;Cancel;Annuller
+confirmPassword;Confirm password;Gentag password
 close;Close;Luk
 sureToDelete;Are you sure you want to Delete;Er du sikker på at du vil slette
 clearInputs;Clear inputs;Ryd inputfelter
@@ -25,6 +26,7 @@ delete;Delete;Slet
 deleteAlbum;Delete album;Slet album
 details;Details;Detaljer
 dialog;Dialog;Dialog
+email;Email;E-mail
 error;Error;Fejl
 filter;Filter;Filtrer
 form;Form;Fomular
@@ -38,6 +40,7 @@ insertCover;Insert cover;Indsæt cover
 jumpPagesForth;Jump forth;Hop frem
 jumpPagesBack;Jump back;Hop tilbage
 label;Label;Label
+login;Login;Log ind
 main;Main;Primær
 mustBeGreaterEqual;Must be greater than or equal to;Skal være større end eller lig med
 niceToKnow;Nice to know;Værd at vide
@@ -47,6 +50,7 @@ numOfRecords;Number of records;Antal lp(er)
 of;of;af
 origin;Origin;Oprindelse
 page;Page;Side
+password;Password;Adgangskode
 pleaseEnter;Please enter;Indsæt venligst
 price;Price;Pris
 prodYear;Production year;Produktions år
@@ -56,12 +60,15 @@ retry;Retry;Forsøg igen
 released;Last released;Senest udgivet
 search;Search;Søg
 showing;Showing;Viser
+signup;Signup;Opret bruger
 somethingWentWrong;Something went wrong;Noget gik galt
 sortBy;Sort by;Sorter efter
 title;Title;Titel
 to;to;til
 updateAlbum;Update album;Opdater album
 upLoadCover;Upload cover;Upload cover
+userInfo;User info;Bruger info
+username;UserName;Brugernavn
 yearBetween;a year between;et år mellem
 yearAfter;a year after;et år efter
 yearAfterOrEqual;a year after or equal to;et år efter eller lig med

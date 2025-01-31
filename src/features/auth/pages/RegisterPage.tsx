@@ -29,14 +29,14 @@ const RegisterPage: FC = () => {
   }
 
   return (
-    <Form labelText="Sign up" onSubmit={onSubmit} isLoading={isLoading}>
+    <Form labelText={language.signup} onSubmit={onSubmit} isLoading={isLoading}>
       <fieldset className="flex column">
-        <VisuallyHidden as="legend">{language.additionalInfo}</VisuallyHidden>
+        <VisuallyHidden as="legend">{language.userInfo}</VisuallyHidden>
         <Input
           name="username"
           id="username"
           value={values.username}
-          labelText="User name"
+          labelText={language.username}
           onChange={onChange}
           required
         />
@@ -44,7 +44,7 @@ const RegisterPage: FC = () => {
           name="email"
           id="email"
           value={values.email}
-          labelText="Email"
+          labelText={language.email}
           onChange={onChange}
           required
         />
@@ -52,7 +52,7 @@ const RegisterPage: FC = () => {
           name="password"
           id="password"
           value={values.password}
-          labelText="Password"
+          labelText={language.password}
           onChange={onChange}
           required
         />
@@ -60,7 +60,7 @@ const RegisterPage: FC = () => {
           name="confirmPassword"
           id="confirmPassword"
           value={values.confirmPassword}
-          labelText="Confirm Password"
+          labelText={language.confirmPassword}
           onChange={onChange}
           required
         />
