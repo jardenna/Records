@@ -1,3 +1,16 @@
+export interface UserRequest {
+  email: string;
+  password: string;
+  username: string;
+}
+
+export type OmittedRegisterRequest = Omit<UserRequest, 'username'>;
+
+export interface AuthResponse {
+  message: string;
+  success: boolean;
+}
+
 export interface FirstSixRecordsResponse {
   results: Records[];
 }

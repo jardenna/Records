@@ -1,4 +1,7 @@
 import { createBrowserRouter } from 'react-router';
+import LoginPage from '../features/auth/pages/LoginPage';
+import ProtectedRoute from '../features/auth/pages/ProtectedRoute';
+import RegisterPage from '../features/auth/pages/RegisterPage';
 import Layout from '../layout/Layout';
 import CreateRecordPage from '../pages/CreateRecordPage';
 import DetailsPage from '../pages/DetailsPage';
@@ -33,6 +36,18 @@ const routeConfig = createBrowserRouter([
       {
         path: MainPath.Create,
         element: <CreateRecordPage />,
+      },
+      {
+        path: MainPath.Register,
+        element: <RegisterPage />,
+      },
+      {
+        path: 'protected',
+        element: <ProtectedRoute />,
+      },
+      {
+        path: MainPath.Login,
+        element: <LoginPage />,
       },
     ],
   },
