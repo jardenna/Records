@@ -4,7 +4,7 @@ import { OmittedRecordRequest, Records } from '../../app/api/apiTypes';
 import useLanguage from '../../features/language/useLanguage';
 import useFormValidation from '../../hooks/useFormValidation';
 import MetaTags from '../MetaTags';
-import VisuallyHidden from '../VisuallyHidden';
+import FieldSet from '../fieldset/FieldSet';
 import Input from '../formElements/Input';
 import Textarea from '../formElements/Textarea';
 import FileInput from '../formElements/fileInput/FileInput';
@@ -96,10 +96,7 @@ const CreateOrUpdateForm: FC<CreateOrUpdateFormProps> = ({
             className="create-update-form"
           >
             <div className="grid three-col">
-              <fieldset className="flex column">
-                <VisuallyHidden as="legend">
-                  {language.albumInfo}
-                </VisuallyHidden>
+              <FieldSet legendText={language.albumInfo}>
                 <Input
                   name="artist"
                   id="artist"
@@ -163,12 +160,9 @@ const CreateOrUpdateForm: FC<CreateOrUpdateFormProps> = ({
                   value={values.recordNo}
                   labelText={language.recordNo}
                 />
-              </fieldset>
+              </FieldSet>
 
-              <fieldset className="flex column">
-                <VisuallyHidden as="legend">
-                  {language.additionalInfo}
-                </VisuallyHidden>
+              <FieldSet legendText={language.additionalInfo}>
                 <Input
                   name="numOfRecords"
                   id="numOfRecords"
@@ -198,10 +192,9 @@ const CreateOrUpdateForm: FC<CreateOrUpdateFormProps> = ({
                   onChange={onChange}
                   labelText={language.niceToKnow}
                 />
-              </fieldset>
+              </FieldSet>
 
-              <fieldset className="flex column">
-                <VisuallyHidden as="legend">{language.cover}</VisuallyHidden>
+              <FieldSet legendText={language.cover}>
                 <FileInput
                   onChange={onChange}
                   name="cover"
@@ -215,7 +208,7 @@ const CreateOrUpdateForm: FC<CreateOrUpdateFormProps> = ({
                   title={file?.name || 'Preview'}
                   alt=""
                 />
-              </fieldset>
+              </FieldSet>
             </div>
           </Form>
         )}
