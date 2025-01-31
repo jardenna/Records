@@ -1,14 +1,10 @@
 import { FC } from 'react';
-import FieldSet from '../../../components/fieldset/FieldSet';
-import Form from '../../../components/formElements/form/Form';
-import Input from '../../../components/formElements/Input';
 import useFormValidation from '../../../hooks/useFormValidation';
 import useLanguage from '../../language/useLanguage';
 import { useLoginMutation } from '../authApiSlice';
+import AuthForm from '../components/AuthForm';
 
-interface LoginPageProps {}
-
-const LoginPage: FC<LoginPageProps> = () => {
+const LoginPage: FC = () => {
   const { language } = useLanguage();
   const initialState = {
     email: '',
@@ -17,38 +13,23 @@ const LoginPage: FC<LoginPageProps> = () => {
 
   const { values, onChange, onSubmit } = useFormValidation({
     initialState,
-    callback: handleRegisterUser,
+    callback: handleLoginUser,
   });
   const [loginUser, { isLoading }] = useLoginMutation();
 
-  // const { data: user } = useCheckAuthQuery();
-  // console.log(user);
-
-  function handleRegisterUser() {
+  function handleLoginUser() {
     loginUser(values);
   }
 
   return (
-    <Form labelText={language.login} onSubmit={onSubmit} isLoading={isLoading}>
-      <FieldSet legendText={language.userInfo}>
-        <Input
-          name="email"
-          id="email"
-          value={values.email}
-          labelText="Email"
-          onChange={onChange}
-          required
-        />
-        <Input
-          name="password"
-          id="username"
-          value={values.password}
-          labelText="Password"
-          onChange={onChange}
-          required
-        />
-      </FieldSet>
-    </Form>
+    <AuthForm
+      values={values}
+      labelText={language.login}
+      onSubmit={onSubmit}
+      isLoading={isLoading}
+      legendText={language.userInfo}
+      onChange={onChange}
+    />
   );
 };
 

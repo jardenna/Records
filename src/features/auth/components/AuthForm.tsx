@@ -6,10 +6,10 @@ import { ChangeInputType, FormEventType } from '../../../types/types';
 import useLanguage from '../../language/useLanguage';
 
 export interface User {
-  confirmPassword: string | null;
   email: string;
   password: string;
-  username: string | null;
+  confirmPassword?: string;
+  username?: string;
 }
 
 interface AuthFormProps {
@@ -30,11 +30,12 @@ const AuthForm: FC<AuthFormProps> = ({
   legendText,
 }) => {
   const { language } = useLanguage();
+
   return (
     <Form labelText={labelText} onSubmit={onSubmit} isLoading={isLoading}>
       <fieldset className="flex column">
         <VisuallyHidden as="legend">{legendText}</VisuallyHidden>
-        {values.username && (
+        {values.username !== undefined && (
           <Input
             name="username"
             id="username"
@@ -60,7 +61,7 @@ const AuthForm: FC<AuthFormProps> = ({
           onChange={onChange}
           required
         />
-        {values.confirmPassword && (
+        {values.confirmPassword !== undefined && (
           <Input
             name="confirmPassword"
             id="confirmPassword"
