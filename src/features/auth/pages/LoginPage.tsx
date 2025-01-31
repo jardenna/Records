@@ -1,7 +1,7 @@
 import { FC } from 'react';
+import FieldSet from '../../../components/fieldset/FieldSet';
 import Form from '../../../components/formElements/form/Form';
 import Input from '../../../components/formElements/Input';
-import VisuallyHidden from '../../../components/VisuallyHidden';
 import useFormValidation from '../../../hooks/useFormValidation';
 import useLanguage from '../../language/useLanguage';
 import { useLoginMutation } from '../authApiSlice';
@@ -30,8 +30,7 @@ const LoginPage: FC<LoginPageProps> = () => {
 
   return (
     <Form labelText={language.login} onSubmit={onSubmit} isLoading={isLoading}>
-      <fieldset className="flex column">
-        <VisuallyHidden as="legend">{language.userInfo}</VisuallyHidden>
+      <FieldSet legendText={language.userInfo}>
         <Input
           name="email"
           id="email"
@@ -48,7 +47,7 @@ const LoginPage: FC<LoginPageProps> = () => {
           onChange={onChange}
           required
         />
-      </fieldset>
+      </FieldSet>
     </Form>
   );
 };
