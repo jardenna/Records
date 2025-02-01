@@ -8,6 +8,10 @@ import './_header.scss';
 
 const Header: FC = () => {
   const { language } = useLanguage();
+  // const [logout] = useLogoutMutation();
+  // const handleLogout = () => {
+  //   logout();
+  // };
   return (
     <LayoutElement
       as="header"
