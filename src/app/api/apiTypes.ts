@@ -9,6 +9,7 @@ export type OmittedRegisterRequest = Omit<UserRequest, 'username'>;
 export interface AuthResponse {
   message: string;
   success: boolean;
+  user: UserRequest;
 }
 
 export interface FirstSixRecordsResponse {
