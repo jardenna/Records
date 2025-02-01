@@ -6,9 +6,11 @@
   margin-bottom: 16px;
 
   .btn {
-    color: $color-blue-dark;
-    padding: 20px 0;
-    display: flex;
+    padding: 0;
+    padding-left: 12px;
+    border-left: 1px solid #010101;
+    border-radius: 0;
+    margin-left: 8px;
   }
 
   .container {
@@ -20,6 +22,7 @@
   .main-nav-container {
     display: flex;
     gap: 12px;
+    align-items: center;
   }
 
   .main-nav-items {
@@ -27,7 +30,7 @@
 
     a {
       color: $color-blue-dark;
-      padding: 20px 0;
+      padding: 12px 0;
       display: flex;
     }
 

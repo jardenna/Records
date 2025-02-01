@@ -45,7 +45,7 @@ body {
 }
 
 h1 {
-  font-size: rem(32px);
+  font-size: rem(28px);
   margin: 0;
 
   @include max-size($medium) {

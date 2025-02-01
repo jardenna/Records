@@ -17,6 +17,7 @@ import SubtractIcon from './SubtractIcon';
 import SuccessIcon from './SuccessIcon';
 import TrashIcon from './TrashIcon';
 import UndoIcon from './UndoIcon';
+import UserIcon from './UserIcon';
 import WarningIcon from './WarningIcon';
 
 export interface IconDefaultProps {
@@ -49,6 +50,7 @@ export enum IconName {
   Success = 'success',
   Trash = 'trach',
   Undo = 'undo',
+  User = 'user',
   Warning = 'warning',
 }
 
@@ -71,6 +73,7 @@ const iconMapping = {
   success: SuccessIcon,
   trach: TrashIcon,
   undo: UndoIcon,
+  user: UserIcon,
   warning: WarningIcon,
 };
 

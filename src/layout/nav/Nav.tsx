@@ -1,5 +1,8 @@
 import { FC } from 'react';
 import { NavLink, useLocation } from 'react-router';
+import IconBtn from '../../components/IconBtn';
+import { IconName } from '../../components/icons/Icon';
+import { useLogoutMutation } from '../../features/auth/authApiSlice';
 import useLanguage from '../../features/language/useLanguage';
 import { MainPath } from '../../types/enums';
 import './_nav.scss';
@@ -28,6 +31,10 @@ const Nav: FC = () => {
   };
 
   const title = getTitle(location.pathname);
+  const [logout] = useLogoutMutation();
+  const handleLogout = () => {
+    logout();
+  };
 
   return (
     <nav className="main-nav" aria-label={language.main}>
@@ -42,6 +49,13 @@ const Nav: FC = () => {
           </li>
           <li className="main-nav-items">
             <NavLink to={MainPath.Create}>{language.createAlbum}</NavLink>
+          </li>
+          <li className="main-nav-items">
+            <IconBtn
+              iconName={IconName.User}
+              onClick={handleLogout}
+              title={language.user}
+            />
           </li>
         </ul>
       </div>
