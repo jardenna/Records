@@ -5,6 +5,12 @@
   background-color: $color-background;
   margin-bottom: 16px;
 
+  .btn {
+    color: $color-blue-dark;
+    padding: 20px 0;
+    display: flex;
+  }
+
   .container {
     display: flex;
     justify-content: space-between;
@@ -20,13 +26,15 @@
     text-transform: uppercase;
 
     a {
-      color: #3d5c53;
+      color: $color-blue-dark;
       padding: 20px 0;
       display: flex;
     }
 
+    &:hover,
     .active {
-      color: #4e746e;
+      color: #151615;
+      text-decoration: underline;
     }
   }
 }

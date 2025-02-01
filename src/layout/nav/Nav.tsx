@@ -35,6 +35,9 @@ const Nav: FC = () => {
         <h1>{title}</h1>
         <ul className="main-nav-container">
           <li className="main-nav-items">
+            <NavLink to={MainPath.Root}>{language.home}</NavLink>
+          </li>
+          <li className="main-nav-items">
             <NavLink to={MainPath.Records}>{language.albums}</NavLink>
           </li>
           <li className="main-nav-items">
