@@ -30,20 +30,21 @@ const routeConfig = createBrowserRouter([
         element: <DetailsPage />,
       },
       {
-        path: `${MainPath.Update}/:id`,
-        element: <UpdateRecordPage />,
-      },
-      {
-        path: MainPath.Create,
-        element: <CreateRecordPage />,
+        element: <ProtectedRoute />,
+        children: [
+          {
+            path: `${MainPath.Update}/:id`,
+            element: <UpdateRecordPage />,
+          },
+          {
+            path: MainPath.Create,
+            element: <CreateRecordPage />,
+          },
+        ],
       },
       {
         path: MainPath.Register,
         element: <RegisterPage />,
-      },
-      {
-        path: 'protected',
-        element: <ProtectedRoute />,
       },
       {
         path: MainPath.Login,

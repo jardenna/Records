@@ -1,28 +1,33 @@
 import React, { useEffect } from 'react';
+import { Navigate, Outlet, useNavigate } from 'react-router';
+import Skeleton from '../../../components/skeleton/Skeleton';
+import { MainPath } from '../../../types/enums';
 import { useCheckAuthQuery } from '../authApiSlice';
 
 const ProtectedRoute: React.FC = () => {
-  const { data, isLoading, isError } = useCheckAuthQuery();
-  console.log(data);
+  const navigate = useNavigate();
+  const { data: userProfile, isLoading, isError } = useCheckAuthQuery();
+
   useEffect(() => {
-    if (!isLoading && isError) {
+    if (!isLoading && userProfile?.success === false) {
       // Redirect to login if user is not authenticated
-      //  navigate('/login');
+      navigate('/login');
     }
   }, [isLoading, isError]);
 
   if (isLoading) {
-    // Show a loading spinner or message while checking authentication
-    return <div>Loading...</div>;
+    return (
+      <div>
+        <Skeleton count={4} />
+      </div>
+    );
   }
 
-  if (isError) {
-    // If not redirected, display a message or nothing for safety
-    return <div>Redirecting to login...</div>;
-  }
-
-  // If user is authenticated, render the protected content
-  return <>hello</>;
+  return userProfile && userProfile.success === true ? (
+    <Outlet />
+  ) : (
+    <Navigate to={MainPath.Login} />
+  );
 };
 
 export default ProtectedRoute;
