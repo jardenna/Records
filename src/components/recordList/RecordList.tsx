@@ -26,24 +26,26 @@ const RecordList: FC<RecordListProps> = ({ records, refetch }) => {
               FallbackComponent={ErrorBoundaryFallback}
               onReset={() => refetch}
             >
-              <RecordImg
-                src={record.cover !== '' ? record.cover : ''}
-                title={record.artist}
-                Subtitle={record.title}
-                refetch={() => refetch}
-                alt=""
-              />
-              <LayoutElement
-                ariaLabel={language.albumInfo}
-                className="record-img-footer"
-              >
-                <DetailLink
-                  btnVariant={BtnVariant.Secondary}
-                  to={`/${MainPath.Details}/${record.id}`}
+              <article>
+                <RecordImg
+                  src={record.cover !== '' ? record.cover : ''}
+                  title={record.artist}
+                  Subtitle={record.title}
+                  refetch={() => refetch}
+                  alt=""
+                />
+                <LayoutElement
+                  ariaLabel={language.albumInfo}
+                  className="record-img-footer"
                 >
-                  {language.details}
-                </DetailLink>
-              </LayoutElement>
+                  <DetailLink
+                    btnVariant={BtnVariant.Secondary}
+                    to={`/${MainPath.Details}/${record.id}`}
+                  >
+                    {language.details}
+                  </DetailLink>
+                </LayoutElement>
+              </article>
             </ErrorBoundary>
           </li>
         ))}

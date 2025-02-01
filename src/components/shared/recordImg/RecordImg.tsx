@@ -30,7 +30,7 @@ const RecordImg: FC<RecordImgProps> = ({
   }
 
   return (
-    <section className="record-img-container">
+    <div className="record-img-container">
       <ErrorBoundary
         FallbackComponent={ErrorBoundaryFallback}
         onReset={() => refetch}
@@ -51,7 +51,7 @@ const RecordImg: FC<RecordImgProps> = ({
           }
         />
       </ErrorBoundary>
-    </section>
+    </div>
   );
 };
 
