@@ -18,9 +18,9 @@ const Header: FC = () => {
       <article className="hero">
         <div className="container">
           <div className="logo">
-            <Link to={MainPath.Root}>
+            <Link to={MainPath.Root} className="logo-container">
               <span>Plade</span>
-              <span>samling</span>
+              <span className="logo-item">samling</span>
             </Link>
           </div>
         </div>

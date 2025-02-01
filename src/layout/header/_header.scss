@@ -17,16 +17,32 @@
 
   .logo {
     font-family: $font-secondary;
-    font-size: rem(70px);
+    font-size: rem(52px);
     text-transform: uppercase;
+
+    .logo-container {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .logo-item {
+      display: flex;
+      margin-top: -10px;
+      padding-left: 112px;
+    }
 
     @include max-size($medium) {
       display: flex;
       justify-content: center;
       font-size: rem(40px);
 
-      span {
-        display: flex;
+      .logo-container {
+        align-items: center;
+      }
+
+      .logo-item {
+        padding: 0;
+        margin-top: 8px;
       }
     }
 

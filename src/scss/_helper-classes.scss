@@ -30,7 +30,7 @@
 
 .grid {
   display: grid;
-  gap: 12px;
+  gap: 24px;
 
   &.two-col {
     grid-template-columns: repeat(2, 1fr);
