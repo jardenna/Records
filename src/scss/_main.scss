@@ -38,6 +38,7 @@ body {
   font-size: rem(14px);
   color: $color-primary-text;
   font-family: $font-primary;
+  letter-spacing: 0.04rem;
 
   @include max-size($medium) {
     font-size: rem(16px);
@@ -47,6 +48,7 @@ body {
 h1 {
   font-size: rem(28px);
   margin: 0;
+  font-family: $font-secondary;
 
   @include max-size($medium) {
     font-size: rem(24px);
