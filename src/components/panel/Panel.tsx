@@ -9,23 +9,23 @@ interface PanelProps {
   id: string;
   isPanelHidden: boolean;
   className?: string;
-  onClick?: () => void;
+  onTogglePanel?: () => void;
   variant?: Variant;
 }
 
 const Panel: FC<PanelProps> = ({
   children,
   isPanelHidden,
-  onClick,
+  onTogglePanel,
   className = '',
   id,
-  variant = 'right',
+  variant = 'top',
 }) => (
   <div
     className={`panel ${variant} ${className} ${isPanelHidden ? '' : 'is-active'}`}
     id={id}
   >
-    {onClick && <BtnClose onClick={onClick} ariaLabel="Close" />}
+    {onTogglePanel && <BtnClose onClick={onTogglePanel} ariaLabel="Close" />}
     {children}
   </div>
 );
