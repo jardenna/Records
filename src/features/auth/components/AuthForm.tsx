@@ -1,9 +1,11 @@
 import { FC } from 'react';
 import VisuallyHidden from '../../../components/VisuallyHidden';
+import Figure from '../../../components/figure/Figure';
 import Input from '../../../components/formElements/Input';
 import Form from '../../../components/formElements/form/Form';
 import { ChangeInputType, FormEventType } from '../../../types/types';
 import useLanguage from '../../language/useLanguage';
+import './_auth-form.scss';
 
 export interface User {
   email: string;
@@ -32,47 +34,56 @@ const AuthForm: FC<AuthFormProps> = ({
   const { language } = useLanguage();
 
   return (
-    <Form labelText={labelText} onSubmit={onSubmit} isLoading={isLoading}>
-      <fieldset className="flex column">
-        <VisuallyHidden as="legend">{legendText}</VisuallyHidden>
-        {values.username !== undefined && (
+    <section className="auth">
+      <Figure src="/loginImg.jpg" alt="" />
+
+      <Form
+        labelText={labelText}
+        onSubmit={onSubmit}
+        isLoading={isLoading}
+        className="auth-form"
+      >
+        <fieldset className="flex column">
+          <VisuallyHidden as="legend">{legendText}</VisuallyHidden>
+          {values.username !== undefined && (
+            <Input
+              name="username"
+              id="username"
+              value={values.username}
+              labelText={language.username}
+              onChange={onChange}
+              required
+            />
+          )}
           <Input
-            name="username"
-            id="username"
-            value={values.username}
-            labelText={language.username}
+            name="email"
+            id="email"
+            value={values.email}
+            labelText={language.email}
             onChange={onChange}
             required
           />
-        )}
-        <Input
-          name="email"
-          id="email"
-          value={values.email}
-          labelText={language.email}
-          onChange={onChange}
-          required
-        />
-        <Input
-          name="password"
-          id="password"
-          value={values.password}
-          labelText={language.password}
-          onChange={onChange}
-          required
-        />
-        {values.confirmPassword !== undefined && (
           <Input
-            name="confirmPassword"
-            id="confirmPassword"
-            value={values.confirmPassword}
-            labelText={language.confirmPassword}
+            name="password"
+            id="password"
+            value={values.password}
+            labelText={language.password}
             onChange={onChange}
             required
           />
-        )}
-      </fieldset>
-    </Form>
+          {values.confirmPassword !== undefined && (
+            <Input
+              name="confirmPassword"
+              id="confirmPassword"
+              value={values.confirmPassword}
+              labelText={language.confirmPassword}
+              onChange={onChange}
+              required
+            />
+          )}
+        </fieldset>
+      </Form>
+    </section>
   );
 };
 

@@ -1,0 +1,13 @@
+.auth {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+}
+
+.auth-form {
+  width: 100%;
+
+  .form-footer {
+    justify-content: flex-end;
+  }
+}
