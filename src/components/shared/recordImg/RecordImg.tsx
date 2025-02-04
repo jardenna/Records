@@ -21,12 +21,12 @@ const RecordImg: FC<RecordImgProps> = ({
   previewUrl,
   refetch,
 }) => {
-  let imageSource = '/images/default.png';
+  let imageSource = '/images/uploads/default.png';
 
   if (previewUrl?.trim()) {
     imageSource = previewUrl;
   } else if (src.trim()) {
-    imageSource = `/images/${src}`;
+    imageSource = `/images/uploads/${src}`;
   }
 
   return (

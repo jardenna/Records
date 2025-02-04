@@ -35,7 +35,7 @@ const AuthForm: FC<AuthFormProps> = ({
 
   return (
     <section className="auth">
-      <Figure src="/login_img.jpg" alt="" />
+      <Figure src="/images/login_img.jpg" alt="" />
 
       <Form
         labelText={labelText}
