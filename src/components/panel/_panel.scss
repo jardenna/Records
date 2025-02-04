@@ -1,5 +1,4 @@
 @use '../../scss/globals' as *;
-@use '../../scss/variables' as *;
 
 .panel {
   overflow: auto;
@@ -7,6 +6,10 @@
   z-index: 3;
   background-color: $color-white;
   height: 100%;
+  top: 0;
+  min-width: 360px;
+  display: flex;
+  align-items: center;
   padding: 20px;
 
   @include transition;
