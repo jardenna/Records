@@ -5,23 +5,15 @@
   background-color: $color-background;
   margin-bottom: 16px;
 
-  .btn {
-    padding: 0;
-    padding-left: 12px;
-    border-left: 1px solid $color-blue-dark;
-    border-radius: 0;
-    margin-left: 8px;
-  }
-
   .container {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 0 20px;
   }
 
   .main-nav-container {
     display: flex;
-    gap: 12px;
     align-items: center;
   }
 
@@ -29,14 +21,29 @@
     text-transform: uppercase;
 
     a {
-      padding: 12px 0;
+      border-color: transparent;
       display: flex;
-    }
+      padding: 20px 30px;
 
-    &:hover,
-    .active {
-      color: #151615;
-      text-decoration: underline;
+      &.active {
+        border-bottom: 3px solid #246b7d;
+      }
     }
   }
+}
+
+.test {
+  position: relative;
+}
+
+.dropdown {
+  background: #fff;
+  padding: 20px;
+  display: flex;
+  width: 100%;
+  position: absolute;
+  z-index: 20;
+  top: 50px;
+  border-radius: 4px;
+  box-shadow: rgb(99 99 99 / 20%) 0 2px 8px 0;
 }

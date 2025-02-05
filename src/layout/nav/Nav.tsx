@@ -1,9 +1,10 @@
-import { FC } from 'react';
+import { FC, useState } from 'react';
 import { NavLink, useLocation } from 'react-router';
+import Button from '../../components/Button';
 import IconContent from '../../components/IconContent';
 import { IconName } from '../../components/icons/Icon';
 import useLanguage from '../../features/language/useLanguage';
-import { MainPath } from '../../types/enums';
+import { BtnVariant, MainPath } from '../../types/enums';
 import './_nav.scss';
 
 const Nav: FC = () => {
@@ -37,7 +38,7 @@ const Nav: FC = () => {
   // const handleLogout = () => {
   //   logout();
   // };
-
+  const [isDropdownOpen, setIssDropdownOpen] = useState(false);
   return (
     <nav className="main-nav" aria-label={language.main}>
       <div className="container">
@@ -52,11 +53,17 @@ const Nav: FC = () => {
           <li className="main-nav-items">
             <NavLink to={MainPath.Create}>{language.createAlbum}</NavLink>
           </li>
-          <li className="main-nav-items">
-            <IconContent iconName={IconName.User} title={language.user} />
-            User Name
-          </li>
         </ul>
+        <div className="test">
+          <Button
+            variant={BtnVariant.Ghost}
+            onClick={() => setIssDropdownOpen(!isDropdownOpen)}
+          >
+            <IconContent iconName={IconName.User} title={language.user} />{' '}
+            <span>Velkommen Helle</span>
+          </Button>
+          {isDropdownOpen && <div className="dropdown">Logout</div>}
+        </div>
       </div>
     </nav>
   );
