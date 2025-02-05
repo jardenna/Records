@@ -1,11 +1,25 @@
 .auth {
   display: flex;
-  align-items: center;
   gap: 40px;
 }
 
-.auth-form {
+.auth-container {
   width: 100%;
+}
+
+.auth-menu {
+  display: flex;
+
+  .btn {
+    padding: 0;
+  }
+}
+
+.auth-form {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
 
   .form-footer {
     justify-content: flex-end;
