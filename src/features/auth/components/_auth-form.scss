@@ -1,3 +1,5 @@
+@use '../../../scss/globals' as *;
+
 .auth {
   display: flex;
   gap: 40px;
@@ -9,6 +11,7 @@
 
 .auth-menu {
   display: flex;
+  margin-bottom: 20px;
 
   .btn {
     padding: 0;
@@ -23,5 +26,18 @@
 
   .form-footer {
     justify-content: flex-end;
+  }
+}
+
+.nav-item {
+  color: #5b5757;
+  display: flex;
+  padding: rem(8px) rem(40px);
+  border-bottom: 3px solid $color-border;
+
+  &:hover,
+  &.active {
+    color: #04515f;
+    border-color: #04515f;
   }
 }

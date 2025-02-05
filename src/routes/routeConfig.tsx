@@ -1,4 +1,5 @@
 import { createBrowserRouter } from 'react-router';
+import AuthLayout from '../features/auth/pages/AuthLayout';
 import LoginPage from '../features/auth/pages/LoginPage';
 import ProtectedRoute from '../features/auth/pages/ProtectedRoute';
 import RegisterPage from '../features/auth/pages/RegisterPage';
@@ -17,6 +18,19 @@ const routeConfig = createBrowserRouter([
     errorElement: <ErrorPage />,
     element: <Layout />,
     children: [
+      {
+        element: <AuthLayout />,
+        children: [
+          {
+            path: MainPath.Login,
+            element: <LoginPage />,
+          },
+          {
+            path: MainPath.Register,
+            element: <RegisterPage />,
+          },
+        ],
+      },
       {
         index: true,
         element: <HomePage />,
@@ -41,14 +55,6 @@ const routeConfig = createBrowserRouter([
             element: <CreateRecordPage />,
           },
         ],
-      },
-      {
-        path: MainPath.Register,
-        element: <RegisterPage />,
-      },
-      {
-        path: MainPath.Login,
-        element: <LoginPage />,
       },
     ],
   },
