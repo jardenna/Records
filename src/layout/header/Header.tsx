@@ -6,17 +6,7 @@ import LayoutElement from '../LayoutElement';
 import Nav from '../nav/Nav';
 import './_header.scss';
 
-export interface HeaderProps {
-  ariaControls: string;
-  isLeftMenuHidden: boolean;
-  onTogglePanel: () => void;
-}
-
-const Header: FC<HeaderProps> = ({
-  isLeftMenuHidden,
-  onTogglePanel,
-  ariaControls,
-}) => {
+const Header: FC = () => {
   const { language } = useLanguage();
 
   return (
@@ -35,11 +25,7 @@ const Header: FC<HeaderProps> = ({
           </div>
         </div>
       </article>
-      <Nav
-        onTogglePanel={onTogglePanel}
-        isLeftMenuHidden={isLeftMenuHidden}
-        ariaControls={ariaControls}
-      />
+      <Nav />
     </LayoutElement>
   );
 };
