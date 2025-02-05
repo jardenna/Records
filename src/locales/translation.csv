@@ -41,6 +41,7 @@ jumpPagesForth;Jump forth;Hop frem
 jumpPagesBack;Jump back;Hop tilbage
 label;Label;Label
 login;Login;Log ind
+logout;Log out;Log ud
 main;Main;Primær
 mustBeGreaterEqual;Must be greater than or equal to;Skal være større end eller lig med
 niceToKnow;Nice to know;Værd at vide
