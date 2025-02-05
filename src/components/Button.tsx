@@ -11,6 +11,7 @@ interface ButtonProps {
   ariaControls?: string;
   ariaDescribedby?: string;
   ariaExpanded?: boolean;
+  ariaHasPopup?: boolean;
   ariaLabel?: string;
   ariaSelected?: boolean;
   autoFocus?: boolean;
@@ -40,6 +41,7 @@ const Button: FC<ButtonProps> = ({
   ariaExpanded,
   ariaControls,
   ariaLabel,
+  ariaHasPopup,
   isBtnSelected,
   role,
   className = '',
@@ -59,6 +61,7 @@ const Button: FC<ButtonProps> = ({
     aria-selected={ariaSelected}
     aria-expanded={ariaExpanded}
     aria-controls={ariaControls}
+    aria-haspopup={ariaHasPopup}
     autoFocus={autoFocus}
     aria-disabled={disabled || isLoading}
     className={`btn btn-${variant} ${className}`}

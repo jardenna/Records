@@ -23,6 +23,7 @@ import WarningIcon from './WarningIcon';
 export interface IconDefaultProps {
   title: string;
   ariaHidden?: boolean;
+  ariaLabel?: string;
   className?: string;
   size?: string;
 }
@@ -83,6 +84,7 @@ const Icon: FC<IconProps> = ({
   title,
   className = '',
   ariaHidden,
+  ariaLabel,
 }) => {
   const IconComponent = iconMapping[iconName];
   return (
@@ -91,6 +93,7 @@ const Icon: FC<IconProps> = ({
       title={title}
       className={className}
       ariaHidden={ariaHidden}
+      ariaLabel={ariaLabel}
     />
   );
 };
