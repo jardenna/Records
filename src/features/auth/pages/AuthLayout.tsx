@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { Outlet } from 'react-router';
 import Figure from '../../../components/figure/Figure';
-import NavItemList from '../../../layout/nav/NavItemList';
+import NavItemList from '../../../layout/nav/Nav';
 import { authItemsList } from '../../../layout/nav/navItemsList';
 import useLanguage from '../../language/useLanguage';
 

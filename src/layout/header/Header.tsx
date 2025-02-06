@@ -3,7 +3,7 @@ import { Link } from 'react-router';
 import useLanguage from '../../features/language/useLanguage';
 import { MainPath } from '../../types/enums';
 import LayoutElement from '../LayoutElement';
-import Nav from '../nav/Nav';
+import MainNav from '../nav/MainNav';
 import './_header.scss';
 
 const Header: FC = () => {
@@ -25,7 +25,7 @@ const Header: FC = () => {
           </div>
         </div>
       </article>
-      <Nav />
+      <MainNav />
     </LayoutElement>
   );
 };
