@@ -1,7 +1,7 @@
-@use '../../scss/globals' as *;
+@use './globals' as *;
 
-.nav-container {
-  display: flex;
+.nav {
+  background-color: $color-background;
 }
 
 .nav-test {
@@ -18,8 +18,8 @@
   }
 }
 
-.nav {
-  background-color: $color-background;
+.nav-list {
+  display: flex;
 }
 
 .nav-item {
@@ -31,5 +31,15 @@
   &.active {
     color: $color-blue-dark;
     border-color: $color-blue-dark;
+  }
+}
+
+.sub-nav {
+  .nav-item {
+    padding: 8px 40px;
+
+    &:not(.active, :hover) {
+      border-color: $color-border;
+    }
   }
 }

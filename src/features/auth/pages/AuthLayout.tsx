@@ -8,11 +8,11 @@ const AuthLayout: FC = () => {
   const { language } = useLanguage();
 
   return (
-    <section className="auth">
+    <article className="auth">
       <Figure src="/images/login_img.jpg" alt={language.authImgAlt} />
       <div className="auth-container">
         <nav className="sub-nav" aria-label={language.sub}>
-          <ul className="nav-container">
+          <ul className="nav-list">
             <li>
               <NavLink to={MainPath.Login} className="nav-item">
                 {language.login}
@@ -28,7 +28,7 @@ const AuthLayout: FC = () => {
         </nav>
         <Outlet />
       </div>
-    </section>
+    </article>
   );
 };
 
