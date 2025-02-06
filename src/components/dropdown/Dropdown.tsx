@@ -24,7 +24,7 @@ const Dropdown: FC<DropdownProps> = ({
 }) => {
   const [isDropdownOpen, setIssDropdownOpen] = useState(false);
   return (
-    <div className="test">
+    <div className="dropdown-container">
       <Button
         variant={btnVariant}
         onClick={() => setIssDropdownOpen(!isDropdownOpen)}

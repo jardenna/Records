@@ -42,7 +42,7 @@ const MainNav: FC = () => {
 
   return (
     <article className="nav">
-      <div className="nav-test container">
+      <div className="nav-container container">
         <NavItemList navItemsList={navItemsList} ariaLabel={language.main} />
         <h1>{title}</h1>
         <Dropdown
