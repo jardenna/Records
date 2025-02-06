@@ -1,5 +1,5 @@
 import { FC, useState } from 'react';
-import { NavLink, useLocation } from 'react-router';
+import { useLocation } from 'react-router';
 import Button from '../../components/Button';
 import IconContent from '../../components/IconContent';
 import { IconName } from '../../components/icons/Icon';
@@ -7,6 +7,8 @@ import { useLogoutMutation } from '../../features/auth/authApiSlice';
 import useLanguage from '../../features/language/useLanguage';
 import { BtnVariant, MainPath } from '../../types/enums';
 import './_nav.scss';
+import NavItemList from './NavItemList';
+import { navItemsList } from './navItemsList';
 
 const Nav: FC = () => {
   const location = useLocation();
@@ -44,17 +46,7 @@ const Nav: FC = () => {
     <nav className="main-nav" aria-label={language.main}>
       <div className="container">
         <h1>{title}</h1>
-        <ul className="main-nav-container">
-          <li className="main-nav-items">
-            <NavLink to={MainPath.Root}>{language.home}</NavLink>
-          </li>
-          <li className="main-nav-items">
-            <NavLink to={MainPath.Records}>{language.albums}</NavLink>
-          </li>
-          <li className="main-nav-items">
-            <NavLink to={MainPath.Create}>{language.createAlbum}</NavLink>
-          </li>
-        </ul>
+        <NavItemList navItemsList={navItemsList} />
         <div className="test">
           <Button
             variant={BtnVariant.Ghost}

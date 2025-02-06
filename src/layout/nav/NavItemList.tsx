@@ -1,0 +1,33 @@
+import { FC } from 'react';
+import { NavLink } from 'react-router';
+import useLanguage from '../../features/language/useLanguage';
+import { LinkText, MainPath } from './enums';
+
+export interface MainNavItem {
+  linkText: LinkText;
+  path: MainPath;
+}
+
+interface NavItemProps {
+  navItemsList: MainNavItem[];
+}
+
+const NavItemList: FC<NavItemProps> = ({ navItemsList }) => {
+  const { language } = useLanguage();
+
+  const localizedNavItems = navItemsList.map((item) => ({
+    ...item,
+    linkText: language[item.linkText] || item.linkText, // Fallback to the key if translation is missing
+  }));
+
+  return (
+    <ul className="main-nav-container">
+      {localizedNavItems.map((navItem) => (
+        <li key={navItem.linkText} className="main-nav-items">
+          <NavLink to={navItem.path}>{navItem.linkText}</NavLink>
+        </li>
+      ))}
+    </ul>
+  );
+};
+export default NavItemList;
