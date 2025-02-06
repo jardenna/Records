@@ -1,0 +1,15 @@
+.test {
+  position: relative;
+}
+
+.dropdown {
+  background: #fff;
+  padding: 20px;
+  display: flex;
+  width: 100%;
+  position: absolute;
+  z-index: 20;
+  top: 50px;
+  border-radius: 4px;
+  box-shadow: rgb(99 99 99 / 20%) 0 2px 8px 0;
+}
