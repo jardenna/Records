@@ -23,8 +23,10 @@ const NavItemList: FC<NavItemProps> = ({ navItemsList }) => {
   return (
     <ul className="main-nav-container">
       {localizedNavItems.map((navItem) => (
-        <li key={navItem.linkText} className="main-nav-items">
-          <NavLink to={navItem.path}>{navItem.linkText}</NavLink>
+        <li key={navItem.linkText}>
+          <NavLink to={navItem.path} className="nav-item">
+            {navItem.linkText}
+          </NavLink>
         </li>
       ))}
     </ul>
