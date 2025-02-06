@@ -11,8 +11,8 @@ const AuthLayout: FC = () => {
     <section className="auth">
       <Figure src="/images/login_img.jpg" alt={language.authImgAlt} />
       <div className="auth-container">
-        <nav aria-label="auth">
-          <ul className="auth-menu">
+        <nav className="sub-nav" aria-label={language.sub}>
+          <ul className="nav-container">
             <li>
               <NavLink to={MainPath.Login} className="nav-item">
                 {language.login}

@@ -9,15 +9,6 @@
   width: 100%;
 }
 
-.auth-menu {
-  display: flex;
-  margin-bottom: 20px;
-
-  .btn {
-    padding: 0;
-  }
-}
-
 .auth-form {
   height: 100%;
   display: flex;
@@ -29,15 +20,10 @@
   }
 }
 
-.nav-item {
-  color: #5b5757;
-  display: flex;
-  padding: rem(8px) rem(40px);
-  border-bottom: 3px solid $color-border;
-
-  &:hover,
-  &.active {
-    color: $color-blue-dark;
-    border-color: $color-blue-dark;
+.sub-nav {
+  .nav-item {
+    color: #5b5757;
+    border-bottom: 3px solid $color-border;
+    padding: 8px 40px;
   }
 }

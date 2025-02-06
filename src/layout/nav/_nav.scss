@@ -11,37 +11,20 @@
     align-items: center;
     padding: 0 20px;
   }
-
-  .main-nav-container {
-    display: flex;
-    align-items: center;
-  }
-
-  .nav-item {
-    border-bottom: 3px solid transparent;
-    display: flex;
-    padding: 20px 30px;
-
-    &:hover,
-    &.active {
-      color: $color-blue-dark;
-      border-color: $color-blue-dark;
-    }
-  }
 }
 
-// .test {
-//   position: relative;
-// }
+.nav-container {
+  display: flex;
+}
 
-// .dropdown {
-//   background: #fff;
-//   padding: 20px;
-//   display: flex;
-//   width: 100%;
-//   position: absolute;
-//   z-index: 20;
-//   top: 50px;
-//   border-radius: 4px;
-//   box-shadow: rgb(99 99 99 / 20%) 0 2px 8px 0;
-// }
+.nav-item {
+  border-bottom: 3px solid transparent;
+  display: flex;
+  padding: 20px 30px;
+
+  &:hover,
+  &.active {
+    color: $color-blue-dark;
+    border-color: $color-blue-dark;
+  }
+}
