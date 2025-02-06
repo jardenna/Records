@@ -3,6 +3,7 @@ import { NavLink, useLocation } from 'react-router';
 import Button from '../../components/Button';
 import IconContent from '../../components/IconContent';
 import { IconName } from '../../components/icons/Icon';
+import { useLogoutMutation } from '../../features/auth/authApiSlice';
 import useLanguage from '../../features/language/useLanguage';
 import { BtnVariant, MainPath } from '../../types/enums';
 import './_nav.scss';
@@ -34,10 +35,10 @@ const Nav: FC = () => {
   };
 
   const title = getTitle(location.pathname);
-  // const [logout] = useLogoutMutation();
-  // const handleLogout = () => {
-  //   logout();
-  // };
+  const [logout] = useLogoutMutation();
+  const handleLogout = () => {
+    logout();
+  };
   const [isDropdownOpen, setIssDropdownOpen] = useState(false);
   return (
     <nav className="main-nav" aria-label={language.main}>
@@ -62,7 +63,11 @@ const Nav: FC = () => {
             <IconContent iconName={IconName.User} title={language.user} />{' '}
             <span>Velkommen Helle</span>
           </Button>
-          {isDropdownOpen && <div className="dropdown">Logout</div>}
+          {isDropdownOpen && (
+            <Button onClick={handleLogout} className="dropdown">
+              Logout
+            </Button>
+          )}
         </div>
       </div>
     </nav>
