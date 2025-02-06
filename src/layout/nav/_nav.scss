@@ -17,33 +17,31 @@
     align-items: center;
   }
 
-  .main-nav-items {
-    a {
-      border-bottom: 3px solid transparent;
-      display: flex;
-      padding: 20px 30px;
+  .nav-item {
+    border-bottom: 3px solid transparent;
+    display: flex;
+    padding: 20px 30px;
 
-      &:hover,
-      &.active {
-        color: $color-blue-dark;
-        border-color: $color-blue-dark;
-      }
+    &:hover,
+    &.active {
+      color: $color-blue-dark;
+      border-color: $color-blue-dark;
     }
   }
 }
 
-.test {
-  position: relative;
-}
+// .test {
+//   position: relative;
+// }
 
-.dropdown {
-  background: #fff;
-  padding: 20px;
-  display: flex;
-  width: 100%;
-  position: absolute;
-  z-index: 20;
-  top: 50px;
-  border-radius: 4px;
-  box-shadow: rgb(99 99 99 / 20%) 0 2px 8px 0;
-}
+// .dropdown {
+//   background: #fff;
+//   padding: 20px;
+//   display: flex;
+//   width: 100%;
+//   position: absolute;
+//   z-index: 20;
+//   top: 50px;
+//   border-radius: 4px;
+//   box-shadow: rgb(99 99 99 / 20%) 0 2px 8px 0;
+// }

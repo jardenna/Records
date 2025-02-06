@@ -1,7 +1,6 @@
-import { FC, useState } from 'react';
+import { FC } from 'react';
 import { useLocation } from 'react-router';
-import Button from '../../components/Button';
-import IconContent from '../../components/IconContent';
+import Dropdown from '../../components/dropdown/Dropdown';
 import { IconName } from '../../components/icons/Icon';
 import { useLogoutMutation } from '../../features/auth/authApiSlice';
 import useLanguage from '../../features/language/useLanguage';
@@ -41,26 +40,20 @@ const Nav: FC = () => {
   const handleLogout = () => {
     logout();
   };
-  const [isDropdownOpen, setIssDropdownOpen] = useState(false);
+
   return (
     <nav className="main-nav" aria-label={language.main}>
       <div className="container">
         <h1>{title}</h1>
         <NavItemList navItemsList={navItemsList} />
-        <div className="test">
-          <Button
-            variant={BtnVariant.Ghost}
-            onClick={() => setIssDropdownOpen(!isDropdownOpen)}
-          >
-            <IconContent iconName={IconName.User} title={language.user} />{' '}
-            <span>Velkommen Helle</span>
-          </Button>
-          {isDropdownOpen && (
-            <Button onClick={handleLogout} className="dropdown">
-              Logout
-            </Button>
-          )}
-        </div>
+        <Dropdown
+          iconName={IconName.User}
+          iconTitle={language.user}
+          btnVariant={BtnVariant.Ghost}
+          onClick={handleLogout}
+          btnLabel={language.logout}
+          info="Velkommen Helle"
+        />
       </div>
     </nav>
   );
