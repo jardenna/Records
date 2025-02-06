@@ -42,10 +42,12 @@ const Nav: FC = () => {
   };
 
   return (
-    <nav className="main-nav" aria-label={language.main}>
-      <div className="container">
+    <article className="nav">
+      <div className="nav-test container">
+        <nav aria-label={language.main}>
+          <NavItemList navItemsList={navItemsList} />
+        </nav>
         <h1>{title}</h1>
-        <NavItemList navItemsList={navItemsList} />
         <Dropdown
           iconName={IconName.User}
           iconTitle={language.user}
@@ -55,7 +57,7 @@ const Nav: FC = () => {
           info="Velkommen Helle"
         />
       </div>
-    </nav>
+    </article>
   );
 };
 
