@@ -18,15 +18,15 @@
   }
 
   .main-nav-items {
-    text-transform: uppercase;
-
     a {
-      border-color: transparent;
+      border-bottom: 3px solid transparent;
       display: flex;
       padding: 20px 30px;
 
+      &:hover,
       &.active {
-        border-bottom: 3px solid #246b7d;
+        color: $color-blue-dark;
+        border-color: $color-blue-dark;
       }
     }
   }
