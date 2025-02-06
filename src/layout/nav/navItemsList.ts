@@ -17,11 +17,11 @@ export const navItemsList = [
 
 export const authItemsList = [
   {
-    path: MainPath.Register,
-    linkText: LinkText.Signup,
-  },
-  {
     path: MainPath.Login,
     linkText: LinkText.Login,
+  },
+  {
+    path: MainPath.Register,
+    linkText: LinkText.Signup,
   },
 ];

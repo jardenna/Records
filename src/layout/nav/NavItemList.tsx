@@ -1,6 +1,7 @@
 import { FC } from 'react';
 import { NavLink } from 'react-router';
 import useLanguage from '../../features/language/useLanguage';
+import LayoutElement from '../LayoutElement';
 import { LinkText, MainPath } from './enums';
 
 export interface MainNavItem {
@@ -9,10 +10,16 @@ export interface MainNavItem {
 }
 
 interface NavItemProps {
+  ariaLabel: string;
   navItemsList: MainNavItem[];
+  className?: string;
 }
 
-const NavItemList: FC<NavItemProps> = ({ navItemsList }) => {
+const NavItemList: FC<NavItemProps> = ({
+  navItemsList,
+  ariaLabel,
+  className,
+}) => {
   const { language } = useLanguage();
 
   const localizedNavItems = navItemsList.map((item) => ({
@@ -21,15 +28,17 @@ const NavItemList: FC<NavItemProps> = ({ navItemsList }) => {
   }));
 
   return (
-    <ul className="nav-list">
-      {localizedNavItems.map((navItem) => (
-        <li key={navItem.linkText}>
-          <NavLink to={navItem.path} className="nav-item">
-            {navItem.linkText}
-          </NavLink>
-        </li>
-      ))}
-    </ul>
+    <LayoutElement as="nav" ariaLabel={ariaLabel} className={className}>
+      <ul className="nav-list">
+        {localizedNavItems.map((navItem) => (
+          <li key={navItem.linkText}>
+            <NavLink to={navItem.path} className="nav-item">
+              {navItem.linkText}
+            </NavLink>
+          </li>
+        ))}
+      </ul>
+    </LayoutElement>
   );
 };
 export default NavItemList;

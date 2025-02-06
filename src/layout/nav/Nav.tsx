@@ -5,7 +5,6 @@ import { IconName } from '../../components/icons/Icon';
 import { useLogoutMutation } from '../../features/auth/authApiSlice';
 import useLanguage from '../../features/language/useLanguage';
 import { BtnVariant, MainPath } from '../../types/enums';
-import LayoutElement from '../LayoutElement';
 import NavItemList from './NavItemList';
 import { navItemsList } from './navItemsList';
 
@@ -44,9 +43,7 @@ const Nav: FC = () => {
   return (
     <article className="nav">
       <div className="nav-test container">
-        <LayoutElement as="nav" ariaLabel={language.main}>
-          <NavItemList navItemsList={navItemsList} />
-        </LayoutElement>
+        <NavItemList navItemsList={navItemsList} ariaLabel={language.main} />
         <h1>{title}</h1>
         <Dropdown
           iconName={IconName.User}
