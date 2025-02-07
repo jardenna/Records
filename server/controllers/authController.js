@@ -88,8 +88,8 @@ const loginUser = async (req, res) => {
     });
   }
 };
-// Middleware to check if user is logged in
 
+// Middleware to check if user is logged in
 const authMiddleware = async (req, res, next) => {
   const token = req.cookies.token;
 
