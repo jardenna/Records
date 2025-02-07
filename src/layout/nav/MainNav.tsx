@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { useLocation } from 'react-router';
+import { useLocation, useNavigate } from 'react-router';
 import Dropdown from '../../components/dropdown/Dropdown';
 import { IconName } from '../../components/icons/Icon';
 import { useLogoutMutation } from '../../features/auth/authApiSlice';
@@ -10,6 +10,7 @@ import { navItemsList } from './navItemsList';
 
 const MainNav: FC = () => {
   const location = useLocation();
+  const navigate = useNavigate();
   const { language } = useLanguage();
 
   const getTitle = (pathname: string): string => {
@@ -38,6 +39,7 @@ const MainNav: FC = () => {
   const [logout] = useLogoutMutation();
   const handleLogout = () => {
     logout();
+    navigate(MainPath.Root);
   };
 
   return (
