@@ -1,15 +1,22 @@
 import { FC } from 'react';
+import { useDispatch } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router';
 import Dropdown from '../../components/dropdown/Dropdown';
 import { IconName } from '../../components/icons/Icon';
 import { PrimaryActionBtnProps } from '../../components/modal/Modal';
-import { useLogoutMutation } from '../../features/auth/authApiSlice';
+import {
+  authApiSlice,
+  useCheckAuthQuery,
+  useLogoutMutation,
+} from '../../features/auth/authApiSlice';
 import useLanguage from '../../features/language/useLanguage';
 import { BtnVariant, MainPath } from '../../types/enums';
 import NavItemList from './Nav';
 import { navItemsList } from './navItemsList';
 
 const MainNav: FC = () => {
+  const [logout] = useLogoutMutation();
+  const { data: user } = useCheckAuthQuery();
   const location = useLocation();
   const navigate = useNavigate();
   const { language } = useLanguage();
@@ -37,9 +44,12 @@ const MainNav: FC = () => {
   };
 
   const title = getTitle(location.pathname);
-  const [logout] = useLogoutMutation();
-  const handleLogout = () => {
-    logout();
+
+  const dispatch = useDispatch(); // Import from react-redux
+
+  const handleLogout = async () => {
+    await logout().unwrap();
+    dispatch(authApiSlice.util.resetApiState()); // Clear all RTK Query cache
     navigate(MainPath.Root);
   };
 
@@ -47,6 +57,7 @@ const MainNav: FC = () => {
     onClick: handleLogout,
     label: language.logout,
   };
+  console.log(user);
 
   return (
     <article className="main-nav">
