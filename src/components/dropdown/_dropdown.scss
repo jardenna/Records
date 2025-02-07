@@ -1,15 +1,21 @@
+@use '../../scss/globals' as *;
+
 .dropdown-container {
   position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
 }
 
 .dropdown {
-  background: #fff;
-  padding: 20px;
+  background: $color-white;
+  padding: 8px;
   display: flex;
+  flex-direction: column;
   width: 100%;
   position: absolute;
-  z-index: 20;
-  top: 50px;
+  z-index: 5;
+  top: 32px;
   border-radius: 4px;
   box-shadow: rgb(99 99 99 / 20%) 0 2px 8px 0;
 }

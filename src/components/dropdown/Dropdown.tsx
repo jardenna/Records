@@ -28,14 +28,16 @@ const Dropdown: FC<DropdownProps> = ({
       <Button
         variant={btnVariant}
         onClick={() => setIssDropdownOpen(!isDropdownOpen)}
+        className="user-btn"
       >
         <IconContent iconName={iconName} title={iconTitle} />{' '}
         {info && <span>{info}</span>}
       </Button>
       {isDropdownOpen && (
-        <Button onClick={onClick} className="dropdown">
-          {btnLabel}
-        </Button>
+        <section className="dropdown">
+          <p>Log ud</p>
+          <Button onClick={onClick}>{btnLabel}</Button>
+        </section>
       )}
     </div>
   );

@@ -51,7 +51,7 @@ const MainNav: FC = () => {
         <div className="nav-title flex-1">
           <h1>{title}</h1>
         </div>
-        <div className="flex-1 nav-dropdown">
+        <div className="flex-1">
           <Dropdown
             iconName={IconName.User}
             iconTitle={language.user}
