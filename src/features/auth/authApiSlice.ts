@@ -1,6 +1,7 @@
 import apiSlice from '../../app/api/apiSlice';
 import {
   AuthResponse,
+  OmittedLogoutResponse,
   OmittedRegisterRequest,
   UserRequest,
 } from '../../app/api/apiTypes';
@@ -31,11 +32,12 @@ export const authApiSlice = apiSlice.injectEndpoints({
         }
       },
     }),
-    logout: builder.mutation<any, void>({
+    logout: builder.mutation<OmittedLogoutResponse, void>({
       query: () => ({
         url: authEndpoints.logout,
         method: 'POST',
       }),
+      invalidatesTags: [TagTypesEnum.Auth],
     }),
     checkAuth: builder.query<AuthResponse, void>({
       query: () => authEndpoints.checkAuth,

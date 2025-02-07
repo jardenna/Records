@@ -22,6 +22,7 @@ export enum SortOrder {
 }
 
 export type OmittedRecordRequest = Omit<Records, 'id'>;
+export type OmittedLogoutResponse = Omit<AuthResponse, 'user'>;
 
 export interface UpdateAlbumRequest {
   file: File | null;
