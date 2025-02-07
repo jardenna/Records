@@ -43,18 +43,24 @@ const MainNav: FC = () => {
   };
 
   return (
-    <article className="nav">
+    <article className="main-nav">
       <div className="nav-container container">
-        <NavItemList navItemsList={navItemsList} ariaLabel={language.main} />
-        <h1>{title}</h1>
-        <Dropdown
-          iconName={IconName.User}
-          iconTitle={language.user}
-          btnVariant={BtnVariant.Ghost}
-          onClick={handleLogout}
-          btnLabel={language.logout}
-          info="Velkommen Helle"
-        />
+        <div className="flex-1">
+          <NavItemList navItemsList={navItemsList} ariaLabel={language.main} />
+        </div>
+        <div className="nav-title flex-1">
+          <h1>{title}</h1>
+        </div>
+        <div className="flex-1 nav-dropdown">
+          <Dropdown
+            iconName={IconName.User}
+            iconTitle={language.user}
+            btnVariant={BtnVariant.Ghost}
+            onClick={handleLogout}
+            btnLabel={language.logout}
+            info="Velkommen Helle"
+          />
+        </div>
       </div>
     </article>
   );

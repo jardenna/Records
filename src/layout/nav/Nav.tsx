@@ -15,7 +15,7 @@ interface NavProps {
   className?: string;
 }
 
-const Nav: FC<NavProps> = ({ navItemsList, ariaLabel, className }) => {
+const Nav: FC<NavProps> = ({ navItemsList, ariaLabel, className = '' }) => {
   const { language } = useLanguage();
 
   const localizedNavItems = navItemsList.map((item) => ({
