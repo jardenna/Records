@@ -1,26 +1,24 @@
-import { FC, useState } from 'react';
-import { BtnVariant } from '../../types/enums';
+import { FC, ReactNode, useState } from 'react';
 import Button from '../Button';
 import IconContent from '../IconContent';
 import { IconName } from '../icons/Icon';
 import './_dropdown.scss';
+import { BtnVariant } from '../../types/enums';
 
 interface DropdownProps {
-  btnLabel: string;
+  children: ReactNode;
   iconName: IconName;
   iconTitle: string;
-  onClick: () => void;
   btnVariant?: BtnVariant;
   info?: string;
 }
 
 const Dropdown: FC<DropdownProps> = ({
-  btnLabel,
+  children,
   iconName,
   iconTitle,
   btnVariant = BtnVariant.Ghost,
   info,
-  onClick,
 }) => {
   const [isDropdownOpen, setIssDropdownOpen] = useState(false);
   return (
@@ -33,12 +31,7 @@ const Dropdown: FC<DropdownProps> = ({
         <IconContent iconName={iconName} title={iconTitle} />{' '}
         {info && <span>{info}</span>}
       </Button>
-      {isDropdownOpen && (
-        <section className="dropdown">
-          <p>Log ud</p>
-          <Button onClick={onClick}>{btnLabel}</Button>
-        </section>
-      )}
+      {isDropdownOpen && <section className="dropdown">{children}</section>}
     </div>
   );
 };

@@ -1,5 +1,6 @@
 import { FC } from 'react';
 import { useLocation, useNavigate } from 'react-router';
+import Button from '../../components/Button';
 import Dropdown from '../../components/dropdown/Dropdown';
 import { IconName } from '../../components/icons/Icon';
 import { useLogoutMutation } from '../../features/auth/authApiSlice';
@@ -56,10 +57,11 @@ const MainNav: FC = () => {
             iconName={IconName.User}
             iconTitle={language.user}
             btnVariant={BtnVariant.Ghost}
-            onClick={handleLogout}
-            btnLabel={language.logout}
             info="Velkommen Helle"
-          />
+          >
+            <p>{language.logout}</p>
+            <Button onClick={handleLogout}>{language.logout}</Button>
+          </Dropdown>
         </div>
       </div>
     </article>
