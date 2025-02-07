@@ -23,14 +23,7 @@ export const authApiSlice = apiSlice.injectEndpoints({
         method: 'POST',
         body: user,
       }),
-      async onQueryStarted(_, { dispatch, queryFulfilled }) {
-        try {
-          await queryFulfilled;
-          dispatch(apiSlice.util.invalidateTags([TagTypesEnum.Auth])); // Invaliderer checkAuth
-        } catch (error) {
-          console.error('Login failed:', error);
-        }
-      },
+      invalidatesTags: [TagTypesEnum.Auth],
     }),
     logout: builder.mutation<OmittedLogoutResponse, void>({
       query: () => ({
