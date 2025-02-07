@@ -1,8 +1,8 @@
 import { FC } from 'react';
 import { useLocation, useNavigate } from 'react-router';
-import Button from '../../components/Button';
 import Dropdown from '../../components/dropdown/Dropdown';
 import { IconName } from '../../components/icons/Icon';
+import { PrimaryActionBtnProps } from '../../components/modal/Modal';
 import { useLogoutMutation } from '../../features/auth/authApiSlice';
 import useLanguage from '../../features/language/useLanguage';
 import { BtnVariant, MainPath } from '../../types/enums';
@@ -43,6 +43,11 @@ const MainNav: FC = () => {
     navigate(MainPath.Root);
   };
 
+  const actionBtn: PrimaryActionBtnProps = {
+    onClick: handleLogout,
+    label: language.logout,
+  };
+
   return (
     <article className="main-nav">
       <div className="nav-container container">
@@ -58,9 +63,9 @@ const MainNav: FC = () => {
             iconTitle={language.user}
             btnVariant={BtnVariant.Ghost}
             info="Velkommen Helle"
+            actionBtn={actionBtn}
           >
             <p>{language.logout}</p>
-            <Button onClick={handleLogout}>{language.logout}</Button>
           </Dropdown>
         </div>
       </div>

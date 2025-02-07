@@ -1,11 +1,14 @@
 import { FC, ReactNode, useState } from 'react';
+import useKeyPress from '../../hooks/useKeyPress';
+import { BtnVariant, KeyCode } from '../../types/enums';
 import Button from '../Button';
 import IconContent from '../IconContent';
 import { IconName } from '../icons/Icon';
+import { PrimaryActionBtnProps } from '../modal/Modal';
 import './_dropdown.scss';
-import { BtnVariant } from '../../types/enums';
 
 interface DropdownProps {
+  actionBtn: PrimaryActionBtnProps;
   children: ReactNode;
   iconName: IconName;
   iconTitle: string;
@@ -14,6 +17,7 @@ interface DropdownProps {
 }
 
 const Dropdown: FC<DropdownProps> = ({
+  actionBtn,
   children,
   iconName,
   iconTitle,
@@ -21,17 +25,33 @@ const Dropdown: FC<DropdownProps> = ({
   info,
 }) => {
   const [isDropdownOpen, setIssDropdownOpen] = useState(false);
+  useKeyPress(() => setIssDropdownOpen(false), [KeyCode.Esc]);
+
+  const handleToggleDropdown = () => {
+    setIssDropdownOpen(!isDropdownOpen);
+  };
+
+  const handleCloseDropdown = () => {
+    actionBtn.onClick();
+    setIssDropdownOpen(false);
+  };
+
   return (
     <div className="dropdown-container">
       <Button
         variant={btnVariant}
-        onClick={() => setIssDropdownOpen(!isDropdownOpen)}
+        onClick={handleToggleDropdown}
         className="user-btn"
       >
         <IconContent iconName={iconName} title={iconTitle} />{' '}
         {info && <span>{info}</span>}
       </Button>
-      {isDropdownOpen && <section className="dropdown">{children}</section>}
+      {isDropdownOpen && (
+        <section className="dropdown">
+          {children}
+          <Button onClick={handleCloseDropdown}>{actionBtn.label}</Button>
+        </section>
+      )}
     </div>
   );
 };
