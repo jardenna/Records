@@ -1,5 +1,4 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-
 import { AuthResponse } from '../../app/api/apiTypes';
 import { RootState } from '../../app/store';
 
@@ -16,8 +15,6 @@ const authSlice = createSlice({
   initialState,
   reducers: {
     setUser: (state, action: PayloadAction<any>) => {
-      console.log(action.payload);
-
       state.user = action.payload;
     },
     clearUser: (state) => {
