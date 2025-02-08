@@ -2,7 +2,7 @@ import { FC, ReactNode } from 'react';
 import { BtnVariant } from '../../types/enums';
 import Button from '../Button';
 
-interface DropdownTriggerProps {
+interface AdaptivePanelTriggerTriggerProps {
   ariaControls: string;
   ariaExpanded: boolean;
   children: ReactNode;
@@ -12,7 +12,7 @@ interface DropdownTriggerProps {
   btnVariant?: BtnVariant;
 }
 
-const DropdownTrigger: FC<DropdownTriggerProps> = ({
+const AdaptivePanelTrigger: FC<AdaptivePanelTriggerTriggerProps> = ({
   btnVariant,
   children,
   className,
@@ -33,4 +33,4 @@ const DropdownTrigger: FC<DropdownTriggerProps> = ({
   </Button>
 );
 
-export default DropdownTrigger;
+export default AdaptivePanelTrigger;

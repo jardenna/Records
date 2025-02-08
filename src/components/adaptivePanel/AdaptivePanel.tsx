@@ -1,33 +1,33 @@
 import { FC, ReactNode, useRef } from 'react';
 import useClickOutside from '../../hooks/useClickOutside';
 import { BtnVariant } from '../../types/enums';
-import Button from '../Button';
 import { PrimaryActionBtnProps } from '../modal/Modal';
 import './_dropdown.scss';
-import DropdownTrigger from './DropdownTrigger';
+import DropdownTrigger from './AdaptivePanelTrigger';
+import Dropdown from './Dropdown';
 import Panel, { Variant } from './Panel';
 import usePanel from './usePanel';
 
-interface DropdownProps {
+interface AdaptivePanelProps {
   actionBtn: PrimaryActionBtnProps;
   children: ReactNode;
   btnVariant?: BtnVariant;
-  isDropdown?: boolean;
+  isPanel?: boolean;
   panelVariant?: Variant;
   triggerContent?: ReactNode;
 }
 
-const Dropdown: FC<DropdownProps> = ({
+const AdaptivePanel: FC<AdaptivePanelProps> = ({
   actionBtn,
   children,
   btnVariant = BtnVariant.Ghost,
   triggerContent,
-  isDropdown = false,
+  isPanel,
   panelVariant,
 }) => {
   const { isPanelHidden, onTogglePanel, onHidePanel } = usePanel();
   const panelRef = useRef<HTMLDivElement>(null);
-  const ariaControls = isDropdown ? 'dropdown' : 'panel';
+  const ariaControls = !isPanel ? 'dropdown' : 'panel';
 
   useClickOutside(panelRef, () => onHidePanel());
 
@@ -48,14 +48,18 @@ const Dropdown: FC<DropdownProps> = ({
         {triggerContent}
       </DropdownTrigger>
 
-      {!isPanelHidden && isDropdown && (
-        <section className="dropdown" ref={panelRef} id={ariaControls}>
+      {!isPanelHidden && !isPanel && (
+        <Dropdown
+          id={ariaControls}
+          handleCallback={handleCallback}
+          btnLabel={actionBtn.label ?? ''}
+          ref={panelRef}
+        >
           {children}
-          <Button onClick={handleCallback}>{actionBtn.label}</Button>
-        </section>
+        </Dropdown>
       )}
 
-      {!isDropdown && (
+      {isPanel && (
         <Panel
           id={ariaControls}
           isPanelHidden={isPanelHidden}
@@ -69,4 +73,4 @@ const Dropdown: FC<DropdownProps> = ({
   );
 };
 
-export default Dropdown;
+export default AdaptivePanel;

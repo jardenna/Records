@@ -23,14 +23,14 @@ const Panel: FC<PanelProps> = ({
   variant = 'right',
   ref = null,
 }) => (
-  <div
+  <section
     ref={ref}
     className={`panel ${variant} ${className} ${isPanelHidden ? '' : 'is-active'}`}
     id={id}
   >
-    {onTogglePanel && <BtnClose onClick={onTogglePanel} ariaLabel="Close" />}
+    {onTogglePanel && <BtnClose onClick={onTogglePanel} />}
     {children}
-  </div>
+  </section>
 );
 
 export default Panel;

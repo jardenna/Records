@@ -1,11 +1,11 @@
 import { FC, ReactNode } from 'react';
 import { NavLink } from 'react-router';
-import Dropdown from '../../../components/dropdown/Dropdown';
+import { UserRequest } from '../../../app/api/apiTypes';
+import AdaptivePanel from '../../../components/adaptivePanel/AdaptivePanel';
 import { PrimaryActionBtnProps } from '../../../components/modal/Modal';
 import { BtnVariant } from '../../../types/enums';
 import { MainPath } from '../enums';
 import './_nav-auth-container.scss';
-import { UserRequest } from '../../../app/api/apiTypes';
 
 interface NavAuthContainerProps {
   actionBtn: PrimaryActionBtnProps;
@@ -26,13 +26,13 @@ const NavAuthContainer: FC<NavAuthContainerProps> = ({
         {triggerContent}
       </NavLink>
     ) : (
-      <Dropdown
+      <AdaptivePanel
         btnVariant={BtnVariant.Ghost}
         actionBtn={actionBtn}
         triggerContent={triggerContent}
       >
         <p>{dropdownContent}</p>
-      </Dropdown>
+      </AdaptivePanel>
     )}
   </div>
 );
