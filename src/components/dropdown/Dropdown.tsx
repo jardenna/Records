@@ -24,16 +24,16 @@ const Dropdown: FC<DropdownProps> = ({
   btnVariant = BtnVariant.Ghost,
   info,
 }) => {
-  const [isDropdownOpen, setIssDropdownOpen] = useState(false);
-  useKeyPress(() => setIssDropdownOpen(false), [KeyCode.Esc]);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  useKeyPress(() => setIsDropdownOpen(false), [KeyCode.Esc]);
 
   const handleToggleDropdown = () => {
-    setIssDropdownOpen(!isDropdownOpen);
+    setIsDropdownOpen(!isDropdownOpen);
   };
 
   const handleCloseDropdown = () => {
     actionBtn.onClick();
-    setIssDropdownOpen(false);
+    setIsDropdownOpen(false);
   };
 
   return (
