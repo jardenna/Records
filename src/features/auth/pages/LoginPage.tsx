@@ -1,10 +1,10 @@
 import { FC } from 'react';
 import { useLocation, useNavigate } from 'react-router';
 import useFormValidation from '../../../hooks/useFormValidation';
+import { MainPath } from '../../../types/enums';
 import useLanguage from '../../language/useLanguage';
 import { useLoginMutation } from '../authApiSlice';
 import AuthForm from '../components/AuthForm';
-import { MainPath } from '../../../types/enums';
 
 const LoginPage: FC = () => {
   const navigate = useNavigate();
