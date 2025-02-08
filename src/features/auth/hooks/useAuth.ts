@@ -2,8 +2,12 @@ import { useEffect } from 'react';
 import { useNavigate } from 'react-router';
 import { useAppDispatch, useAppSelector } from '../../../app/hooks';
 import { MainPath } from '../../../types/enums';
-import { useCheckAuthQuery, useLogoutMutation } from '../authApiSlice';
-import { clearUser, selectUser, setUser } from '../authSlice';
+import {
+  authApiSlice,
+  useCheckAuthQuery,
+  useLogoutMutation,
+} from '../authApiSlice';
+import { selectUser, setUser } from '../authSlice';
 
 const useAuth = () => {
   const navigate = useNavigate();
@@ -12,9 +16,9 @@ const useAuth = () => {
   const [logout] = useLogoutMutation();
   const { data: userProfile, isLoading, error } = useCheckAuthQuery();
 
-  const handleLogout = () => {
-    logout();
-    dispatch(clearUser());
+  const handleLogout = async () => {
+    await logout().unwrap();
+    dispatch(authApiSlice.util.resetApiState()); // Clear all RTK Query cache
     navigate(MainPath.Root);
   };
 
@@ -23,7 +27,7 @@ const useAuth = () => {
       if (userProfile) {
         dispatch(setUser(userProfile));
       } else {
-        dispatch(clearUser());
+        dispatch(setUser(null));
       }
     }
   }, [userProfile, isLoading, error, dispatch]);

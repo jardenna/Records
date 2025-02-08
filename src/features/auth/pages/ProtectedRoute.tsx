@@ -2,11 +2,11 @@ import React from 'react';
 import { Navigate, Outlet, useLocation } from 'react-router';
 import Skeleton from '../../../components/skeleton/Skeleton';
 import { MainPath } from '../../../types/enums';
-import { useCheckAuthQuery } from '../authApiSlice';
+import useAuth from '../hooks/useAuth';
 
 const ProtectedRoute: React.FC = () => {
   const location = useLocation();
-  const { data: userProfile, isLoading } = useCheckAuthQuery();
+  const { currentUser, isLoading } = useAuth();
 
   if (isLoading) {
     return (
@@ -16,7 +16,7 @@ const ProtectedRoute: React.FC = () => {
     );
   }
 
-  return userProfile ? (
+  return currentUser ? (
     <Outlet />
   ) : (
     <Navigate to={MainPath.Login} state={{ from: location }} replace />
