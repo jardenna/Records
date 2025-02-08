@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router';
 import { useAppDispatch, useAppSelector } from '../../../app/hooks';
+import { MainPath } from '../../../types/enums';
 import { useCheckAuthQuery, useSendLogoutMutation } from '../authApiSlice';
 import { selectUser, setUser } from '../authSlice';
 
@@ -11,9 +12,10 @@ const useAuth = () => {
   const [sendLogout, { isSuccess }] = useSendLogoutMutation();
 
   const { data: userProfile, isLoading, error } = useCheckAuthQuery();
+
   useEffect(() => {
     if (isSuccess) {
-      navigate('/records');
+      navigate(MainPath.Root);
     }
   }, [isSuccess, navigate]);
 

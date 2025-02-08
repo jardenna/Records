@@ -1,12 +1,12 @@
 import { FC } from 'react';
-import { NavLink, useLocation } from 'react-router';
-import Dropdown from '../../components/dropdown/Dropdown';
+import { useLocation } from 'react-router';
 import Icon, { IconName } from '../../components/icons/Icon';
 import { PrimaryActionBtnProps } from '../../components/modal/Modal';
 import useAuth from '../../features/auth/hooks/useAuth';
 import useLanguage from '../../features/language/useLanguage';
-import { BtnVariant, MainPath } from '../../types/enums';
+import { MainPath } from '../../types/enums';
 import NavItemList from './Nav';
+import NavAuthContainer from './navAuthContainer/NavAuthContainer';
 import { navItemsList } from './navItemsList';
 
 const MainNav: FC = () => {
@@ -45,6 +45,13 @@ const MainNav: FC = () => {
 
   const user = currentUser?.user;
 
+  const triggerContent = (
+    <>
+      <Icon iconName={IconName.User} title="user" />
+      {user ? `${language.welcome} ${user.username}` : language.login}
+    </>
+  );
+
   return (
     <article className="main-nav">
       <div className="nav-container container">
@@ -54,22 +61,12 @@ const MainNav: FC = () => {
         <div className="nav-title flex-1">
           <h1>{title}</h1>
         </div>
-        <div className="flex-1">
-          <Icon iconName={IconName.User} title={language.user} />{' '}
-          {!user ? (
-            <NavLink to={MainPath.Login}>{language.login}</NavLink>
-          ) : (
-            <Dropdown
-              iconName={IconName.User}
-              iconTitle={language.user}
-              btnVariant={BtnVariant.Ghost}
-              info="Velkommen Helle"
-              actionBtn={actionBtn}
-            >
-              <p>{language.logout}</p>
-            </Dropdown>
-          )}
-        </div>
+        <NavAuthContainer
+          triggerContent={triggerContent}
+          dropdownContent={language.logout}
+          actionBtn={actionBtn}
+          user={user || null}
+        />
       </div>
     </article>
   );

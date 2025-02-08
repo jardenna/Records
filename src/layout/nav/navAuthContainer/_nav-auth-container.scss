@@ -1,0 +1,12 @@
+.nav-auth-container {
+  display: flex;
+  justify-content: flex-end;
+  gap: 4px;
+  align-items: center;
+
+  .nav-item {
+    display: flex;
+    align-items: flex-end;
+    gap: 8px;
+  }
+}

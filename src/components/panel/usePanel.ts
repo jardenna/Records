@@ -3,11 +3,7 @@ import { useLocation } from 'react-router';
 import useKeyPress from '../../hooks/useKeyPress';
 import { KeyCode } from '../../types/enums';
 
-interface UsePanelProps {
-  callback?: () => void;
-}
-
-const usePanel = ({ callback }: UsePanelProps) => {
+const usePanel = () => {
   const location = useLocation();
   const [isPanelHidden, setIsPanelHidden] = useState(true);
 
@@ -18,9 +14,6 @@ const usePanel = ({ callback }: UsePanelProps) => {
   };
 
   const handleHidePanel = () => {
-    if (callback) {
-      callback();
-    }
     setIsPanelHidden(true);
   };
 
