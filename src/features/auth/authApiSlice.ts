@@ -7,6 +7,7 @@ import {
 } from '../../app/api/apiTypes';
 import authEndpoints from '../../app/authEndpoints';
 import { TagTypesEnum } from '../../types/types';
+import { logout } from './authSlice';
 
 export const authApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
@@ -32,6 +33,23 @@ export const authApiSlice = apiSlice.injectEndpoints({
       }),
       invalidatesTags: [TagTypesEnum.Auth],
     }),
+    sendLogout: builder.mutation({
+      query: () => ({
+        url: '/auth/logout',
+        method: 'POST',
+      }),
+      async onQueryStarted(_arg, { dispatch, queryFulfilled }) {
+        try {
+          await queryFulfilled;
+
+          dispatch(logout());
+          dispatch(apiSlice.util.resetApiState());
+        } catch (err) {
+          console.log(err);
+        }
+      },
+    }),
+
     checkAuth: builder.query<AuthResponse, void>({
       query: () => authEndpoints.checkAuth,
       providesTags: [TagTypesEnum.Auth],
@@ -43,5 +61,5 @@ export const {
   useRegisterMutation,
   useLoginMutation,
   useCheckAuthQuery,
-  useLogoutMutation,
+  useSendLogoutMutation,
 } = authApiSlice;

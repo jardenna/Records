@@ -1,16 +1,15 @@
-import { FC } from 'react';
-import { NavLink, useLocation } from 'react-router';
-import Dropdown from '../../components/dropdown/Dropdown';
+import { FC, useEffect } from 'react';
+import { NavLink, useLocation, useNavigate } from 'react-router';
 import Icon, { IconName } from '../../components/icons/Icon';
-import { PrimaryActionBtnProps } from '../../components/modal/Modal';
+import { useSendLogoutMutation } from '../../features/auth/authApiSlice';
 import useAuth from '../../features/auth/hooks/useAuth';
 import useLanguage from '../../features/language/useLanguage';
-import { BtnVariant, MainPath } from '../../types/enums';
+import { MainPath } from '../../types/enums';
 import NavItemList from './Nav';
 import { navItemsList } from './navItemsList';
 
 const MainNav: FC = () => {
-  const { currentUser, logout } = useAuth();
+  const { currentUser } = useAuth();
 
   const location = useLocation();
 
@@ -39,17 +38,30 @@ const MainNav: FC = () => {
   };
 
   const title = getTitle(location.pathname);
+  const navigate = useNavigate();
+  const [sendLogout, { isLoading, isSuccess }] = useSendLogoutMutation();
 
-  const handleLogout = async () => {
-    logout();
-  };
+  // const handleLogout = async () => {
+  //   logout();
+  // };
 
-  const actionBtn: PrimaryActionBtnProps = {
-    onClick: handleLogout,
-    label: language.logout,
-  };
+  useEffect(() => {
+    if (isSuccess) {
+      navigate('/');
+    }
+  }, [isSuccess, navigate]);
+
+  if (isLoading) {
+    return <p>Logging Out...</p>;
+  }
+
+  // const actionBtn: PrimaryActionBtnProps = {
+  //   onClick: handleLogout,
+  //   label: language.logout,
+  // };
 
   const user = currentUser?.user;
+  console.log(user);
 
   return (
     <article className="main-nav">
@@ -65,15 +77,14 @@ const MainNav: FC = () => {
           {!user ? (
             <NavLink to={MainPath.Login}>{language.login}</NavLink>
           ) : (
-            <Dropdown
-              iconName={IconName.User}
-              iconTitle={language.user}
-              btnVariant={BtnVariant.Ghost}
-              info="Velkommen Helle"
-              actionBtn={actionBtn}
+            <button
+              type="button"
+              className="icon-button"
+              title="Logout"
+              onClick={sendLogout}
             >
-              <p>{language.logout}</p>
-            </Dropdown>
+              Logout
+            </button>
           )}
         </div>
       </div>
