@@ -26,14 +26,8 @@ export const authApiSlice = apiSlice.injectEndpoints({
       }),
       invalidatesTags: [TagTypesEnum.Auth],
     }),
-    logout: builder.mutation<OmittedLogoutResponse, void>({
-      query: () => ({
-        url: authEndpoints.logout,
-        method: 'POST',
-      }),
-      invalidatesTags: [TagTypesEnum.Auth],
-    }),
-    sendLogout: builder.mutation({
+
+    sendLogout: builder.mutation<OmittedLogoutResponse, void>({
       query: () => ({
         url: '/auth/logout',
         method: 'POST',

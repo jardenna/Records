@@ -1,19 +1,21 @@
 import { useEffect } from 'react';
+import { useNavigate } from 'react-router';
 import { useAppDispatch, useAppSelector } from '../../../app/hooks';
-import { useCheckAuthQuery } from '../authApiSlice';
+import { useCheckAuthQuery, useSendLogoutMutation } from '../authApiSlice';
 import { selectUser, setUser } from '../authSlice';
 
 const useAuth = () => {
+  const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const currentUser = useAppSelector(selectUser);
+  const [sendLogout, { isSuccess }] = useSendLogoutMutation();
 
   const { data: userProfile, isLoading, error } = useCheckAuthQuery();
-
-  // const handleLogout = async () => {
-  //   await logout().unwrap();
-  //   dispatch(authApiSlice.util.resetApiState()); // Clear all RTK Query cache
-  //   navigate(MainPath.Root);
-  // };
+  useEffect(() => {
+    if (isSuccess) {
+      navigate('/records');
+    }
+  }, [isSuccess, navigate]);
 
   useEffect(() => {
     if (!isLoading) {
@@ -25,7 +27,7 @@ const useAuth = () => {
     }
   }, [userProfile, isLoading, error, dispatch]);
 
-  return { currentUser, isLoading, error };
+  return { currentUser, isLoading, error, logout: sendLogout };
 };
 
 export default useAuth;
