@@ -1,55 +1,47 @@
-import { FC, ReactNode, useState } from 'react';
-import useKeyPress from '../../hooks/useKeyPress';
-import { BtnVariant, KeyCode } from '../../types/enums';
+import { FC, ReactNode, useRef } from 'react';
+import useClickOutside from '../../hooks/useClickOutside';
+import { BtnVariant } from '../../types/enums';
 import Button from '../Button';
-import IconContent from '../IconContent';
-import { IconName } from '../icons/Icon';
 import { PrimaryActionBtnProps } from '../modal/Modal';
+import usePanel from '../panel/usePanel';
 import './_dropdown.scss';
+import DropdownTrigger from './DropdownTrigger';
 
 interface DropdownProps {
   actionBtn: PrimaryActionBtnProps;
   children: ReactNode;
-  iconName: IconName;
-  iconTitle: string;
   btnVariant?: BtnVariant;
-  info?: string;
+  triggerContent?: ReactNode;
 }
 
 const Dropdown: FC<DropdownProps> = ({
   actionBtn,
   children,
-  iconName,
-  iconTitle,
   btnVariant = BtnVariant.Ghost,
-  info,
+  triggerContent,
 }) => {
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  useKeyPress(() => setIsDropdownOpen(false), [KeyCode.Esc]);
+  const { isPanelHidden, onTogglePanel, onHidePanel } = usePanel();
 
-  const handleToggleDropdown = () => {
-    setIsDropdownOpen(!isDropdownOpen);
-  };
-
-  const handleCloseDropdown = () => {
+  const handleCallback = () => {
     actionBtn.onClick();
-    setIsDropdownOpen(false);
+    onHidePanel();
   };
-
+  const myRef = useRef<HTMLDivElement>(null);
+  useClickOutside(myRef, () => onHidePanel());
   return (
     <div className="dropdown-container">
-      <Button
-        variant={btnVariant}
-        onClick={handleToggleDropdown}
+      <DropdownTrigger
+        btnVariant={btnVariant}
+        onClick={onTogglePanel}
         className="user-btn"
       >
-        <IconContent iconName={iconName} title={iconTitle} />{' '}
-        {info && <span>{info}</span>}
-      </Button>
-      {isDropdownOpen && (
-        <section className="dropdown">
+        {triggerContent}
+      </DropdownTrigger>
+
+      {!isPanelHidden && (
+        <section className="dropdown" ref={myRef}>
           {children}
-          <Button onClick={handleCloseDropdown}>{actionBtn.label}</Button>
+          <Button onClick={handleCallback}>{actionBtn.label}</Button>
         </section>
       )}
     </div>
