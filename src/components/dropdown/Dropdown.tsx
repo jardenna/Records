@@ -21,25 +21,30 @@ const Dropdown: FC<DropdownProps> = ({
   triggerContent,
 }) => {
   const { isPanelHidden, onTogglePanel, onHidePanel } = usePanel();
+  const panelRef = useRef<HTMLDivElement>(null);
+  const ariaControls = 'dropdown';
+
+  useClickOutside(panelRef, () => onHidePanel());
 
   const handleCallback = () => {
     actionBtn.onClick();
     onHidePanel();
   };
-  const myRef = useRef<HTMLDivElement>(null);
-  useClickOutside(myRef, () => onHidePanel());
+
   return (
     <div className="dropdown-container">
       <DropdownTrigger
         btnVariant={btnVariant}
         onClick={onTogglePanel}
         className="user-btn"
+        ariaExpanded={!isPanelHidden}
+        ariaControls={ariaControls}
       >
         {triggerContent}
       </DropdownTrigger>
 
       {!isPanelHidden && (
-        <section className="dropdown" ref={myRef}>
+        <section className="dropdown" ref={panelRef} id={ariaControls}>
           {children}
           <Button onClick={handleCallback}>{actionBtn.label}</Button>
         </section>
