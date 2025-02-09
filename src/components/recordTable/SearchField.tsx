@@ -33,7 +33,7 @@ const SearchField: FC<SearchFieldProps> = ({
         />
         {value && (
           <>
-            <VisuallyHidden>Has value</VisuallyHidden>
+            <VisuallyHidden>{language.filtersApplied}</VisuallyHidden>
             <span className="dot" aria-hidden />
           </>
         )}

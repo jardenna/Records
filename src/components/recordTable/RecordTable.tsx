@@ -1,6 +1,7 @@
 import { useRef, useState } from 'react';
 import useLanguage from '../../features/language/useLanguage';
 import useClickOutside from '../../hooks/useClickOutside';
+import { MainPath } from '../../layout/nav/enums';
 import { BtnVariant } from '../../types/enums';
 import { ChangeInputType } from '../../types/types';
 import DeleteRecordModal from '../DeleteRecordModal';
@@ -13,7 +14,6 @@ import VisuallyHidden from '../VisuallyHidden';
 import './_table.scss';
 import SearchField from './SearchField';
 import SortBtn from './SortBtn';
-import { MainPath } from '../../layout/nav/enums';
 
 interface BaseTableProps {
   id: string | null;
@@ -105,10 +105,10 @@ const RecordTable = <T extends Record<string, any>>({
             ))}
             <th>
               <div className="action-header">
-                Actions
+                {language.actions}
                 <IconBtn
                   iconName={IconName.Undo}
-                  title={language.clearInputs}
+                  title={language.resetFiltersAndSorting}
                   onClick={onClearAllSearch}
                 />
               </div>
