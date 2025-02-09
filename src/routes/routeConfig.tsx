@@ -10,7 +10,7 @@ import ErrorPage from '../pages/errorPage/ErrorPage';
 import HomePage from '../pages/HomePage';
 import RecordTablePage from '../pages/RecordTablePage';
 import UpdateRecordPage from '../pages/UpdateRecordPage';
-import { MainPath } from '../types/enums';
+import { MainPath } from '../layout/nav/enums';
 
 const routeConfig = createBrowserRouter([
   {
@@ -31,21 +31,22 @@ const routeConfig = createBrowserRouter([
           },
         ],
       },
-      {
-        index: true,
-        element: <HomePage />,
-      },
-      {
-        path: MainPath.Records,
-        element: <RecordTablePage />,
-      },
-      {
-        path: `${MainPath.Details}/:id`,
-        element: <DetailsPage />,
-      },
+
       {
         element: <ProtectedRoute />,
         children: [
+          {
+            index: true,
+            element: <HomePage />,
+          },
+          {
+            path: MainPath.Records,
+            element: <RecordTablePage />,
+          },
+          {
+            path: `${MainPath.Details}/:id`,
+            element: <DetailsPage />,
+          },
           {
             path: `${MainPath.Update}/:id`,
             element: <UpdateRecordPage />,
