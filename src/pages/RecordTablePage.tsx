@@ -20,9 +20,9 @@ import {
   useGetPaginatedRecordsQuery,
 } from '../features/records/recordsApiSlice';
 import useFormValidation from '../hooks/useFormValidation';
+import { MainPath } from '../layout/nav/enums';
 import { LabelKeys } from '../types/enums';
 import { ChangeInputType } from '../types/types';
-import { MainPath } from '../layout/nav/enums';
 
 const RecordTablePage: FC = () => {
   const location = useLocation();
