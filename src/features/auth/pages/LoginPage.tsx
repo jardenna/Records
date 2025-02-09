@@ -1,5 +1,6 @@
 import { FC, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router';
+import useMessagePopup from '../../../components/messagePopup/useMessagePopup';
 import useFormValidation from '../../../hooks/useFormValidation';
 import { MainPath } from '../../../layout/nav/enums';
 import useLanguage from '../../language/useLanguage';
@@ -16,6 +17,8 @@ const LoginPage: FC = () => {
     email: '',
     password: '',
   };
+
+  const { addMessagePopup } = useMessagePopup();
   const from = location.state?.from?.pathname || MainPath.Root;
 
   const { values, onChange, onSubmit } = useFormValidation({
@@ -28,11 +31,22 @@ const LoginPage: FC = () => {
   async function handleLoginUser() {
     try {
       const result = await loginUser(values).unwrap();
-      if (!result.success) {
-        console.log(result.message);
+
+      if (result.success === false) {
+        addMessagePopup({
+          message: result.message,
+          messagePopupType: 'error',
+          componentType: 'notification',
+          position: 'top-center',
+        });
       }
-    } catch (error) {
-      console.log(error);
+    } catch (error: any) {
+      addMessagePopup({
+        messagePopupType: 'error',
+        message: error.data.message,
+        componentType: 'notification',
+        position: 'top-center',
+      });
     }
   }
 
@@ -47,7 +61,7 @@ const LoginPage: FC = () => {
       values={values}
       labelText={language.login}
       onSubmit={onSubmit}
-      isLoading={isLoginLoading || isAuthLoading} // Show loading if either login or auth is loading
+      isLoading={isLoginLoading || isAuthLoading}
       legendText={language.userInfo}
       onChange={onChange}
     />
