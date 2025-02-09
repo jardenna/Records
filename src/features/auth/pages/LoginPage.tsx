@@ -27,13 +27,15 @@ const LoginPage: FC = () => {
 
   async function handleLoginUser() {
     try {
-      await loginUser(values).unwrap();
+      const result = await loginUser(values).unwrap();
+      if (!result.success) {
+        console.log(result.message);
+      }
     } catch (error) {
       console.log(error);
     }
   }
 
-  // 🚀 NEW: Navigate only after user is fully authenticated
   useEffect(() => {
     if (isSuccess && currentUser) {
       navigate(from, { replace: true });
