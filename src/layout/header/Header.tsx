@@ -1,13 +1,14 @@
 import { FC } from 'react';
 import { Link } from 'react-router';
 import useLanguage from '../../features/language/useLanguage';
-import { MainPath } from '../../types/enums';
 import LayoutElement from '../LayoutElement';
-import Nav from '../nav/Nav';
+import { MainPath } from '../nav/enums';
+import MainNav from '../nav/MainNav';
 import './_header.scss';
 
 const Header: FC = () => {
   const { language } = useLanguage();
+
   return (
     <LayoutElement
       as="header"
@@ -17,14 +18,14 @@ const Header: FC = () => {
       <article className="hero">
         <div className="container">
           <div className="logo">
-            <Link to={MainPath.Root}>
+            <Link to={MainPath.Root} className="logo-container">
               <span>Plade</span>
-              <span>samling</span>
+              <span className="logo-item">samling</span>
             </Link>
           </div>
         </div>
       </article>
-      <Nav />
+      <MainNav />
     </LayoutElement>
   );
 };

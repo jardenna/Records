@@ -6,7 +6,7 @@ import CreateOrUpdateForm from '../components/createOrUpdateForm/CreateOrUpdateF
 import useMessagePopup from '../components/messagePopup/useMessagePopup';
 import useLanguage from '../features/language/useLanguage';
 import { useCreateOrUpdateRecordMutation } from '../features/records/recordsApiSlice';
-import { MainPath } from '../types/enums';
+import { MainPath } from '../layout/nav/enums';
 
 const CreateRecordPage: FC = () => {
   const navigate = useNavigate();

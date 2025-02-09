@@ -38,6 +38,7 @@ body {
   font-size: rem(14px);
   color: $color-primary-text;
   font-family: $font-primary;
+  letter-spacing: 0.04rem;
 
   @include max-size($medium) {
     font-size: rem(16px);
@@ -45,8 +46,9 @@ body {
 }
 
 h1 {
-  font-size: rem(32px);
+  font-size: rem(28px);
   margin: 0;
+  font-family: $font-secondary;
 
   @include max-size($medium) {
     font-size: rem(24px);
@@ -56,7 +58,7 @@ h1 {
 .container {
   max-width: rem(1400px);
   margin: 0 auto;
-  padding: 8px 20px;
+  padding: 30px 20px;
   width: 100%;
 }
 

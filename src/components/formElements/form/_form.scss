@@ -26,7 +26,7 @@ input[type='number'] {
 
 textarea {
   resize: none;
-  min-height: rem(116px);
+  min-height: rem(128px);
 }
 
 .input-container {
@@ -37,6 +37,10 @@ textarea {
 
   .form-label {
     margin-bottom: 4px;
+  }
+
+  input {
+    height: rem(44px);
   }
 
   input,
@@ -135,18 +139,6 @@ textarea {
   .form-label-container {
     order: 2;
   }
-}
-
-fieldset {
-  border: 0;
-  position: relative;
-  padding: 0;
-}
-
-legend {
-  position: absolute;
-  top: 20px;
-  left: 0;
 }
 
 .form-info {

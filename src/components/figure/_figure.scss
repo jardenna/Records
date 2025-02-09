@@ -6,13 +6,13 @@ figure {
   flex-direction: column;
   align-items: center;
   gap: 12px;
+  width: 100%;
 
   figcaption {
     width: 100%;
   }
 
-  img {
-    max-width: rem(316px);
+  figure-img {
     border-radius: 4px;
   }
 }

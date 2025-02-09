@@ -9,6 +9,7 @@ export type OmittedRegisterRequest = Omit<UserRequest, 'username'>;
 export interface AuthResponse {
   message: string;
   success: boolean;
+  user: UserRequest;
 }
 
 export interface FirstSixRecordsResponse {
@@ -21,6 +22,7 @@ export enum SortOrder {
 }
 
 export type OmittedRecordRequest = Omit<Records, 'id'>;
+export type OmittedLogoutResponse = Omit<AuthResponse, 'user'>;
 
 export interface UpdateAlbumRequest {
   file: File | null;

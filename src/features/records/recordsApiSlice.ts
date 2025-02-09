@@ -16,7 +16,6 @@ export const recordsApiSlice = apiSlice.injectEndpoints({
     getFirstSixRecords: builder.query<FirstSixRecordsResponse, void>({
       query: () => `${endpoints.firstSix}`,
       transformResponse: (responseData: Records[]) => transformId(responseData),
-      providesTags: [TagTypesEnum.Records],
     }),
     getPaginatedRecords: builder.query<RecordsResponse, RecordsRequest>({
       query: ({

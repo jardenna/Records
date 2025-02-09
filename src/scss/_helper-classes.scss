@@ -15,6 +15,10 @@
   flex-direction: column;
 }
 
+.flex-1 {
+  flex: 1;
+}
+
 .visually-hidden {
   clip: rect(1px, 1px, 1px, 1px);
   overflow: hidden;
@@ -30,7 +34,7 @@
 
 .grid {
   display: grid;
-  gap: 12px;
+  gap: 24px;
 
   &.two-col {
     grid-template-columns: repeat(2, 1fr);

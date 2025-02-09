@@ -11,7 +11,7 @@ interface FigureProps {
 const Figure: FC<FigureProps> = ({ figcaption, src, alt, className = '' }) => (
   <figure className={className}>
     {figcaption && <figcaption>{figcaption}</figcaption>}
-    <img src={src} alt={alt} loading="lazy" />
+    <img className="figure-img" src={src} alt={alt} loading="lazy" />
   </figure>
 );
 

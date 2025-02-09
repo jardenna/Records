@@ -1,7 +1,7 @@
 import { useRef, useState } from 'react';
 import useLanguage from '../../features/language/useLanguage';
 import useClickOutside from '../../hooks/useClickOutside';
-import { BtnVariant, MainPath } from '../../types/enums';
+import { BtnVariant } from '../../types/enums';
 import { ChangeInputType } from '../../types/types';
 import DeleteRecordModal from '../DeleteRecordModal';
 import IconBtn from '../IconBtn';
@@ -13,6 +13,7 @@ import VisuallyHidden from '../VisuallyHidden';
 import './_table.scss';
 import SearchField from './SearchField';
 import SortBtn from './SortBtn';
+import { MainPath } from '../../layout/nav/enums';
 
 interface BaseTableProps {
   id: string | null;

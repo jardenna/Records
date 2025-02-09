@@ -1,0 +1,62 @@
+@use './globals' as *;
+
+.main-nav {
+  background-color: $color-background;
+}
+
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .nav-title {
+    display: flex;
+    justify-content: center;
+  }
+
+  .nav-dropdown {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .user-btn {
+    padding: 0;
+    display: flex;
+    align-items: flex-end;
+    gap: 8px;
+  }
+
+  .dropdown {
+    max-width: 240px;
+  }
+
+  &.container {
+    padding: 0 20px;
+  }
+}
+
+.nav-list {
+  display: flex;
+}
+
+.nav-item {
+  border-bottom: 3px solid transparent;
+  display: flex;
+  padding: 20px 30px;
+
+  &:hover,
+  &.active {
+    color: $color-blue-dark;
+    border-color: $color-blue-dark;
+  }
+}
+
+.sub-nav {
+  .nav-item {
+    padding: 8px 40px;
+
+    &:not(.active, :hover) {
+      border-color: $color-border;
+    }
+  }
+}

@@ -88,12 +88,14 @@ const loginUser = async (req, res) => {
     });
   }
 };
+
 // Middleware to check if user is logged in
+const tokenBlacklist = new Set(); // Store invalidated tokens in memory
 
 const authMiddleware = async (req, res, next) => {
   const token = req.cookies.token;
 
-  if (!token) {
+  if (!token || tokenBlacklist.has(token)) {
     return res.status(401).json({
       success: false,
       message: 'Unauthorized user',
@@ -103,7 +105,6 @@ const authMiddleware = async (req, res, next) => {
   try {
     const decoded = jwt.verify(token, 'CLIENT_SECRET_KEY');
     req.user = decoded;
-
     next();
   } catch (error) {
     return res.status(401).json({
@@ -115,6 +116,11 @@ const authMiddleware = async (req, res, next) => {
 
 // Logout
 const logoutUser = (req, res) => {
+  const token = req.cookies.token;
+  if (token) {
+    tokenBlacklist.add(token); // Add token to blacklist
+  }
+
   res.clearCookie('token').json({
     success: true,
     message: 'Logged out successfully!',

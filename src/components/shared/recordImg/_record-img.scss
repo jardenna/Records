@@ -4,11 +4,10 @@
   background-color: $color-blue;
   color: $color-white;
   border-radius: 4px;
-  min-width: rem(496px);
   padding: 30px 50px;
 
-  @include max-size($small) {
-    min-width: auto;
+  .figure-img {
+    max-width: rem(342px);
   }
 }
 
@@ -25,7 +24,7 @@
 
 .record-img-title {
   text-wrap: nowrap;
-  font-size: rem(28px);
+  font-size: rem(20px);
   font-weight: 400;
   margin: 0;
 }

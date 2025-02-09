@@ -20,4 +20,5 @@ const Layout: FC = () => (
     </main>
   </div>
 );
+
 export default Layout;

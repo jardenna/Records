@@ -1,49 +1,40 @@
 import { FC } from 'react';
-import { NavLink, useLocation } from 'react-router';
+import { NavLink } from 'react-router';
 import useLanguage from '../../features/language/useLanguage';
-import { MainPath } from '../../types/enums';
-import './_nav.scss';
+import LayoutElement from '../LayoutElement';
+import { LinkText, MainPath } from './enums';
 
-const Nav: FC = () => {
-  const location = useLocation();
+interface NavItemProps {
+  linkText: LinkText;
+  path: MainPath;
+}
+
+interface NavProps {
+  ariaLabel: string;
+  navItemsList: NavItemProps[];
+  className?: string;
+}
+
+const Nav: FC<NavProps> = ({ navItemsList, ariaLabel, className = '' }) => {
   const { language } = useLanguage();
 
-  const getTitle = (pathname: string): string => {
-    if (pathname === `/${MainPath.Records}`) {
-      return language.albums;
-    }
-    if (pathname === `/${MainPath.Create}`) {
-      return language.createAlbum;
-    }
-    if (pathname.includes(`/${MainPath.Details}`)) {
-      return language.details;
-    }
-    if (pathname.includes(`/${MainPath.Update}`)) {
-      return language.updateAlbum;
-    }
-    if (pathname === MainPath.Root) {
-      return language.home;
-    }
-    return '';
-  };
-
-  const title = getTitle(location.pathname);
+  const localizedNavItems = navItemsList.map((item) => ({
+    ...item,
+    linkText: language[item.linkText] || item.linkText, // Fallback to the key if translation is missing
+  }));
 
   return (
-    <nav className="main-nav" aria-label={language.main}>
-      <div className="container">
-        <h1>{title}</h1>
-        <ul className="main-nav-container">
-          <li className="main-nav-items">
-            <NavLink to={MainPath.Records}>{language.albums}</NavLink>
+    <LayoutElement as="nav" ariaLabel={ariaLabel} className={className}>
+      <ul className="nav-list">
+        {localizedNavItems.map((navItem) => (
+          <li key={navItem.linkText}>
+            <NavLink to={navItem.path} className="nav-item">
+              {navItem.linkText}
+            </NavLink>
           </li>
-          <li className="main-nav-items">
-            <NavLink to={MainPath.Create}>{language.createAlbum}</NavLink>
-          </li>
-        </ul>
-      </div>
-    </nav>
+        ))}
+      </ul>
+    </LayoutElement>
   );
 };
-
 export default Nav;

@@ -1,10 +1,13 @@
 import apiSlice from '../../app/api/apiSlice';
 import {
   AuthResponse,
+  OmittedLogoutResponse,
   OmittedRegisterRequest,
   UserRequest,
 } from '../../app/api/apiTypes';
 import authEndpoints from '../../app/authEndpoints';
+import { TagTypesEnum } from '../../types/types';
+import { logout } from './authSlice';
 
 export const authApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
@@ -21,12 +24,36 @@ export const authApiSlice = apiSlice.injectEndpoints({
         method: 'POST',
         body: user,
       }),
+      invalidatesTags: [TagTypesEnum.Auth],
     }),
+
+    sendLogout: builder.mutation<OmittedLogoutResponse, void>({
+      query: () => ({
+        url: '/auth/logout',
+        method: 'POST',
+      }),
+      async onQueryStarted(_arg, { dispatch, queryFulfilled }) {
+        try {
+          await queryFulfilled;
+
+          dispatch(logout());
+          dispatch(apiSlice.util.resetApiState());
+        } catch (err) {
+          console.log(err);
+        }
+      },
+    }),
+
     checkAuth: builder.query<AuthResponse, void>({
       query: () => authEndpoints.checkAuth,
+      providesTags: [TagTypesEnum.Auth],
     }),
   }),
 });
 
-export const { useRegisterMutation, useLoginMutation, useCheckAuthQuery } =
-  authApiSlice;
+export const {
+  useRegisterMutation,
+  useLoginMutation,
+  useCheckAuthQuery,
+  useSendLogoutMutation,
+} = authApiSlice;

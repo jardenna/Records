@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
 
-type ContainerRefs = {
-  current: Map<HTMLElement, HTMLElement>;
-};
+type ContainerRefs =
+  | { current: Map<HTMLElement, HTMLElement> }
+  | { current: HTMLElement | null };
 
 const useClickOutside = (
   containerRefs: ContainerRefs,
@@ -10,9 +10,18 @@ const useClickOutside = (
 ) => {
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent | TouchEvent) => {
-      const clickedOutside = Array.from(containerRefs.current.values()).every(
-        (ref) => ref && !ref.contains(event.target as Node),
-      );
+      let clickedOutside = false;
+
+      if ('current' in containerRefs && containerRefs.current instanceof Map) {
+        clickedOutside = Array.from(containerRefs.current.values()).every(
+          (ref) => ref && !ref.contains(event.target as Node),
+        );
+      } else if (
+        'current' in containerRefs &&
+        containerRefs.current instanceof HTMLElement
+      ) {
+        clickedOutside = !containerRefs.current.contains(event.target as Node);
+      }
 
       if (clickedOutside) {
         callback();

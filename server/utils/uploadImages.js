@@ -10,7 +10,7 @@ export const errorMsg = (error, res) => {
 
 //Storage
 const storage = multer.diskStorage({
-  destination: './public/images/',
+  destination: './public/images/uploads',
   filename: function (req, file, cb) {
     cb(
       null,

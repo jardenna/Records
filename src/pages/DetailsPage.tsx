@@ -20,7 +20,7 @@ import {
   useGetRecordByIdQuery,
 } from '../features/records/recordsApiSlice';
 import LayoutElement from '../layout/LayoutElement';
-import { MainPath } from '../types/enums';
+import { MainPath } from '../layout/nav/enums';
 
 const DetailsPage: FC = () => {
   const dispatch = useAppDispatch();

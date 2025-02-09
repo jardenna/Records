@@ -1,28 +1,17 @@
-import React, { useEffect } from 'react';
-import { useCheckAuthQuery } from '../authApiSlice';
+import React from 'react';
+import { Navigate, Outlet, useLocation } from 'react-router';
+import { MainPath } from '../../../layout/nav/enums';
+import useAuth from '../hooks/useAuth';
 
 const ProtectedRoute: React.FC = () => {
-  const { data, isLoading, isError } = useCheckAuthQuery();
-  console.log(data);
-  useEffect(() => {
-    if (!isLoading && isError) {
-      // Redirect to login if user is not authenticated
-      //  navigate('/login');
-    }
-  }, [isLoading, isError]);
+  const location = useLocation();
+  const { currentUser } = useAuth();
 
-  if (isLoading) {
-    // Show a loading spinner or message while checking authentication
-    return <div>Loading...</div>;
+  if (!currentUser) {
+    return <Navigate to={MainPath.Login} state={{ from: location }} replace />;
   }
 
-  if (isError) {
-    // If not redirected, display a message or nothing for safety
-    return <div>Redirecting to login...</div>;
-  }
-
-  // If user is authenticated, render the protected content
-  return <>hello</>;
+  return <Outlet />;
 };
 
 export default ProtectedRoute;

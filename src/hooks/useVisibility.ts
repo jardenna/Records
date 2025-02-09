@@ -4,7 +4,7 @@ import useKeyPress from './useKeyPress';
 
 const useVisibility = (
   isOpen: boolean,
-  closeCallback?: () => void,
+  closeCallback: () => void,
   duration?: number, // Auto-dismiss duration in milliseconds
   transitionDuration = 500, // Animation duration in milliseconds
 ) => {
@@ -13,9 +13,7 @@ const useVisibility = (
 
   const handleClosePopup = () => {
     setIsVisible(false);
-    if (closeCallback) {
-      timeoutRef.current = window.setTimeout(closeCallback, transitionDuration);
-    }
+    timeoutRef.current = window.setTimeout(closeCallback, transitionDuration);
   };
 
   useKeyPress(handleClosePopup, [KeyCode.Esc]);

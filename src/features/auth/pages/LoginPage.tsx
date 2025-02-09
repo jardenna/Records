@@ -1,55 +1,56 @@
-import { FC } from 'react';
-import Form from '../../../components/formElements/form/Form';
-import Input from '../../../components/formElements/Input';
-import VisuallyHidden from '../../../components/VisuallyHidden';
+import { FC, useEffect } from 'react';
+import { useLocation, useNavigate } from 'react-router';
 import useFormValidation from '../../../hooks/useFormValidation';
+import { MainPath } from '../../../layout/nav/enums';
 import useLanguage from '../../language/useLanguage';
 import { useLoginMutation } from '../authApiSlice';
+import AuthForm from '../components/AuthForm';
+import useAuth from '../hooks/useAuth';
 
-interface LoginPageProps {}
-
-const LoginPage: FC<LoginPageProps> = () => {
+const LoginPage: FC = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
   const { language } = useLanguage();
+  const { currentUser, isLoading: isAuthLoading } = useAuth(); // Get current user from auth state
   const initialState = {
     email: '',
     password: '',
   };
+  const from = location.state?.from?.pathname || MainPath.Root;
 
   const { values, onChange, onSubmit } = useFormValidation({
     initialState,
-    callback: handleRegisterUser,
+    callback: handleLoginUser,
   });
-  const [loginUser, { isLoading }] = useLoginMutation();
+  const [loginUser, { isLoading: isLoginLoading, isSuccess }] =
+    useLoginMutation();
 
-  // const { data: user } = useCheckAuthQuery();
-  // console.log(user);
-
-  function handleRegisterUser() {
-    loginUser(values);
+  async function handleLoginUser() {
+    try {
+      const result = await loginUser(values).unwrap();
+      if (!result.success) {
+        console.log(result.message);
+      }
+    } catch (error) {
+      console.log(error);
+    }
   }
 
+  useEffect(() => {
+    if (isSuccess && currentUser) {
+      navigate(from, { replace: true });
+    }
+  }, [isSuccess, currentUser, navigate, from]);
+
   return (
-    <Form labelText="Sign up" onSubmit={onSubmit} isLoading={isLoading}>
-      <fieldset className="flex column">
-        <VisuallyHidden as="legend">{language.additionalInfo}</VisuallyHidden>
-        <Input
-          name="email"
-          id="email"
-          value={values.email}
-          labelText="Email"
-          onChange={onChange}
-          required
-        />
-        <Input
-          name="password"
-          id="username"
-          value={values.password}
-          labelText="Password"
-          onChange={onChange}
-          required
-        />
-      </fieldset>
-    </Form>
+    <AuthForm
+      values={values}
+      labelText={language.login}
+      onSubmit={onSubmit}
+      isLoading={isLoginLoading || isAuthLoading} // Show loading if either login or auth is loading
+      legendText={language.userInfo}
+      onChange={onChange}
+    />
   );
 };
 

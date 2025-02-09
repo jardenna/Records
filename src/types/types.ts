@@ -10,6 +10,7 @@ export type BlurEventType = { target: { name: string } };
 export type FormEventType = FormEvent<HTMLFormElement>;
 
 export enum TagTypesEnum {
+  Auth = 'Auth',
   Records = 'Records',
 }
 

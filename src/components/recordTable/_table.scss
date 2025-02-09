@@ -148,13 +148,12 @@ table {
   tbody {
     display: flex;
     flex-direction: column;
+    max-height: rem(400px);
+    overflow: auto;
 
     @include max-size($medium) {
       display: table-row-group;
     }
-
-    max-height: rem(400px);
-    overflow: auto;
 
     td:first-child {
       border-right: 1px solid $color-border;

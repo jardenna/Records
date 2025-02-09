@@ -1,5 +1,6 @@
 import type { Middleware } from '@reduxjs/toolkit';
 import { configureStore, isRejectedWithValue } from '@reduxjs/toolkit';
+import authSliceReducer from '../features/auth/authSlice';
 import languageReducer from '../features/language/languageSlice';
 import messagePopupReducer, {
   addMessagePopup,
@@ -40,6 +41,7 @@ export const rtkQueryErrorLogger: Middleware =
 export const store = configureStore({
   reducer: {
     [apiSlice.reducerPath]: apiSlice.reducer,
+    auth: authSliceReducer,
     modal: modalReducer,
     messagePopup: messagePopupReducer,
     language: languageReducer,
