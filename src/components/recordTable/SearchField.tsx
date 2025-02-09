@@ -22,6 +22,7 @@ const SearchField: FC<SearchFieldProps> = ({
   onToggleSearchField,
 }) => {
   const { language } = useLanguage();
+  const text = `${language.filter} ${language[title]}`;
 
   return (
     <>
@@ -43,10 +44,10 @@ const SearchField: FC<SearchFieldProps> = ({
         type="search"
         name={title}
         id={title}
-        placeholder="Search"
+        placeholder={text}
         value={value}
         onChange={onFilterRows}
-        labelText="Search"
+        labelText={text}
         inputHasNoLabel
       />
     </>
