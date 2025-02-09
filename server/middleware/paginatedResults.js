@@ -12,9 +12,11 @@ const paginatedResults = (model) => {
 
     filterFields.forEach((field) => {
       if (req.query[field]) {
-        filters[field] = { $regex: `${req.query[field]}`, $options: 'i' }; // Match values starting with the query string
+        const trimmedValue = req.query[field].trim(); // Trim the value
+        filters[field] = { $regex: trimmedValue, $options: 'i' };
       }
     });
+
     const results = {};
 
     try {
