@@ -3,7 +3,7 @@ import { useLocation } from 'react-router';
 import useKeyPress from '../../hooks/useKeyPress';
 import { KeyCode } from '../../types/enums';
 
-const usePanel = () => {
+const useAdaptivePanel = () => {
   const location = useLocation();
   const [isPanelHidden, setIsPanelHidden] = useState(true);
 
@@ -28,4 +28,4 @@ const usePanel = () => {
   };
 };
 
-export default usePanel;
+export default useAdaptivePanel;

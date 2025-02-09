@@ -6,7 +6,7 @@ import './_dropdown.scss';
 import DropdownTrigger from './AdaptivePanelTrigger';
 import Dropdown from './Dropdown';
 import Panel, { Variant } from './Panel';
-import usePanel from './usePanel';
+import usePanel from './useAdaptivePanel';
 
 interface AdaptivePanelProps {
   actionBtn: PrimaryActionBtnProps;
