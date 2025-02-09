@@ -10,6 +10,7 @@ export interface InputProps {
   onChange: (event: ChangeInputType) => void;
   value: string | number;
   autoComplete?: string;
+  autoFocus?: boolean;
   checked?: boolean;
   className?: string;
   errorText?: string;
@@ -43,6 +44,7 @@ const Input: FC<InputProps> = ({
   placeholder,
   maxLength,
   autoComplete = 'on',
+  autoFocus,
 }) => {
   const inputClassName = `${type === 'checkbox' || type === 'radio' ? 'checkbox-radio-container' : 'input-container'}`;
   const handleOnInput = (event: ChangeEvent<HTMLInputElement>) => {
@@ -76,6 +78,7 @@ const Input: FC<InputProps> = ({
         onChange={onChange}
         className={className}
         value={value}
+        autoFocus={autoFocus}
         id={id}
         aria-invalid={errorText ? true : undefined}
         aria-required={required || undefined}
