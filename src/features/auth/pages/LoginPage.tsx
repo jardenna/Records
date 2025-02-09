@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { useLocation, useNavigate } from 'react-router';
 import useFormValidation from '../../../hooks/useFormValidation';
-import { MainPath } from '../../../types/enums';
+import { MainPath } from '../../../layout/nav/enums';
 import useLanguage from '../../language/useLanguage';
 import { useLoginMutation } from '../authApiSlice';
 import AuthForm from '../components/AuthForm';

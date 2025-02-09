@@ -1,13 +1,3 @@
-export enum MainPath {
-  Create = 'create',
-  Details = 'details',
-  Login = 'login',
-  Records = 'records',
-  Register = 'register',
-  Root = '/',
-  Update = 'update',
-}
-
 export enum LabelKeys {
   Artist = 'artist',
   Cover = 'cover',

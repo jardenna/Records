@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router';
 import { useAppDispatch, useAppSelector } from '../../../app/hooks';
-import { MainPath } from '../../../types/enums';
+import { MainPath } from '../../../layout/nav/enums';
 import { useCheckAuthQuery, useSendLogoutMutation } from '../authApiSlice';
 import { selectUser, setUser } from '../authSlice';
 

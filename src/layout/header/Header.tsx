@@ -1,8 +1,8 @@
 import { FC } from 'react';
 import { Link } from 'react-router';
 import useLanguage from '../../features/language/useLanguage';
-import { MainPath } from '../../types/enums';
 import LayoutElement from '../LayoutElement';
+import { MainPath } from '../nav/enums';
 import MainNav from '../nav/MainNav';
 import './_header.scss';
 

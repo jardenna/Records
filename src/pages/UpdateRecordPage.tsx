@@ -9,7 +9,7 @@ import {
   useCreateOrUpdateRecordMutation,
   useGetRecordByIdQuery,
 } from '../features/records/recordsApiSlice';
-import { MainPath } from '../types/enums';
+import { MainPath } from '../layout/nav/enums';
 
 const UpdateRecord: FC = () => {
   const navigate = useNavigate();

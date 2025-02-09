@@ -1,8 +1,8 @@
 import React from 'react';
 import { Navigate, Outlet, useLocation } from 'react-router';
 import Skeleton from '../../../components/skeleton/Skeleton';
-import { MainPath } from '../../../types/enums';
 import useAuth from '../hooks/useAuth';
+import { MainPath } from '../../../layout/nav/enums';
 
 const ProtectedRoute: React.FC = () => {
   const location = useLocation();

@@ -4,7 +4,7 @@ import Icon, { IconName } from '../../components/icons/Icon';
 import { PrimaryActionBtnProps } from '../../components/modal/Modal';
 import useAuth from '../../features/auth/hooks/useAuth';
 import useLanguage from '../../features/language/useLanguage';
-import { MainPath } from '../../types/enums';
+import { MainPath } from './enums';
 import NavItemList from './Nav';
 import NavAuthContainer from './navAuthContainer/NavAuthContainer';
 import { navItemsList } from './navItemsList';
@@ -56,7 +56,12 @@ const MainNav: FC = () => {
     <article className="main-nav">
       <div className="nav-container container">
         <div className="flex-1">
-          <NavItemList navItemsList={navItemsList} ariaLabel={language.main} />
+          {user && (
+            <NavItemList
+              navItemsList={navItemsList}
+              ariaLabel={language.main}
+            />
+          )}
         </div>
         <div className="nav-title flex-1">
           <h1>{title}</h1>
