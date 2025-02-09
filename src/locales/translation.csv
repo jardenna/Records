@@ -1,24 +1,24 @@
 ﻿key;en;da
 actions;Actions;Handlinger
+additionalInfo;Additional info;Supplerende information
 album;Album;Album
+albumCollection;Records collection;Pladesamling
 albumCreatedSuccessfully;Album created successfully;Nyt album blev oprettet
 albumDetails;Album details;Album detaljer
-albumInfo;Album info;Album info
-additionalInfo;Additional info;Supplerende information
-albums;Albums;Album
-albumCollection;Records collection;Pladesamling
 albumDetails;Album details;Album detaljer
+albumInfo;Album info;Album info
+albums;Albums;Album
 albumsSmall;albums;album
 albumsTable;Album table;Album tabel
 albumUpdatedSuccessfully;Album updated successfully;Album blev opdateret
 all;All;Alle
 and;and;og
 artist;Band / Artist;Gruppe / Kunstner
+authImgAlt;Young people listening to records smiling.;Unge mennesker lytter til plader og smiler.
 cancel;Cancel;Annuller
-confirmPassword;Confirm password;Gentag adgangskode
 close;Close;Luk
-sureToDelete;Are you sure you want to Delete;Er du sikker på at du vil slette
 closeDialog;Close dialog;Luk dialog
+confirmPassword;Confirm password;Gentag adgangskode
 cover;Cover;Cover
 createAlbum;Create album;Opret album
 currentlySelected;Currently selected;Valgt
@@ -38,16 +38,16 @@ gotoNextPage;Go to next page;Gå til næste side
 gotoPrevPage;Go to previous page;Gå til forrige side
 home;Home;Hjem
 insertCover;Insert cover;Indsæt cover
-jumpPagesForth;Jump forth;Hop frem
 jumpPagesBack;Jump back;Hop tilbage
+jumpPagesForth;Jump forth;Hop frem
 label;Label;Label
 login;Login;Log ind
 logout;Log out;Log ud
 main;Main;Primær
 mustBeGreaterEqual;Must be greater than or equal to;Skal være større end eller lig med
 niceToKnow;Nice to know;Værd at vide
-noInfo;No info;Ikke oplyst
 noAlbumFound;No Albums found;Ingen albums blev fundet
+noInfo;No info;Ikke oplyst
 numOfRecords;Number of records;Antal lp(er)
 of;of;af
 origin;Origin;Oprindelse
@@ -57,15 +57,16 @@ pleaseEnter;Please enter;Indsæt venligst
 price;Price;Pris
 prodYear;Production year;Produktions år
 recordNo;Record number;Pladenummer
+released;Last released;Senest udgivet
 resetFiltersAndSorting;Reset filters and sorting;Nulstil filtre og sortering
 resultsPerPage;Results per page;Resultater pr side
 retry;Retry;Forsøg igen
-released;Last released;Senest udgivet
 showing;Showing;Viser
 signup;Signup;Opret bruger
 somethingWentWrong;Something went wrong;Noget gik galt
 sortBy;Sort by;Sorter efter
 sub;Sub;Sekundær
+sureToDelete;Are you sure you want to Delete;Er du sikker på at du vil slette
 title;Title;Titel
 to;to;til
 updateAlbum;Update album;Opdater album
@@ -74,7 +75,6 @@ user;User;Bruger
 userInfo;User info;Bruger info
 username;UserName;Brugernavn
 welcome;Welcome;Velkommen
-yearBetween;a year between;et år mellem
 yearAfter;a year after;et år efter
 yearAfterOrEqual;a year after or equal to;et år efter eller lig med
-authImgAlt;Young people listening to records smiling.;Unge mennesker lytter til plader og smiler.
+yearBetween;a year between;et år mellem
