@@ -4,6 +4,7 @@ import { ChangeInputType } from '../../types/types';
 import Input from '../formElements/Input';
 import IconBtn from '../IconBtn';
 import { IconName } from '../icons/Icon';
+import VisuallyHidden from '../VisuallyHidden';
 
 interface SearchFieldProps {
   onFilterRows: (e: ChangeInputType) => void;
@@ -30,7 +31,12 @@ const SearchField: FC<SearchFieldProps> = ({
           onClick={onToggleSearchField}
           iconName={IconName.Filter}
         />
-        {value && <span className="dot" />}
+        {value && (
+          <>
+            <VisuallyHidden>Has value</VisuallyHidden>
+            <span className="dot" aria-hidden />
+          </>
+        )}
       </div>
       <Input
         className={`search-field ${showSearchField ? 'active' : ''}`}
