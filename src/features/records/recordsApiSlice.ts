@@ -13,7 +13,7 @@ import { createFormData, createQueryOptions } from './utils';
 
 export const recordsApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
-    getFirstSixRecords: builder.query<FirstSixRecordsResponse, void>({
+    getLatestSixRecords: builder.query<FirstSixRecordsResponse, void>({
       query: () => `${endpoints.firstSix}`,
       transformResponse: (responseData: Records[]) => transformId(responseData),
     }),
@@ -73,7 +73,7 @@ export const recordsApiSlice = apiSlice.injectEndpoints({
 });
 
 export const {
-  useGetFirstSixRecordsQuery,
+  useGetLatestSixRecordsQuery,
   useGetPaginatedRecordsQuery,
   useGetRecordByIdQuery,
   useCreateOrUpdateRecordMutation,

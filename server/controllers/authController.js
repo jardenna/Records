@@ -1,6 +1,7 @@
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import User from '../models/UserModel.js';
+import { t } from './translator.js';
 
 // Register
 const registerUser = async (req, res) => {
@@ -11,7 +12,7 @@ const registerUser = async (req, res) => {
     if (checkUser) {
       return res.json({
         success: false,
-        message: 'User already exists. Please login',
+        message: t('userAlreadyExist', req.lang),
       });
     }
 
@@ -25,12 +26,12 @@ const registerUser = async (req, res) => {
     await newUser.save();
     res.status(200).json({
       success: true,
-      message: 'Registration successful',
+      message: t('signupSucceeded', req.lang),
     });
   } catch (error) {
     res.status(500).json({
       success: false,
-      message: `User registration failed`,
+      message: t('signupFailed', req.lang),
     });
   }
 };
@@ -38,13 +39,14 @@ const registerUser = async (req, res) => {
 // Login
 const loginUser = async (req, res) => {
   const { email, password } = req.body;
+
   try {
     const checkUser = await User.findOne({ email });
 
     if (!checkUser) {
       return res.json({
         success: false,
-        message: 'User not found. Please register first',
+        message: t('noUser', req.lang),
       });
     }
 
@@ -56,7 +58,7 @@ const loginUser = async (req, res) => {
     if (!checkPasswordMatch) {
       return res.json({
         success: false,
-        message: 'Invalid password',
+        message: t('invalidPassword', req.lang),
       });
     }
 
@@ -73,7 +75,7 @@ const loginUser = async (req, res) => {
 
     res.cookie('token', token, { httpOnly: true, secure: false }).json({
       success: true,
-      message: 'Logged in successfully',
+      message: t('loginsucceeded', req.lang),
       user: {
         email: checkUser.email,
         role: checkUser.role,
@@ -84,7 +86,7 @@ const loginUser = async (req, res) => {
   } catch (error) {
     res.status(500).json({
       success: false,
-      message: `${error.message} - User login failed`,
+      message: `${error.message} - ${t('loginFailed', req.lang)}`,
     });
   }
 };
@@ -98,7 +100,7 @@ const authMiddleware = async (req, res, next) => {
   if (!token || tokenBlacklist.has(token)) {
     return res.status(401).json({
       success: false,
-      message: 'Unauthorized user',
+      message: t('unAuthorizedUser', req.lang),
     });
   }
 
@@ -109,7 +111,7 @@ const authMiddleware = async (req, res, next) => {
   } catch (error) {
     return res.status(401).json({
       success: false,
-      message: 'Unauthorized user',
+      message: t('unAuthorizedUser', req.lang),
     });
   }
 };
@@ -117,13 +119,14 @@ const authMiddleware = async (req, res, next) => {
 // Logout
 const logoutUser = (req, res) => {
   const token = req.cookies.token;
+
   if (token) {
     tokenBlacklist.add(token); // Add token to blacklist
   }
 
   res.clearCookie('token').json({
     success: true,
-    message: 'Logged out successfully!',
+    message: t('loggedOut', req.lang),
   });
 };
 

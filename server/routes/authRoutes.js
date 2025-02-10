@@ -5,10 +5,11 @@ import {
   logoutUser,
   registerUser,
 } from '../controllers/authController.js';
+import { languageMiddleware } from '../middleware/languageMiddleware.js';
 const router = express.Router();
 
-router.post('/register', registerUser);
-router.post('/login', loginUser);
+router.post('/register', languageMiddleware, registerUser);
+router.post('/login', languageMiddleware, loginUser);
 router.post('/logout', logoutUser);
 router.get('/check-auth', authMiddleware, (req, res) => {
   const user = req.user;
