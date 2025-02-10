@@ -24,10 +24,37 @@ const registerUser = async (req, res) => {
     });
 
     await newUser.save();
-    res.status(200).json({
-      success: true,
-      message: t('signupSucceeded', req.lang),
-    });
+
+    // Generate a token
+    const token = jwt.sign(
+      {
+        id: newUser._id,
+        role: newUser.role,
+        email: newUser.email,
+        username: newUser.username,
+      },
+      process.env.ACCESS_TOKEN_SECRET,
+      { expiresIn: '60m' },
+    );
+
+    // Set the token as a cookie
+    res
+      .cookie('token', token, {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === 'production',
+        sameSite: 'Strict',
+        maxAge: 3600000,
+      })
+      .json({
+        success: true,
+        message: t('signupSucceeded', req.lang),
+        user: {
+          id: newUser._id,
+          email: newUser.email,
+          username: newUser.username,
+          role: newUser.role,
+        },
+      });
   } catch (error) {
     res.status(500).json({
       success: false,
