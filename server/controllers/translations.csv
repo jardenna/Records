@@ -1,14 +1,13 @@
 ﻿key;en;da
-albumDeleted;Album deleted successfully;Forkert adgangskode
-albumNotFound;Album not found;Forkert adgangskode
-invalidPassword;Invalid password;Forkert adgangskode
-loggedOut;Logged out successfully;Forkert adgangskode
-loginFailed;Login failed. Please register first;Forkert adgangskode
-loginsucceeded;Login succeeded. Please register first;Forkert adgangskode
-noUser;User not found. Please register first;Forkert adgangskode
-registrationFailed;Registration failed;Forkert adgangskode
-registrationsucceeded;Registration succeeded;Forkert adgangskode
-unauthorizedUser;Unauthorized user;Forkert adgangskode
-userAlreadyExists;User already exists. Please login;Forkert adgangskode
-
+albumDeleted;Album deleted successfully;Album slettet 
+albumNotFound;Album not found;Album ikke fundet
+invalidPassword;Invalid password;Ugyldig adgangskode
+loggedOut;Logged out successfully;Logget ud 
+loginsucceeded;Login succeeded;Login lykkedes
+loginFailed;Login failed;Login mislykkedes
+noUser;User not found. Please sign up first;Bruger ikke fundet. Opret dig først
+signupFailed;Sign up failed;Registrering mislykkedes
+signupSucceeded;Sign up succeeded;Registrering lykkedes
+unAuthorizedUser;Unuthorized user;Uautoriseret bruger
+userAlreadyExist;A profile with this email already exists. Try logging in instead;Der findes en profil med denne e-mail. Prøv at logge ind i stedet
 
