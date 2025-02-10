@@ -1,5 +1,5 @@
 import express from 'express';
-import { languageMiddleware } from '../middleware/languageMiddleware.js';
+import languageMiddleware from '../middleware/languageMiddleware.js';
 import upload from '../utils/uploadImages.js';
 const router = express.Router();
 
