@@ -1,5 +1,6 @@
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
+import { tokenBlacklist } from '../middleware/authMiddleware.js';
 import User from '../models/UserModel.js';
 import generateTokenAndSetCookie from '../utils/token.js';
 import { t } from './translator.js';
@@ -49,8 +50,8 @@ const registerUser = async (req, res) => {
   }
 };
 
-// @desc    Logout user / clear cookie
-// @route   POST /api/users/logout
+// @desc    Login user
+// @route   POST /api/users/login
 // @access  Public
 const loginUser = async (req, res) => {
   const { email, password } = req.body;
@@ -98,8 +99,6 @@ const loginUser = async (req, res) => {
 };
 
 // Middleware to check if user is logged in
-const tokenBlacklist = new Set(); // Store invalidated tokens in memory
-
 const authMiddleware = async (req, res, next) => {
   const token = req.cookies.token;
 
@@ -145,4 +144,4 @@ const logoutUser = (req, res) => {
   });
 };
 
-export { authMiddleware, loginUser, logoutUser, registerUser };
+export { loginUser, logoutUser, registerUser };
