@@ -1,6 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import Record from '../models/RecordModel.js';
+import { t } from './translator.js';
 
 const getLatestSixRecords = async (_, res) => {
   try {
