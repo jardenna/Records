@@ -3,6 +3,7 @@ import { useLocation, useNavigate, useParams } from 'react-router';
 import { useAppDispatch } from '../app/hooks';
 import Button from '../components/Button';
 import DeleteRecordModal from '../components/DeleteRecordModal';
+import useMessagePopup from '../components/messagePopup/useMessagePopup';
 import MetaTags from '../components/MetaTags';
 import {
   PrimaryActionBtnProps,
@@ -29,6 +30,7 @@ const DetailsPage: FC = () => {
   const recordParams = useParams();
   const recordId = recordParams.id;
   const navigate = useNavigate();
+  const { addMessagePopup } = useMessagePopup();
   const {
     data: selectedRecord,
     refetch,
@@ -42,19 +44,44 @@ const DetailsPage: FC = () => {
     }
   };
 
-  const handleDeleteRecord = () => {
-    deleteRecord(recordId);
-    dispatch(toggleModal(null));
-    if (location.search) {
-      navigate(`/${MainPath.Records}${location.search}`);
-    } else {
-      navigate(`/${MainPath.Records}`);
+  const handleDeleteAlbum = async () => {
+    try {
+      const result = await deleteRecord(recordId).unwrap();
+
+      if (result) {
+        addMessagePopup({
+          message: language.albumDeletedSuccessfully,
+          messagePopupType: 'success',
+        });
+        if (result.success === false) {
+          addMessagePopup({
+            message: result.message,
+            messagePopupType: 'error',
+            componentType: 'notification',
+            position: 'top-center',
+          });
+        }
+        if (location.search) {
+          navigate(`/${MainPath.Records}${location.search}`);
+        } else {
+          navigate(`/${MainPath.Records}`);
+        }
+      }
+    } catch (error: any) {
+      addMessagePopup({
+        messagePopupType: 'error',
+        message: error.data.message,
+        componentType: 'notification',
+        position: 'top-center',
+      });
     }
+
+    dispatch(toggleModal(null));
   };
 
   const primaryActionBtn: PrimaryActionBtnProps = {
     label: language.deleteAlbum,
-    onClick: handleDeleteRecord,
+    onClick: handleDeleteAlbum,
   };
 
   const secondaryActionBtn: SecondaryActionBtnProps = {

@@ -4,6 +4,7 @@ import { useLocation, useNavigate, useSearchParams } from 'react-router';
 import { SortOrder } from '../app/api/apiTypes';
 import { useAppDispatch, useAppSelector } from '../app/hooks';
 import ErrorBoundaryFallback from '../components/errorBoundary/ErrorBoundaryFallback';
+import useMessagePopup from '../components/messagePopup/useMessagePopup';
 import MetaTags from '../components/MetaTags';
 import {
   PrimaryActionBtnProps,
@@ -91,6 +92,7 @@ const RecordTablePage: FC = () => {
   const startRow = (selectedPage - 1) * shownRows + 1;
   const endRow = Math.min(selectedPage * shownRows, totalRows);
   const modalId = useAppSelector(selectModalId);
+  const { addMessagePopup } = useMessagePopup();
 
   const handleSort = (field: string) => {
     searchParams.set('sortField', field);
@@ -130,8 +132,34 @@ const RecordTablePage: FC = () => {
     setSearchParams();
   };
 
-  const handleDeleteAlbum = () => {
-    deleteRecord(modalId);
+  const handleDeleteAlbum = async () => {
+    try {
+      const result = await deleteRecord(modalId).unwrap();
+
+      if (result) {
+        addMessagePopup({
+          message: language.albumDeletedSuccessfully,
+          messagePopupType: 'success',
+        });
+        if (result.success === false) {
+          addMessagePopup({
+            message: result.message,
+            messagePopupType: 'error',
+            componentType: 'notification',
+            position: 'top-center',
+          });
+        }
+      }
+    } catch (error: any) {
+      addMessagePopup({
+        messagePopupType: 'error',
+        message: error.data.message,
+        componentType: 'notification',
+        position: 'top-center',
+      });
+    }
+
+    dispatch(toggleModal(null));
   };
 
   const primaryActionBtn: PrimaryActionBtnProps = {
