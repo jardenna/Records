@@ -16,7 +16,7 @@ import Record from '../models/RecordModel.js';
 router.get('/', paginatedResults(Record), getPaginatedRecords);
 
 //Get the first 6 records
-router.get('/firstSix', getLatestSixRecords);
+router.get('/latestSix', getLatestSixRecords);
 
 //Get record by Id
 router.get('/:recordId', getRecordById);

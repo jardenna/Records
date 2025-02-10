@@ -1,7 +1,7 @@
 const baseRecordApi = 'records';
 
 const endpoints = {
-  firstSix: `${baseRecordApi}/firstSix`,
+  latestSix: `${baseRecordApi}/latestSix`,
   deleteRecord: `${baseRecordApi}/delete`,
   records: baseRecordApi,
 };
