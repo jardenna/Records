@@ -4,16 +4,15 @@ import useClickOutside from '../../hooks/useClickOutside';
 import { MainPath } from '../../layout/nav/enums';
 import { BtnVariant } from '../../types/enums';
 import { ChangeInputType } from '../../types/types';
-import DeleteRecordModal from '../DeleteRecordModal';
 import IconBtn from '../IconBtn';
 import IconContent from '../IconContent';
 import { IconName } from '../icons/Icon';
-import { PrimaryActionBtnProps, SecondaryActionBtnProps } from '../modal/Modal';
 import DetailLink from '../shared/DetailLink';
 import VisuallyHidden from '../VisuallyHidden';
 import './_table.scss';
 import SearchField from './SearchField';
 import SortBtn from './SortBtn';
+import DeleteRecordModal from '../DeleteRecordModal';
 
 interface BaseTableProps {
   id: string | null;
@@ -21,8 +20,6 @@ interface BaseTableProps {
   onFilterRows: (e: ChangeInputType) => void;
   onOpenModal: (id: string) => void;
   onViewAlbum: (id: string) => void;
-  primaryActionBtn: PrimaryActionBtnProps;
-  secondaryActionBtn: SecondaryActionBtnProps;
   sortOrder: string;
   tableCaption: string;
   tableHeaders: string[];
@@ -46,8 +43,6 @@ const RecordTable = <T extends Record<string, any>>({
   values,
   onClearAllSearch,
   tableCaption,
-  primaryActionBtn,
-  secondaryActionBtn,
   isLoading,
   id,
   onViewAlbum,
@@ -147,8 +142,8 @@ const RecordTable = <T extends Record<string, any>>({
                     />
                     <DeleteRecordModal
                       modalId={id === data.id ? data.id : null}
-                      primaryActionBtn={primaryActionBtn}
-                      secondaryActionBtn={secondaryActionBtn}
+                      id={id}
+                      btnLabel={language.delete}
                       name={data.artist}
                     />
                   </div>

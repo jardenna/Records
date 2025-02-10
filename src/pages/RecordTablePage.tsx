@@ -4,22 +4,14 @@ import { useLocation, useNavigate, useSearchParams } from 'react-router';
 import { SortOrder } from '../app/api/apiTypes';
 import { useAppDispatch, useAppSelector } from '../app/hooks';
 import ErrorBoundaryFallback from '../components/errorBoundary/ErrorBoundaryFallback';
-import useMessagePopup from '../components/messagePopup/useMessagePopup';
 import MetaTags from '../components/MetaTags';
-import {
-  PrimaryActionBtnProps,
-  SecondaryActionBtnProps,
-} from '../components/modal/Modal';
 import Pagination from '../components/pagination/Pagination';
 import RecordTable from '../components/recordTable/RecordTable';
 import SelectBox, { Option } from '../components/SelectBox';
 import SkeletonList from '../components/skeleton/SkeletonList';
 import useLanguage from '../features/language/useLanguage';
 import { selectModalId, toggleModal } from '../features/modalSlice';
-import {
-  useDeleteRecordMutation,
-  useGetPaginatedRecordsQuery,
-} from '../features/records/recordsApiSlice';
+import { useGetPaginatedRecordsQuery } from '../features/records/recordsApiSlice';
 import useFormValidation from '../hooks/useFormValidation';
 import { MainPath } from '../layout/nav/enums';
 import { LabelKeys } from '../types/enums';
@@ -41,7 +33,6 @@ const RecordTablePage: FC = () => {
   const [sortingOrder, setSortingOrder] = useState(SortOrder.Desc);
   const [currentPage, setCurrentPage] = useState(1);
   const [searchParams, setSearchParams] = useSearchParams();
-  const [deleteRecord] = useDeleteRecordMutation();
 
   const {
     artist,
@@ -92,7 +83,6 @@ const RecordTablePage: FC = () => {
   const startRow = (selectedPage - 1) * shownRows + 1;
   const endRow = Math.min(selectedPage * shownRows, totalRows);
   const modalId = useAppSelector(selectModalId);
-  const { addMessagePopup } = useMessagePopup();
 
   const handleSort = (field: string) => {
     searchParams.set('sortField', field);
@@ -130,45 +120,6 @@ const RecordTablePage: FC = () => {
   const handleClearAllSearch = () => {
     onClearAll();
     setSearchParams();
-  };
-
-  const handleDeleteAlbum = async () => {
-    try {
-      const result = await deleteRecord(modalId).unwrap();
-
-      if (result) {
-        addMessagePopup({
-          message: language.albumDeletedSuccessfully,
-          messagePopupType: 'success',
-        });
-        if (result.success === false) {
-          addMessagePopup({
-            message: result.message,
-            messagePopupType: 'error',
-            componentType: 'notification',
-            position: 'top-center',
-          });
-        }
-      }
-    } catch (error: any) {
-      addMessagePopup({
-        messagePopupType: 'error',
-        message: error.data.message,
-        componentType: 'notification',
-        position: 'top-center',
-      });
-    }
-
-    dispatch(toggleModal(null));
-  };
-
-  const primaryActionBtn: PrimaryActionBtnProps = {
-    label: language.delete,
-    onClick: handleDeleteAlbum,
-  };
-
-  const secondaryActionBtn: SecondaryActionBtnProps = {
-    label: language.cancel,
   };
 
   const handleSetRowsCount = (name: string, selectedOptions: Option) => {
@@ -242,8 +193,6 @@ const RecordTablePage: FC = () => {
               tableHeaders={tableHeaders}
               onClearAllSearch={handleClearAllSearch}
               tableCaption={language.albumCollection}
-              primaryActionBtn={primaryActionBtn}
-              secondaryActionBtn={secondaryActionBtn}
               id={modalId}
               onOpenModal={handleOpenModal}
               onViewAlbum={handleViewAlbum}

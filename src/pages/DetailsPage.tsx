@@ -1,14 +1,9 @@
 import { FC } from 'react';
-import { useLocation, useNavigate, useParams } from 'react-router';
+import { useLocation, useParams } from 'react-router';
 import { useAppDispatch } from '../app/hooks';
 import Button from '../components/Button';
 import DeleteRecordModal from '../components/DeleteRecordModal';
-import useMessagePopup from '../components/messagePopup/useMessagePopup';
 import MetaTags from '../components/MetaTags';
-import {
-  PrimaryActionBtnProps,
-  SecondaryActionBtnProps,
-} from '../components/modal/Modal';
 import RecordDetailsList from '../components/RecordDetailsList';
 import DetailLink from '../components/shared/DetailLink';
 import RecordImg from '../components/shared/recordImg/RecordImg';
@@ -16,10 +11,7 @@ import Skeleton from '../components/skeleton/Skeleton';
 import SkeletonList from '../components/skeleton/SkeletonList';
 import useLanguage from '../features/language/useLanguage';
 import { toggleModal } from '../features/modalSlice';
-import {
-  useDeleteRecordMutation,
-  useGetRecordByIdQuery,
-} from '../features/records/recordsApiSlice';
+import { useGetRecordByIdQuery } from '../features/records/recordsApiSlice';
 import LayoutElement from '../layout/LayoutElement';
 import { MainPath } from '../layout/nav/enums';
 
@@ -29,63 +21,17 @@ const DetailsPage: FC = () => {
   const { language } = useLanguage();
   const recordParams = useParams();
   const recordId = recordParams.id;
-  const navigate = useNavigate();
-  const { addMessagePopup } = useMessagePopup();
+
   const {
     data: selectedRecord,
     refetch,
     isLoading,
   } = useGetRecordByIdQuery(recordId);
-  const [deleteRecord] = useDeleteRecordMutation();
 
   const handleOpenModal = () => {
     if (recordId) {
       dispatch(toggleModal(recordId));
     }
-  };
-
-  const handleDeleteAlbum = async () => {
-    try {
-      const result = await deleteRecord(recordId).unwrap();
-
-      if (result) {
-        addMessagePopup({
-          message: language.albumDeletedSuccessfully,
-          messagePopupType: 'success',
-        });
-        if (result.success === false) {
-          addMessagePopup({
-            message: result.message,
-            messagePopupType: 'error',
-            componentType: 'notification',
-            position: 'top-center',
-          });
-        }
-        if (location.search) {
-          navigate(`/${MainPath.Records}${location.search}`);
-        } else {
-          navigate(`/${MainPath.Records}`);
-        }
-      }
-    } catch (error: any) {
-      addMessagePopup({
-        messagePopupType: 'error',
-        message: error.data.message,
-        componentType: 'notification',
-        position: 'top-center',
-      });
-    }
-
-    dispatch(toggleModal(null));
-  };
-
-  const primaryActionBtn: PrimaryActionBtnProps = {
-    label: language.deleteAlbum,
-    onClick: handleDeleteAlbum,
-  };
-
-  const secondaryActionBtn: SecondaryActionBtnProps = {
-    label: language.cancel,
   };
 
   return (
@@ -145,9 +91,10 @@ const DetailsPage: FC = () => {
                   </Button>
                   <DeleteRecordModal
                     modalId={recordId}
-                    primaryActionBtn={primaryActionBtn}
-                    secondaryActionBtn={secondaryActionBtn}
+                    btnLabel={language.deleteAlbum}
+                    id={recordId}
                     name={selectedRecord?.artist || null}
+                    shouldNavigate
                   />
                 </>
               )}
