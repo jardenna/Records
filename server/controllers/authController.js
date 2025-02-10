@@ -75,8 +75,10 @@ const loginUser = async (req, res) => {
 
     res
       .cookie('token', token, {
-        httpOnly: true,
-        secure: process.env.NODE_ENV === 'production',
+        httpOnly: true, // Cannot be accessed by JavaScript
+        secure: process.env.NODE_ENV === 'production', // Use true in production to only send the cookie over HTTPS
+        sameSite: 'Strict', // Protects against CSRF attacks
+        maxAge: 3600000, // Optional, expires in 1 hour (in milliseconds)
       })
       .json({
         success: true,
