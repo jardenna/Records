@@ -22,6 +22,8 @@ const useLanguage = () => {
     dispatch(setLanguage(lang));
   };
 
+  localStorage.setItem('lang', selectedLanguage);
+
   return { switchLanguage, language, selectedLanguage };
 };
 

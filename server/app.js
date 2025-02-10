@@ -24,7 +24,7 @@ const corsOptions = {
     'Authorization',
     'Cache-Control',
     'Expires',
-    'Pragma',
+    'x-language',
   ],
   credentials: true, // Allow credentials (cookies, authorization headers, etc.)
 };

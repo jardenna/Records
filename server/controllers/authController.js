@@ -1,6 +1,7 @@
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import User from '../models/UserModel.js';
+import { t } from './translator.js';
 
 // Register
 const registerUser = async (req, res) => {
@@ -38,6 +39,7 @@ const registerUser = async (req, res) => {
 // Login
 const loginUser = async (req, res) => {
   const { email, password } = req.body;
+
   try {
     const checkUser = await User.findOne({ email });
 
@@ -56,7 +58,7 @@ const loginUser = async (req, res) => {
     if (!checkPasswordMatch) {
       return res.json({
         success: false,
-        message: 'Invalid password',
+        message: t('invalidPassword', req.lang),
       });
     }
 
@@ -117,6 +119,7 @@ const authMiddleware = async (req, res, next) => {
 // Logout
 const logoutUser = (req, res) => {
   const token = req.cookies.token;
+
   if (token) {
     tokenBlacklist.add(token); // Add token to blacklist
   }
