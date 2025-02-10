@@ -1,4 +1,14 @@
 ﻿key;en;da
+albumDeleted;Album deleted successfully;Forkert adgangskode
+albumNotFound;Album not found;Forkert adgangskode
 invalidPassword;Invalid password;Forkert adgangskode
+loggedOut;Logged out successfully;Forkert adgangskode
+loginFailed;Login failed. Please register first;Forkert adgangskode
+loginsucceeded;Login succeeded. Please register first;Forkert adgangskode
+noUser;User not found. Please register first;Forkert adgangskode
+registrationFailed;Registration failed;Forkert adgangskode
+registrationsucceeded;Registration succeeded;Forkert adgangskode
+unauthorizedUser;Unauthorized user;Forkert adgangskode
+userAlreadyExists;User already exists. Please login;Forkert adgangskode
 
 
