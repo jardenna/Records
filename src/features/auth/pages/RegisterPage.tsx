@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { useLocation, useNavigate } from 'react-router';
+import { useNavigate } from 'react-router';
 import useMessagePopup from '../../../components/messagePopup/useMessagePopup';
 import useFormValidation from '../../../hooks/useFormValidation';
 import { MainPath } from '../../../layout/nav/enums';
@@ -9,7 +9,6 @@ import AuthForm from '../components/AuthForm';
 
 const RegisterPage: FC = () => {
   const navigate = useNavigate();
-  const location = useLocation();
   const { language } = useLanguage();
   const initialState = {
     username: '',
@@ -19,7 +18,6 @@ const RegisterPage: FC = () => {
   };
 
   const { addMessagePopup } = useMessagePopup();
-  const from = location.state?.from?.pathname || MainPath.Root;
 
   const { values, onChange, onSubmit } = useFormValidation({
     initialState,
@@ -34,7 +32,7 @@ const RegisterPage: FC = () => {
 
       const result = await registerUser(rest).unwrap();
       if (result.success === true) {
-        navigate(from, { replace: true });
+        navigate(MainPath.Root);
       }
 
       if (result.success === false) {

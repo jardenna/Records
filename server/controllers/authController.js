@@ -1,6 +1,7 @@
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import User from '../models/UserModel.js';
+import generateTokenAndSetCookie from '../utils/token.js';
 import { t } from './translator.js';
 
 // Register
@@ -25,36 +26,18 @@ const registerUser = async (req, res) => {
 
     await newUser.save();
 
-    // Generate a token
-    const token = jwt.sign(
-      {
+    generateTokenAndSetCookie(newUser, res);
+
+    res.json({
+      success: true,
+      message: t('signupSucceeded', req.lang),
+      user: {
         id: newUser._id,
-        role: newUser.role,
         email: newUser.email,
         username: newUser.username,
+        role: newUser.role,
       },
-      process.env.ACCESS_TOKEN_SECRET,
-      { expiresIn: '60m' },
-    );
-
-    // Set the token as a cookie
-    res
-      .cookie('token', token, {
-        httpOnly: true,
-        secure: process.env.NODE_ENV === 'production',
-        sameSite: 'Strict',
-        maxAge: 3600000,
-      })
-      .json({
-        success: true,
-        message: t('signupSucceeded', req.lang),
-        user: {
-          id: newUser._id,
-          email: newUser.email,
-          username: newUser.username,
-          role: newUser.role,
-        },
-      });
+    });
   } catch (error) {
     res.status(500).json({
       success: false,
@@ -89,34 +72,18 @@ const loginUser = async (req, res) => {
       });
     }
 
-    const token = jwt.sign(
-      {
-        id: checkUser._id,
-        role: checkUser.role,
+    generateTokenAndSetCookie(checkUser, res);
+
+    res.json({
+      success: true,
+      message: t('loginsucceeded', req.lang),
+      user: {
         email: checkUser.email,
+        role: checkUser.role,
+        id: checkUser._id,
         username: checkUser.username,
       },
-      process.env.ACCESS_TOKEN_SECRET,
-      { expiresIn: '60m' },
-    );
-
-    res
-      .cookie('token', token, {
-        httpOnly: true, // Cannot be accessed by JavaScript
-        secure: process.env.NODE_ENV === 'production', // Use true in production to only send the cookie over HTTPS
-        sameSite: 'Strict', // Protects against CSRF attacks
-        maxAge: 3600000, // Optional, expires in 1 hour (in milliseconds)
-      })
-      .json({
-        success: true,
-        message: t('loginsucceeded', req.lang),
-        user: {
-          email: checkUser.email,
-          role: checkUser.role,
-          id: checkUser._id,
-          username: checkUser.username,
-        },
-      });
+    });
   } catch (error) {
     res.status(500).json({
       success: false,
