@@ -1,8 +1,8 @@
 import fs from 'fs';
 import path from 'path';
-import Record from '../models/RecordsModel.js';
+import Record from '../models/RecordModel.js';
 
-const getFirstSixRecords = async (_, res) => {
+const getLatestSixRecords = async (_, res) => {
   try {
     const latestRecords = await Record.find().sort({ _id: -1 }).limit(6);
     res.json({ results: latestRecords });
@@ -39,7 +39,7 @@ const postCreateOrUpdateRecord = async (req, res) => {
       const existingRecord = await Record.findById(recordId);
 
       if (!existingRecord) {
-        return res.status(404).json({ message: 'Record not found' });
+        return res.status(404).json({ message: t('albumNotFound', req.lang) });
       }
 
       // If a new file is uploaded, delete the old one
@@ -52,7 +52,7 @@ const postCreateOrUpdateRecord = async (req, res) => {
 
         if (fs.existsSync(oldImagePath)) {
           fs.unlink(oldImagePath, (error) => {
-            console.log(error);
+            console.error('Error deleting old image:', error);
           });
         }
       }
@@ -60,7 +60,12 @@ const postCreateOrUpdateRecord = async (req, res) => {
       // Update the record
       const updatedRecord = await Record.updateOne(
         { _id: recordId },
-        { $set: { ...req.body, cover: file } },
+        {
+          $set: {
+            ...req.body,
+            cover: file,
+          },
+        },
         { runValidators: true },
       );
 
@@ -85,7 +90,7 @@ const deleteRecord = async (req, res) => {
     const record = await Record.findOneAndDelete({ _id: req.params.recordId });
 
     if (!record) {
-      return res.status(404).json({ message: 'Record not found' });
+      return res.status(404).json({ message: t('albumNotFound', req.lang) });
     }
 
     if (record.cover) {
@@ -94,18 +99,17 @@ const deleteRecord = async (req, res) => {
         'public/images/uploads',
         record.cover,
       );
-      if (fs.existsSync(imagePath)) {
-        fs.unlink(imagePath, (error) => {
-          if (error) {
-            console.error('Error deleting image:', error);
-          } else {
-            console.log('Image deleted:', imagePath);
-          }
-        });
-      }
-    }
 
-    res.json({ message: 'Record and image deleted successfully' });
+      fs.unlink(imagePath, (error) => {
+        if (error) {
+          return res.status(500).json({ message: 'Error deleting image' });
+        } else {
+          return res.status(200).json({ message: t('albumDeleted', req.lang) });
+        }
+      });
+    } else {
+      return res.status(200).json({ message: t('albumDeleted', req.lang) });
+    }
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
@@ -113,7 +117,7 @@ const deleteRecord = async (req, res) => {
 
 export {
   deleteRecord,
-  getFirstSixRecords,
+  getLatestSixRecords,
   getPaginatedRecords,
   getRecordById,
   postCreateOrUpdateRecord,

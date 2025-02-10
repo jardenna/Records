@@ -1,10 +1,10 @@
 import { FC } from 'react';
 import RecordList from '../components/recordList/RecordList';
 import SkeletonList from '../components/skeleton/SkeletonList';
-import { useGetFirstSixRecordsQuery } from '../features/records/recordsApiSlice';
+import { useGetLatestSixRecordsQuery } from '../features/records/recordsApiSlice';
 
 const HomePage: FC = () => {
-  const { data: records, isLoading, refetch } = useGetFirstSixRecordsQuery();
+  const { data: records, isLoading, refetch } = useGetLatestSixRecordsQuery();
 
   return (
     <section aria-label={isLoading ? 'Loading' : undefined}>

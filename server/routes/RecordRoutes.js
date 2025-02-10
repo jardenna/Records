@@ -4,19 +4,19 @@ const router = express.Router();
 
 import {
   deleteRecord,
-  getFirstSixRecords,
+  getLatestSixRecords,
   getPaginatedRecords,
   getRecordById,
   postCreateOrUpdateRecord,
 } from '../controllers/recordControllers.js';
 import paginatedResults from '../middleware/paginatedResults.js';
-import Record from '../models/RecordsModel.js';
+import Record from '../models/RecordModel.js';
 
 // Get all records
 router.get('/', paginatedResults(Record), getPaginatedRecords);
 
 //Get the first 6 records
-router.get('/firstSix', getFirstSixRecords);
+router.get('/firstSix', getLatestSixRecords);
 
 //Get record by Id
 router.get('/:recordId', getRecordById);
