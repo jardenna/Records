@@ -10,6 +10,7 @@ import CloseIcon from './CloseIcon';
 import EditIcon from './EditIcon';
 import ErrorIcon from './ErrorIcon';
 import EyeIcon from './EyeIcon';
+import EyeOffIcon from './EyeOffIcon';
 import FilterIcon from './FilterIcon';
 import InfoIcon from './InfoIcon';
 import MoreIcon from './MoreIcon';
@@ -44,6 +45,7 @@ export enum IconName {
   Edit = 'edit',
   Error = 'error',
   Eye = 'eye',
+  EyeOff = 'eyeOff',
   Filter = 'filter',
   Info = 'info',
   More = 'more',
@@ -67,6 +69,7 @@ const iconMapping = {
   edit: EditIcon,
   error: ErrorIcon,
   eye: EyeIcon,
+  eyeOff: EyeOffIcon,
   filter: FilterIcon,
   info: InfoIcon,
   more: MoreIcon,

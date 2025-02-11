@@ -2,6 +2,7 @@ import { FC } from 'react';
 import VisuallyHidden from '../../../components/VisuallyHidden';
 import Input from '../../../components/formElements/Input';
 import Form from '../../../components/formElements/form/Form';
+import PasswordInput from '../../../components/formElements/password/PasswordInput';
 import {
   BlurEventType,
   ChangeInputType,
@@ -72,7 +73,7 @@ const AuthForm: FC<AuthFormProps> = ({
           errorText={language[errors.email]}
           onBlur={onBlur}
         />
-        <Input
+        <PasswordInput
           name="password"
           id="password"
           value={values.password}
@@ -83,7 +84,7 @@ const AuthForm: FC<AuthFormProps> = ({
           onBlur={onBlur}
         />
         {values.confirmPassword !== undefined && (
-          <Input
+          <PasswordInput
             name="confirmPassword"
             id="confirmPassword"
             value={values.confirmPassword}
