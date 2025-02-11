@@ -1,6 +1,7 @@
 import bcrypt from 'bcrypt';
 import { tokenBlacklist } from '../middleware/authMiddleware.js';
 import User from '../models/UserModel.js';
+import { validatePassword } from '../utils/passwordValidator.js';
 import generateTokenAndSetCookie from '../utils/token.js';
 import { t } from '../utils/translator.js';
 
@@ -26,6 +27,16 @@ const registerUser = async (req, res) => {
       email,
       password: hashPassword,
     });
+
+    if (password) {
+      const passwordErrorKey = validatePassword(password);
+
+      if (passwordErrorKey) {
+        return res.status(400).json({
+          message: t(passwordErrorKey, req.lang),
+        });
+      }
+    }
 
     await newUser.save();
 
@@ -76,13 +87,6 @@ const loginUser = async (req, res) => {
         message: 'Password must be provided',
       });
     }
-
-    // if (password) {
-    //   const passwordError = validatePassword(req.body.password);
-    //   if (passwordError) {
-    //     return res.status(400).json({ message: passwordError });
-    //   }
-    // }
 
     if (!checkUser) {
       return res.status(400).json({

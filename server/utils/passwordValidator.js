@@ -1,5 +1,3 @@
-// passwordValidator.js
-
 const passwordPolicy = {
   minLength: 8,
   minLowercase: 1,
@@ -10,25 +8,20 @@ const passwordPolicy = {
 
 const validatePassword = (password) => {
   if (password.length < passwordPolicy.minLength) {
-    return 'Password must be at least 8 characters';
+    return 'passwordMinLength'; // Return translation key instead of message
   }
-
   if (!/[a-z]/.test(password)) {
-    return 'Password must contain at least one lowercase letter';
+    return 'passwordLowercase';
   }
-
   if (!/[A-Z]/.test(password)) {
-    return 'Password must contain at least one uppercase letter';
+    return 'passwordUppercase';
   }
-
   if (!/[0-9]/.test(password)) {
-    return 'Password must contain at least one number';
+    return 'passwordNumber';
   }
-
   if (!/[!@#$%^&*(),.?":{}|<>]/.test(password)) {
-    return 'Password must contain at least one special character';
+    return 'passwordSymbol';
   }
-
   return null; // Valid password
 };
 
