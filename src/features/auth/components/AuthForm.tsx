@@ -2,7 +2,11 @@ import { FC } from 'react';
 import VisuallyHidden from '../../../components/VisuallyHidden';
 import Input from '../../../components/formElements/Input';
 import Form from '../../../components/formElements/form/Form';
-import { ChangeInputType, FormEventType } from '../../../types/types';
+import {
+  BlurEventType,
+  ChangeInputType,
+  FormEventType,
+} from '../../../types/types';
 import useLanguage from '../../language/useLanguage';
 import './_auth-form.scss';
 
@@ -10,13 +14,16 @@ export interface User {
   email: string;
   password: string;
   confirmPassword?: string;
+
   username?: string;
 }
 
 interface AuthFormProps {
+  errors: any;
   isLoading: boolean;
   labelText: string;
   legendText: string;
+  onBlur: (event: BlurEventType) => void;
   onChange: (event: ChangeInputType) => void;
   onSubmit: (event: FormEventType) => void;
   values: User;
@@ -29,6 +36,8 @@ const AuthForm: FC<AuthFormProps> = ({
   onChange,
   labelText,
   legendText,
+  errors,
+  onBlur,
 }) => {
   const { language } = useLanguage();
 
@@ -49,6 +58,8 @@ const AuthForm: FC<AuthFormProps> = ({
             labelText={language.username}
             onChange={onChange}
             required
+            errorText={language[errors.username]}
+            onBlur={onBlur}
           />
         )}
         <Input
@@ -58,6 +69,8 @@ const AuthForm: FC<AuthFormProps> = ({
           labelText={language.email}
           onChange={onChange}
           required
+          errorText={language[errors.email]}
+          onBlur={onBlur}
         />
         <Input
           name="password"
@@ -66,6 +79,8 @@ const AuthForm: FC<AuthFormProps> = ({
           labelText={language.password}
           onChange={onChange}
           required
+          errorText={language[errors.password]}
+          onBlur={onBlur}
         />
         {values.confirmPassword !== undefined && (
           <Input
@@ -75,6 +90,8 @@ const AuthForm: FC<AuthFormProps> = ({
             labelText={language.confirmPassword}
             onChange={onChange}
             required
+            errorText={language[errors.confirmPassword]}
+            onBlur={onBlur}
           />
         )}
       </fieldset>

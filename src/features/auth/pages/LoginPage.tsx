@@ -6,6 +6,7 @@ import { MainPath } from '../../../layout/nav/enums';
 import useLanguage from '../../language/useLanguage';
 import { useLoginMutation } from '../authApiSlice';
 import AuthForm from '../components/AuthForm';
+import validationLogin from '../../../components/formElements/validation/validateLogin';
 
 const LoginPage: FC = () => {
   const navigate = useNavigate();
@@ -20,9 +21,10 @@ const LoginPage: FC = () => {
   const { addMessagePopup } = useMessagePopup();
   const from = location.state?.from?.pathname || MainPath.Root;
 
-  const { values, onChange, onSubmit } = useFormValidation({
+  const { values, errors, onChange, onBlur, onSubmit } = useFormValidation({
     initialState,
     callback: handleLoginUser,
+    validate: validationLogin,
   });
   const [loginUser, { isLoading: isLoginLoading }] = useLoginMutation();
 
@@ -60,6 +62,8 @@ const LoginPage: FC = () => {
       isLoading={isLoginLoading}
       legendText={language.userInfo}
       onChange={onChange}
+      errors={errors}
+      onBlur={onBlur}
     />
   );
 };

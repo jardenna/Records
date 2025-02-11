@@ -6,6 +6,7 @@ import { MainPath } from '../../../layout/nav/enums';
 import useLanguage from '../../language/useLanguage';
 import { useRegisterMutation } from '../authApiSlice';
 import AuthForm from '../components/AuthForm';
+import validationSignup from '../../../components/formElements/validation/validateSignup';
 
 const RegisterPage: FC = () => {
   const navigate = useNavigate();
@@ -19,9 +20,10 @@ const RegisterPage: FC = () => {
 
   const { addMessagePopup } = useMessagePopup();
 
-  const { values, onChange, onSubmit } = useFormValidation({
+  const { values, errors, onChange, onBlur, onSubmit } = useFormValidation({
     initialState,
     callback: handleRegisterUser,
+    validate: validationSignup,
   });
   const [registerUser, { isLoading }] = useRegisterMutation();
 
@@ -61,6 +63,8 @@ const RegisterPage: FC = () => {
       isLoading={isLoading}
       legendText={language.userInfo}
       onChange={onChange}
+      errors={errors}
+      onBlur={onBlur}
     />
   );
 };
