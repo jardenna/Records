@@ -1,34 +1,47 @@
 import fs from 'fs';
 import path from 'path';
 import Record from '../models/RecordModel.js';
+import { t } from './translator.js';
 
+// @desc    Get the latest six records
+// @route   Get /api/records/latestSix
+// @access  Private
 const getLatestSixRecords = async (_, res) => {
   try {
     const latestRecords = await Record.find().sort({ _id: -1 }).limit(6);
-    res.json({ results: latestRecords });
+    res.status(200).json({ results: latestRecords });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
 };
 
+// @desc    Get paginated records
+// @route   Get /api/records
+// @access  Private
 const getPaginatedRecords = async (req, res) => {
   try {
-    res.json(res.paginatedResults);
+    res.status(200).json(res.paginatedResults);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
 };
 
+// @desc    Get a record by ID
+// @route   Get /api/records/recordId
+// @access  Private
 const getRecordById = async (req, res) => {
   try {
     const { recordId } = req.params;
     const record = await Record.findById(recordId);
-    res.json(record);
+    res.status(200).json(record);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
 };
 
+// @desc    Create or update a record.
+// @route   Post /api/records
+// @access  Private
 const postCreateOrUpdateRecord = async (req, res) => {
   try {
     const file = req.file ? req.file.filename : req.body.cover;
@@ -69,7 +82,7 @@ const postCreateOrUpdateRecord = async (req, res) => {
         { runValidators: true },
       );
 
-      return res.json(updatedRecord);
+      return res.status(200).json(updatedRecord);
     }
 
     // Create a new record
@@ -79,11 +92,15 @@ const postCreateOrUpdateRecord = async (req, res) => {
     });
 
     const savedRecord = await newRecord.save();
-    res.json(savedRecord);
+    res.status(201).json(savedRecord);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
 };
+
+// @desc   Delete a record.
+// @route   Delete /api/records/delete/recordId
+// @access  Private
 
 const deleteRecord = async (req, res) => {
   try {

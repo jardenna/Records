@@ -4,6 +4,7 @@ additionalInfo;Additional info;Supplerende information
 album;Album;Album
 albumCollection;Records collection;Pladesamling
 albumCreatedSuccessfully;Album created successfully;Nyt album blev oprettet
+albumDeletedSuccessfully;Album deleted successfully;Album blev slettet
 albumDetails;Album details;Album detaljer
 albumDetails;Album details;Album detaljer
 albumInfo;Album info;Album info
@@ -38,6 +39,7 @@ gotoNextPage;Go to next page;Gå til næste side
 gotoPrevPage;Go to previous page;Gå til forrige side
 home;Home;Hjem
 insertCover;Insert cover;Indsæt cover
+invalidEmail;Invalid email;Ugyldig e-mail
 jumpPagesBack;Jump back;Hop tilbage
 jumpPagesForth;Jump forth;Hop frem
 label;Label;Label
@@ -53,7 +55,16 @@ of;of;af
 origin;Origin;Oprindelse
 page;Page;Side
 password;Password;Adgangskode
+passwordMinLength;Password should be at least 6 characters;Adgangskoden skal være mindst 6 tegn
+passwordLowercase;Password should contain at least one lowercase letter;Adgangskoden skal indeholde mindst ét lille bogstav
+passwordUppercase;Password should contain at least one uppercase letter;Adgangskoden skal indeholde mindst ét stort bogstav
+passwordNumber;Password should contain at least one number;Adgangskoden skal indeholde mindst ét tal
+passwordSymbol;Password should contain at least one special character;Adgangskoden skal indeholde mindst ét specialtegn
+passwordDoNotMatch;The passwords do not match;Adgangskoderne stemmer ikke overens
 pleaseEnter;Please enter;Indsæt venligst
+pleaseEnterValidEmail;Please enter a valid email;Indsæt venligst en gyldig e-mail
+pleaseEnterPassword;Please enter password;Indsæt venligst adgangskode
+pleaseEnterName;Please enter  name;Indsæt venligst navn
 price;Price;Pris
 prodYear;Production year;Produktions år
 recordNo;Record number;Pladenummer

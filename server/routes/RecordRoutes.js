@@ -1,4 +1,5 @@
 import express from 'express';
+import languageMiddleware from '../middleware/languageMiddleware.js';
 import upload from '../utils/uploadImages.js';
 const router = express.Router();
 
@@ -15,8 +16,8 @@ import Record from '../models/RecordModel.js';
 // Get all records
 router.get('/', paginatedResults(Record), getPaginatedRecords);
 
-//Get the first 6 records
-router.get('/firstSix', getLatestSixRecords);
+//Get the Latest 6 records
+router.get('/latestSix', getLatestSixRecords);
 
 //Get record by Id
 router.get('/:recordId', getRecordById);
@@ -28,6 +29,6 @@ router.post('/:recordId', upload.single('cover'), postCreateOrUpdateRecord);
 router.post('/', upload.single('cover'), postCreateOrUpdateRecord);
 
 //Delete Record
-router.delete('/delete/:recordId', deleteRecord);
+router.delete('/delete/:recordId', languageMiddleware, deleteRecord);
 
 export default router;

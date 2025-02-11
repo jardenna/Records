@@ -1,17 +1,17 @@
 import express from 'express';
 import {
-  authMiddleware,
   loginUser,
   logoutUser,
   registerUser,
 } from '../controllers/authController.js';
-import { languageMiddleware } from '../middleware/languageMiddleware.js';
+import { authMiddleware } from '../middleware/authMiddleware.js';
+import languageMiddleware from '../middleware/languageMiddleware.js';
 const router = express.Router();
 
 router.post('/register', languageMiddleware, registerUser);
 router.post('/login', languageMiddleware, loginUser);
 router.post('/logout', logoutUser);
-router.get('/check-auth', authMiddleware, (req, res) => {
+router.get('/check-auth', languageMiddleware, authMiddleware, (req, res) => {
   const user = req.user;
 
   res.status(200).json({

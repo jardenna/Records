@@ -15,8 +15,18 @@ export enum LabelKeys {
 }
 
 export enum ValidationMessage {
+  InvalidEmail = 'invalidEmail',
   MustBeGreaterEqual = 'mustBeGreaterEqual',
+  PasswordDoNotMatch = 'passwordDoNotMatch',
+  PasswordLowercase = 'passwordLowercase',
+  PasswordMinLength = 'passwordMinLength',
+  PasswordNumber = 'passwordNumber',
+  PasswordSymbol = 'passwordSymbol',
+  PasswordUppercase = 'passwordUppercase',
   PleaseEnter = 'pleaseEnter',
+  PleaseEnterName = 'pleaseEnterName',
+  PleaseEnterPassword = 'pleaseEnterPassword',
+  PleaseEnterValidEmail = 'pleaseEnterValidEmail',
   YearAfter = 'yearAfter',
   YearBefore = 'yearBefore',
 }

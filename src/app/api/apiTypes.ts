@@ -12,7 +12,7 @@ export interface AuthResponse {
   user: UserRequest;
 }
 
-export interface FirstSixRecordsResponse {
+export interface latestSix {
   results: Records[];
 }
 

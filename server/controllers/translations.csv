@@ -3,7 +3,7 @@ albumDeleted;Album deleted successfully;Album slettet
 albumNotFound;Album not found;Album ikke fundet
 invalidPassword;Invalid password;Ugyldig adgangskode
 loggedOut;Logged out successfully;Logget ud 
-loginsucceeded;Login succeeded;Login lykkedes
+loginSucceeded;Login succeeded;Login lykkedes
 loginFailed;Login failed;Login mislykkedes
 noUser;User not found. Please sign up first;Bruger ikke fundet. Opret dig først
 signupFailed;Sign up failed;Registrering mislykkedes

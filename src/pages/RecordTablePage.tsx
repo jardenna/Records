@@ -5,20 +5,13 @@ import { SortOrder } from '../app/api/apiTypes';
 import { useAppDispatch, useAppSelector } from '../app/hooks';
 import ErrorBoundaryFallback from '../components/errorBoundary/ErrorBoundaryFallback';
 import MetaTags from '../components/MetaTags';
-import {
-  PrimaryActionBtnProps,
-  SecondaryActionBtnProps,
-} from '../components/modal/Modal';
 import Pagination from '../components/pagination/Pagination';
 import RecordTable from '../components/recordTable/RecordTable';
 import SelectBox, { Option } from '../components/SelectBox';
 import SkeletonList from '../components/skeleton/SkeletonList';
 import useLanguage from '../features/language/useLanguage';
 import { selectModalId, toggleModal } from '../features/modalSlice';
-import {
-  useDeleteRecordMutation,
-  useGetPaginatedRecordsQuery,
-} from '../features/records/recordsApiSlice';
+import { useGetPaginatedRecordsQuery } from '../features/records/recordsApiSlice';
 import useFormValidation from '../hooks/useFormValidation';
 import { MainPath } from '../layout/nav/enums';
 import { LabelKeys } from '../types/enums';
@@ -40,7 +33,6 @@ const RecordTablePage: FC = () => {
   const [sortingOrder, setSortingOrder] = useState(SortOrder.Desc);
   const [currentPage, setCurrentPage] = useState(1);
   const [searchParams, setSearchParams] = useSearchParams();
-  const [deleteRecord] = useDeleteRecordMutation();
 
   const {
     artist,
@@ -130,19 +122,6 @@ const RecordTablePage: FC = () => {
     setSearchParams();
   };
 
-  const handleDeleteAlbum = () => {
-    deleteRecord(modalId);
-  };
-
-  const primaryActionBtn: PrimaryActionBtnProps = {
-    label: language.delete,
-    onClick: handleDeleteAlbum,
-  };
-
-  const secondaryActionBtn: SecondaryActionBtnProps = {
-    label: language.cancel,
-  };
-
   const handleSetRowsCount = (name: string, selectedOptions: Option) => {
     if (selectedOptions.value !== defaultOptionValue) {
       searchParams.set('limit', selectedOptions.value.toString());
@@ -214,8 +193,6 @@ const RecordTablePage: FC = () => {
               tableHeaders={tableHeaders}
               onClearAllSearch={handleClearAllSearch}
               tableCaption={language.albumCollection}
-              primaryActionBtn={primaryActionBtn}
-              secondaryActionBtn={secondaryActionBtn}
               id={modalId}
               onOpenModal={handleOpenModal}
               onViewAlbum={handleViewAlbum}

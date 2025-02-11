@@ -1,6 +1,6 @@
 import apiSlice from '../../app/api/apiSlice';
 import {
-  FirstSixRecordsResponse,
+  latestSix,
   Records,
   RecordsRequest,
   RecordsResponse,
@@ -13,9 +13,10 @@ import { createFormData, createQueryOptions } from './utils';
 
 export const recordsApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
-    getLatestSixRecords: builder.query<FirstSixRecordsResponse, void>({
-      query: () => `${endpoints.firstSix}`,
+    getLatestSixRecords: builder.query<latestSix, void>({
+      query: () => `${endpoints.latestSix}`,
       transformResponse: (responseData: Records[]) => transformId(responseData),
+      providesTags: [TagTypesEnum.Records],
     }),
     getPaginatedRecords: builder.query<RecordsResponse, RecordsRequest>({
       query: ({

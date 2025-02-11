@@ -1,22 +1,26 @@
 import bcrypt from 'bcrypt';
-import jwt from 'jsonwebtoken';
+import { tokenBlacklist } from '../middleware/authMiddleware.js';
 import User from '../models/UserModel.js';
+import generateTokenAndSetCookie from '../utils/token.js';
 import { t } from './translator.js';
 
-// Register
+// @desc    Register a new user
+// @route   POST /api/users
+// @access  Public
 const registerUser = async (req, res) => {
   const { username, email, password } = req.body;
 
   try {
     const checkUser = await User.findOne({ email });
     if (checkUser) {
-      return res.json({
+      return res.status(400).json({
         success: false,
         message: t('userAlreadyExist', req.lang),
       });
     }
 
-    const hashPassword = await bcrypt.hash(password, 12);
+    const saltRounds = parseInt(process.env.BCRYPT_SALT_ROUNDS) || 12;
+    const hashPassword = await bcrypt.hash(password, saltRounds);
     const newUser = new User({
       username,
       email,
@@ -24,9 +28,18 @@ const registerUser = async (req, res) => {
     });
 
     await newUser.save();
+
+    generateTokenAndSetCookie(newUser, res);
+
     res.status(200).json({
       success: true,
       message: t('signupSucceeded', req.lang),
+      user: {
+        id: newUser._id,
+        email: newUser.email,
+        username: newUser.username,
+        role: newUser.role,
+      },
     });
   } catch (error) {
     res.status(500).json({
@@ -36,15 +49,48 @@ const registerUser = async (req, res) => {
   }
 };
 
-// Login
+// @desc    Login user
+// @route   POST /api/users/login
+// @access  Public
 const loginUser = async (req, res) => {
   const { email, password } = req.body;
+  // const validEmail = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
 
   try {
     const checkUser = await User.findOne({ email });
 
+    // if (!email) {
+    //   return res.status(401).json({
+    //     message: 'Email must be provided',
+    //   });
+    // }
+
+    // if (!validEmail.test(email)) {
+    //   return res.status(422).json({
+    //     message: 'Invalid email address',
+    //   });
+    // }
+
+    // if (!password) {
+    //   return res.status(401).json({
+    //     message: 'Password must be provided',
+    //   });
+    // } else {
+    //   const passwordError = validatePassword(req.body.password);
+    //   if (passwordError) {
+    //     return res.status(400).json({ message: passwordError });
+    //   }
+    // }
+
+    // if (password) {
+    //   const passwordError = validatePassword(req.body.password);
+    //   if (passwordError) {
+    //     return res.status(400).json({ message: passwordError });
+    //   }
+    // }
+
     if (!checkUser) {
-      return res.json({
+      return res.status(400).json({
         success: false,
         message: t('noUser', req.lang),
       });
@@ -56,26 +102,17 @@ const loginUser = async (req, res) => {
     );
 
     if (!checkPasswordMatch) {
-      return res.json({
+      return res.status(400).json({
         success: false,
         message: t('invalidPassword', req.lang),
       });
     }
 
-    const token = jwt.sign(
-      {
-        id: checkUser._id,
-        role: checkUser.role,
-        email: checkUser.email,
-        username: checkUser.username,
-      },
-      'CLIENT_SECRET_KEY',
-      { expiresIn: '60m' },
-    );
+    generateTokenAndSetCookie(checkUser, res);
 
-    res.cookie('token', token, { httpOnly: true, secure: false }).json({
+    res.status(200).json({
       success: true,
-      message: t('loginsucceeded', req.lang),
+      message: t('loginSucceeded', req.lang),
       user: {
         email: checkUser.email,
         role: checkUser.role,
@@ -91,32 +128,9 @@ const loginUser = async (req, res) => {
   }
 };
 
-// Middleware to check if user is logged in
-const tokenBlacklist = new Set(); // Store invalidated tokens in memory
-
-const authMiddleware = async (req, res, next) => {
-  const token = req.cookies.token;
-
-  if (!token || tokenBlacklist.has(token)) {
-    return res.status(401).json({
-      success: false,
-      message: t('unAuthorizedUser', req.lang),
-    });
-  }
-
-  try {
-    const decoded = jwt.verify(token, 'CLIENT_SECRET_KEY');
-    req.user = decoded;
-    next();
-  } catch (error) {
-    return res.status(401).json({
-      success: false,
-      message: t('unAuthorizedUser', req.lang),
-    });
-  }
-};
-
-// Logout
+// @desc    Logout user / clear cookie
+// @route   POST /api/users/logout
+// @access  Public
 const logoutUser = (req, res) => {
   const token = req.cookies.token;
 
@@ -124,10 +138,10 @@ const logoutUser = (req, res) => {
     tokenBlacklist.add(token); // Add token to blacklist
   }
 
-  res.clearCookie('token').json({
+  res.status(200).json({
     success: true,
     message: t('loggedOut', req.lang),
   });
 };
 
-export { authMiddleware, loginUser, logoutUser, registerUser };
+export { loginUser, logoutUser, registerUser };
