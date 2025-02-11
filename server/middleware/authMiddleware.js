@@ -1,5 +1,5 @@
 import jwt from 'jsonwebtoken';
-import { t } from '../controllers/translator.js';
+import { t } from '../utils/translator.js';
 
 const tokenBlacklist = new Set(); // Store invalidated tokens in memory
 
