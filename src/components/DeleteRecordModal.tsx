@@ -1,9 +1,7 @@
 import { FC } from 'react';
-
 import { useLocation, useNavigate } from 'react-router';
-import useLanguage from '../features/language/useLanguage';
-
 import { useAppDispatch } from '../app/hooks';
+import useLanguage from '../features/language/useLanguage';
 import { toggleModal } from '../features/modalSlice';
 import { useDeleteRecordMutation } from '../features/records/recordsApiSlice';
 import { MainPath } from '../layout/nav/enums';
@@ -37,7 +35,7 @@ const DeleteRecordModal: FC<DeleteRecordModalProps> = ({
 
       if (result) {
         addMessagePopup({
-          message: language.albumDeleted,
+          message: `${name} ${language.albumDeleted}`,
           messagePopupType: 'success',
         });
         if (result.success === false) {
