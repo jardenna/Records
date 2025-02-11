@@ -27,7 +27,7 @@ function validationSignup(values: AuthFormValues) {
   // Password Errors
   if (!password) {
     errors.password = ValidationMessage.PleaseEnterPassword;
-  } else if (password.length < 6) {
+  } else if (password.length < 8) {
     errors.password = ValidationMessage.PasswordMinLength;
   }
 

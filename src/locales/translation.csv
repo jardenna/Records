@@ -62,7 +62,7 @@ page;Page;Side
 password;Password;Adgangskode
 passwordDoNotMatch;The passwords do not match;Adgangskoderne stemmer ikke overens
 passwordLowercase;Password should contain at least one lowercase letter;Adgangskoden skal indeholde mindst ét lille bogstav
-passwordMinLength;Password should be at least 6 characters;Adgangskoden skal være mindst 6 tegn
+passwordMinLength;Password should be at least 8 characters;Adgangskoden skal være mindst 8 tegn
 passwordNumber;Password should contain at least one number;Adgangskoden skal indeholde mindst ét tal
 passwordSymbol;Password should contain at least one special character;Adgangskoden skal indeholde mindst ét specialtegn
 passwordUppercase;Password should contain at least one uppercase letter;Adgangskoden skal indeholde mindst ét stort bogstav
