@@ -31,14 +31,16 @@ const Form: FC<FormProps> = ({
     <form onSubmit={onSubmit} noValidate className={className}>
       {children}
       <LayoutElement className="form-footer" ariaLabel={language.form}>
-        <Button
-          onClick={onCancel}
-          isLoading={isLoading}
-          ariaLabel={ariaLabel}
-          variant={BtnVariant.Secondary}
-        >
-          {language.cancel}
-        </Button>
+        {onCancel && (
+          <Button
+            onClick={onCancel}
+            isLoading={isLoading}
+            ariaLabel={ariaLabel}
+            variant={BtnVariant.Secondary}
+          >
+            {language.cancel}
+          </Button>
+        )}
         <Button type="submit" isLoading={isLoading} ariaLabel={ariaLabel}>
           {labelText}
         </Button>
