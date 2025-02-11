@@ -1,5 +1,4 @@
 import bcrypt from 'bcrypt';
-import jwt from 'jsonwebtoken';
 import { tokenBlacklist } from '../middleware/authMiddleware.js';
 import User from '../models/UserModel.js';
 import generateTokenAndSetCookie from '../utils/token.js';
@@ -55,9 +54,40 @@ const registerUser = async (req, res) => {
 // @access  Public
 const loginUser = async (req, res) => {
   const { email, password } = req.body;
+  // const validEmail = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
 
   try {
     const checkUser = await User.findOne({ email });
+
+    // if (!email) {
+    //   return res.status(401).json({
+    //     message: 'Email must be provided',
+    //   });
+    // }
+
+    // if (!validEmail.test(email)) {
+    //   return res.status(422).json({
+    //     message: 'Invalid email address',
+    //   });
+    // }
+
+    // if (!password) {
+    //   return res.status(401).json({
+    //     message: 'Password must be provided',
+    //   });
+    // } else {
+    //   const passwordError = validatePassword(req.body.password);
+    //   if (passwordError) {
+    //     return res.status(400).json({ message: passwordError });
+    //   }
+    // }
+
+    // if (password) {
+    //   const passwordError = validatePassword(req.body.password);
+    //   if (passwordError) {
+    //     return res.status(400).json({ message: passwordError });
+    //   }
+    // }
 
     if (!checkUser) {
       return res.status(400).json({
@@ -94,36 +124,6 @@ const loginUser = async (req, res) => {
     res.status(500).json({
       success: false,
       message: `${error.message} - ${t('loginFailed', req.lang)}`,
-    });
-  }
-};
-
-// Middleware to check if user is logged in
-const authMiddleware = async (req, res, next) => {
-  const token = req.cookies.token;
-
-  if (!token) {
-    return res.status(401).json({
-      success: false,
-      message: t('unAuthorizedUser', req.lang),
-    });
-  }
-
-  if (tokenBlacklist.has(token)) {
-    return res.status(401).json({
-      success: false,
-      message: t('unAuthorizedUser', req.lang),
-    });
-  }
-
-  try {
-    const decoded = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
-    req.user = decoded;
-    next();
-  } catch (error) {
-    return res.status(401).json({
-      success: false,
-      message: t('unAuthorizedUser', req.lang),
     });
   }
 };
