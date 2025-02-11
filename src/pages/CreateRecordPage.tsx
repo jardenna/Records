@@ -31,7 +31,7 @@ const CreateRecordPage: FC = () => {
       }
 
       addMessagePopup({
-        message: language.albumCreatedSuccessfully,
+        message: language.albumCreated,
         messagePopupType: 'success',
       });
 

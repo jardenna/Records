@@ -3,15 +3,15 @@ actions;Actions;Handlinger
 additionalInfo;Additional info;Supplerende information
 album;Album;Album
 albumCollection;Records collection;Pladesamling
-albumCreatedSuccessfully;Album created successfully;Nyt album blev oprettet
-albumDeletedSuccessfully;Album deleted successfully;Album blev slettet
-albumDetails;Album details;Album detaljer
+albumCreated;Album created successfully;Nyt album blev oprettet
+albumDeleted;Album deleted successfully;Album slettet 
 albumDetails;Album details;Album detaljer
 albumInfo;Album info;Album info
+albumNotFound;Album not found;Album ikke fundet
 albums;Albums;Album
 albumsSmall;albums;album
 albumsTable;Album table;Album tabel
-albumUpdatedSuccessfully;Album updated successfully;Album blev opdateret
+albumUpdated;Album updated successfully;Album blev opdateret
 all;All;Alle
 and;and;og
 artist;Band / Artist;Gruppe / Kunstner
@@ -40,31 +40,36 @@ gotoPrevPage;Go to previous page;Gå til forrige side
 home;Home;Hjem
 insertCover;Insert cover;Indsæt cover
 invalidEmail;Invalid email;Ugyldig e-mail
+invalidPassword;Invalid password;Ugyldig adgangskode
 jumpPagesBack;Jump back;Hop tilbage
 jumpPagesForth;Jump forth;Hop frem
 label;Label;Label
+loggedOut;Logged out successfully;Logget ud 
 login;Login;Log ind
+loginFailed;Login failed;Login mislykkedes
+loginSucceeded;Login succeeded;Login lykkedes
 logout;Log out;Log ud
 main;Main;Primær
 mustBeGreaterEqual;Must be greater than or equal to;Skal være større end eller lig med
 niceToKnow;Nice to know;Værd at vide
 noAlbumFound;No Albums found;Ingen albums blev fundet
 noInfo;No info;Ikke oplyst
+noUser;User not found. Please sign up first;Bruger ikke fundet. Opret dig først
 numOfRecords;Number of records;Antal lp(er)
 of;of;af
 origin;Origin;Oprindelse
 page;Page;Side
 password;Password;Adgangskode
-passwordMinLength;Password should be at least 6 characters;Adgangskoden skal være mindst 6 tegn
+passwordDoNotMatch;The passwords do not match;Adgangskoderne stemmer ikke overens
 passwordLowercase;Password should contain at least one lowercase letter;Adgangskoden skal indeholde mindst ét lille bogstav
-passwordUppercase;Password should contain at least one uppercase letter;Adgangskoden skal indeholde mindst ét stort bogstav
+passwordMinLength;Password should be at least 6 characters;Adgangskoden skal være mindst 6 tegn
 passwordNumber;Password should contain at least one number;Adgangskoden skal indeholde mindst ét tal
 passwordSymbol;Password should contain at least one special character;Adgangskoden skal indeholde mindst ét specialtegn
-passwordDoNotMatch;The passwords do not match;Adgangskoderne stemmer ikke overens
+passwordUppercase;Password should contain at least one uppercase letter;Adgangskoden skal indeholde mindst ét stort bogstav
 pleaseEnter;Please enter;Indsæt venligst
-pleaseEnterValidEmail;Please enter a valid email;Indsæt venligst en gyldig e-mail
-pleaseEnterPassword;Please enter password;Indsæt venligst adgangskode
 pleaseEnterName;Please enter  name;Indsæt venligst navn
+pleaseEnterPassword;Please enter password;Indsæt venligst adgangskode
+pleaseEnterValidEmail;Please enter a valid email;Indsæt venligst en gyldig e-mail
 price;Price;Pris
 prodYear;Production year;Produktions år
 recordNo;Record number;Pladenummer
@@ -74,15 +79,19 @@ resultsPerPage;Results per page;Resultater pr side
 retry;Retry;Forsøg igen
 showing;Showing;Viser
 signup;Signup;Opret bruger
+signupFailed;Sign up failed;Registrering mislykkedes
+signupSucceeded;Sign up succeeded;Registrering lykkedes
 somethingWentWrong;Something went wrong;Noget gik galt
 sortBy;Sort by;Sorter efter
 sub;Sub;Sekundær
 sureToDelete;Are you sure you want to Delete;Er du sikker på at du vil slette
 title;Title;Titel
 to;to;til
+unAuthorizedUser;Unuthorized user;Uautoriseret bruger
 updateAlbum;Update album;Opdater album
 upLoadCover;Upload cover;Upload cover
 user;User;Bruger
+userAlreadyExist;A profile with this email already exists. Try logging in instead;Der findes en profil med denne e-mail. Prøv at logge ind i stedet
 userInfo;User info;Bruger info
 username;UserName;Brugernavn
 welcome;Welcome;Velkommen
