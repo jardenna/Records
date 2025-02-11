@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import Record from '../models/RecordModel.js';
-import { t } from './translator.js';
+import { t } from '../utils/translator.js';
 
 // @desc    Get the latest six records
 // @route   Get /api/records/latestSix

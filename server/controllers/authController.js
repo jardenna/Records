@@ -2,7 +2,7 @@ import bcrypt from 'bcrypt';
 import { tokenBlacklist } from '../middleware/authMiddleware.js';
 import User from '../models/UserModel.js';
 import generateTokenAndSetCookie from '../utils/token.js';
-import { t } from './translator.js';
+import { t } from '../utils/translator.js';
 
 // @desc    Register a new user
 // @route   POST /api/users
@@ -54,33 +54,28 @@ const registerUser = async (req, res) => {
 // @access  Public
 const loginUser = async (req, res) => {
   const { email, password } = req.body;
-  // const validEmail = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
+  const validEmail = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
 
   try {
     const checkUser = await User.findOne({ email });
 
-    // if (!email) {
-    //   return res.status(401).json({
-    //     message: 'Email must be provided',
-    //   });
-    // }
+    if (!email) {
+      return res.status(401).json({
+        message: 'Email must be provided',
+      });
+    }
 
-    // if (!validEmail.test(email)) {
-    //   return res.status(422).json({
-    //     message: 'Invalid email address',
-    //   });
-    // }
+    if (!validEmail.test(email)) {
+      return res.status(422).json({
+        message: 'Invalid email address',
+      });
+    }
 
-    // if (!password) {
-    //   return res.status(401).json({
-    //     message: 'Password must be provided',
-    //   });
-    // } else {
-    //   const passwordError = validatePassword(req.body.password);
-    //   if (passwordError) {
-    //     return res.status(400).json({ message: passwordError });
-    //   }
-    // }
+    if (!password) {
+      return res.status(401).json({
+        message: 'Password must be provided',
+      });
+    }
 
     // if (password) {
     //   const passwordError = validatePassword(req.body.password);
