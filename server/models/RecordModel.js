@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
+import { yearRegex } from '../utils/regex.js';
 
-const yearRegex = /^(18(8[9]|9[0-9])|19\d{2}|20\d{2}|2099)$/;
 const currentYear = new Date().getFullYear();
 const nextYear = currentYear + 1;
 const minimumYear = 1889;
