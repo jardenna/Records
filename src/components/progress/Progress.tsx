@@ -2,14 +2,12 @@ import { FC } from 'react';
 import './_progress.scss';
 
 interface ProgressProps {
-  bgcolor: string;
   completed: number;
 }
 
-const Progress: FC<ProgressProps> = ({ bgcolor, completed }) => {
+const Progress: FC<ProgressProps> = ({ completed }) => {
   const fillerStyles = {
     width: `${completed}%`,
-    backgroundColor: bgcolor,
   };
 
   return (

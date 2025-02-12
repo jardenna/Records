@@ -36,26 +36,22 @@ const PasswordInput: FC<PasswordInputProps> = ({
   onFocus,
 }) => {
   const { language } = useLanguage();
-  const testData = [
-    { bgcolor: '#6a1b9a', completed: 60 },
-    { bgcolor: '#00695c', completed: 30 },
-  ];
+
   const [showPassword, setShowPassword] = useState(true);
 
   const handleShowPassword = () => {
     setShowPassword(!showPassword);
   };
 
+  const x = passwordRules ? passwordRules(String(value)) : [];
+
+  const validCount = x.filter((item) => item.isValid).length;
+  const progress = (validCount / x.length) * 100;
+
   return (
     <div className="password-input-container">
       <div className="App">
-        {testData.map((item) => (
-          <Progress
-            key={item.bgcolor}
-            bgcolor={item.bgcolor}
-            completed={item.completed}
-          />
-        ))}
+        <Progress completed={progress} />
       </div>
       {passwordRules && isFocused && (
         <PasswordPopupList
