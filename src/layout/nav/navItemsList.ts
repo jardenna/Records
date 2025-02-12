@@ -1,6 +1,6 @@
 import { LinkText, MainPath } from './enums';
 
-export const navItemsList = [
+const navItemsList = [
   {
     path: MainPath.Root,
     linkText: LinkText.Home,
@@ -15,7 +15,7 @@ export const navItemsList = [
   },
 ];
 
-export const authItemsList = [
+const authItemsList = [
   {
     path: MainPath.Login,
     linkText: LinkText.Login,
@@ -25,3 +25,5 @@ export const authItemsList = [
     linkText: LinkText.Signup,
   },
 ];
+
+export { authItemsList, navItemsList };
