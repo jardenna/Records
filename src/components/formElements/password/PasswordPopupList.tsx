@@ -2,10 +2,10 @@ import { FC } from 'react';
 import PasswordPopupItem from './PasswordPopupItem';
 
 interface PasswordPopupListProps {
-  isSuccess: any;
+  inputValue: string;
 }
 
-const PasswordPopupList: FC<PasswordPopupListProps> = ({ isSuccess }) => {
+const PasswordPopupList: FC<PasswordPopupListProps> = ({ inputValue }) => {
   const passwordRequirements = [
     'Mindst 8 tegn',
     'Mindst ét tal',
@@ -21,7 +21,7 @@ const PasswordPopupList: FC<PasswordPopupListProps> = ({ isSuccess }) => {
           <PasswordPopupItem
             text={requirement}
             key={requirement}
-            isSuccess={isSuccess}
+            inputValue={inputValue}
           />
         ))}
       </ul>

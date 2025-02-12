@@ -2,17 +2,20 @@ import { FC } from 'react';
 import Icon, { IconName } from '../../icons/Icon';
 
 interface PasswordPopupItemProps {
-  isSuccess: any;
+  inputValue: string;
   text: string;
 }
 
-const PasswordPopupItem: FC<PasswordPopupItemProps> = ({ text, isSuccess }) => {
-  console.log(isSuccess);
+const PasswordPopupItem: FC<PasswordPopupItemProps> = ({
+  text,
+  inputValue,
+}) => {
+  console.log(inputValue);
 
   return (
     <li className="popup-item">
       <Icon
-        iconName={isSuccess ? IconName.Success : IconName.Error}
+        iconName={inputValue ? IconName.Success : IconName.Error}
         title="Success"
       />
       {text}

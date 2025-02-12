@@ -40,7 +40,7 @@ const PasswordInput: FC<PasswordInputProps> = ({
 
   return (
     <div className="password-input-container">
-      {showPasswordPopup && <PasswordPopupList isSuccess={value} />}
+      {showPasswordPopup && <PasswordPopupList inputValue={String(value)} />}
       <Input
         id={id}
         labelText={labelText}
