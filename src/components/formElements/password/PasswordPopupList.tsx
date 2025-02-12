@@ -1,17 +1,25 @@
 import { FC } from 'react';
 import useLanguage from '../../../features/language/useLanguage';
 
+export interface PasswordRulesProps {
+  isValid: boolean;
+  text: string;
+}
 interface PasswordPopupListProps {
-  passwordRules: string[];
+  inputValue: string;
+  passwordRules: (value: string) => PasswordRulesProps[];
 }
 
-const PasswordPopupList: FC<PasswordPopupListProps> = ({ passwordRules }) => {
+const PasswordPopupList: FC<PasswordPopupListProps> = ({
+  passwordRules,
+  inputValue,
+}) => {
   const { language } = useLanguage();
 
   return (
     <article>
       <ul className="popup-item-list">
-        {passwordRules.map((rule: any) => (
+        {passwordRules(inputValue).map((rule) => (
           <li
             key={rule.text}
             className={`popup-item ${!rule.isValid ? 'error' : ''}`}

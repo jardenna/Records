@@ -5,7 +5,7 @@ import Button from '../../Button';
 import Icon, { IconName } from '../../icons/Icon';
 import Input, { InputProps } from '../Input';
 import './_password-input.scss';
-import PasswordPopupList from './PasswordPopupList';
+import PasswordPopupList, { PasswordRulesProps } from './PasswordPopupList';
 
 type OmittedInputProps = Omit<
   InputProps,
@@ -13,7 +13,7 @@ type OmittedInputProps = Omit<
 >;
 
 interface PasswordInputProps extends OmittedInputProps {
-  passwordRules?: (value: string) => string[];
+  passwordRules?: (value: string) => PasswordRulesProps[];
 }
 const PasswordInput: FC<PasswordInputProps> = ({
   value,
@@ -42,7 +42,8 @@ const PasswordInput: FC<PasswordInputProps> = ({
     <div className="password-input-container">
       {passwordRules && (
         <PasswordPopupList
-          passwordRules={passwordRules ? passwordRules(String(value)) : []}
+          passwordRules={passwordRules}
+          inputValue={String(value)}
         />
       )}
       <Input

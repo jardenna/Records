@@ -3,6 +3,7 @@ import VisuallyHidden from '../../../components/VisuallyHidden';
 import Input from '../../../components/formElements/Input';
 import Form from '../../../components/formElements/form/Form';
 import PasswordInput from '../../../components/formElements/password/PasswordInput';
+import { PasswordRulesProps } from '../../../components/formElements/password/PasswordPopupList';
 import {
   BlurEventType,
   ChangeInputType,
@@ -27,7 +28,7 @@ interface AuthFormProps {
   onChange: (event: ChangeInputType) => void;
   onSubmit: (event: FormEventType) => void;
   values: User;
-  passwordRules?: any;
+  passwordRules?: (value: string) => PasswordRulesProps[];
 }
 
 const AuthForm: FC<AuthFormProps> = ({
