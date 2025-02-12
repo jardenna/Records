@@ -83,7 +83,6 @@ const AuthForm: FC<AuthFormProps> = ({
           onChange={onChange}
           required
           errorText={language[errors.password]}
-          onBlur={onBlur}
           showPasswordPopup={showPasswordPopup}
         />
         {values.confirmPassword !== undefined && (
