@@ -3,6 +3,7 @@ import useLanguage from '../../../features/language/useLanguage';
 import { BtnVariant } from '../../../types/enums';
 import Button from '../../Button';
 import Icon, { IconName } from '../../icons/Icon';
+import Progress from '../../progress/Progress';
 import Input, { InputProps } from '../Input';
 import './_password-input.scss';
 import PasswordPopupList, { PasswordRulesProps } from './PasswordPopupList';
@@ -13,6 +14,7 @@ type OmittedInputProps = Omit<
 >;
 
 interface PasswordInputProps extends OmittedInputProps {
+  isFocused?: boolean;
   passwordRules?: (value: string) => PasswordRulesProps[];
 }
 const PasswordInput: FC<PasswordInputProps> = ({
@@ -30,8 +32,14 @@ const PasswordInput: FC<PasswordInputProps> = ({
   autoFocus,
   required,
   passwordRules,
+  isFocused,
+  onFocus,
 }) => {
   const { language } = useLanguage();
+  const testData = [
+    { bgcolor: '#6a1b9a', completed: 60 },
+    { bgcolor: '#00695c', completed: 30 },
+  ];
   const [showPassword, setShowPassword] = useState(true);
 
   const handleShowPassword = () => {
@@ -40,7 +48,16 @@ const PasswordInput: FC<PasswordInputProps> = ({
 
   return (
     <div className="password-input-container">
-      {passwordRules && (
+      <div className="App">
+        {testData.map((item) => (
+          <Progress
+            key={item.bgcolor}
+            bgcolor={item.bgcolor}
+            completed={item.completed}
+          />
+        ))}
+      </div>
+      {passwordRules && isFocused && (
         <PasswordPopupList
           passwordRules={passwordRules}
           inputValue={String(value)}
@@ -61,6 +78,7 @@ const PasswordInput: FC<PasswordInputProps> = ({
         placeholder={placeholder}
         autoFocus={autoFocus}
         required={required}
+        onFocus={onFocus}
       />
       {!!value && (
         <Button
