@@ -15,7 +15,6 @@ export interface User {
   email: string;
   password: string;
   confirmPassword?: string;
-
   username?: string;
 }
 
@@ -28,7 +27,7 @@ interface AuthFormProps {
   onChange: (event: ChangeInputType) => void;
   onSubmit: (event: FormEventType) => void;
   values: User;
-  showPasswordPopup?: boolean;
+  passwordRules?: any;
 }
 
 const AuthForm: FC<AuthFormProps> = ({
@@ -40,7 +39,7 @@ const AuthForm: FC<AuthFormProps> = ({
   legendText,
   errors,
   onBlur,
-  showPasswordPopup,
+  passwordRules,
 }) => {
   const { language } = useLanguage();
 
@@ -83,7 +82,7 @@ const AuthForm: FC<AuthFormProps> = ({
           onChange={onChange}
           required
           errorText={language[errors.password]}
-          showPasswordPopup={showPasswordPopup}
+          passwordRules={passwordRules}
         />
         {values.confirmPassword !== undefined && (
           <PasswordInput

@@ -4,6 +4,7 @@ import validationSignup from '../../../components/formElements/validation/valida
 import useMessagePopup from '../../../components/messagePopup/useMessagePopup';
 import useFormValidation from '../../../hooks/useFormValidation';
 import { MainPath } from '../../../layout/nav/enums';
+import passwordRules from '../../../utils/passwordRules';
 import useLanguage from '../../language/useLanguage';
 import { useRegisterMutation } from '../authApiSlice';
 import AuthForm from '../components/AuthForm';
@@ -25,6 +26,7 @@ const RegisterPage: FC = () => {
     callback: handleRegisterUser,
     validate: validationSignup,
   });
+
   const [registerUser, { isLoading }] = useRegisterMutation();
 
   async function handleRegisterUser() {
@@ -65,7 +67,7 @@ const RegisterPage: FC = () => {
       onChange={onChange}
       errors={errors}
       onBlur={onBlur}
-      showPasswordPopup
+      passwordRules={passwordRules}
     />
   );
 };

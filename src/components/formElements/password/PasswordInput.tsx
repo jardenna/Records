@@ -13,7 +13,7 @@ type OmittedInputProps = Omit<
 >;
 
 interface PasswordInputProps extends OmittedInputProps {
-  showPasswordPopup?: boolean;
+  passwordRules?: (value: string) => string[];
 }
 const PasswordInput: FC<PasswordInputProps> = ({
   value,
@@ -29,7 +29,7 @@ const PasswordInput: FC<PasswordInputProps> = ({
   placeholder,
   autoFocus,
   required,
-  showPasswordPopup,
+  passwordRules,
 }) => {
   const { language } = useLanguage();
   const [showPassword, setShowPassword] = useState(true);
@@ -40,7 +40,11 @@ const PasswordInput: FC<PasswordInputProps> = ({
 
   return (
     <div className="password-input-container">
-      {showPasswordPopup && <PasswordPopupList inputValue={String(value)} />}
+      {passwordRules && (
+        <PasswordPopupList
+          passwordRules={passwordRules ? passwordRules(String(value)) : []}
+        />
+      )}
       <Input
         id={id}
         labelText={labelText}

@@ -1,26 +1,30 @@
 import { FC } from 'react';
+import useLanguage from '../../../features/language/useLanguage';
 import Icon, { IconName } from '../../icons/Icon';
 
 interface PasswordPopupItemProps {
-  inputValue: string;
+  passwordErrorKey: string | null;
   text: string;
 }
 
 const PasswordPopupItem: FC<PasswordPopupItemProps> = ({
   text,
-  inputValue,
+  passwordErrorKey,
 }) => {
-  console.log(inputValue);
+  const { language } = useLanguage();
+
+  if (passwordErrorKey) {
+    console.log(language[passwordErrorKey]);
+  }
 
   return (
     <li className="popup-item">
       <Icon
-        iconName={inputValue ? IconName.Success : IconName.Error}
+        iconName={passwordErrorKey ? IconName.Success : IconName.Error}
         title="Success"
       />
       {text}
     </li>
   );
 };
-
 export default PasswordPopupItem;
