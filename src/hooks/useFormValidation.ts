@@ -34,7 +34,7 @@ function useFormValidation<T extends KeyValuePair<any>>({
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [file, setFile] = useState<File | null>(null);
   const [fileName, setFileName] = useState('');
-
+  const [isFocused, setIsFocused] = useState(false);
   const [previewUrl, setPreviewUrl] = useState('');
   const inputRefs = useRef<Record<string, HTMLInputElement | null>>({});
 
@@ -117,7 +117,12 @@ function useFormValidation<T extends KeyValuePair<any>>({
     setValues(initialState);
   };
 
+  const onFocus = () => {
+    setIsFocused(true);
+  };
+
   const onBlur = (event: BlurEventType) => {
+    setIsFocused(false);
     const { name } = event.target;
     if (!touched.includes(name)) {
       setTouched([...touched, name]);
@@ -163,6 +168,8 @@ function useFormValidation<T extends KeyValuePair<any>>({
     onSubmit,
     onChange,
     onCustomChange,
+    isFocused,
+    onFocus,
     onBlur,
     values,
     errors,

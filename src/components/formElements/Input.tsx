@@ -19,6 +19,7 @@ export interface InputProps {
   maxLength?: number;
   min?: number;
   onBlur?: (event: BlurEventType) => void;
+  onFocus?: () => void;
   placeholder?: string;
   ref?: RefObject<HTMLInputElement | null>;
   required?: boolean;
@@ -45,6 +46,7 @@ const Input: FC<InputProps> = ({
   maxLength,
   autoComplete = 'on',
   autoFocus,
+  onFocus,
 }) => {
   const inputClassName = `${type === 'checkbox' || type === 'radio' ? 'checkbox-radio-container' : 'input-container'}`;
   const handleOnInput = (event: ChangeEvent<HTMLInputElement>) => {
@@ -89,6 +91,7 @@ const Input: FC<InputProps> = ({
         max={max}
         autoComplete={autoComplete}
         onInput={handleOnInput}
+        onFocus={onFocus}
       />
     </div>
   );
