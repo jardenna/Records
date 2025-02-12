@@ -50,7 +50,12 @@ loginFailed;Login failed;Login mislykkedes
 loginSucceeded;Login succeeded;Login lykkedes
 logout;Log out;Log ud
 main;Main;Primær
+minLength;At least 8 characters;Mindst 8 tegn
 mustBeGreaterEqual;Must be greater than or equal to;Skal være større end eller lig med
+mustHaveLowercase;At least one lowercase letter;Mindst ét lille bogstav
+mustHaveNumber;Atleast one number;Mindst ét tal
+mustHaveSymbol;At least one special character;Mindst ét specialtegn
+mustHaveUppercase;At least one uppercase letter;Mindst ét stort bogstav
 niceToKnow;Nice to know;Værd at vide
 noAlbumFound;No Albums found;Ingen albums blev fundet
 noInfo;No info;Ikke oplyst

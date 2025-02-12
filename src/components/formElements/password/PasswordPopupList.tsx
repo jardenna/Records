@@ -1,4 +1,5 @@
 import { FC } from 'react';
+import useLanguage from '../../../features/language/useLanguage';
 import { isNumber, isSymbol, lowercase, uppercase } from '../../../utils/regex';
 
 interface PasswordPopupListProps {
@@ -6,12 +7,13 @@ interface PasswordPopupListProps {
 }
 
 const PasswordPopupList: FC<PasswordPopupListProps> = ({ inputValue }) => {
+  const { language } = useLanguage();
   const passwordRules = [
-    { text: 'Mindst 8 tegn', isValid: inputValue.length >= 8 },
-    { text: 'Mindst ét tal', isValid: isNumber.test(inputValue) },
-    { text: 'Mindst ét lille bogstav', isValid: lowercase.test(inputValue) },
-    { text: 'Mindst ét stort bogstav', isValid: uppercase.test(inputValue) },
-    { text: 'Mindst ét specielt tegn', isValid: isSymbol.test(inputValue) },
+    { text: 'minLength', isValid: inputValue.length >= 8 },
+    { text: 'mustHaveNumber', isValid: isNumber.test(inputValue) },
+    { text: 'mustHaveLowercase', isValid: lowercase.test(inputValue) },
+    { text: 'mustHaveUppercase', isValid: uppercase.test(inputValue) },
+    { text: 'mustHaveSymbol', isValid: isSymbol.test(inputValue) },
   ];
 
   return (
@@ -19,7 +21,7 @@ const PasswordPopupList: FC<PasswordPopupListProps> = ({ inputValue }) => {
       <ul className="popup-item-list">
         {passwordRules.map(({ text, isValid }, index) => (
           <li key={index} className={`popup-item ${!isValid ? 'error' : ''}`}>
-            {text}
+            {language[text]}
           </li>
         ))}
       </ul>
