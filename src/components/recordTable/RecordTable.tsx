@@ -4,6 +4,7 @@ import useClickOutside from '../../hooks/useClickOutside';
 import { MainPath } from '../../layout/nav/enums';
 import { BtnVariant } from '../../types/enums';
 import { ChangeInputType } from '../../types/types';
+import DeleteRecordModal from '../DeleteRecordModal';
 import IconBtn from '../IconBtn';
 import IconContent from '../IconContent';
 import { IconName } from '../icons/Icon';
@@ -12,7 +13,6 @@ import VisuallyHidden from '../VisuallyHidden';
 import './_table.scss';
 import SearchField from './SearchField';
 import SortBtn from './SortBtn';
-import DeleteRecordModal from '../DeleteRecordModal';
 
 interface BaseTableProps {
   id: string | null;
