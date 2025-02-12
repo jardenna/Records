@@ -1,5 +1,6 @@
 import { FC } from 'react';
 import useLanguage from '../../../features/language/useLanguage';
+import PasswordPopupItem from './PasswordPopupItem';
 
 export interface PasswordRulesProps {
   isValid: boolean;
@@ -20,12 +21,10 @@ const PasswordPopupList: FC<PasswordPopupListProps> = ({
     <article>
       <ul className="popup-item-list">
         {passwordRules(inputValue).map((rule) => (
-          <li
-            key={rule.text}
-            className={`popup-item ${!rule.isValid ? 'error' : ''}`}
-          >
-            {language[rule.text]}
-          </li>
+          <PasswordPopupItem
+            isValid={rule.isValid}
+            text={language[rule.text]}
+          />
         ))}
       </ul>
     </article>
