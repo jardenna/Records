@@ -1,8 +1,7 @@
 import React, { ReactNode } from 'react';
 import { useAppSelector } from '../../app/hooks';
-import useVisibility from '../../hooks/useVisibility';
-
 import { selectModalId } from '../../features/modalSlice';
+import useVisibility from '../../hooks/useVisibility';
 import useWindowDimensions from '../../hooks/useWindowDimensions ';
 import { BtnVariant, PopupRole, SizeVariant } from '../../types/enums';
 import { BtnType } from '../../types/types';

@@ -1,5 +1,4 @@
 import React from 'react';
-
 import { MessagePopup } from '../../features/messagePopupSlice';
 import Portal from '../Portal';
 import './_message-popup.scss';

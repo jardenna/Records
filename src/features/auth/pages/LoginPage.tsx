@@ -1,12 +1,12 @@
 import { FC } from 'react';
 import { useLocation, useNavigate } from 'react-router';
+import validationLogin from '../../../components/formElements/validation/validateLogin';
 import useMessagePopup from '../../../components/messagePopup/useMessagePopup';
 import useFormValidation from '../../../hooks/useFormValidation';
 import { MainPath } from '../../../layout/nav/enums';
 import useLanguage from '../../language/useLanguage';
 import { useLoginMutation } from '../authApiSlice';
 import AuthForm from '../components/AuthForm';
-import validationLogin from '../../../components/formElements/validation/validateLogin';
 
 const LoginPage: FC = () => {
   const navigate = useNavigate();

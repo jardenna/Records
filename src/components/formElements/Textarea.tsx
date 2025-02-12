@@ -1,5 +1,4 @@
 import { FC } from 'react';
-
 import { ChangeInputType } from '../../types/types';
 import FormLabel from './FormLabel';
 import { InputProps } from './Input';

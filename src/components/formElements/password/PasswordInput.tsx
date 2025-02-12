@@ -1,5 +1,4 @@
 import { FC, useState } from 'react';
-
 import useLanguage from '../../../features/language/useLanguage';
 import { BtnVariant } from '../../../types/enums';
 import Button from '../../Button';
