@@ -28,6 +28,7 @@ interface AuthFormProps {
   onChange: (event: ChangeInputType) => void;
   onSubmit: (event: FormEventType) => void;
   values: User;
+  showPasswordPopup?: boolean;
 }
 
 const AuthForm: FC<AuthFormProps> = ({
@@ -39,6 +40,7 @@ const AuthForm: FC<AuthFormProps> = ({
   legendText,
   errors,
   onBlur,
+  showPasswordPopup,
 }) => {
   const { language } = useLanguage();
 
@@ -82,6 +84,7 @@ const AuthForm: FC<AuthFormProps> = ({
           required
           errorText={language[errors.password]}
           onBlur={onBlur}
+          showPasswordPopup={showPasswordPopup}
         />
         {values.confirmPassword !== undefined && (
           <PasswordInput

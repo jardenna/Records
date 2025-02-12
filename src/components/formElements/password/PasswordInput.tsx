@@ -5,13 +5,17 @@ import Button from '../../Button';
 import Icon, { IconName } from '../../icons/Icon';
 import Input, { InputProps } from '../Input';
 import './_password-input.scss';
+import PasswordPopupList from './PasswordPopupList';
 
 type OmittedInputProps = Omit<
   InputProps,
   'checked' | 'min' | 'max' | 'maxLength'
 >;
 
-const PasswordInput: FC<OmittedInputProps> = ({
+interface PasswordInputProps extends OmittedInputProps {
+  showPasswordPopup?: boolean;
+}
+const PasswordInput: FC<PasswordInputProps> = ({
   value,
   id,
   onChange,
@@ -25,6 +29,7 @@ const PasswordInput: FC<OmittedInputProps> = ({
   placeholder,
   autoFocus,
   required,
+  showPasswordPopup,
 }) => {
   const { language } = useLanguage();
   const [showPassword, setShowPassword] = useState(true);
@@ -35,6 +40,7 @@ const PasswordInput: FC<OmittedInputProps> = ({
 
   return (
     <div className="password-input-container">
+      {showPasswordPopup && <PasswordPopupList isSuccess={value} />}
       <Input
         id={id}
         labelText={labelText}

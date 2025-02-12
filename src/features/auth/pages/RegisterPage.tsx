@@ -65,6 +65,7 @@ const RegisterPage: FC = () => {
       onChange={onChange}
       errors={errors}
       onBlur={onBlur}
+      showPasswordPopup
     />
   );
 };
