@@ -18,16 +18,17 @@ const PasswordPopupList: FC<PasswordPopupListProps> = ({
   const { language } = useLanguage();
 
   return (
-    <article>
-      <ul className="popup-item-list">
+    <div className="popup-item-list">
+      <ul className="test">
         {passwordRules(inputValue).map((rule) => (
           <PasswordPopupItem
+            key={rule.text}
             isValid={rule.isValid}
             text={language[rule.text]}
           />
         ))}
       </ul>
-    </article>
+    </div>
   );
 };
 
