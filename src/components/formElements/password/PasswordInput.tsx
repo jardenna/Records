@@ -51,25 +51,27 @@ const PasswordInput: FC<OmittedInputProps> = ({
         autoFocus={autoFocus}
         required={required}
       />
-      <Button
-        variant={BtnVariant.Ghost}
-        onClick={handleShowPassword}
-        className="toggle-icon-btn"
-      >
-        {!showPassword ? (
-          <Icon
-            iconName={IconName.EyeOff}
-            title="Eye closed"
-            ariaLabel={language.showPassword}
-          />
-        ) : (
-          <Icon
-            iconName={IconName.Eye}
-            title="Eye"
-            ariaLabel={language.hidePassword}
-          />
-        )}
-      </Button>
+      {!!value && (
+        <Button
+          variant={BtnVariant.Ghost}
+          onClick={handleShowPassword}
+          className="toggle-icon-btn"
+        >
+          {!showPassword ? (
+            <Icon
+              iconName={IconName.EyeOff}
+              title="Eye closed"
+              ariaLabel={language.showPassword}
+            />
+          ) : (
+            <Icon
+              iconName={IconName.Eye}
+              title="Eye"
+              ariaLabel={language.hidePassword}
+            />
+          )}
+        </Button>
+      )}
     </div>
   );
 };
