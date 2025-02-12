@@ -21,11 +21,12 @@ const RegisterPage: FC = () => {
 
   const { addMessagePopup } = useMessagePopup();
 
-  const { values, errors, onChange, onBlur, onSubmit } = useFormValidation({
-    initialState,
-    callback: handleRegisterUser,
-    validate: validationSignup,
-  });
+  const { values, errors, onChange, onBlur, isFocused, onFocus, onSubmit } =
+    useFormValidation({
+      initialState,
+      callback: handleRegisterUser,
+      validate: validationSignup,
+    });
 
   const [registerUser, { isLoading }] = useRegisterMutation();
 
@@ -68,6 +69,8 @@ const RegisterPage: FC = () => {
       errors={errors}
       onBlur={onBlur}
       passwordRules={passwordRules}
+      isFocused={isFocused}
+      onFocus={onFocus}
     />
   );
 };

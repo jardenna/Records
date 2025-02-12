@@ -28,6 +28,8 @@ interface AuthFormProps {
   onChange: (event: ChangeInputType) => void;
   onSubmit: (event: FormEventType) => void;
   values: User;
+  isFocused?: boolean;
+  onFocus?: () => void;
   passwordRules?: (value: string) => PasswordRulesProps[];
 }
 
@@ -41,6 +43,8 @@ const AuthForm: FC<AuthFormProps> = ({
   errors,
   onBlur,
   passwordRules,
+  isFocused,
+  onFocus,
 }) => {
   const { language } = useLanguage();
 
@@ -82,8 +86,9 @@ const AuthForm: FC<AuthFormProps> = ({
           labelText={language.password}
           onChange={onChange}
           required
-          errorText={language[errors.password]}
           passwordRules={passwordRules}
+          onFocus={onFocus}
+          isFocused={isFocused}
         />
         {values.confirmPassword !== undefined && (
           <PasswordInput
