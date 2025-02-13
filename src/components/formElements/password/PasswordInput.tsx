@@ -3,7 +3,6 @@ import useLanguage from '../../../features/language/useLanguage';
 import { BtnVariant } from '../../../types/enums';
 import Button from '../../Button';
 import Icon, { IconName } from '../../icons/Icon';
-import Progress from '../../progress/Progress';
 import Input, { InputProps } from '../Input';
 import './_password-input.scss';
 import PasswordPopupList, { PasswordRulesProps } from './PasswordPopupList';
@@ -43,16 +42,8 @@ const PasswordInput: FC<PasswordInputProps> = ({
     setShowPassword(!showPassword);
   };
 
-  const x = passwordRules ? passwordRules(String(value)) : [];
-
-  const validCount = x.filter((item) => item.isValid).length;
-  const progress = (validCount / x.length) * 100;
-
   return (
     <div className="password-input-container">
-      <div className="App">
-        <Progress completed={progress} />
-      </div>
       {passwordRules && isFocused && (
         <PasswordPopupList
           passwordRules={passwordRules}

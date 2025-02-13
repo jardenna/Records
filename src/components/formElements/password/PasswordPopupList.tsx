@@ -1,5 +1,6 @@
 import { FC } from 'react';
 import useLanguage from '../../../features/language/useLanguage';
+import Progress from '../../progress/Progress';
 import PasswordPopupItem from './PasswordPopupItem';
 
 export interface PasswordRulesProps {
@@ -16,6 +17,10 @@ const PasswordPopupList: FC<PasswordPopupListProps> = ({
   inputValue,
 }) => {
   const { language } = useLanguage();
+  const x = passwordRules(inputValue);
+
+  const validCount = x.filter((item) => item.isValid).length;
+  const progress = (validCount / x.length) * 100;
 
   return (
     <div className="popup-item-list">
@@ -28,6 +33,7 @@ const PasswordPopupList: FC<PasswordPopupListProps> = ({
           />
         ))}
       </ul>
+      <Progress completed={progress} />
     </div>
   );
 };

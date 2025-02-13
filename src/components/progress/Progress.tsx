@@ -12,9 +12,7 @@ const Progress: FC<ProgressProps> = ({ completed }) => {
 
   return (
     <div className="progress-container">
-      <div style={fillerStyles} className="filler-styles">
-        <span className="label">{`${completed}%`}</span>
-      </div>
+      <div style={fillerStyles} className="filler-styles" />
     </div>
   );
 };
