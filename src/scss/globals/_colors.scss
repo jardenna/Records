@@ -1,7 +1,6 @@
 $color-white: #fff;
 $color-black: #000;
 $color-green: #7fd0c9;
-$color-green-dark: #26989b;
 $color-blue: #0b6b7c;
 $color-blue-dark: #04515f;
 $color-red: #a71b1b;
@@ -21,13 +20,13 @@ $color-primary-text: $color-gray-40;
 $color-link: $color-blue-dark;
 $color-primary-btn: $color-blue-dark;
 $color-primary-btn-hover: $color-blue;
-$color-danger: $color-red;
+$color-danger: #c62828;
 $color-border: $color-gray-20;
 $color-background: $color-gray-10;
 $color-overlay: rgb($color-black, 0.6);
 
 // $color-mics
 $color-error: $color-danger;
-$color-success: $color-green-dark;
+$color-success: $color-blue-dark;
 $color-info: $color-blue;
 $color-warning: $color-blue;
