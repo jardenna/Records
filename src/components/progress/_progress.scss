@@ -8,6 +8,22 @@
     height: 100%;
     background-color: $color-blue-dark;
 
+    &.secondary {
+      background-color: $color-primary;
+
+      @include animation(progress-bar, 5s, linear);
+    }
+
     @include transition($what: width);
+  }
+}
+
+@keyframes progress-bar {
+  0% {
+    width: 100%;
+  }
+
+  100% {
+    width: 0%;
   }
 }

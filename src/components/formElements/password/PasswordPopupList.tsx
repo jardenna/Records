@@ -1,7 +1,6 @@
 import { FC } from 'react';
 import useLanguage from '../../../features/language/useLanguage';
 import Progress from '../../progress/Progress';
-import ProgressBar from '../../progressbar/ProgressBar';
 import PasswordPopupItem from './PasswordPopupItem';
 
 export interface PasswordRulesProps {
@@ -35,7 +34,6 @@ const PasswordPopupList: FC<PasswordPopupListProps> = ({
         ))}
       </ul>
       <Progress progressPercentage={progressPercentage} />
-      <ProgressBar />
     </div>
   );
 };
