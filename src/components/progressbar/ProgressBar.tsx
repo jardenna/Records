@@ -1,9 +1,7 @@
 import { FC } from 'react';
 import './_progress-bar.scss';
 
-interface ProgressBarProps {}
-
-const ProgressBar: FC<ProgressBarProps> = () => (
+const ProgressBar: FC = () => (
   <div className="progress-bar-container">
     <span
       className="progress-bar"
