@@ -23,8 +23,8 @@ const PasswordPopupList: FC<PasswordPopupListProps> = ({
   const progressPercentage = (validCount / passwordRulesList.length) * 100;
 
   return (
-    <div className="popup-item-list">
-      <ul className="test">
+    <div className="password-popup-container">
+      <ul className="popup-list">
         {passwordRules(inputValue).map((rule) => (
           <PasswordPopupItem
             key={rule.text}
