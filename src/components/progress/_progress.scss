@@ -1,18 +1,12 @@
+@use '../../scss/globals' as *;
+
 .progress-container {
   height: 4px;
-  background-color: #e0e0de;
 
-  .filler-styles {
+  .progress-bar {
+    display: flex;
     height: 100%;
-    border-radius: inherit;
-    text-align: right;
     transition: width 0.5s ease-in-out;
     background-color: blue;
-  }
-
-  .label {
-    padding: 5px;
-    color: white;
-    font-weight: bold;
   }
 }

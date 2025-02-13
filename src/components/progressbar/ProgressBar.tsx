@@ -5,7 +5,7 @@ interface ProgressBarProps {}
 
 const ProgressBar: FC<ProgressBarProps> = () => (
   <div className="progress-bar-container">
-    <div
+    <span
       className="progress-bar"
       role="progressbar"
       aria-label="progress bar"
