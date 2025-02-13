@@ -34,6 +34,7 @@ const PasswordPopupList: FC<PasswordPopupListProps> = ({
         ))}
       </ul>
       <Progress progressPercentage={progressPercentage} />
+      <Progress progressPercentage={100} variant="secondary" />
     </div>
   );
 };
