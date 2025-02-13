@@ -1,18 +1,18 @@
 import { FC } from 'react';
-import './_progress.scss';
+import './_progress-bar.scss';
 
 type ProgressVariantType = 'primary' | 'secondary';
-interface ProgressProps {
+interface ProgressBarProps {
   progressPercentage: number;
   variant?: ProgressVariantType;
 }
 
-const Progress: FC<ProgressProps> = ({
+const ProgressBar: FC<ProgressBarProps> = ({
   progressPercentage,
   variant = 'primary',
 }) => (
   <div
-    className="progress-container"
+    className="progress-bar-container"
     role="progressbar"
     aria-label="progress bar"
   >
@@ -24,4 +24,4 @@ const Progress: FC<ProgressProps> = ({
   </div>
 );
 
-export default Progress;
+export default ProgressBar;
