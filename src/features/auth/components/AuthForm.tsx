@@ -89,6 +89,8 @@ const AuthForm: FC<AuthFormProps> = ({
           passwordRules={passwordRules}
           onFocus={onFocus}
           isFocused={isFocused}
+          onBlur={onBlur}
+          errorText={language[errors.password]}
         />
         {values.confirmPassword !== undefined && (
           <PasswordInput
