@@ -1,5 +1,6 @@
 import { FC } from 'react';
 import './_progress.scss';
+import ProgressIndicator from './ProgressIndicator';
 
 interface ProgressProps {
   progressPercentage: number;
@@ -7,12 +8,9 @@ interface ProgressProps {
 
 const Progress: FC<ProgressProps> = ({ progressPercentage }) => (
   <div className="progress-container">
-    <span
-      style={{ width: `${progressPercentage}%` }}
-      className="progress-bar"
-      role="progressbar"
-      aria-label="progress bar"
-      aria-valuetext={`Progress ${progressPercentage}% completed`}
+    <ProgressIndicator
+      progressPercentage={progressPercentage}
+      ariaValuetext={`Progress ${progressPercentage}% completed`}
     />
   </div>
 );
