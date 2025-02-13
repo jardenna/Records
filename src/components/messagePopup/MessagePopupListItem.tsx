@@ -1,4 +1,5 @@
 import { FC } from 'react';
+import useLanguage from '../../features/language/useLanguage';
 import {
   MessagePopup,
   MessagePopupTypes,
@@ -15,6 +16,7 @@ interface MessagePopupListItemProps {
 const MessagePopupListItem: FC<MessagePopupListItemProps> = ({
   messagePopup,
 }) => {
+  const { language } = useLanguage();
   const { deleteMessagePopup, popupClass } = useMessagePopup(messagePopup.id);
   const messagePopupTypeConfig: Record<
     MessagePopupTypes,
@@ -22,22 +24,22 @@ const MessagePopupListItem: FC<MessagePopupListItemProps> = ({
   > = {
     success: {
       iconName: IconName.Success,
-      title: 'Success Notification',
+      title: language.success,
       role: PopupRole.Status,
     },
     info: {
       iconName: IconName.Info,
-      title: 'Information Notification',
+      title: language.information,
       role: PopupRole.Status,
     },
     warning: {
       iconName: IconName.Warning,
-      title: 'Warning Notification',
+      title: language.warning,
       role: PopupRole.Alert,
     },
     error: {
       iconName: IconName.Error,
-      title: 'Error Notification',
+      title: language.error,
       role: PopupRole.Alert,
     },
   };
