@@ -2,7 +2,11 @@
 
 .record-list {
   .figure-img {
-    max-width: rem(284px);
+    max-width: rem(260px);
+  }
+
+  .record-img-sub-title {
+    font-size: rem(14px);
   }
 
   .record-item {
