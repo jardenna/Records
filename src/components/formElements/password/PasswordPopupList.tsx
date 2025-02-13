@@ -1,8 +1,8 @@
 import { FC } from 'react';
 import useLanguage from '../../../features/language/useLanguage';
 import Progress from '../../progress/Progress';
-import PasswordPopupItem from './PasswordPopupItem';
 import ProgressBar from '../../progressbar/ProgressBar';
+import PasswordPopupItem from './PasswordPopupItem';
 
 export interface PasswordRulesProps {
   isValid: boolean;
@@ -18,10 +18,10 @@ const PasswordPopupList: FC<PasswordPopupListProps> = ({
   inputValue,
 }) => {
   const { language } = useLanguage();
-  const x = passwordRules(inputValue);
+  const passwordRulesList = passwordRules(inputValue);
 
-  const validCount = x.filter((item) => item.isValid).length;
-  const progress = (validCount / x.length) * 100;
+  const validCount = passwordRulesList.filter((item) => item.isValid).length;
+  const progressPercentage = (validCount / passwordRulesList.length) * 100;
 
   return (
     <div className="popup-item-list">
@@ -34,7 +34,7 @@ const PasswordPopupList: FC<PasswordPopupListProps> = ({
           />
         ))}
       </ul>
-      <Progress completed={progress} />
+      <Progress progressPercentage={progressPercentage} />
       <ProgressBar />
     </div>
   );

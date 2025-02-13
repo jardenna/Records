@@ -2,17 +2,17 @@ import { FC } from 'react';
 import './_progress.scss';
 
 interface ProgressProps {
-  completed: number;
+  progressPercentage: number;
 }
 
-const Progress: FC<ProgressProps> = ({ completed }) => (
+const Progress: FC<ProgressProps> = ({ progressPercentage }) => (
   <div className="progress-container">
     <span
-      style={{ width: `${completed}%` }}
+      style={{ width: `${progressPercentage}%` }}
       className="progress-bar"
       role="progressbar"
       aria-label="progress bar"
-      aria-valuetext="progress bar"
+      aria-valuetext={`Progress ${progressPercentage}% completed`}
     />
   </div>
 );
