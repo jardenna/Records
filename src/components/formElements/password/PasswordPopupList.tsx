@@ -2,6 +2,7 @@ import { FC } from 'react';
 import useLanguage from '../../../features/language/useLanguage';
 import Progress from '../../progress/Progress';
 import PasswordPopupItem from './PasswordPopupItem';
+import ProgressBar from '../../progressbar/ProgressBar';
 
 export interface PasswordRulesProps {
   isValid: boolean;
@@ -34,6 +35,7 @@ const PasswordPopupList: FC<PasswordPopupListProps> = ({
         ))}
       </ul>
       <Progress completed={progress} />
+      <ProgressBar />
     </div>
   );
 };

@@ -97,13 +97,13 @@ table {
 
   th {
     border: 1px solid transparent;
-    border-bottom: 1px solid #969393;
+    border-bottom: 1px solid $color-gray-30;
     text-align: left;
     background-color: $color-white;
     width: 200px;
 
     &:has(.btn:focus) {
-      border-color: $color-placeholder;
+      border-color: currentcolor;
     }
 
     .btn {
@@ -118,7 +118,7 @@ table {
         color: $color-green-dark;
 
         svg {
-          stroke: $color-green-dark;
+          stroke: currentcolor;
         }
       }
     }

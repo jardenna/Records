@@ -11,18 +11,18 @@
 
     .btn {
       padding: 8px 15px;
-      border: 1px solid $color-gray-dark;
+      border: 1px solid $color-gray-40;
       border-right: 0;
       color: inherit;
       min-width: 48px;
       border-radius: 0;
 
       &.last-pagination-item {
-        border-right: 1px solid $color-gray-dark;
+        border-right: 1px solid $color-gray-40;
       }
 
       &:disabled {
-        color: $color-gray-dark;
+        color: $color-gray-40;
       }
 
       &:hover {

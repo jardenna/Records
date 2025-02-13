@@ -16,7 +16,9 @@ $animation-timing-function: ease-in-out;
 }
 
 @mixin transition($what: all, $time: 0.3s, $how: $animation-timing-function) {
-  transition: $what $time $how;
+  & {
+    transition: $what $time $how;
+  }
 
   @media (prefers-reduced-motion) {
     transition: none;
