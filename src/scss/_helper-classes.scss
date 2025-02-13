@@ -34,14 +34,14 @@
 
 .grid {
   display: grid;
-  gap: 24px;
+  gap: 16px;
 
   &.two-col {
     grid-template-columns: repeat(2, 1fr);
   }
 
   &.three-col {
-    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    grid-template-columns: repeat(3, 1fr);
   }
 }
 
