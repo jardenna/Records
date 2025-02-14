@@ -47,6 +47,7 @@ invalidPassword;Invalid password;Ugyldig adgangskode
 jumpPagesBack;Jump back;Hop tilbage
 jumpPagesForth;Jump forth;Hop frem
 label;Label;Label
+loading;Loading;Loading
 loggedOut;Logged out successfully;Logget ud 
 login;Login;Log ind
 loginFailed;Login failed;Login mislykkedes

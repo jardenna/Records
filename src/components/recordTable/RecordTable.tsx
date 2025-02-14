@@ -45,7 +45,7 @@ const RecordTable = <T extends Record<string, any>>({
 
   return (
     <div className={`table-container ${className}`}>
-      <table aria-label={isLoading ? 'Loading' : undefined}>
+      <table aria-label={isLoading ? language.loading : undefined}>
         <VisuallyHidden as="caption">{tableCaption}</VisuallyHidden>
         <thead>
           <tr>
