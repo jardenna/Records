@@ -6,6 +6,7 @@ import IconBtn from '../IconBtn';
 import IconContent from '../IconContent';
 import { IconName } from '../icons/Icon';
 import DetailLink from '../shared/DetailLink';
+import './scss/_action-body.scss';
 
 interface ActionBodyProps {
   id: string | null;

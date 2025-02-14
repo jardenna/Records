@@ -6,9 +6,11 @@ import { useAppDispatch, useAppSelector } from '../app/hooks';
 import ErrorBoundaryFallback from '../components/errorBoundary/ErrorBoundaryFallback';
 import MetaTags from '../components/MetaTags';
 import Pagination from '../components/pagination/Pagination';
+import RecordSelect from '../components/recordSelect/RecordSelect';
 import RecordTable from '../components/recordTable/RecordTable';
-import SelectBox, { Option } from '../components/SelectBox';
+import { Option } from '../components/SelectBox';
 import SkeletonList from '../components/skeleton/SkeletonList';
+import MainTable from '../components/table/MainTable';
 import useLanguage from '../features/language/useLanguage';
 import { selectModalId, toggleModal } from '../features/modalSlice';
 import { useGetPaginatedRecordsQuery } from '../features/records/recordsApiSlice';
@@ -145,36 +147,27 @@ const RecordTablePage: FC = () => {
         title={language.albumsTable}
       />
 
-      <div className="record-select-container">
-        <p>
-          {language.showing} {startRow} {language.to} {endRow} {language.of}{' '}
-          {totalRows} {language.albumsSmall}
-        </p>
-        <form onSubmit={(event) => event.preventDefault()}>
-          <SelectBox
-            name="limit"
-            options={[
-              {
-                value: defaultOptionValue,
-                label: defaultOptionValue.toString(),
-              },
-              { value: 20, label: '20' },
-              { value: 50, label: '50' },
-              { value: totalCount, label: language.all },
-            ]}
-            id="limit"
-            onChange={(selectedOptions) =>
-              handleSetRowsCount('limit', selectedOptions as Option)
-            }
-            labelText={language.resultsPerPage}
-            inputHasNoLabel
-            defaultValue={{
-              value: Number(limit) || 10,
-              label: limit || defaultOptionValue.toString(),
-            }}
-          />
-        </form>
-      </div>
+      <RecordSelect
+        options={[
+          {
+            value: defaultOptionValue,
+            label: defaultOptionValue.toString(),
+          },
+          { value: 20, label: '20' },
+          { value: 50, label: '50' },
+          { value: totalCount, label: language.all },
+        ]}
+        onChange={(selectedOptions) =>
+          handleSetRowsCount('limit', selectedOptions as Option)
+        }
+        defaultValue={{
+          value: Number(limit) || 10,
+          label: limit || defaultOptionValue.toString(),
+        }}
+        endRow={endRow}
+        startRow={startRow}
+        totalRows={totalRows}
+      />
 
       {!isLoading ? (
         <ErrorBoundary
@@ -182,21 +175,27 @@ const RecordTablePage: FC = () => {
           onReset={() => refetch}
         >
           {records && (
-            <RecordTable
-              isLoading={isLoading}
-              tableData={records.results}
-              onSort={handleSort}
-              sortOrder={sortOrder}
-              onFilterRows={handleFilterRecords}
-              values={values}
-              valuesFromSearch={Object.fromEntries(searchParams)}
-              tableHeaders={tableHeaders}
-              onClearAllSearch={handleClearAllSearch}
-              tableCaption={language.albumCollection}
-              id={modalId}
-              onOpenModal={handleOpenModal}
-              onViewAlbum={handleViewAlbum}
-            />
+            <>
+              <RecordTable
+                isLoading={isLoading}
+                tableData={records.results}
+                onSort={handleSort}
+                sortOrder={sortOrder}
+                onFilterRows={handleFilterRecords}
+                values={values}
+                valuesFromSearch={Object.fromEntries(searchParams)}
+                tableHeaders={tableHeaders}
+                onClearAllSearch={handleClearAllSearch}
+                tableCaption={language.albumCollection}
+                id={modalId}
+                onOpenModal={handleOpenModal}
+                onViewAlbum={handleViewAlbum}
+              />
+              <MainTable
+                tableData={records.results}
+                tableHeaders={tableHeaders}
+              />
+            </>
           )}
         </ErrorBoundary>
       ) : (

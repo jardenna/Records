@@ -2,6 +2,7 @@ import { FC } from 'react';
 import useLanguage from '../../features/language/useLanguage';
 import IconBtn from '../IconBtn';
 import { IconName } from '../icons/Icon';
+import './scss/_action-header.scss';
 
 interface ActionHeaderProps {
   onClearAllSearch: () => void;

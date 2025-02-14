@@ -14,60 +14,6 @@
   }
 }
 
-.record-select-container {
-  display: flex;
-  justify-content: flex-end;
-  padding-bottom: 20px;
-  align-items: center;
-  gap: 20px;
-
-  .input-container {
-    position: relative;
-    z-index: 5;
-  }
-}
-
-.action-container {
-  display: flex;
-  gap: 16px;
-  justify-content: flex-end;
-
-  a {
-    display: flex;
-    align-items: center;
-  }
-}
-
-.table-header-container {
-  display: flex;
-  justify-content: space-between;
-  position: relative;
-
-  .input-container {
-    left: 20px;
-    top: 54px;
-    position: absolute;
-    width: 220px;
-    display: none;
-
-    &:has(.active) {
-      display: flex;
-    }
-  }
-
-  .dot {
-    width: rem(12px);
-    height: rem(12px);
-    border-radius: 50%;
-    background-color: $color-info;
-    display: flex;
-    position: absolute;
-    top: 10px;
-    right: -4px;
-    border: 3px solid $color-white;
-  }
-}
-
 table {
   width: 100%;
   min-width: rem(380px);
