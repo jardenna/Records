@@ -4,11 +4,11 @@ import useLanguage from '../../features/language/useLanguage';
 import './_table.scss';
 
 interface MainTableProps {
-  data: Records[];
+  tableData: Records[];
   tableHeaders: string[];
 }
 
-const MainTable: FC<MainTableProps> = ({ tableHeaders, data }) => {
+const MainTable: FC<MainTableProps> = ({ tableHeaders, tableData }) => {
   const { language } = useLanguage();
 
   return (
@@ -25,7 +25,7 @@ const MainTable: FC<MainTableProps> = ({ tableHeaders, data }) => {
             </tr>
           </thead>
           <tbody>
-            {data.map((album) => (
+            {tableData.map((album) => (
               <tr>
                 <td>{album.artist}</td>
                 <td>{album.title}</td>
