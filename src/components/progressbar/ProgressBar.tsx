@@ -1,10 +1,9 @@
 import { FC } from 'react';
 import './_progress-bar.scss';
 
-type ProgressVariantType = 'primary' | 'secondary';
 interface ProgressBarProps {
   progressPercentage: number;
-  variant?: ProgressVariantType;
+  variant?: 'primary' | 'secondary';
 }
 
 const ProgressBar: FC<ProgressBarProps> = ({

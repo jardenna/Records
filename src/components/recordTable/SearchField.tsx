@@ -1,5 +1,6 @@
-import { FC } from 'react';
+import { FC, useRef, useState } from 'react';
 import useLanguage from '../../features/language/useLanguage';
+import useClickOutside from '../../hooks/useClickOutside';
 import { ChangeInputType } from '../../types/types';
 import Input from '../formElements/Input';
 import IconBtn from '../IconBtn';
@@ -8,28 +9,27 @@ import VisuallyHidden from '../VisuallyHidden';
 
 interface SearchFieldProps {
   onFilterRows: (e: ChangeInputType) => void;
-  onToggleSearchField: () => void;
-  showSearchField: boolean;
   title: string;
   value: string;
 }
 
-const SearchField: FC<SearchFieldProps> = ({
-  title,
-  value,
-  showSearchField,
-  onFilterRows,
-  onToggleSearchField,
-}) => {
+const SearchField: FC<SearchFieldProps> = ({ title, value, onFilterRows }) => {
   const { language } = useLanguage();
+  const SearchFieldRef = useRef<HTMLInputElement>(null);
   const text = `${language.filter} ${language[title]}`;
+  const [showSearchsField, setShowSearchsField] = useState(false);
 
+  const handleSearchField = () => {
+    setShowSearchsField(!showSearchsField);
+  };
+
+  useClickOutside(SearchFieldRef, () => setShowSearchsField(false));
   return (
     <>
       <div className="position-relative">
         <IconBtn
           title={`${language.filter} ${language.title}`}
-          onClick={onToggleSearchField}
+          onClick={handleSearchField}
           iconName={IconName.Filter}
         />
         {value && (
@@ -39,17 +39,21 @@ const SearchField: FC<SearchFieldProps> = ({
           </>
         )}
       </div>
-      <Input
-        className={`search-field ${showSearchField ? 'active' : ''}`}
-        type="search"
-        name={title}
-        id={title}
-        placeholder={text}
-        value={value}
-        onChange={onFilterRows}
-        labelText={text}
-        inputHasNoLabel
-      />
+      {showSearchsField && (
+        <Input
+          className={`search-field ${showSearchsField ? 'active' : ''}`}
+          type="search"
+          name={title}
+          id={title}
+          placeholder={text}
+          value={value}
+          onChange={onFilterRows}
+          labelText={text}
+          inputHasNoLabel
+          ref={SearchFieldRef}
+          autoFocus
+        />
+      )}
     </>
   );
 };

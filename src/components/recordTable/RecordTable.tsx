@@ -1,18 +1,11 @@
-import { useRef, useState } from 'react';
 import useLanguage from '../../features/language/useLanguage';
-import useClickOutside from '../../hooks/useClickOutside';
 import { MainPath } from '../../layout/nav/enums';
-import { BtnVariant } from '../../types/enums';
 import { ChangeInputType } from '../../types/types';
-import DeleteRecordModal from '../DeleteRecordModal';
-import IconBtn from '../IconBtn';
-import IconContent from '../IconContent';
-import { IconName } from '../icons/Icon';
-import DetailLink from '../shared/DetailLink';
 import VisuallyHidden from '../VisuallyHidden';
 import './_table.scss';
-import SearchField from './SearchField';
-import SortBtn from './SortBtn';
+import ActionBody from './ActionBody';
+import ActionHeader from './ActionHeader';
+import RecordTableHeader from './RecordTableHeader';
 
 interface BaseTableProps {
   id: string | null;
@@ -49,13 +42,6 @@ const RecordTable = <T extends Record<string, any>>({
   onOpenModal,
 }: RecordTableProps<T>) => {
   const { language } = useLanguage();
-  const [showSearchField, setShowSearchField] = useState<string | null>(null);
-  const containerRefs = useRef<Map<HTMLElement, HTMLElement>>(new Map());
-  useClickOutside(containerRefs, () => setShowSearchField(null));
-
-  const handleToggleSearchField = (header: string) => {
-    setShowSearchField((prev) => (prev === header ? null : header));
-  };
 
   return (
     <div className={`table-container ${className}`}>
@@ -64,50 +50,16 @@ const RecordTable = <T extends Record<string, any>>({
         <thead>
           <tr>
             {tableHeaders.map((header) => (
-              <th scope="col" key={header}>
-                <div
-                  className="table-header-container"
-                  ref={(header: HTMLElement | null) => {
-                    if (header) {
-                      containerRefs.current.set(header, header);
-                    } else {
-                      containerRefs.current.delete(header!);
-                    }
-                  }}
-                >
-                  <SortBtn
-                    onSort={onSort}
-                    showIcon={valuesFromSearch.sortField === header}
-                    sortOrder={sortOrder}
-                    title={header}
-                  />
-
-                  {values[header] !== undefined && (
-                    <SearchField
-                      onFilterRows={onFilterRows}
-                      title={header}
-                      value={
-                        (valuesFromSearch[header] as string) || values[header]
-                      }
-                      onToggleSearchField={() =>
-                        handleToggleSearchField(header)
-                      }
-                      showSearchField={showSearchField === header}
-                    />
-                  )}
-                </div>
-              </th>
+              <RecordTableHeader
+                onSort={onSort}
+                showIcon={valuesFromSearch.sortField === header}
+                sortOrder={sortOrder}
+                title={header}
+                onFilterRows={onFilterRows}
+                value={(valuesFromSearch[header] as string) || values[header]}
+              />
             ))}
-            <th>
-              <div className="action-header">
-                {language.actions}
-                <IconBtn
-                  iconName={IconName.Undo}
-                  title={language.resetFiltersAndSorting}
-                  onClick={onClearAllSearch}
-                />
-              </div>
-            </th>
+            <ActionHeader onClearAllSearch={onClearAllSearch} />
           </tr>
         </thead>
         {tableData.length > 0 ? (
@@ -117,37 +69,14 @@ const RecordTable = <T extends Record<string, any>>({
                 {tableHeaders.map((header) => (
                   <td key={header}>{data[header]}</td>
                 ))}
-                <td>
-                  <div className="action-container">
-                    <IconBtn
-                      iconName={IconName.Eye}
-                      title={language.albumDetails}
-                      onClick={() => onViewAlbum(data.id)}
-                    />
-
-                    <DetailLink
-                      btnVariant={BtnVariant.Ghost}
-                      to={`/${MainPath.Update}/${data.id}`}
-                    >
-                      <IconContent
-                        iconName={IconName.Edit}
-                        title={language.updateAlbum}
-                      />
-                    </DetailLink>
-                    <IconBtn
-                      iconName={IconName.Trash}
-                      className="danger"
-                      title={language.deleteAlbum}
-                      onClick={() => onOpenModal(data.id)}
-                    />
-                    <DeleteRecordModal
-                      modalId={id === data.id ? data.id : null}
-                      id={id}
-                      btnLabel={language.delete}
-                      name={data.artist}
-                    />
-                  </div>
-                </td>
+                <ActionBody
+                  onViewAlbum={() => onViewAlbum(data.id)}
+                  modalId={id === data.id ? data.id : null}
+                  id={id}
+                  name={data.artist}
+                  to={`/${MainPath.Update}/${data.id}`}
+                  onOpenModal={() => onOpenModal(data.id)}
+                />
               </tr>
             ))}
           </tbody>
