@@ -12,6 +12,9 @@ import ErrorIcon from './ErrorIcon';
 import EyeIcon from './EyeIcon';
 import EyeOffIcon from './EyeOffIcon';
 import FilterIcon from './FilterIcon';
+import GridIcon from './GridIcon';
+import GridIconSmall from './GridIconSmall';
+import GridLargeIcon from './GridLargeIcon';
 import InfoIcon from './InfoIcon';
 import MoreIcon from './MoreIcon';
 import SubtractIcon from './SubtractIcon';
@@ -47,6 +50,9 @@ export enum IconName {
   Eye = 'eye',
   EyeOff = 'eyeOff',
   Filter = 'filter',
+  Grid = 'grid',
+  GridLarge = 'gridLarge',
+  GridSmall = 'gridSmall',
   Info = 'info',
   More = 'more',
   Subtract = 'subtract',
@@ -71,6 +77,9 @@ const iconMapping = {
   eye: EyeIcon,
   eyeOff: EyeOffIcon,
   filter: FilterIcon,
+  grid: GridIcon,
+  gridSmall: GridIconSmall,
+  gridLarge: GridLargeIcon,
   info: InfoIcon,
   more: MoreIcon,
   subtract: SubtractIcon,
