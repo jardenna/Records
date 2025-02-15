@@ -10,7 +10,7 @@ import './scss/_action-body.scss';
 
 interface ActionBodyProps {
   id: string | null;
-  modalId: string;
+  modalId: string | null;
   name: string;
   onOpenModal: () => void;
   onViewAlbum: () => void;

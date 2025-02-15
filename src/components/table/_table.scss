@@ -1,32 +1,32 @@
 /* stylelint-disable no-descending-specificity */
 @use '../../scss//globals' as *;
 
-// .tbl-container {
-//   max-width: fit-content;
-//   max-height: fit-content;
-// }
-
 .tbl-fixed {
   overflow: auto;
   border: 1px solid $color-border;
-
-  // height: fit-content;
-  max-height: 400px;
+  max-height: rem(400px);
+  margin-bottom: 12px;
 
   .main-table {
     width: 100%;
     border-spacing: 0;
+
+    .btn {
+      padding: 12px;
+    }
   }
 
   thead {
     th {
       position: sticky;
       top: 0;
+      z-index: 5;
     }
   }
 
   td {
-    z-index: 2;
+    line-height: rem(24px);
+    background-color: $color-white;
   }
 
   td:first-child,
@@ -34,13 +34,30 @@
     position: sticky;
     left: 0;
     background: white;
+  }
 
-    // z-index: 1;
+  tr:nth-child(odd) {
+    td {
+      background-color: $color-background;
+
+      &.no-records-table-field {
+        background-color: $color-white;
+        border: none;
+      }
+    }
   }
 
   th {
-    text-align: left;
     width: max-content;
+    border: 1px solid transparent;
+    border-bottom: 1px solid $color-gray-30;
+    text-align: left;
+    background-color: $color-white;
+    border-right: 1px solid $color-border;
+
+    &:has(.btn:focus) {
+      border-color: currentcolor;
+    }
 
     &:first-child {
       z-index: 3;
@@ -49,9 +66,8 @@
 
   td,
   th {
-    padding: 12px;
-    padding-right: 160px;
+    padding: 4px 12px;
+    padding-right: 30px;
     background-color: $color-white;
-    white-space: nowrap;
   }
 }

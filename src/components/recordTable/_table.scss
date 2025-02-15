@@ -1,130 +1,130 @@
-/* stylelint-disable no-descending-specificity */
-@use '../../scss/globals' as *;
+// /* stylelint-disable no-descending-specificity */
+// @use '../../scss/globals' as *;
 
-.table-container {
-  position: relative;
-  z-index: 1;
-  overflow: auto;
-  width: rem(300px);
-  min-width: 100%;
-  margin-bottom: 12px;
+// .table-container {
+//   position: relative;
+//   z-index: 1;
+//   overflow: auto;
+//   width: rem(300px);
+//   min-width: 100%;
+//   margin-bottom: 12px;
 
-  @include max-size($medium) {
-    max-height: rem(400px);
-  }
-}
+//   @include max-size($medium) {
+//     max-height: rem(400px);
+//   }
+// }
 
-table {
-  width: 100%;
-  min-width: rem(380px);
-  min-height: rem(100px);
-  border-spacing: 0;
-  border: 1px solid $color-border;
+// table {
+//   width: 100%;
+//   min-width: rem(380px);
+//   min-height: rem(100px);
+//   border-spacing: 0;
+//   border: 1px solid $color-border;
 
-  .btn {
-    padding: 12px;
-  }
+//   .btn {
+//     padding: 12px;
+//   }
 
-  td {
-    line-height: rem(24px);
-    background-color: $color-white;
-  }
+//   td {
+//     line-height: rem(24px);
+//     background-color: $color-white;
+//   }
 
-  th,
-  td {
-    padding: 4px 12px;
-  }
+//   th,
+//   td {
+//     padding: 4px 12px;
+//   }
 
-  .action-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
+//   .action-header {
+//     display: flex;
+//     align-items: center;
+//     justify-content: space-between;
+//   }
 
-  th {
-    border: 1px solid transparent;
-    border-bottom: 1px solid $color-gray-30;
-    text-align: left;
-    background-color: $color-white;
-    width: 200px;
+//   th {
+//     border: 1px solid transparent;
+//     border-bottom: 1px solid $color-gray-30;
+//     text-align: left;
+//     background-color: $color-white;
+//     width: 200px;
 
-    &:has(.btn:focus) {
-      border-color: currentcolor;
-    }
+//     &:has(.btn:focus) {
+//       border-color: currentcolor;
+//     }
 
-    .btn {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-weight: bold;
-      padding: 12px 0;
+//     .btn {
+//       display: flex;
+//       align-items: center;
+//       gap: 8px;
+//       font-weight: bold;
+//       padding: 12px 0;
 
-      &:hover {
-        outline: transparent;
-        color: $color-secondary;
+//       &:hover {
+//         outline: transparent;
+//         color: $color-secondary;
 
-        svg {
-          stroke: currentcolor;
-        }
-      }
-    }
+//         svg {
+//           stroke: currentcolor;
+//         }
+//       }
+//     }
 
-    &:first-child {
-      left: 0;
-      z-index: 2;
-    }
-  }
+//     &:first-child {
+//       left: 0;
+//       z-index: 2;
+//     }
+//   }
 
-  thead {
-    th {
-      position: sticky;
-      top: 0;
-      border-right: 1px solid $color-border;
+//   thead {
+//     th {
+//       position: sticky;
+//       top: 0;
+//       border-right: 1px solid $color-border;
 
-      &:first-child {
-        z-index: 5;
-      }
+//       &:first-child {
+//         z-index: 5;
+//       }
 
-      &:last-child {
-        border-right: none;
-      }
-    }
-  }
+//       &:last-child {
+//         border-right: none;
+//       }
+//     }
+//   }
 
-  tbody {
-    display: flex;
-    flex-direction: column;
-    max-height: rem(400px);
-    overflow: auto;
+//   tbody {
+//     display: flex;
+//     flex-direction: column;
+//     max-height: rem(400px);
+//     overflow: auto;
 
-    @include max-size($medium) {
-      display: table-row-group;
-    }
+//     @include max-size($medium) {
+//       display: table-row-group;
+//     }
 
-    td:first-child {
-      border-right: 1px solid $color-border;
-      position: sticky;
-      left: 0;
-      z-index: 2;
-    }
+//     td:first-child {
+//       border-right: 1px solid $color-border;
+//       position: sticky;
+//       left: 0;
+//       z-index: 2;
+//     }
 
-    tr:nth-child(odd) {
-      th,
-      td {
-        background-color: $color-background;
+//     tr:nth-child(odd) {
+//       th,
+//       td {
+//         background-color: $color-background;
 
-        &.no-records-table-field {
-          background-color: $color-white;
-          border: none;
-        }
-      }
-    }
-  }
-}
+//         &.no-records-table-field {
+//           background-color: $color-white;
+//           border: none;
+//         }
+//       }
+//     }
+//   }
+// }
 
-thead,
-tbody tr {
-  display: table;
-  width: 100%;
-  table-layout: fixed;
-}
+// thead,
+// tbody tr {
+//   display: table;
+//   width: 100%;
+//   table-layout: fixed;
+// }

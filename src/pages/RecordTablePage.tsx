@@ -7,7 +7,6 @@ import ErrorBoundaryFallback from '../components/errorBoundary/ErrorBoundaryFall
 import MetaTags from '../components/MetaTags';
 import Pagination from '../components/pagination/Pagination';
 import RecordSelect from '../components/recordSelect/RecordSelect';
-import RecordTable from '../components/recordTable/RecordTable';
 import { Option } from '../components/SelectBox';
 import SkeletonList from '../components/skeleton/SkeletonList';
 import MainTable from '../components/table/MainTable';
@@ -175,27 +174,21 @@ const RecordTablePage: FC = () => {
           onReset={() => refetch}
         >
           {records && (
-            <>
-              <RecordTable
-                isLoading={isLoading}
-                tableData={records.results}
-                onSort={handleSort}
-                sortOrder={sortOrder}
-                onFilterRows={handleFilterRecords}
-                values={values}
-                valuesFromSearch={Object.fromEntries(searchParams)}
-                tableHeaders={tableHeaders}
-                onClearAllSearch={handleClearAllSearch}
-                tableCaption={language.albumCollection}
-                id={modalId}
-                onOpenModal={handleOpenModal}
-                onViewAlbum={handleViewAlbum}
-              />
-              <MainTable
-                tableData={records.results}
-                tableHeaders={tableHeaders}
-              />
-            </>
+            <MainTable
+              tableCaption={language.albumCollection}
+              isLoading={isLoading}
+              tableData={records.results}
+              tableHeaders={tableHeaders}
+              onClearAllSearch={handleClearAllSearch}
+              id={modalId}
+              onOpenModal={handleOpenModal}
+              onViewAlbum={handleViewAlbum}
+              onSort={handleSort}
+              sortOrder={sortOrder}
+              onFilterRows={handleFilterRecords}
+              values={values}
+              valuesFromSearch={Object.fromEntries(searchParams)}
+            />
           )}
         </ErrorBoundary>
       ) : (

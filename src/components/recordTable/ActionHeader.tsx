@@ -11,7 +11,7 @@ interface ActionHeaderProps {
 const ActionHeader: FC<ActionHeaderProps> = ({ onClearAllSearch }) => {
   const { language } = useLanguage();
   return (
-    <th>
+    <th className="action">
       <div className="action-header">
         {language.actions}
         <IconBtn

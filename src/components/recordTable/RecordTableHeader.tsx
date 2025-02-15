@@ -2,6 +2,7 @@ import { FC } from 'react';
 import { ChangeInputType } from '../../types/types';
 import SearchField from './SearchField';
 import SortBtn from './SortBtn';
+import './scss/_table-action-header.scss';
 
 interface RecordTableHeaderProps {
   onFilterRows: (e: ChangeInputType) => void;
@@ -21,7 +22,7 @@ const RecordTableHeader: FC<RecordTableHeaderProps> = ({
   value,
 }) => (
   <th scope="col">
-    <div className="table-header-container">
+    <div className="table-action-header">
       <SortBtn
         onSort={onSort}
         showIcon={showIcon}
