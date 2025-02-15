@@ -1,27 +1,28 @@
 /* stylelint-disable no-descending-specificity */
-@use '../../scss//globals' as *;
+@use '../../scss/globals' as *;
 
 .fixed-table {
-  overflow: auto;
-  border: 1px solid $color-border;
-  max-height: rem(400px);
+  position: relative;
+  z-index: 1;
+  width: rem(300px);
+  min-width: 100%;
   margin-bottom: 12px;
+  border: 1px solid $color-border;
 
-  .main-table {
-    width: 100%;
-    border-spacing: 0;
-
-    .btn {
-      padding: 0;
-    }
+  @include max-size($medium) {
+    max-height: rem(400px);
+    overflow: auto;
   }
+}
 
-  thead {
-    th {
-      position: sticky;
-      top: 0;
-      z-index: 2;
-    }
+table {
+  width: 100%;
+  min-width: rem(380px);
+  min-height: rem(100px);
+  border-spacing: 0;
+
+  .btn {
+    padding: 12px;
   }
 
   td {
@@ -29,42 +30,96 @@
     background-color: $color-white;
   }
 
-  tr:nth-child(odd) {
-    td {
-      background-color: $color-background;
-
-      &.no-records-table-field {
-        background-color: $color-white;
-        border: none;
-      }
-    }
+  th,
+  td {
+    padding: 4px 12px;
+    word-wrap: break-word;
   }
 
   th {
-    width: max-content;
     border: 1px solid transparent;
     border-bottom: 1px solid $color-gray-30;
     text-align: left;
     background-color: $color-white;
-    border-right: 1px solid $color-border;
+    width: 200px;
 
     &:has(.btn:focus) {
       border-color: currentcolor;
     }
 
+    .btn {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: bold;
+      padding: 12px 0;
+
+      &:hover {
+        outline: transparent;
+        color: $color-secondary;
+
+        svg {
+          stroke: currentcolor;
+        }
+      }
+    }
+
     &:first-child {
-      z-index: 3;
+      left: 0;
+      z-index: 2;
     }
   }
 
-  td,
-  th {
-    padding: 4px 12px;
-    white-space: nowrap;
+  thead {
+    th {
+      position: sticky;
+      top: 0;
+      border-right: 1px solid $color-border;
 
-    &:first-child {
+      &:first-child {
+        z-index: 5;
+      }
+
+      &:last-child {
+        border-right: none;
+      }
+    }
+  }
+
+  tbody {
+    display: flex;
+    flex-direction: column;
+    max-height: rem(400px);
+    overflow: auto;
+
+    @include max-size($medium) {
+      display: table-row-group;
+    }
+
+    td:first-child {
+      border-right: 1px solid $color-border;
       position: sticky;
       left: 0;
+      z-index: 2;
+    }
+
+    tr:nth-child(odd) {
+      th,
+      td {
+        background-color: $color-background;
+
+        &.no-records-table-field {
+          background-color: $color-white;
+          border: none;
+        }
+      }
     }
   }
+}
+
+thead,
+tbody tr {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
 }
