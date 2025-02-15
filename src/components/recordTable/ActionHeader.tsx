@@ -2,7 +2,7 @@ import { FC } from 'react';
 import useLanguage from '../../features/language/useLanguage';
 import IconBtn from '../IconBtn';
 import { IconName } from '../icons/Icon';
-import './scss/_action-header.scss';
+import './scss/_table-action-header.scss';
 
 interface ActionHeaderProps {
   onClearAllSearch: () => void;
@@ -11,8 +11,8 @@ interface ActionHeaderProps {
 const ActionHeader: FC<ActionHeaderProps> = ({ onClearAllSearch }) => {
   const { language } = useLanguage();
   return (
-    <th className="action">
-      <div className="action-header">
+    <th>
+      <div className="table-action-header">
         {language.actions}
         <IconBtn
           iconName={IconName.Undo}
