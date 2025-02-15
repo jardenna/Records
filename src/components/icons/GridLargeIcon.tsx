@@ -24,9 +24,9 @@ const GridLargeIcon: FC<IconDefaultProps> = ({
     <title>{title}</title>
 
     <path d="M3 4h18" />
-    <path d="M3 9h18" />
-    <path d="M3 15h18" />
-    <path d="M3 21h18" />
+    <path d="M3 10h18" />
+    <path d="M3 16h18" />
+    <path d="M3 22h18" />
   </svg>
 );
 

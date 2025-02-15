@@ -22,10 +22,12 @@ const GridIcon: FC<IconDefaultProps> = ({
     aria-hidden={ariaHidden}
   >
     <title>{title}</title>
+
     <path d="M3 4h18" />
     <path d="M3 9h18" />
-    <path d="M3 13h18" />
+    <path d="M3 14h18" />
     <path d="M3 18h18" />
+    <path d="M3 22h18" />
   </svg>
 );
 

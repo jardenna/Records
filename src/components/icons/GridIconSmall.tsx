@@ -24,10 +24,12 @@ const GridIconSmall: FC<IconDefaultProps> = ({
     <title>{title}</title>
 
     <path d="M3 4h18" />
-    <path d="M3 8h18" />
-    <path d="M3 12h18" />
+    <path d="M3 7h18" />
+    <path d="M3 10h18" />
+    <path d="M3 13h18" />
     <path d="M3 16h18" />
-    <path d="M3 20h18" />
+    <path d="M3 19h18" />
+    <path d="M3 22h18" />
   </svg>
 );
 
