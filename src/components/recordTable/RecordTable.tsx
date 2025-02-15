@@ -4,8 +4,8 @@ import { ChangeInputType } from '../../types/types';
 import VisuallyHidden from '../VisuallyHidden';
 import './_table.scss';
 import ActionBody from './ActionBody';
-import ActionHeader from './ActionHeader';
 import RecordTableHeader from './RecordTableHeader';
+import ActionHeader from './TableActionHeader';
 
 interface BaseTableProps {
   id: string | null;

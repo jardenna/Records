@@ -4,11 +4,13 @@ import IconBtn from '../IconBtn';
 import { IconName } from '../icons/Icon';
 import './scss/_table-action-header.scss';
 
-interface ActionHeaderProps {
+interface TableActionHeaderProps {
   onClearAllSearch: () => void;
 }
 
-const ActionHeader: FC<ActionHeaderProps> = ({ onClearAllSearch }) => {
+const TableActionHeader: FC<TableActionHeaderProps> = ({
+  onClearAllSearch,
+}) => {
   const { language } = useLanguage();
   return (
     <th>
@@ -24,4 +26,4 @@ const ActionHeader: FC<ActionHeaderProps> = ({ onClearAllSearch }) => {
   );
 };
 
-export default ActionHeader;
+export default TableActionHeader;
