@@ -82,6 +82,7 @@ a[class^='btn-'],
   background-color: transparent;
   color: $color-primary-btn;
   border: 0;
+  width: fit-content;
 
   &.danger {
     svg {

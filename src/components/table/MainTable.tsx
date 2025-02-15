@@ -51,7 +51,7 @@ const MainTable: FC<MainTableProps> = ({
 
   return (
     <div className="fixed-table">
-      <div>
+      <div className="actions">
         <IconBtn
           iconName={IconName.GridSmall}
           title={language.retry}
