@@ -1,7 +1,7 @@
 /* stylelint-disable no-descending-specificity */
 @use '../../scss//globals' as *;
 
-.tbl-fixed {
+.fixed-table {
   overflow: auto;
   border: 1px solid $color-border;
   max-height: rem(400px);
@@ -12,7 +12,7 @@
     border-spacing: 0;
 
     .btn {
-      padding: 12px;
+      padding: 0;
     }
   }
 
@@ -20,20 +20,13 @@
     th {
       position: sticky;
       top: 0;
-      z-index: 5;
+      z-index: 2;
     }
   }
 
   td {
     line-height: rem(24px);
     background-color: $color-white;
-  }
-
-  td:first-child,
-  th:first-child {
-    position: sticky;
-    left: 0;
-    background: white;
   }
 
   tr:nth-child(odd) {
@@ -67,7 +60,11 @@
   td,
   th {
     padding: 4px 12px;
-    padding-right: 30px;
-    background-color: $color-white;
+    white-space: nowrap;
+
+    &:first-child {
+      position: sticky;
+      left: 0;
+    }
   }
 }

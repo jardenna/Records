@@ -3,7 +3,12 @@
 .table-action-header {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   position: relative;
+
+  .btn-ghost {
+    width: auto;
+  }
 
   .input-container {
     left: 20px;

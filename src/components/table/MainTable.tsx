@@ -43,50 +43,48 @@ const MainTable: FC<MainTableProps> = ({
   const { language } = useLanguage();
 
   return (
-    <div className="tbl-container">
-      <div className="row tbl-fixed">
-        <table
-          className="main-table"
-          aria-label={isLoading ? language.loading : undefined}
-        >
-          <VisuallyHidden as="caption">{tableCaption}</VisuallyHidden>
-          <thead>
-            <tr>
-              {tableHeaders.map((header) => (
-                <RecordTableHeader
-                  key={header}
-                  onSort={onSort}
-                  showIcon={valuesFromSearch.sortField === header}
-                  sortOrder={sortOrder}
-                  title={header}
-                  onFilterRows={onFilterRows}
-                  value={(valuesFromSearch[header] as string) || values[header]}
-                />
-              ))}
-              <ActionHeader onClearAllSearch={onClearAllSearch} />
-            </tr>
-          </thead>
-          <tbody>
-            {tableData.map((album) => (
-              <tr key={album.id}>
-                <td>{album.artist}</td>
-                <td>{album.title}</td>
-                <td>{album.prodYear}</td>
-                <td>{album.label}</td>
-                <td>{album.origin}</td>
-                <ActionBody
-                  onViewAlbum={() => onViewAlbum(album.id)}
-                  modalId={id === album.id ? album.id : null}
-                  id={id}
-                  name={album.artist}
-                  to={`/${MainPath.Update}/${album.id}`}
-                  onOpenModal={() => onOpenModal(album.id)}
-                />
-              </tr>
+    <div className="fixed-table">
+      <table
+        className="main-table"
+        aria-label={isLoading ? language.loading : undefined}
+      >
+        <VisuallyHidden as="caption">{tableCaption}</VisuallyHidden>
+        <thead>
+          <tr>
+            {tableHeaders.map((header) => (
+              <RecordTableHeader
+                key={header}
+                onSort={onSort}
+                showIcon={valuesFromSearch.sortField === header}
+                sortOrder={sortOrder}
+                title={header}
+                onFilterRows={onFilterRows}
+                value={(valuesFromSearch[header] as string) || values[header]}
+              />
             ))}
-          </tbody>
-        </table>
-      </div>
+            <ActionHeader onClearAllSearch={onClearAllSearch} />
+          </tr>
+        </thead>
+        <tbody>
+          {tableData.map((album) => (
+            <tr key={album.id}>
+              <td>{album.artist}</td>
+              <td>{album.title}</td>
+              <td>{album.prodYear}</td>
+              <td>{album.label}</td>
+              <td>{album.origin}</td>
+              <ActionBody
+                onViewAlbum={() => onViewAlbum(album.id)}
+                modalId={id === album.id ? album.id : null}
+                id={id}
+                name={album.artist}
+                to={`/${MainPath.Update}/${album.id}`}
+                onOpenModal={() => onOpenModal(album.id)}
+              />
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
   );
 };
