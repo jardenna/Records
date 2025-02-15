@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { IconDefaultProps } from './Icon';
 
-const GridIconSmall: FC<IconDefaultProps> = ({
+const GridSmallIcon: FC<IconDefaultProps> = ({
   size,
   title,
   className,
@@ -33,4 +33,4 @@ const GridIconSmall: FC<IconDefaultProps> = ({
   </svg>
 );
 
-export default GridIconSmall;
+export default GridSmallIcon;

@@ -13,8 +13,8 @@ import EyeIcon from './EyeIcon';
 import EyeOffIcon from './EyeOffIcon';
 import FilterIcon from './FilterIcon';
 import GridIcon from './GridIcon';
-import GridIconSmall from './GridIconSmall';
 import GridLargeIcon from './GridLargeIcon';
+import GridSmallIcon from './GridSmallIcon';
 import InfoIcon from './InfoIcon';
 import MoreIcon from './MoreIcon';
 import SubtractIcon from './SubtractIcon';
@@ -78,7 +78,7 @@ const iconMapping = {
   eyeOff: EyeOffIcon,
   filter: FilterIcon,
   grid: GridIcon,
-  gridSmall: GridIconSmall,
+  gridSmall: GridSmallIcon,
   gridLarge: GridLargeIcon,
   info: InfoIcon,
   more: MoreIcon,
