@@ -3,9 +3,11 @@ import { Records } from '../../app/api/apiTypes';
 import useLanguage from '../../features/language/useLanguage';
 import { MainPath } from '../../layout/nav/enums';
 import { ChangeInputType } from '../../types/types';
+import IconBtn from '../IconBtn';
+import { IconName } from '../icons/Icon';
 import ActionBody from '../recordTable/ActionBody';
-import ActionHeader from '../recordTable/ActionHeader';
 import RecordTableHeader from '../recordTable/RecordTableHeader';
+import ActionHeader from '../recordTable/TableActionHeader';
 import VisuallyHidden from '../VisuallyHidden';
 import './_table.scss';
 
@@ -41,16 +43,40 @@ const MainTable: FC<MainTableProps> = ({
   onSort,
 }) => {
   const { language } = useLanguage();
+  const tablePadding = 8;
+  const style = {
+    paddingTop: tablePadding,
+    paddingBottom: tablePadding,
+  };
 
   return (
     <div className="fixed-table">
+      <div>
+        <IconBtn
+          iconName={IconName.GridSmall}
+          title={language.retry}
+          onClick={() => console.log(12)}
+        />
+        <IconBtn
+          iconName={IconName.Grid}
+          title={language.retry}
+          onClick={() => console.log(12)}
+        />
+
+        <IconBtn
+          iconName={IconName.GridLarge}
+          title={language.retry}
+          onClick={() => console.log(12)}
+        />
+      </div>
       <table
         className="main-table"
         aria-label={isLoading ? language.loading : undefined}
       >
         <VisuallyHidden as="caption">{tableCaption}</VisuallyHidden>
+
         <thead>
-          <tr>
+          <tr style={style}>
             {tableHeaders.map((header) => (
               <RecordTableHeader
                 key={header}
@@ -67,7 +93,7 @@ const MainTable: FC<MainTableProps> = ({
         </thead>
         <tbody>
           {tableData.map((album) => (
-            <tr key={album.id}>
+            <tr key={album.id} style={style}>
               <td>{album.artist}</td>
               <td>{album.title}</td>
               <td>{album.prodYear}</td>
