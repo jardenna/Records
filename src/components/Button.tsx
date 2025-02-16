@@ -67,7 +67,7 @@ const Button: FC<ButtonProps> = ({
     className={`btn btn-${variant} ${className}`}
     name={name}
     aria-describedby={isBtnSelected ? ariaDescribedby : undefined}
-    aria-label={isLoading ? 'Loading' : ''}
+    aria-label={isLoading ? 'Loading' : undefined}
   >
     {ariaLabel && <VisuallyHidden>{ariaLabel}</VisuallyHidden>}
     {!isLoading ? (
