@@ -2,6 +2,7 @@ import { FC } from 'react';
 import useLanguage from '../../features/language/useLanguage';
 import IconBtn from '../IconBtn';
 import { IconName } from '../icons/Icon';
+import './scss/_table-grid-icons.scss';
 
 interface TableGridIconList {
   iconName: IconName;
@@ -22,7 +23,7 @@ const TableGridIcons: FC<TableGridIconsProps> = ({
 }) => {
   const { language } = useLanguage();
   return (
-    <div className="actions">
+    <div className="table-grid-icons">
       {tableGridIconList.map(({ padding, iconName, title }) => (
         <IconBtn
           key={padding}

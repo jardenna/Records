@@ -62,13 +62,12 @@ const MainTable: FC<MainTableProps> = ({
 
   return (
     <>
-      <div className="actions">
-        <TableGridIcons
-          onPadding={handlePadding}
-          tableGridIconList={tableGridIconList}
-          isActive={padding}
-        />
-      </div>
+      <TableGridIcons
+        onPadding={handlePadding}
+        tableGridIconList={tableGridIconList}
+        isActive={padding}
+      />
+
       <div className="fixed-table">
         <table
           className="main-table"
