@@ -60,7 +60,7 @@ const MainTable: FC<MainTableProps> = ({
   return (
     <>
       <TableGridIcons
-        onPadding={handlePadding}
+        onSetPadding={handlePadding}
         tableGridIconList={tableGridIconList}
         isActive={padding}
       />

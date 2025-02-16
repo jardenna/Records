@@ -12,13 +12,13 @@ interface TableGridIconList {
 
 interface TableGridIconsProps {
   isActive: number;
-  onPadding: (id: number) => void;
+  onSetPadding: (id: number) => void;
   tableGridIconList: TableGridIconList[];
 }
 
 const TableGridIcons: FC<TableGridIconsProps> = ({
   tableGridIconList,
-  onPadding,
+  onSetPadding,
   isActive,
 }) => {
   const { language } = useLanguage();
@@ -29,7 +29,7 @@ const TableGridIcons: FC<TableGridIconsProps> = ({
           key={padding}
           iconName={iconName}
           title={language[title]}
-          onClick={() => onPadding(padding)}
+          onClick={() => onSetPadding(padding)}
           className={isActive === padding ? 'is-active' : ''}
         />
       ))}
