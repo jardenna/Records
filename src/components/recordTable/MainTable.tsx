@@ -1,5 +1,6 @@
-import { FC, useState } from 'react';
+import { FC } from 'react';
 import { Records } from '../../app/api/apiTypes';
+import useLocalStorage from '../../hooks/useLocalStorage';
 import { MainPath } from '../../layout/nav/enums';
 import { ChangeInputType } from '../../types/types';
 import { IconName } from '../icons/Icon';
@@ -40,7 +41,7 @@ const MainTable: FC<MainTableProps> = ({
   values,
   onSort,
 }) => {
-  const [padding, setPadding] = useState(12);
+  const [padding, setPadding] = useLocalStorage('padding', 12);
 
   const handlePadding = (paddingStyle: number) => {
     setPadding(paddingStyle);
