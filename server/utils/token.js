@@ -9,7 +9,7 @@ const generateTokenAndSetCookie = (user, res) => {
       username: user.username,
     },
     process.env.ACCESS_TOKEN_SECRET,
-    { expiresIn: '60m' },
+    { expiresIn: '1d' },
   );
 
   res.cookie('token', token, {
