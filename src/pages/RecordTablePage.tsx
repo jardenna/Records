@@ -7,9 +7,9 @@ import ErrorBoundaryFallback from '../components/errorBoundary/ErrorBoundaryFall
 import MetaTags from '../components/MetaTags';
 import Pagination from '../components/pagination/Pagination';
 import RecordSelect from '../components/recordSelect/RecordSelect';
+import MainTable from '../components/recordTable/MainTable';
 import { Option } from '../components/SelectBox';
 import SkeletonList from '../components/skeleton/SkeletonList';
-import MainTable from '../components/table/MainTable';
 import useLanguage from '../features/language/useLanguage';
 import { selectModalId, toggleModal } from '../features/modalSlice';
 import { useGetPaginatedRecordsQuery } from '../features/records/recordsApiSlice';

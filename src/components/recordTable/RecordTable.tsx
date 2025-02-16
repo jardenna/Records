@@ -3,8 +3,8 @@ import { MainPath } from '../../layout/nav/enums';
 import { ChangeInputType } from '../../types/types';
 import VisuallyHidden from '../VisuallyHidden';
 import './_table.scss';
-import ActionBody from './ActionBody';
 import RecordTableHeader from './RecordTableHeader';
+import ActionBody from './TableActionBody';
 import ActionHeader from './TableActionHeader';
 
 interface BaseTableProps {

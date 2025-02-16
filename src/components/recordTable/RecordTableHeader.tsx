@@ -2,7 +2,7 @@ import { FC } from 'react';
 import { ChangeInputType } from '../../types/types';
 import SearchField from './SearchField';
 import SortBtn from './SortBtn';
-import './scss/_table-action-header.scss';
+import './scss/_table-actions.scss';
 
 interface RecordTableHeaderProps {
   onFilterRows: (e: ChangeInputType) => void;

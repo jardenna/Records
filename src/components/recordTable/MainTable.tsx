@@ -3,11 +3,11 @@ import { Records } from '../../app/api/apiTypes';
 import { MainPath } from '../../layout/nav/enums';
 import { ChangeInputType } from '../../types/types';
 import { IconName } from '../icons/Icon';
-import ActionBody from '../recordTable/ActionBody';
-import RecordTableHeader from '../recordTable/RecordTableHeader';
-import ActionHeader from '../recordTable/TableActionHeader';
-import TableGridIcons from '../recordTable/TableGridIcons';
-import Table from './Table';
+import Table from '../table/Table';
+import RecordTableHeader from './RecordTableHeader';
+import ActionBody from './TableActionBody';
+import ActionHeader from './TableActionHeader';
+import TableGridIcons from './TableGridIcons';
 
 interface MainTableProps {
   id: string | null;
@@ -42,8 +42,8 @@ const MainTable: FC<MainTableProps> = ({
 }) => {
   const [padding, setPadding] = useState(12);
 
-  const handlePadding = (variant: number) => {
-    setPadding(variant);
+  const handlePadding = (paddingStyle: number) => {
+    setPadding(paddingStyle);
   };
 
   const style = {

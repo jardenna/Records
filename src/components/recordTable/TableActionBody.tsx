@@ -6,8 +6,9 @@ import IconBtn from '../IconBtn';
 import IconContent from '../IconContent';
 import { IconName } from '../icons/Icon';
 import DetailLink from '../shared/DetailLink';
+import './scss/_table-actions.scss';
 
-interface ActionBodyProps {
+interface TableActionBodyProps {
   id: string | null;
   modalId: string | null;
   name: string;
@@ -16,7 +17,7 @@ interface ActionBodyProps {
   to: string;
 }
 
-const ActionBody: FC<ActionBodyProps> = ({
+const TableActionBody: FC<TableActionBodyProps> = ({
   onViewAlbum,
   to,
   onOpenModal,
@@ -27,7 +28,7 @@ const ActionBody: FC<ActionBodyProps> = ({
   const { language } = useLanguage();
   return (
     <td>
-      <div className="flex flex-space-around">
+      <div className="table-action-body">
         <IconBtn
           iconName={IconName.Eye}
           title={language.albumDetails}
@@ -53,4 +54,4 @@ const ActionBody: FC<ActionBodyProps> = ({
   );
 };
 
-export default ActionBody;
+export default TableActionBody;

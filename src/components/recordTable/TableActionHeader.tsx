@@ -2,7 +2,7 @@ import { FC } from 'react';
 import useLanguage from '../../features/language/useLanguage';
 import IconBtn from '../IconBtn';
 import { IconName } from '../icons/Icon';
-import './scss/_table-action-header.scss';
+import './scss/_table-actions.scss';
 
 interface TableActionHeaderProps {
   onClearAllSearch: () => void;
@@ -12,6 +12,7 @@ const TableActionHeader: FC<TableActionHeaderProps> = ({
   onClearAllSearch,
 }) => {
   const { language } = useLanguage();
+
   return (
     <th>
       <div className="table-action-header">
