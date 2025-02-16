@@ -16,19 +16,20 @@
 .actions {
   display: flex;
   gap: 8px;
-  border-bottom: 1px solid #e1e1e1;
   justify-content: flex-end;
   padding: 8px 12px;
 
   .btn-ghost {
     padding: 0;
+    color: $color-gray-20;
+
+    &.is-active {
+      color: $color-gray-40;
+    }
   }
 }
 
 table {
-  width: 100%;
-  min-width: rem(380px);
-  min-height: rem(100px);
   border-spacing: 0;
 
   tbody {
@@ -45,6 +46,8 @@ table {
   th {
     background-color: $color-white;
     border-right: 1px solid $color-border;
+    word-wrap: break-word;
+    padding: 8px;
 
     @include max-size($medium) {
       position: sticky;
@@ -100,5 +103,6 @@ table {
   .btn {
     font-weight: bold;
     padding: 0;
+    color: $color-primary-text;
   }
 }

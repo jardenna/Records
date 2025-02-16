@@ -21,18 +21,16 @@ const RecordTableHeader: FC<RecordTableHeaderProps> = ({
   onFilterRows,
   value,
 }) => (
-  <th scope="col">
-    <div className="table-action-header">
-      <SortBtn
-        onSort={onSort}
-        showIcon={showIcon}
-        sortOrder={sortOrder}
-        title={title}
-      />
+  <div className="table-action-header">
+    <SortBtn
+      onSort={onSort}
+      showIcon={showIcon}
+      sortOrder={sortOrder}
+      title={title}
+    />
 
-      <SearchField onFilterRows={onFilterRows} title={title} value={value} />
-    </div>
-  </th>
+    <SearchField onFilterRows={onFilterRows} title={title} value={value} />
+  </div>
 );
 
 export default RecordTableHeader;
