@@ -13,6 +13,13 @@
   }
 }
 
+.table-actions {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
 table {
   border-spacing: 0;
 
