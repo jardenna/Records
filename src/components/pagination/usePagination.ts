@@ -60,8 +60,6 @@ const usePagination = ({
     setPageRange(pages);
   }, [currentPage, totalPageCount, pageLimit]);
 
-  console.log(totalCount, rowsPerPage);
-
   // Set currentPage to 1 when rowsPerPage is changes
   useEffect(() => {
     setCurrentPage(1);

@@ -123,6 +123,8 @@ const RecordTablePage: FC = () => {
   };
 
   const handleSetRowsCount = (name: string, selectedOptions: Option) => {
+    searchParams.set('page', '1');
+
     if (selectedOptions.value !== defaultOptionValue) {
       searchParams.set('limit', selectedOptions.value.toString());
     } else {
@@ -190,7 +192,6 @@ const RecordTablePage: FC = () => {
       ) : (
         <SkeletonList count={8} className="column" variant="secondary" />
       )}
-
       <Pagination
         currentPage={selectedPage}
         totalCount={totalCount}
