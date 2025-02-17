@@ -58,7 +58,7 @@ textarea {
     font-family: $font-primary;
 
     &:focus-visible {
-      box-shadow: inset 0 -0.16rem 0 $color-blue;
+      box-shadow: $box-shadow-inset;
     }
 
     &:disabled {
