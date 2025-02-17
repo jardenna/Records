@@ -161,7 +161,7 @@ const RecordTablePage: FC = () => {
                 { value: 50, label: '50' },
                 { value: totalCount, label: language.all },
               ]}
-              onChange={(selectedOptions) =>
+              onSelectCount={(selectedOptions) =>
                 handleSetRowsCount('limit', selectedOptions as Option)
               }
               defaultValue={{

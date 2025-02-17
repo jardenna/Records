@@ -9,27 +9,27 @@ const RecordSelect: FC<BaseMainTableProps> = ({
   endRow,
   totalRows,
   options,
-  onChange,
+  onSelectCount,
   defaultValue,
 }) => {
   const { language } = useLanguage();
   return (
     <div className="record-select-container">
-      <p>
-        {language.showing} {startRow} {language.to} {endRow} {language.of}{' '}
-        {totalRows} {language.albumsSmall}
-      </p>
       <form onSubmit={(event) => event.preventDefault()}>
         <SelectBox
           name="limit"
           options={options}
           id="limit"
-          onChange={onChange}
+          onChange={onSelectCount}
           labelText={language.resultsPerPage}
           inputHasNoLabel
           defaultValue={defaultValue}
         />
       </form>
+      <p className="table-count.info">
+        {language.showing} {startRow} {language.to} {endRow} {language.of}{' '}
+        {totalRows} {language.albumsSmall}
+      </p>
     </div>
   );
 };

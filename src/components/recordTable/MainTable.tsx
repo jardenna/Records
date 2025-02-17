@@ -15,7 +15,7 @@ import TableGridIcons from './TableGridIcons';
 export interface BaseMainTableProps {
   defaultValue: any;
   endRow: number;
-  onChange: (value: SelectedOption) => void;
+  onSelectCount: (value: SelectedOption) => void;
   options: { label: string; value: string | number }[];
   startRow: number;
   totalRows: number;
@@ -55,7 +55,7 @@ const MainTable: FC<MainTableProps> = ({
   endRow,
   totalRows,
   options,
-  onChange,
+  onSelectCount,
   defaultValue,
 }) => {
   const [padding, setPadding] = useLocalStorage('padding', 12);
@@ -80,7 +80,7 @@ const MainTable: FC<MainTableProps> = ({
         <RecordSelect
           defaultValue={defaultValue}
           endRow={endRow}
-          onChange={onChange}
+          onSelectCount={onSelectCount}
           options={options}
           startRow={startRow}
           totalRows={totalRows}
