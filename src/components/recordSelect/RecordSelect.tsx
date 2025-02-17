@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import useLanguage from '../../features/language/useLanguage';
-import SelectBox, { SelectedOption } from '../SelectBox';
+import SelectBox, { SelectedOption } from '../selectBox/SelectBox';
 import './_record-select.scss';
 
 interface RecordSelectProps {
