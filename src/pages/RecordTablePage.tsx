@@ -6,9 +6,8 @@ import { useAppDispatch, useAppSelector } from '../app/hooks';
 import ErrorBoundaryFallback from '../components/errorBoundary/ErrorBoundaryFallback';
 import MetaTags from '../components/MetaTags';
 import Pagination from '../components/pagination/Pagination';
-import RecordSelect from '../components/recordSelect/RecordSelect';
 import MainTable from '../components/recordTable/MainTable';
-import { Option } from '../components/SelectBox';
+import { Option } from '../components/selectBox/SelectBox';
 import SkeletonList from '../components/skeleton/SkeletonList';
 import useLanguage from '../features/language/useLanguage';
 import { selectModalId, toggleModal } from '../features/modalSlice';
@@ -146,28 +145,6 @@ const RecordTablePage: FC = () => {
         title={language.albumsTable}
       />
 
-      <RecordSelect
-        options={[
-          {
-            value: defaultOptionValue,
-            label: defaultOptionValue.toString(),
-          },
-          { value: 20, label: '20' },
-          { value: 50, label: '50' },
-          { value: totalCount, label: language.all },
-        ]}
-        onChange={(selectedOptions) =>
-          handleSetRowsCount('limit', selectedOptions as Option)
-        }
-        defaultValue={{
-          value: Number(limit) || 10,
-          label: limit || defaultOptionValue.toString(),
-        }}
-        endRow={endRow}
-        startRow={startRow}
-        totalRows={totalRows}
-      />
-
       {!isLoading ? (
         <ErrorBoundary
           FallbackComponent={ErrorBoundaryFallback}
@@ -175,6 +152,25 @@ const RecordTablePage: FC = () => {
         >
           {records && (
             <MainTable
+              options={[
+                {
+                  value: defaultOptionValue,
+                  label: defaultOptionValue.toString(),
+                },
+                { value: 20, label: '20' },
+                { value: 50, label: '50' },
+                { value: totalCount, label: language.all },
+              ]}
+              onChange={(selectedOptions) =>
+                handleSetRowsCount('limit', selectedOptions as Option)
+              }
+              defaultValue={{
+                value: Number(limit) || 10,
+                label: limit || defaultOptionValue.toString(),
+              }}
+              endRow={endRow}
+              startRow={startRow}
+              totalRows={totalRows}
               tableCaption={language.albumCollection}
               isLoading={isLoading}
               tableData={records.results}

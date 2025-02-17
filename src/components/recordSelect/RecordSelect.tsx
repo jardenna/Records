@@ -1,18 +1,10 @@
 import { FC } from 'react';
 import useLanguage from '../../features/language/useLanguage';
-import SelectBox, { SelectedOption } from '../selectBox/SelectBox';
+import { BaseMainTableProps } from '../recordTable/MainTable';
+import SelectBox from '../selectBox/SelectBox';
 import './_record-select.scss';
 
-interface RecordSelectProps {
-  defaultValue: any;
-  endRow: number;
-  onChange: (value: SelectedOption) => void;
-  options: { label: string; value: string | number }[];
-  startRow: number;
-  totalRows: number;
-}
-
-const RecordSelect: FC<RecordSelectProps> = ({
+const RecordSelect: FC<BaseMainTableProps> = ({
   startRow,
   endRow,
   totalRows,

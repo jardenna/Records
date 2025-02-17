@@ -4,13 +4,24 @@ import useLocalStorage from '../../hooks/useLocalStorage';
 import { MainPath } from '../../layout/nav/enums';
 import { ChangeInputType } from '../../types/types';
 import { IconName } from '../icons/Icon';
+import RecordSelect from '../recordSelect/RecordSelect';
+import { SelectedOption } from '../selectBox/SelectBox';
 import Table from '../table/Table';
 import RecordTableHeader from './RecordTableHeader';
 import ActionBody from './TableActionBody';
 import ActionHeader from './TableActionHeader';
 import TableGridIcons from './TableGridIcons';
 
-interface MainTableProps {
+export interface BaseMainTableProps {
+  defaultValue: any;
+  endRow: number;
+  onChange: (value: SelectedOption) => void;
+  options: { label: string; value: string | number }[];
+  startRow: number;
+  totalRows: number;
+}
+
+interface MainTableProps extends BaseMainTableProps {
   id: string | null;
   isLoading: boolean;
   onClearAllSearch: () => void;
@@ -40,6 +51,12 @@ const MainTable: FC<MainTableProps> = ({
   valuesFromSearch,
   values,
   onSort,
+  startRow,
+  endRow,
+  totalRows,
+  options,
+  onChange,
+  defaultValue,
 }) => {
   const [padding, setPadding] = useLocalStorage('padding', 12);
 
@@ -59,11 +76,21 @@ const MainTable: FC<MainTableProps> = ({
 
   return (
     <>
-      <TableGridIcons
-        onSetPadding={handlePadding}
-        tableGridIconList={tableGridIconList}
-        isActive={padding}
-      />
+      <div className="table-actions">
+        <RecordSelect
+          defaultValue={defaultValue}
+          endRow={endRow}
+          onChange={onChange}
+          options={options}
+          startRow={startRow}
+          totalRows={totalRows}
+        />
+        <TableGridIcons
+          onSetPadding={handlePadding}
+          tableGridIconList={tableGridIconList}
+          isActive={padding}
+        />
+      </div>
 
       <Table isLoading={isLoading} tableCaption={tableCaption}>
         <thead>
