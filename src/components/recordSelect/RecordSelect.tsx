@@ -13,9 +13,10 @@ const RecordSelect: FC<BaseMainTableProps> = ({
   defaultValue,
 }) => {
   const { language } = useLanguage();
+
   return (
     <div className="record-select-container">
-      <form onSubmit={(event) => event.preventDefault()}>
+      <form>
         <SelectBox
           name="limit"
           options={options}
