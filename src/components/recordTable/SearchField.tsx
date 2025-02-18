@@ -25,20 +25,18 @@ const SearchField: FC<SearchFieldProps> = ({ title, value, onFilterRows }) => {
 
   useClickOutside(SearchFieldRef, () => setShowSearchsField(false));
   return (
-    <>
-      <div className="position-relative">
-        <IconBtn
-          title={`${language.filter} ${language.title}`}
-          onClick={handleSearchField}
-          iconName={IconName.Filter}
-        />
-        {value && (
-          <>
-            <VisuallyHidden>{language.filtersApplied}</VisuallyHidden>
-            <span className="dot" aria-hidden />
-          </>
-        )}
-      </div>
+    <div className="position-relative">
+      <IconBtn
+        title={`${language.filter} ${language.title}`}
+        onClick={handleSearchField}
+        iconName={IconName.Filter}
+      />
+      {value && (
+        <>
+          <VisuallyHidden>{language.filtersApplied}</VisuallyHidden>
+          <span className="dot" aria-hidden />
+        </>
+      )}
       {showSearchsField && (
         <Input
           className={`search-field ${showSearchsField ? 'active' : ''}`}
@@ -54,7 +52,7 @@ const SearchField: FC<SearchFieldProps> = ({ title, value, onFilterRows }) => {
           autoFocus
         />
       )}
-    </>
+    </div>
   );
 };
 
