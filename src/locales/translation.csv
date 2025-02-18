@@ -19,6 +19,7 @@ authImgAlt;Young people listening to records smiling.;Unge mennesker lytter til 
 cancel;Cancel;Annuller
 close;Close;Luk
 closeDialog;Close dialog;Luk dialog
+completed;completed;færdiggjort
 confirmPassword;Confirm password;Gentag adgangskode
 cover;Cover;Cover
 createAlbum;Create album;Opret album
@@ -83,6 +84,8 @@ pleaseEnterPassword;Please enter password;Indsæt venligst adgangskode
 pleaseEnterValidEmail;Please enter a valid email;Indsæt venligst en gyldig e-mail
 price;Price;Pris
 prodYear;Production year;Produktions år
+progress;Progress;Status
+progressBar;Progress bar;Statuslinje
 recordNo;Record number;Pladenummer
 released;Last released;Senest udgivet
 resetFiltersAndSorting;Reset filters and sorting;Nulstil filtre og sortering
