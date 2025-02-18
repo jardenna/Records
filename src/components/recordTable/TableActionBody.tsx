@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, memo } from 'react';
 import useLanguage from '../../features/language/useLanguage';
 import { BtnVariant } from '../../types/enums';
 import DeleteRecordModal from '../DeleteRecordModal';
@@ -54,4 +54,4 @@ const TableActionBody: FC<TableActionBodyProps> = ({
   );
 };
 
-export default TableActionBody;
+export default memo(TableActionBody);

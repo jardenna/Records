@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, memo, useCallback } from 'react';
 import { Records } from '../../app/api/apiTypes';
 import useLanguage from '../../features/language/useLanguage';
 import useLocalStorage from '../../hooks/useLocalStorage';
@@ -76,6 +76,16 @@ const MainTable: FC<MainTableProps> = ({
     { padding: 20, iconName: IconName.GridLarge, title: 'largeGrid' },
   ];
 
+  const memoizedOnViewAlbum = useCallback(
+    (id: string) => onViewAlbum(id),
+    [onViewAlbum],
+  );
+
+  const memoizedOnOpenModal = useCallback(
+    (id: string) => onOpenModal(id),
+    [onOpenModal],
+  );
+
   return (
     <>
       <div className="table-actions">
@@ -130,12 +140,12 @@ const MainTable: FC<MainTableProps> = ({
                 <td>{album.label}</td>
                 <td>{album.origin}</td>
                 <TableActionBody
-                  onViewAlbum={() => onViewAlbum(album.id)}
+                  onViewAlbum={() => memoizedOnViewAlbum(album.id)}
                   modalId={id === album.id ? album.id : null}
                   id={id}
                   name={album.artist}
                   to={`/${MainPath.Update}/${album.id}`}
-                  onOpenModal={() => onOpenModal(album.id)}
+                  onOpenModal={() => memoizedOnOpenModal(album.id)}
                 />
               </tr>
             ))}
@@ -146,4 +156,4 @@ const MainTable: FC<MainTableProps> = ({
   );
 };
 
-export default MainTable;
+export default memo(MainTable);
