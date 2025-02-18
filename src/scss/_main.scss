@@ -16,13 +16,13 @@
     }
 
     ::-webkit-scrollbar-thumb {
-      background-color: $color-primary;
+      background-color: $color-gray-20;
       border-radius: 2px;
     }
 
     @supports not selector(::-webkit-scrollbar) {
       scrollbar-width: thin;
-      scrollbar-color: $color-primary $color-background;
+      scrollbar-color: $color-gray-20 $color-background;
     }
   }
 }
