@@ -6,6 +6,7 @@ import { ChangeInputType } from '../../types/types';
 import { IconName } from '../icons/Icon';
 import RecordSelect from '../recordSelect/RecordSelect';
 import { SelectedOption } from '../selectBox/SelectBox';
+import SkeletonList from '../skeleton/SkeletonList';
 import Table from '../table/Table';
 import RecordTableHeader from './RecordTableHeader';
 import ActionBody from './TableActionBody';
@@ -110,25 +111,39 @@ const MainTable: FC<MainTableProps> = ({
             <ActionHeader onClearAllSearch={onClearAllSearch} />
           </tr>
         </thead>
-        <tbody>
-          {tableData.map((album) => (
-            <tr key={album.id}>
-              <td style={style}>{album.artist}</td>
-              <td>{album.title}</td>
-              <td>{album.prodYear}</td>
-              <td>{album.label}</td>
-              <td>{album.origin}</td>
-              <ActionBody
-                onViewAlbum={() => onViewAlbum(album.id)}
-                modalId={id === album.id ? album.id : null}
-                id={id}
-                name={album.artist}
-                to={`/${MainPath.Update}/${album.id}`}
-                onOpenModal={() => onOpenModal(album.id)}
-              />
+        {isLoading ? (
+          <tbody>
+            <tr className="no-records-table-field">
+              <td colSpan={6}>
+                <SkeletonList
+                  count={8}
+                  className="column"
+                  variant="secondary"
+                />
+              </td>
             </tr>
-          ))}
-        </tbody>
+          </tbody>
+        ) : (
+          <tbody>
+            {tableData.map((album) => (
+              <tr key={album.id}>
+                <td style={style}>{album.artist}</td>
+                <td>{album.title}</td>
+                <td>{album.prodYear}</td>
+                <td>{album.label}</td>
+                <td>{album.origin}</td>
+                <ActionBody
+                  onViewAlbum={() => onViewAlbum(album.id)}
+                  modalId={id === album.id ? album.id : null}
+                  id={id}
+                  name={album.artist}
+                  to={`/${MainPath.Update}/${album.id}`}
+                  onOpenModal={() => onOpenModal(album.id)}
+                />
+              </tr>
+            ))}
+          </tbody>
+        )}
       </Table>
     </>
   );
