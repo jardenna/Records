@@ -2,10 +2,12 @@ import { FC } from 'react';
 import AddIcon from './AddIcon';
 import ArrowDownIcon from './ArrowDownIcon';
 import ArrowUpIcon from './ArrowUpIcon';
+import ChevronDownIcon from './ChevronDownIcon';
 import ChevronLeftIcon from './ChevronLeftIcon';
 import ChevronRightIcon from './ChevronRightIcon';
 import ChevronsLeftIcon from './ChevronsLeftIcon';
 import ChevronsRightIcon from './ChevronsRightIcon';
+import ChevronUpIcon from './ChevronUpIcon';
 import CloseIcon from './CloseIcon';
 import EditIcon from './EditIcon';
 import ErrorIcon from './ErrorIcon';
@@ -40,8 +42,10 @@ export enum IconName {
   Add = 'add',
   ArrowDown = 'arrowDown',
   ArrowUp = 'arrowUp',
+  ChevronDown = 'chevronDown',
   ChevronLeft = 'chevronLeft',
   ChevronRight = 'chevronRight',
+  ChevronUp = 'chevronUp',
   ChevronsLeft = 'chevronsLeft',
   ChevronsRight = 'chevronsRight',
   Close = 'close',
@@ -69,6 +73,8 @@ const iconMapping = {
   arrowUp: ArrowUpIcon,
   chevronLeft: ChevronLeftIcon,
   chevronRight: ChevronRightIcon,
+  chevronUp: ChevronUpIcon,
+  chevronDown: ChevronDownIcon,
   chevronsLeft: ChevronsLeftIcon,
   chevronsRight: ChevronsRightIcon,
   close: CloseIcon,
