@@ -1,16 +1,16 @@
 import { FC } from 'react';
 import { Records } from '../../app/api/apiTypes';
+import useLanguage from '../../features/language/useLanguage';
 import useLocalStorage from '../../hooks/useLocalStorage';
 import { MainPath } from '../../layout/nav/enums';
 import { ChangeInputType } from '../../types/types';
 import { IconName } from '../icons/Icon';
 import RecordSelect from '../recordSelect/RecordSelect';
 import { SelectedOption } from '../selectBox/SelectBox';
-import SkeletonList from '../skeleton/SkeletonList';
 import Table from '../table/Table';
 import RecordTableHeader from './RecordTableHeader';
-import ActionBody from './TableActionBody';
-import ActionHeader from './TableActionHeader';
+import TableActionBody from './TableActionBody';
+import TableActionHeader from './TableActionHeader';
 import TableGridIcons from './TableGridIcons';
 
 export interface BaseMainTableProps {
@@ -59,6 +59,7 @@ const MainTable: FC<MainTableProps> = ({
   onSelectCount,
   defaultValue,
 }) => {
+  const { language } = useLanguage();
   const [padding, setPadding] = useLocalStorage('padding', 12);
 
   const handlePadding = (paddingStyle: number) => {
@@ -108,18 +109,14 @@ const MainTable: FC<MainTableProps> = ({
                 />
               </th>
             ))}
-            <ActionHeader onClearAllSearch={onClearAllSearch} />
+            <TableActionHeader onClearAllSearch={onClearAllSearch} />
           </tr>
         </thead>
-        {isLoading ? (
+        {tableData.length === 0 ? (
           <tbody>
-            <tr className="no-records-table-field">
-              <td colSpan={6}>
-                <SkeletonList
-                  count={8}
-                  className="column"
-                  variant="secondary"
-                />
+            <tr>
+              <td colSpan={6} className="no-records-table-field">
+                {language.noAlbumFound}
               </td>
             </tr>
           </tbody>
@@ -132,7 +129,7 @@ const MainTable: FC<MainTableProps> = ({
                 <td>{album.prodYear}</td>
                 <td>{album.label}</td>
                 <td>{album.origin}</td>
-                <ActionBody
+                <TableActionBody
                   onViewAlbum={() => onViewAlbum(album.id)}
                   modalId={id === album.id ? album.id : null}
                   id={id}
