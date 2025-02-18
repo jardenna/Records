@@ -84,20 +84,22 @@ const RecordTablePage: FC = () => {
   const endRow = Math.min(selectedPage * shownRows, totalRows);
   const modalId = useAppSelector(selectModalId);
 
-  const handleSort = (field: string) => {
-    searchParams.set('sortField', field);
-    searchParams.set('sortOrder', sortingOrder);
-    setSearchParams(searchParams);
-    if (sortingField === field) {
-      setSortingOrder(
-        sortingOrder === SortOrder.Asc ? SortOrder.Desc : SortOrder.Asc,
-      );
-    } else {
-      setSortingField(field);
-      setSortingOrder(SortOrder.Asc);
-    }
-  };
-
+  const handleSort = useCallback(
+    (field: string) => {
+      searchParams.set('sortField', field);
+      searchParams.set('sortOrder', sortingOrder);
+      setSearchParams(searchParams);
+      if (sortingField === field) {
+        setSortingOrder(
+          sortingOrder === SortOrder.Asc ? SortOrder.Desc : SortOrder.Asc,
+        );
+      } else {
+        setSortingField(field);
+        setSortingOrder(SortOrder.Asc);
+      }
+    },
+    [sortingOrder],
+  );
   const handleOpenModal = useCallback(
     (id: string) => {
       dispatch(toggleModal(id));
