@@ -23,7 +23,8 @@ const ErrorIcon: FC<IconDefaultProps> = ({
   >
     <title>{title}</title>
     <circle cx="12" cy="12" r="10" />
-    <path d="m4.9 4.9 14.2 14.2" />
+    <path d="m15 9-6 6" />
+    <path d="m9 9 6 6" />
   </svg>
 );
 
