@@ -38,10 +38,17 @@ function checkFileType(file, cb) {
   // Check mime
   const mimetype = filetypes.test(file.mimetype);
 
+  const fileName = file.originalname;
+  const splitFileName = fileName.split('.')[1];
+
   if (mimetype && extname) {
     return cb(null, true);
   } else {
-    return cb(new Error('Images Only!'));
+    return cb(
+      new Error(
+        `${fileName} could not be uploaded because the file type .${splitFileName} is not supported. You can upload jpeg|jpg|png|webp|gif files below 1MB`,
+      ),
+    );
   }
 }
 
