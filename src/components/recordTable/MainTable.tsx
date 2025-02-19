@@ -161,7 +161,7 @@ const MainTable: FC<MainTableProps> = ({
                     <div className="table-action-body">
                       <IconBtn
                         iconName={IconName.Eye}
-                        title={language.albumDetails}
+                        title={language.eye}
                         ariaLabel={language.albumDetails}
                         onClick={() => memoizedOnViewAlbum(album.id)}
                       />
@@ -171,14 +171,14 @@ const MainTable: FC<MainTableProps> = ({
                       >
                         <Icon
                           iconName={IconName.Edit}
-                          title={language.updateAlbum}
+                          title={language.pensil}
                         />
                       </DetailLink>
 
                       <IconBtn
                         iconName={IconName.Trash}
                         className="danger"
-                        title={language.deleteAlbum}
+                        title={language.trashCan}
                         ariaLabel={language.deleteAlbum}
                         onClick={() =>
                           memoizedOnOpenModal(album.id, album.artist)

@@ -17,12 +17,11 @@ and;and;og
 artist;Band / Artist;Gruppe / Kunstner
 authImgAlt;Young people listening to records smiling.;Unge mennesker lytter til plader og smiler.
 cancel;Cancel;Annuller
-close;Close;Luk
 chevronLeft;Chevron left;Venstre chevron
-chevronsLeft;Chevrons left;Venstre chevrons
 chevronRight;Chevron right;Højre chevron
+chevronsLeft;Chevrons left;Venstre chevrons
 chevronsRight;Chevrons right;Højre chevrons
-threeVerticalDots;3 vertical dots;3 vertikale prikker
+close;Close;Luk
 closeDialog;Close dialog;Luk dialog
 completed;completed;færdiggjort
 confirmPassword;Confirm password;Gentag adgangskode
@@ -37,6 +36,8 @@ details;Details;Detaljer
 dialog;Dialog;Dialog
 email;Email;E-mail
 error;Error;Fejl
+eye;Eye;Øje
+eyeClosed;Closed eye;Lukket øje
 filter;Filter;Filtrer
 filtersApplied;Filters applied;Filtre anvendt
 form;Form;Fomular
@@ -55,6 +56,7 @@ jumpPagesBack;Jump back;Hop tilbage
 jumpPagesForth;Jump forth;Hop frem
 label;Label;Label
 largeGrid;Large grid;Stort gitter
+listFilter;List filter;Filtrer list
 loading;Loading;Loading
 loggedOut;Logged out successfully;Logget ud 
 login;Login;Log ind
@@ -83,6 +85,7 @@ passwordMinLength;Password should be at least 8 characters;Adgangskoden skal væ
 passwordNumber;Password should contain at least one number;Adgangskoden skal indeholde mindst ét tal
 passwordSymbol;Password should contain at least one special character;Adgangskoden skal indeholde mindst ét specialtegn
 passwordUppercase;Password should contain at least one uppercase letter;Adgangskoden skal indeholde mindst ét stort bogstav
+pensil;Pensil can;Blyant
 pleaseEnter;Please enter;Indsæt venligst
 pleaseEnterName;Please enter  name;Indsæt venligst navn
 pleaseEnterPassword;Please enter password;Indsæt venligst adgangskode
@@ -92,7 +95,9 @@ prodYear;Production year;Produktions år
 progress;Progress;Status
 progressBar;Progress bar;Statuslinje
 recordNo;Record number;Pladenummer
+refetch;Refetch;Nulstil
 released;Last released;Senest udgivet
+reset;Reset;Nulstil
 resetFiltersAndSorting;Reset filters and sorting;Nulstil filtre og sortering
 resultsPerPage;Results per page;Resultater pr side
 retry;Retry;Forsøg igen
@@ -106,8 +111,10 @@ sortBy;Sort by;Sorter efter
 sub;Sub;Sekundær
 success;Success;Succes
 sureToDelete;Are you sure you want to Delete;Er du sikker på at du vil slette
+threeVerticalDots;3 vertical dots;3 vertikale prikker
 title;Title;Titel
 to;to;til
+trashCan;Trash can;Papirkurv
 unAuthorizedUser;Unuthorized user;Uautoriseret bruger
 updateAlbum;Update album;Opdater album
 upLoadCover;Upload cover;Upload cover

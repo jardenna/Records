@@ -35,7 +35,6 @@ const PasswordInput: FC<PasswordInputProps> = ({
   onFocus,
 }) => {
   const { language } = useLanguage();
-
   const [showPassword, setShowPassword] = useState(true);
 
   const handleShowPassword = () => {
@@ -76,13 +75,13 @@ const PasswordInput: FC<PasswordInputProps> = ({
           {!showPassword ? (
             <Icon
               iconName={IconName.EyeOff}
-              title="Eye closed"
+              title={language.eyeClosed}
               ariaLabel={language.showPassword}
             />
           ) : (
             <Icon
               iconName={IconName.Eye}
-              title="Eye"
+              title={language.eye}
               ariaLabel={language.hidePassword}
             />
           )}
