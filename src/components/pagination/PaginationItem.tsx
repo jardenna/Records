@@ -1,8 +1,6 @@
 import { FC, ReactNode } from 'react';
-import useLanguage from '../../features/language/useLanguage';
 import { BtnVariant } from '../../types/enums';
 import Button from '../Button';
-import VisuallyHidden from '../VisuallyHidden';
 
 interface PaginationItemProps {
   onSetCurrentPage: () => void;
@@ -24,31 +22,22 @@ const PaginationItem: FC<PaginationItemProps> = ({
   ariaDescribedby,
   disabled,
   className = '',
-}) => {
-  const { language } = useLanguage();
-  return (
-    <li className="pagination-item">
-      <Button
-        variant={BtnVariant.Ghost}
-        disabled={disabled}
-        ariaLabel={ariaLabel}
-        className={`${isBtnSelected ? 'active' : ''} ${className}`}
-        onClick={onSetCurrentPage}
-        isBtnSelected={isBtnSelected}
-        ariaDescribedby={ariaDescribedby}
-      >
-        <span className="pagination-item-content">
-          {content || paginationCount}
-        </span>
-
-        {isBtnSelected && (
-          <VisuallyHidden id={ariaDescribedby}>
-            {language.currentlySelected}
-          </VisuallyHidden>
-        )}
-      </Button>
-    </li>
-  );
-};
+}) => (
+  <li className="pagination-item">
+    <Button
+      variant={BtnVariant.Ghost}
+      disabled={disabled}
+      ariaLabel={ariaLabel}
+      className={`${isBtnSelected ? 'active' : ''} ${className}`}
+      onClick={onSetCurrentPage}
+      ariaSelected={isBtnSelected}
+      ariaDescribedby={ariaDescribedby}
+    >
+      <span className="pagination-item-content">
+        {content || paginationCount}
+      </span>
+    </Button>
+  </li>
+);
 
 export default PaginationItem;

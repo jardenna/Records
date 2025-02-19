@@ -18,7 +18,6 @@ interface ButtonProps {
   className?: string;
   disabled?: boolean;
   id?: string;
-  isBtnSelected?: boolean;
   isLoading?: boolean;
   name?: string;
   onClick?: (event: ButtonEventType) => void | ((id: string) => void);
@@ -42,7 +41,6 @@ const Button: FC<ButtonProps> = ({
   ariaControls,
   ariaLabel,
   ariaHasPopup,
-  isBtnSelected,
   role,
   className = '',
   autoFocus,
@@ -67,7 +65,7 @@ const Button: FC<ButtonProps> = ({
     disabled={disabled || isLoading}
     className={`btn btn-${variant} ${className}`}
     name={name}
-    aria-describedby={isBtnSelected ? ariaDescribedby : undefined}
+    aria-describedby={ariaDescribedby || undefined}
     aria-label={isLoading ? 'Loading' : undefined}
   >
     {ariaLabel && <VisuallyHidden>{ariaLabel}</VisuallyHidden>}
