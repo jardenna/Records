@@ -17,6 +17,10 @@ import RecordTableHeader from './RecordTableHeader';
 import TableActionHeader from './TableActionHeader';
 import TableGridIcons from './TableGridIcons';
 
+interface ModalInfoProps {
+  artistName: string;
+  id: string | null;
+}
 export interface BaseMainTableProps {
   defaultValue: any;
   endRow: number;
@@ -87,10 +91,13 @@ const MainTable: FC<MainTableProps> = ({
     [onViewAlbum],
   );
 
-  const [modalId, setModalId] = useState<string | null>(null);
+  const [modalInfo, setModalInfo] = useState<ModalInfoProps>({
+    id: null,
+    artistName: '',
+  });
   const memoizedOnOpenModal = useCallback(
-    (id: string) => {
-      setModalId(id);
+    (id: string, artistName: string) => {
+      setModalInfo({ id, artistName });
       onOpenModal(id);
     },
     [onOpenModal],
@@ -173,7 +180,9 @@ const MainTable: FC<MainTableProps> = ({
                         className="danger"
                         title={language.deleteAlbum}
                         ariaLabel={language.deleteAlbum}
-                        onClick={() => memoizedOnOpenModal(album.id)}
+                        onClick={() =>
+                          memoizedOnOpenModal(album.id, album.artist)
+                        }
                       />
                     </div>
                   </td>
@@ -195,10 +204,10 @@ const MainTable: FC<MainTableProps> = ({
       </Table>
 
       <DeleteRecordModal
-        modalId={modalId}
+        modalId={modalInfo.id}
         id={id}
         btnLabel={language.delete}
-        name="name"
+        name={modalInfo.artistName}
       />
     </>
   );
