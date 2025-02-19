@@ -47,7 +47,7 @@ const Pagination: FC<PaginationProps> = ({
         content={
           <IconContent
             iconName={IconName.ChevronsLeft}
-            title={language.gotoFirstPage}
+            title={language.chevronLeft}
             ariaLabel={language.gotoFirstPage}
           />
         }
@@ -60,7 +60,7 @@ const Pagination: FC<PaginationProps> = ({
         content={
           <IconContent
             iconName={IconName.ChevronLeft}
-            title={language.gotoPrevPage}
+            title={language.chevronsLeft}
             ariaLabel={language.gotoPrevPage}
           />
         }
@@ -75,7 +75,7 @@ const Pagination: FC<PaginationProps> = ({
         content={
           <IconContent
             iconName={IconName.More}
-            title={language.jumpPagesBack}
+            title={language.threeVerticalDots}
             ariaLabel={language.jumpPagesBack}
           />
         }
@@ -103,7 +103,7 @@ const Pagination: FC<PaginationProps> = ({
         content={
           <IconContent
             iconName={IconName.More}
-            title={language.jumpPagesForth}
+            title={language.threeVerticalDots}
             ariaLabel={language.jumpPagesForth}
           />
         }
@@ -116,7 +116,7 @@ const Pagination: FC<PaginationProps> = ({
         content={
           <IconContent
             iconName={IconName.ChevronRight}
-            title={language.gotoNextPage}
+            title={language.chevronRight}
             ariaLabel={language.gotoNextPage}
           />
         }
@@ -130,7 +130,7 @@ const Pagination: FC<PaginationProps> = ({
         content={
           <IconContent
             iconName={IconName.ChevronsRight}
-            title={language.gotoLastPage}
+            title={language.chevronsRight}
             ariaLabel={language.gotoLastPage}
           />
         }
