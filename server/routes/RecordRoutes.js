@@ -1,6 +1,6 @@
 import express from 'express';
+import handleFileUpload from '../middleware/fileUploadMiddleware.js';
 import languageMiddleware from '../middleware/languageMiddleware.js';
-import upload from '../utils/uploadImages.js';
 const router = express.Router();
 
 import {
@@ -23,24 +23,10 @@ router.get('/latestSix', getLatestSixRecords);
 router.get('/:recordId', getRecordById);
 
 // Update record
-router.post('/:recordId', (req, res, next) => {
-  upload.single('cover')(req, res, (err) => {
-    if (err) {
-      return res.status(400).json({ message: err.message });
-    }
-    postCreateOrUpdateRecord(req, res, next);
-  });
-});
+router.post('/:recordId', handleFileUpload, postCreateOrUpdateRecord);
 
 // Create record
-router.post('/', (req, res, next) => {
-  upload.single('cover')(req, res, (err) => {
-    if (err) {
-      return res.status(400).json({ message: err.message });
-    }
-    postCreateOrUpdateRecord(req, res, next);
-  });
-});
+router.post('/', handleFileUpload, postCreateOrUpdateRecord);
 
 // Delete record
 router.delete('/delete/:recordId', languageMiddleware, deleteRecord);
