@@ -6,7 +6,7 @@ import './_pagination.scss';
 import PaginationItem from './PaginationItem';
 import usePagination, { PaginationActionEnum } from './usePagination';
 
-interface PaginationProps {
+export interface PaginationProps {
   currentPage: number;
   pageLimit: number;
   rowsPerPage: number;

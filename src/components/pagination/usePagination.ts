@@ -1,11 +1,6 @@
-import {
-  Dispatch,
-  SetStateAction,
-  useCallback,
-  useEffect,
-  useState,
-} from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router';
+import { PaginationProps } from './Pagination';
 
 export enum PaginationActionEnum {
   First = 'First',
@@ -16,12 +11,9 @@ export enum PaginationActionEnum {
   PrevPaginationItem = 'jump-prev',
 }
 
-interface UsePaginationProps {
-  currentPage: number;
-  pageLimit: number;
-  rowsPerPage: number;
-  setCurrentPage: Dispatch<SetStateAction<number>>;
-  totalCount: number;
+export type OmittedPaginationProps = Omit<PaginationProps, 'selectedPage'>;
+
+interface UsePaginationProps extends OmittedPaginationProps {
   addCurrentPageToParams?: boolean;
 }
 

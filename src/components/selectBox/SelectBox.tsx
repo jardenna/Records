@@ -6,8 +6,9 @@ import Select, {
   SelectComponentsConfig,
   SingleValue,
 } from 'react-select';
-import variables from '../scss/variables.module.scss';
-import FormLabel from './formElements/FormLabel';
+import variables from '../../scss/variables.module.scss';
+import FormLabel from '../formElements/FormLabel';
+import './_select-box.scss';
 
 export type Option = { label: string; value: number | string; count?: number };
 export type SelectedOption = SingleValue<Option> | MultiValue<Option>;

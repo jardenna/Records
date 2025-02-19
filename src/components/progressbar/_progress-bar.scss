@@ -8,8 +8,8 @@
     height: 100%;
     background-color: $color-blue-dark;
 
-    &.secondary {
-      background-color: $color-primary;
+    &.auto-animation {
+      background-color: $color-border;
 
       @include animation(progress-bar, 5s, linear);
     }

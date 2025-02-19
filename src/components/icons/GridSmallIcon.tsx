@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { IconDefaultProps } from './Icon';
 
-const ErrorIcon: FC<IconDefaultProps> = ({
+const GridSmallIcon: FC<IconDefaultProps> = ({
   size,
   title,
   className,
@@ -22,10 +22,15 @@ const ErrorIcon: FC<IconDefaultProps> = ({
     aria-hidden={ariaHidden}
   >
     <title>{title}</title>
-    <circle cx="12" cy="12" r="10" />
-    <path d="m15 9-6 6" />
-    <path d="m9 9 6 6" />
+
+    <path d="M3 4h18" />
+    <path d="M3 7h18" />
+    <path d="M3 10h18" />
+    <path d="M3 13h18" />
+    <path d="M3 16h18" />
+    <path d="M3 19h18" />
+    <path d="M3 22h18" />
   </svg>
 );
 
-export default ErrorIcon;
+export default GridSmallIcon;

@@ -43,6 +43,7 @@ const ErrorBoundaryFallback: FC<FallbackProps> = ({
             <IconBtn
               iconName={IconName.Undo}
               title={language.retry}
+              ariaLabel={language.retry}
               onClick={resetErrorBoundary}
             />
           </div>

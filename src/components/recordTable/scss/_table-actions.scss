@@ -1,0 +1,43 @@
+@use '../../../scss/globals' as *;
+
+.table-action-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  gap: 12px;
+
+  .btn-ghost {
+    font-weight: bold;
+  }
+
+  .input-container {
+    right: -30px;
+    top: 27px;
+    position: absolute;
+    z-index: 3;
+    width: 220px;
+    display: none;
+
+    &:has(.active) {
+      display: flex;
+    }
+  }
+
+  .dot {
+    width: rem(12px);
+    height: rem(12px);
+    border-radius: 50%;
+    background-color: $color-info;
+    display: flex;
+    position: absolute;
+    top: -2px;
+    right: -4px;
+    border: 3px solid $color-white;
+  }
+}
+
+.table-action-body {
+  display: flex;
+  justify-content: space-around;
+}

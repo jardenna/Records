@@ -19,6 +19,7 @@ authImgAlt;Young people listening to records smiling.;Unge mennesker lytter til 
 cancel;Cancel;Annuller
 close;Close;Luk
 closeDialog;Close dialog;Luk dialog
+completed;completed;færdiggjort
 confirmPassword;Confirm password;Gentag adgangskode
 cover;Cover;Cover
 createAlbum;Create album;Opret album
@@ -39,6 +40,7 @@ gotoFirstPage;Go to first page;Gå til første side
 gotoLastPage;Go to last page;Gå til sidste side
 gotoNextPage;Go to next page;Gå til næste side
 gotoPrevPage;Go to previous page;Gå til forrige side
+grid;Grid;Gitter
 home;Home;Hjem
 information;Information;Information
 insertCover;Insert cover;Indsæt cover
@@ -47,6 +49,8 @@ invalidPassword;Invalid password;Ugyldig adgangskode
 jumpPagesBack;Jump back;Hop tilbage
 jumpPagesForth;Jump forth;Hop frem
 label;Label;Label
+largeGrid;Large grid;Stort gitter
+loading;Loading;Loading
 loggedOut;Logged out successfully;Logget ud 
 login;Login;Log ind
 loginFailed;Login failed;Login mislykkedes
@@ -80,6 +84,8 @@ pleaseEnterPassword;Please enter password;Indsæt venligst adgangskode
 pleaseEnterValidEmail;Please enter a valid email;Indsæt venligst en gyldig e-mail
 price;Price;Pris
 prodYear;Production year;Produktions år
+progress;Progress;Status
+progressBar;Progress bar;Statuslinje
 recordNo;Record number;Pladenummer
 released;Last released;Senest udgivet
 resetFiltersAndSorting;Reset filters and sorting;Nulstil filtre og sortering
@@ -89,6 +95,7 @@ showing;Showing;Viser
 signup;Signup;Opret bruger
 signupFailed;Sign up failed;Registrering mislykkedes
 signupSucceeded;Sign up succeeded;Registrering lykkedes
+smallGrid;Small grid;Lille gitter
 somethingWentWrong;Something went wrong;Noget gik galt
 sortBy;Sort by;Sorter efter
 sub;Sub;Sekundær
@@ -103,8 +110,8 @@ user;User;Bruger
 userAlreadyExist;A profile with this email already exists. Try logging in instead;Der findes en profil med denne e-mail. Prøv at logge ind i stedet
 userInfo;User info;Bruger info
 username;UserName;Brugernavn
-welcome;Welcome;Velkommen
 warning;Warning;Warning
+welcome;Welcome;Velkommen
 yearAfter;a year after;et år efter
 yearAfterOrEqual;a year after or equal to;et år efter eller lig med
 yearBetween;a year between;et år mellem

@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { IconDefaultProps } from './Icon';
 
-const ErrorIcon: FC<IconDefaultProps> = ({
+const ChevronDownIcon: FC<IconDefaultProps> = ({
   size,
   title,
   className,
@@ -22,10 +22,8 @@ const ErrorIcon: FC<IconDefaultProps> = ({
     aria-hidden={ariaHidden}
   >
     <title>{title}</title>
-    <circle cx="12" cy="12" r="10" />
-    <path d="m15 9-6 6" />
-    <path d="m9 9 6 6" />
+    <path d="m6 9 6 6 6-6" />
   </svg>
 );
 
-export default ErrorIcon;
+export default ChevronDownIcon;

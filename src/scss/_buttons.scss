@@ -20,7 +20,6 @@ a[class^='btn-'],
   padding: 16px;
   border-radius: 4px;
   width: 100%;
-  min-width: 150px;
   border: 1px solid currentcolor;
   cursor: pointer;
 
@@ -82,9 +81,8 @@ a[class^='btn-'],
 .btn-ghost {
   background-color: transparent;
   color: $color-primary-btn;
-  min-width: fit-content;
-  width: auto;
   border: 0;
+  width: fit-content;
 
   &.danger {
     svg {

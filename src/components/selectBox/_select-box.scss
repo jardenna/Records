@@ -1,0 +1,28 @@
+@use '../../scss/globals' as *;
+
+/* stylelint-disable selector-class-pattern */
+.select-box {
+  .select-box__control {
+    height: 40px;
+    padding: 0 8px;
+  }
+
+  .select-box__indicators {
+    align-self: auto;
+  }
+
+  .select-box__dropdown-indicator {
+    @include transition;
+  }
+
+  .select-box__control--menu-is-open {
+    .select-box__dropdown-indicator {
+      transform: rotate(180deg);
+    }
+  }
+
+  .select-box__value-container {
+    padding: 0;
+    align-self: auto;
+  }
+}

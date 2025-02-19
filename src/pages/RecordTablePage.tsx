@@ -6,8 +6,8 @@ import { useAppDispatch, useAppSelector } from '../app/hooks';
 import ErrorBoundaryFallback from '../components/errorBoundary/ErrorBoundaryFallback';
 import MetaTags from '../components/MetaTags';
 import Pagination from '../components/pagination/Pagination';
-import RecordTable from '../components/recordTable/RecordTable';
-import SelectBox, { Option } from '../components/SelectBox';
+import MainTable from '../components/recordTable/MainTable';
+import { Option } from '../components/selectBox/SelectBox';
 import SkeletonList from '../components/skeleton/SkeletonList';
 import useLanguage from '../features/language/useLanguage';
 import { selectModalId, toggleModal } from '../features/modalSlice';
@@ -84,20 +84,22 @@ const RecordTablePage: FC = () => {
   const endRow = Math.min(selectedPage * shownRows, totalRows);
   const modalId = useAppSelector(selectModalId);
 
-  const handleSort = (field: string) => {
-    searchParams.set('sortField', field);
-    searchParams.set('sortOrder', sortingOrder);
-    setSearchParams(searchParams);
-    if (sortingField === field) {
-      setSortingOrder(
-        sortingOrder === SortOrder.Asc ? SortOrder.Desc : SortOrder.Asc,
-      );
-    } else {
-      setSortingField(field);
-      setSortingOrder(SortOrder.Asc);
-    }
-  };
-
+  const handleSort = useCallback(
+    (field: string) => {
+      searchParams.set('sortField', field);
+      searchParams.set('sortOrder', sortingOrder);
+      setSearchParams(searchParams);
+      if (sortingField === field) {
+        setSortingOrder(
+          sortingOrder === SortOrder.Asc ? SortOrder.Desc : SortOrder.Asc,
+        );
+      } else {
+        setSortingField(field);
+        setSortingOrder(SortOrder.Asc);
+      }
+    },
+    [sortingOrder],
+  );
   const handleOpenModal = useCallback(
     (id: string) => {
       dispatch(toggleModal(id));
@@ -123,6 +125,8 @@ const RecordTablePage: FC = () => {
   };
 
   const handleSetRowsCount = (name: string, selectedOptions: Option) => {
+    searchParams.set('page', '1');
+
     if (selectedOptions.value !== defaultOptionValue) {
       searchParams.set('limit', selectedOptions.value.toString());
     } else {
@@ -145,64 +149,51 @@ const RecordTablePage: FC = () => {
         title={language.albumsTable}
       />
 
-      <div className="record-select-container">
-        <p>
-          {language.showing} {startRow} {language.to} {endRow} {language.of}{' '}
-          {totalRows} {language.albumsSmall}
-        </p>
-        <form onSubmit={(event) => event.preventDefault()}>
-          <SelectBox
-            name="limit"
-            options={[
-              {
-                value: defaultOptionValue,
-                label: defaultOptionValue.toString(),
-              },
-              { value: 20, label: '20' },
-              { value: 50, label: '50' },
-              { value: totalCount, label: language.all },
-            ]}
-            id="limit"
-            onChange={(selectedOptions) =>
-              handleSetRowsCount('limit', selectedOptions as Option)
-            }
-            labelText={language.resultsPerPage}
-            inputHasNoLabel
-            defaultValue={{
-              value: Number(limit) || 10,
-              label: limit || defaultOptionValue.toString(),
-            }}
-          />
-        </form>
-      </div>
-
       {!isLoading ? (
         <ErrorBoundary
           FallbackComponent={ErrorBoundaryFallback}
           onReset={() => refetch}
         >
           {records && (
-            <RecordTable
+            <MainTable
+              options={[
+                {
+                  value: defaultOptionValue,
+                  label: defaultOptionValue.toString(),
+                },
+                { value: 20, label: '20' },
+                { value: 50, label: '50' },
+                { value: totalCount, label: language.all },
+              ]}
+              onSelectCount={(selectedOptions) =>
+                handleSetRowsCount('limit', selectedOptions as Option)
+              }
+              defaultValue={{
+                value: Number(limit) || 10,
+                label: limit || defaultOptionValue.toString(),
+              }}
+              endRow={endRow}
+              startRow={startRow}
+              totalRows={totalRows}
+              tableCaption={language.albumCollection}
               isLoading={isLoading}
               tableData={records.results}
+              tableHeaders={tableHeaders}
+              onClearAllSearch={handleClearAllSearch}
+              id={modalId}
+              onOpenModal={handleOpenModal}
+              onViewAlbum={handleViewAlbum}
               onSort={handleSort}
               sortOrder={sortOrder}
               onFilterRows={handleFilterRecords}
               values={values}
               valuesFromSearch={Object.fromEntries(searchParams)}
-              tableHeaders={tableHeaders}
-              onClearAllSearch={handleClearAllSearch}
-              tableCaption={language.albumCollection}
-              id={modalId}
-              onOpenModal={handleOpenModal}
-              onViewAlbum={handleViewAlbum}
             />
           )}
         </ErrorBoundary>
       ) : (
         <SkeletonList count={8} className="column" variant="secondary" />
       )}
-
       <Pagination
         currentPage={selectedPage}
         totalCount={totalCount}
