@@ -3,7 +3,6 @@ import useLanguage from '../features/language/useLanguage';
 import LayoutElement from '../layout/LayoutElement';
 import { BtnVariant } from '../types/enums';
 import Button from './Button';
-import MetaTags from './MetaTags';
 
 interface ErrorContentProps {
   btnLabel: string;
@@ -21,11 +20,6 @@ const ErrorContent: FC<ErrorContentProps> = ({
   const { language } = useLanguage();
   return (
     <section className={`error ${className}`}>
-      <MetaTags
-        description="This is the records page description"
-        keywords="records, music, artists"
-        title={`${language.somethingWentWrong}`}
-      />
       <img
         className="emoji"
         src="/images/sad_smiley.png"

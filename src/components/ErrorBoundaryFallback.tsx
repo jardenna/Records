@@ -1,6 +1,7 @@
 import { FC } from 'react';
 import useLanguage from '../features/language/useLanguage';
 import ErrorContent from './ErrorContent';
+import MetaTags from './MetaTags';
 
 export interface FallbackProps {
   error: any;
@@ -14,12 +15,19 @@ const ErrorBoundaryFallback: FC<FallbackProps> = ({
   const { language } = useLanguage();
 
   return (
-    <ErrorContent
-      onClick={resetErrorBoundary}
-      errorText={error.message}
-      btnLabel={language.retry}
-      className="error-boundary"
-    />
+    <>
+      <MetaTags
+        description="This is the records page description"
+        keywords="records, music, artists"
+        title={`${language.somethingWentWrong}`}
+      />
+      <ErrorContent
+        onClick={resetErrorBoundary}
+        errorText={error.message}
+        btnLabel={language.retry}
+        className="error-boundary"
+      />
+    </>
   );
 };
 
