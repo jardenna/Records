@@ -39,7 +39,7 @@ function checkFileType(file, cb) {
   if (mimetype && extname) {
     return cb(null, true);
   } else {
-    cb('Error: Images Only!');
+    return cb(new Error('Images Only!'));
   }
 }
 
