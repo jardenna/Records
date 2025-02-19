@@ -19,13 +19,8 @@ const IconBtn: FC<IconBtnProps> = ({
   onClick,
   className = '',
 }) => (
-  <Button
-    variant={BtnVariant.Ghost}
-    onClick={onClick}
-    className={className}
-    ariaLabel={ariaLabel}
-  >
-    <IconBtnContent iconName={iconName} title={title} />
+  <Button variant={BtnVariant.Ghost} onClick={onClick} className={className}>
+    <IconBtnContent iconName={iconName} title={title} ariaLabel={ariaLabel} />
   </Button>
 );
 

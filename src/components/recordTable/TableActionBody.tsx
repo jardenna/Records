@@ -36,7 +36,11 @@ const TableActionBody: FC<TableActionBodyProps> = ({
           onClick={onViewAlbum}
         />
         <DetailLink btnVariant={BtnVariant.Ghost} to={to}>
-          <IconContent iconName={IconName.Edit} title={language.updateAlbum} />
+          <IconContent
+            iconName={IconName.Edit}
+            title={language.updateAlbum}
+            ariaLabel={language.updateAlbum}
+          />
         </DetailLink>
         <IconBtn
           iconName={IconName.Trash}
