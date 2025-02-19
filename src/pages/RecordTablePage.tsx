@@ -29,6 +29,7 @@ const RecordTablePage: FC = () => {
     LabelKeys.Label,
     LabelKeys.Origin,
   ];
+  const [isPending, startTransition] = useTransition();
   const [sortingField, setSortingField] = useState('createdAt');
   const [sortingOrder, setSortingOrder] = useState(SortOrder.Desc);
   const [currentPage, setCurrentPage] = useState(1);
@@ -123,7 +124,7 @@ const RecordTablePage: FC = () => {
     onClearAll();
     setSearchParams();
   };
-  const [isPending, startTransition] = useTransition();
+
   const handleSetRowsCount = (name: string, selectedOptions: Option) => {
     searchParams.set('page', '1');
 
