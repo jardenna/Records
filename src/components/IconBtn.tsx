@@ -9,6 +9,7 @@ interface IconBtnProps {
   iconName: IconName;
   onClick: () => void;
   title: string;
+  ariaSelected?: boolean;
   className?: string;
 }
 
@@ -18,8 +19,14 @@ const IconBtn: FC<IconBtnProps> = ({
   title,
   onClick,
   className = '',
+  ariaSelected,
 }) => (
-  <Button variant={BtnVariant.Ghost} onClick={onClick} className={className}>
+  <Button
+    variant={BtnVariant.Ghost}
+    onClick={onClick}
+    className={className}
+    ariaSelected={ariaSelected}
+  >
     <IconContent iconName={iconName} title={title} ariaLabel={ariaLabel} />
   </Button>
 );
