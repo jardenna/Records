@@ -28,6 +28,7 @@ const SearchField: FC<SearchFieldProps> = ({ title, value, onFilterRows }) => {
     <div className="position-relative">
       <IconBtn
         title={`${language.filter} ${language.title}`}
+        ariaLabel={`${language.filter} ${language.title}`}
         onClick={handleSearchField}
         iconName={IconName.Filter}
       />

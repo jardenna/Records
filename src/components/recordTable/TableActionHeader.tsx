@@ -20,6 +20,7 @@ const TableActionHeader: FC<TableActionHeaderProps> = ({
         <IconBtn
           iconName={IconName.Undo}
           title={language.resetFiltersAndSorting}
+          ariaLabel={language.resetFiltersAndSorting}
           onClick={onClearAllSearch}
         />
       </div>

@@ -32,6 +32,7 @@ const TableActionBody: FC<TableActionBodyProps> = ({
         <IconBtn
           iconName={IconName.Eye}
           title={language.albumDetails}
+          ariaLabel={language.albumDetails}
           onClick={onViewAlbum}
         />
         <DetailLink btnVariant={BtnVariant.Ghost} to={to}>
@@ -41,6 +42,7 @@ const TableActionBody: FC<TableActionBodyProps> = ({
           iconName={IconName.Trash}
           className="danger"
           title={language.deleteAlbum}
+          ariaLabel={language.deleteAlbum}
           onClick={onOpenModal}
         />
         <DeleteRecordModal

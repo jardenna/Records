@@ -29,6 +29,7 @@ const TableGridIcons: FC<TableGridIconsProps> = ({
           key={padding}
           iconName={iconName}
           title={language[title]}
+          ariaLabel={language[title]}
           onClick={() => onSetPadding(padding)}
           className={isActive === padding ? 'is-active' : ''}
         />
