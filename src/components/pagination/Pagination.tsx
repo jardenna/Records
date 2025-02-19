@@ -1,6 +1,6 @@
 import { Dispatch, FC, SetStateAction } from 'react';
 import useLanguage from '../../features/language/useLanguage';
-import IconContent from '../iconBtn/IconBtnContent';
+import IconContent from '../IconContent';
 import { IconName } from '../icons/Icon';
 import './_pagination.scss';
 import PaginationItem from './PaginationItem';

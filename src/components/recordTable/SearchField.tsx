@@ -3,7 +3,7 @@ import useLanguage from '../../features/language/useLanguage';
 import useClickOutside from '../../hooks/useClickOutside';
 import { ChangeInputType } from '../../types/types';
 import Input from '../formElements/Input';
-import IconBtn from '../iconBtn/IconBtn';
+import IconBtn from '../IconBtn';
 import { IconName } from '../icons/Icon';
 import VisuallyHidden from '../VisuallyHidden';
 

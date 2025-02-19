@@ -1,6 +1,6 @@
 import { FC } from 'react';
-import Icon, { IconName } from '../icons/Icon';
-import VisuallyHidden from '../VisuallyHidden';
+import Icon, { IconName } from './icons/Icon';
+import VisuallyHidden from './VisuallyHidden';
 
 interface IconContentProps {
   ariaLabel: string;
@@ -8,15 +8,11 @@ interface IconContentProps {
   title: string;
 }
 
-const IconBtnContent: FC<IconContentProps> = ({
-  iconName,
-  title,
-  ariaLabel,
-}) => (
+const IconContent: FC<IconContentProps> = ({ iconName, title, ariaLabel }) => (
   <>
     <Icon iconName={iconName} title={title} ariaHidden />
     <VisuallyHidden>{ariaLabel}</VisuallyHidden>
   </>
 );
 
-export default IconBtnContent;
+export default IconContent;

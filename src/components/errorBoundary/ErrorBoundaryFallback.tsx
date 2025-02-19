@@ -2,7 +2,7 @@ import { FC } from 'react';
 import { IconName } from '../../components/icons/Icon';
 import useLanguage from '../../features/language/useLanguage';
 import LayoutElement from '../../layout/LayoutElement';
-import IconBtn from '../iconBtn/IconBtn';
+import IconBtn from '../IconBtn';
 import MetaTags from '../MetaTags';
 import './_error-boundary.scss';
 
