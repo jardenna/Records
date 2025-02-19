@@ -1,7 +1,7 @@
-import upload from '../utils/uploadImages.js';
+import uploadImage from '../utils/uploadImage.js';
 
 const handleFileUpload = (req, res, next) => {
-  upload.single('cover')(req, res, (err) => {
+  uploadImage.single('cover')(req, res, (err) => {
     if (err) {
       return res.status(400).json({ message: err.message });
     }

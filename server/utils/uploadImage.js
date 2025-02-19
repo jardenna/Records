@@ -1,6 +1,8 @@
 import multer from 'multer';
 import path from 'path';
 
+const fileSize = 1 * 1000 * 1000;
+
 //Global error message
 export const errorMsg = (error, res) => {
   res.status(500).json({
@@ -19,9 +21,9 @@ const storage = multer.diskStorage({
   },
 });
 
-const upload = multer({
+const uploadImage = multer({
   storage: storage,
-  limits: { fileSize: 1000000 },
+  limits: { fileSize },
   fileFilter: (req, file, cb) => {
     checkFileType(file, cb);
   },
@@ -43,4 +45,4 @@ function checkFileType(file, cb) {
   }
 }
 
-export default upload;
+export default uploadImage;
