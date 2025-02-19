@@ -6,7 +6,7 @@ import { MainPath } from '../../layout/nav/enums';
 import { BtnVariant } from '../../types/enums';
 import { ChangeInputType } from '../../types/types';
 import DeleteRecordModal from '../DeleteRecordModal';
-import IconBtn from '../IconBtn';
+import IconBtn from '../iconBtn/IconBtn';
 import Icon, { IconName } from '../icons/Icon';
 import RecordSelect from '../recordSelect/RecordSelect';
 import { SelectedOption } from '../selectBox/SelectBox';

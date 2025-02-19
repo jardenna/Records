@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import useLanguage from '../../features/language/useLanguage';
-import IconBtn from '../IconBtn';
+import IconBtn from '../iconBtn/IconBtn';
 import { IconName } from '../icons/Icon';
 import './scss/_table-grid-icons.scss';
 

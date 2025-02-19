@@ -1,17 +1,17 @@
 import { FC } from 'react';
-import Icon, { IconName } from './icons/Icon';
-import VisuallyHidden from './VisuallyHidden';
+import Icon, { IconName } from '../icons/Icon';
+import VisuallyHidden from '../VisuallyHidden';
 
 interface IconContentProps {
   iconName: IconName;
   title: string;
 }
 
-const IconContent: FC<IconContentProps> = ({ iconName, title }) => (
+const IconBtnContent: FC<IconContentProps> = ({ iconName, title }) => (
   <>
     <Icon iconName={iconName} title={title} ariaHidden />
     <VisuallyHidden>{title}</VisuallyHidden>
   </>
 );
 
-export default IconContent;
+export default IconBtnContent;
