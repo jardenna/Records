@@ -1,15 +1,19 @@
-import { FC, memo, useCallback } from 'react';
+import { FC, memo, useCallback, useState } from 'react';
 import { Records } from '../../app/api/apiTypes';
 import useLanguage from '../../features/language/useLanguage';
 import useLocalStorage from '../../hooks/useLocalStorage';
 import { MainPath } from '../../layout/nav/enums';
+import { BtnVariant } from '../../types/enums';
 import { ChangeInputType } from '../../types/types';
-import { IconName } from '../icons/Icon';
+import DeleteRecordModal from '../DeleteRecordModal';
+import IconBtn from '../IconBtn';
+import Icon, { IconName } from '../icons/Icon';
 import RecordSelect from '../recordSelect/RecordSelect';
 import { SelectedOption } from '../selectBox/SelectBox';
+import DetailLink from '../shared/DetailLink';
+import SkeletonList from '../skeleton/SkeletonList';
 import Table from '../table/Table';
 import RecordTableHeader from './RecordTableHeader';
-import TableActionBody from './TableActionBody';
 import TableActionHeader from './TableActionHeader';
 import TableGridIcons from './TableGridIcons';
 
@@ -25,6 +29,7 @@ export interface BaseMainTableProps {
 interface MainTableProps extends BaseMainTableProps {
   id: string | null;
   isLoading: boolean;
+  isPending: boolean;
   onClearAllSearch: () => void;
   onFilterRows: (e: ChangeInputType) => void;
   onOpenModal: (id: string) => void;
@@ -58,6 +63,7 @@ const MainTable: FC<MainTableProps> = ({
   options,
   onSelectCount,
   defaultValue,
+  isPending,
 }) => {
   const { language } = useLanguage();
   const [padding, setPadding] = useLocalStorage('padding', 12);
@@ -81,8 +87,12 @@ const MainTable: FC<MainTableProps> = ({
     [onViewAlbum],
   );
 
+  const [modalId, setModalId] = useState<string | null>(null);
   const memoizedOnOpenModal = useCallback(
-    (id: string) => onOpenModal(id),
+    (id: string) => {
+      setModalId(id);
+      onOpenModal(id);
+    },
     [onOpenModal],
   );
 
@@ -126,32 +136,70 @@ const MainTable: FC<MainTableProps> = ({
           <tbody>
             <tr>
               <td colSpan={6} className="no-records-table-field">
-                {language.noAlbumFound}
+                <span className="no-record-info"> {language.noAlbumFound}</span>
               </td>
             </tr>
           </tbody>
         ) : (
           <tbody>
-            {tableData.map((album) => (
-              <tr key={album.id}>
-                <td style={style}>{album.artist}</td>
-                <td>{album.title}</td>
-                <td>{album.prodYear}</td>
-                <td>{album.label}</td>
-                <td>{album.origin}</td>
-                <TableActionBody
-                  onViewAlbum={() => memoizedOnViewAlbum(album.id)}
-                  modalId={id === album.id ? album.id : null}
-                  id={id}
-                  name={album.artist}
-                  to={`/${MainPath.Update}/${album.id}`}
-                  onOpenModal={() => memoizedOnOpenModal(album.id)}
-                />
+            {!isPending ? (
+              tableData.map((album) => (
+                <tr key={album.id}>
+                  <td style={style}>{album.artist}</td>
+                  <td>{album.title}</td>
+                  <td>{album.prodYear}</td>
+                  <td>{album.label}</td>
+                  <td>{album.origin}</td>
+                  <td>
+                    <div className="table-action-body">
+                      <IconBtn
+                        iconName={IconName.Eye}
+                        title={language.albumDetails}
+                        ariaLabel={language.albumDetails}
+                        onClick={() => memoizedOnViewAlbum(album.id)}
+                      />
+                      <DetailLink
+                        btnVariant={BtnVariant.Ghost}
+                        to={`/${MainPath.Update}/${album.id}`}
+                      >
+                        <Icon
+                          iconName={IconName.Edit}
+                          title={language.updateAlbum}
+                        />
+                      </DetailLink>
+
+                      <IconBtn
+                        iconName={IconName.Trash}
+                        className="danger"
+                        title={language.deleteAlbum}
+                        ariaLabel={language.deleteAlbum}
+                        onClick={() => memoizedOnOpenModal(album.id)}
+                      />
+                    </div>
+                  </td>
+                </tr>
+              ))
+            ) : (
+              <tr>
+                <td colSpan={6} className="no-records-table-field">
+                  <SkeletonList
+                    count={8}
+                    className="column"
+                    variant="secondary"
+                  />
+                </td>
               </tr>
-            ))}
+            )}
           </tbody>
         )}
       </Table>
+
+      <DeleteRecordModal
+        modalId={modalId}
+        id={id}
+        btnLabel={language.delete}
+        name="name"
+      />
     </>
   );
 };

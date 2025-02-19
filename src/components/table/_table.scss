@@ -38,14 +38,17 @@ table {
   th {
     background-color: $color-white;
     border-right: 1px solid $color-border;
-    word-wrap: break-word;
-    padding: 8px;
+    border-bottom: 1px solid $color-border;
     position: sticky;
     top: 0;
     z-index: 2;
 
     &:first-child {
       z-index: 3;
+    }
+
+    &:last-child {
+      border-right: 0;
     }
   }
 
@@ -81,16 +84,18 @@ table {
     &:nth-child(odd) {
       td {
         background-color: $color-background;
-      }
 
-      &.no-records-table-field {
-        td {
+        &.no-records-table-field {
           background-color: $color-white;
           border: none;
           padding: 0;
         }
       }
     }
+  }
+
+  .no-record-info {
+    padding: 4px 12px;
   }
 
   .btn {

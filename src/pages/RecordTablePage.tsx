@@ -1,4 +1,4 @@
-import { FC, useCallback, useState } from 'react';
+import { FC, useCallback, useState, useTransition } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
 import { useLocation, useNavigate, useSearchParams } from 'react-router';
 import { SortOrder } from '../app/api/apiTypes';
@@ -123,7 +123,7 @@ const RecordTablePage: FC = () => {
     onClearAll();
     setSearchParams();
   };
-
+  const [isPending, startTransition] = useTransition();
   const handleSetRowsCount = (name: string, selectedOptions: Option) => {
     searchParams.set('page', '1');
 
@@ -133,7 +133,10 @@ const RecordTablePage: FC = () => {
       searchParams.delete(name);
     }
     setSearchParams(searchParams);
-    onCustomChange(name, selectedOptions.value);
+
+    startTransition(() => {
+      onCustomChange(name, selectedOptions.value);
+    });
   };
 
   const handleViewAlbum = (id: string) => {
@@ -168,6 +171,7 @@ const RecordTablePage: FC = () => {
               onSelectCount={(selectedOptions) =>
                 handleSetRowsCount('limit', selectedOptions as Option)
               }
+              isPending={isPending}
               defaultValue={{
                 value: Number(limit) || 10,
                 label: limit || defaultOptionValue.toString(),
@@ -194,14 +198,16 @@ const RecordTablePage: FC = () => {
       ) : (
         <SkeletonList count={8} className="column" variant="secondary" />
       )}
-      <Pagination
-        currentPage={selectedPage}
-        totalCount={totalCount}
-        setCurrentPage={setCurrentPage}
-        selectedPage={selectedPage}
-        pageLimit={pageLimit}
-        rowsPerPage={shownRows}
-      />
+      {records?.results?.length !== 0 && (
+        <Pagination
+          currentPage={selectedPage}
+          totalCount={totalCount}
+          setCurrentPage={setCurrentPage}
+          selectedPage={selectedPage}
+          pageLimit={pageLimit}
+          rowsPerPage={shownRows}
+        />
+      )}
     </section>
   );
 };
