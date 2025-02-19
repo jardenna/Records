@@ -43,6 +43,8 @@ export interface RecordsRequest {
   title: string;
 }
 
+export type FileUploadNameType = 'cover';
+
 export interface Records {
   artist: string;
   cover: string;

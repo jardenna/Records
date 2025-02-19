@@ -1,4 +1,5 @@
 import { FC } from 'react';
+import { FileUploadNameType } from '../../../app/api/apiTypes';
 import { ChangeInputType } from '../../../types/types';
 import Input from '../Input';
 import './_file-input.scss';
@@ -6,7 +7,7 @@ import './_file-input.scss';
 interface FileInputProps {
   id: string;
   labelText: string;
-  name: string;
+  name: FileUploadNameType;
   onChange: (event: ChangeInputType) => void;
   value: string;
 }
