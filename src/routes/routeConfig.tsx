@@ -4,13 +4,13 @@ import LoginPage from '../features/auth/pages/LoginPage';
 import ProtectedRoute from '../features/auth/pages/ProtectedRoute';
 import RegisterPage from '../features/auth/pages/RegisterPage';
 import Layout from '../layout/Layout';
+import { MainPath } from '../layout/nav/enums';
 import CreateRecordPage from '../pages/CreateRecordPage';
 import DetailsPage from '../pages/DetailsPage';
-import ErrorPage from '../pages/errorPage/ErrorPage';
+import ErrorPage from '../pages/ErrorPage';
 import HomePage from '../pages/HomePage';
 import RecordTablePage from '../pages/RecordTablePage';
 import UpdateRecordPage from '../pages/UpdateRecordPage';
-import { MainPath } from '../layout/nav/enums';
 
 const routeConfig = createBrowserRouter([
   {

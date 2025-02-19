@@ -1,6 +1,6 @@
 import { FC } from 'react';
-import useLanguage from '../../features/language/useLanguage';
-import ErrorContent from '../ErrorContent';
+import useLanguage from '../features/language/useLanguage';
+import ErrorContent from './ErrorContent';
 
 export interface FallbackProps {
   error: any;

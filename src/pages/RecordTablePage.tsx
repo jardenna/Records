@@ -3,7 +3,7 @@ import { ErrorBoundary } from 'react-error-boundary';
 import { useLocation, useNavigate, useSearchParams } from 'react-router';
 import { SortOrder } from '../app/api/apiTypes';
 import { useAppDispatch, useAppSelector } from '../app/hooks';
-import ErrorBoundaryFallback from '../components/errorBoundary/ErrorBoundaryFallback';
+import ErrorBoundaryFallback from '../components/ErrorBoundaryFallback';
 import MetaTags from '../components/MetaTags';
 import Pagination from '../components/pagination/Pagination';
 import MainTable from '../components/recordTable/MainTable';

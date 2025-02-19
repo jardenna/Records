@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
-import ErrorBoundaryFallback from '../../errorBoundary/ErrorBoundaryFallback';
+import ErrorBoundaryFallback from '../../ErrorBoundaryFallback';
 import Figure from '../../figure/Figure';
 import './_record-img.scss';
 

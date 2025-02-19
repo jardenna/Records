@@ -3,7 +3,7 @@ import { ErrorBoundary } from 'react-error-boundary';
 import { Records } from '../app/api/apiTypes';
 import useLanguage from '../features/language/useLanguage';
 import DetailsContent from './details/DetailsContent';
-import ErrorBoundaryFallback from './errorBoundary/ErrorBoundaryFallback';
+import ErrorBoundaryFallback from './ErrorBoundaryFallback';
 
 interface RecordDetailsListProps {
   refetch: () => void;

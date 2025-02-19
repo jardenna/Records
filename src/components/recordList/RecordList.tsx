@@ -5,7 +5,7 @@ import useLanguage from '../../features/language/useLanguage';
 import LayoutElement from '../../layout/LayoutElement';
 import { MainPath } from '../../layout/nav/enums';
 import { BtnVariant } from '../../types/enums';
-import ErrorBoundaryFallback from '../errorBoundary/ErrorBoundaryFallback';
+import ErrorBoundaryFallback from '../ErrorBoundaryFallback';
 import DetailLink from '../shared/DetailLink';
 import RecordImg from '../shared/recordImg/RecordImg';
 import './_record-list.scss';
