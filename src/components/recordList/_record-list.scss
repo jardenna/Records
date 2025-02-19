@@ -7,6 +7,7 @@
 
   .record-img-sub-title {
     font-size: rem(14px);
+    color: currentcolor;
   }
 
   .record-item {
@@ -16,6 +17,7 @@
     flex-direction: column;
     justify-content: space-between;
     border-radius: 4px;
+    color: $color-white;
 
     .record-img-container {
       background-color: transparent;
@@ -26,7 +28,7 @@
       width: auto;
 
       &.btn-secondary {
-        color: $color-white;
+        color: currentcolor;
 
         &:hover {
           color: $color-primary-btn-hover;
@@ -52,14 +54,10 @@
 
     &:nth-child(5) {
       background-color: $color-background;
-      color: $color-black;
+      color: $color-primary-text;
 
       .record-img-container {
-        color: $color-black;
-      }
-
-      .btn-secondary {
-        color: $color-primary-btn;
+        color: $color-primary-text;
       }
     }
 
