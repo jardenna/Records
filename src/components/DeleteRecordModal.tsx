@@ -43,7 +43,6 @@ const DeleteRecordModal: FC<DeleteRecordModalProps> = ({
             message: result.message,
             messagePopupType: 'error',
             componentType: 'notification',
-            position: 'top-center',
           });
         }
 
@@ -60,7 +59,6 @@ const DeleteRecordModal: FC<DeleteRecordModalProps> = ({
         messagePopupType: 'error',
         message: error.data.message,
         componentType: 'notification',
-        position: 'top-center',
       });
     }
 

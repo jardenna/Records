@@ -20,7 +20,7 @@ const useMessagePopup = (messagePopupId?: string) => {
   const handleAddMessagePopup = ({
     message,
     messagePopupType,
-    position = 'bottom-center',
+
     componentType = 'toast',
   }: MessagePopupWithoutId) => {
     dispatch(
@@ -28,7 +28,6 @@ const useMessagePopup = (messagePopupId?: string) => {
         message,
         messagePopupType,
         componentType,
-        position,
       }),
     );
   };

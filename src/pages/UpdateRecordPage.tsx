@@ -50,7 +50,6 @@ const UpdateRecord: FC = () => {
           messagePopupType: 'error',
           message: error.data.message,
           componentType: 'notification',
-          position: 'top-center',
         });
       }
     }

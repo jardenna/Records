@@ -26,7 +26,6 @@ export const rtkQueryErrorLogger: Middleware =
             messagePopupType: 'error',
             message: `Error: ${errorMessage}`,
             componentType: 'notification',
-            position: 'top-center',
           }),
         );
         setTimeout(() => {

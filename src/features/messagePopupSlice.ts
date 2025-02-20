@@ -12,19 +12,16 @@ export type MessagePopupPosition =
   | 'bottom-right'
   | 'bottom-left';
 
-// MessagePopup Model
 export interface MessagePopup {
   id: string;
   message: string;
   messagePopupType: MessagePopupTypes;
   componentType?: ComponentType;
   onClose?: () => void;
-  position?: MessagePopupPosition;
 }
 
 export type MessagePopupWithoutId = Omit<MessagePopup, 'id'>;
 
-// MessagePopup State
 interface MessagePopupState {
   messagePopups: MessagePopup[];
   autoHideDuration?: number;
@@ -35,7 +32,6 @@ const initialState: Readonly<MessagePopupState> = {
   autoHideDuration: 5000,
 };
 
-// Slice
 const messagePopupSlice = createSlice({
   name: 'messagePopup',
   initialState,

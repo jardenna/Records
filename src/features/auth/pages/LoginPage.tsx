@@ -41,7 +41,6 @@ const LoginPage: FC = () => {
           message: result.message,
           messagePopupType: 'error',
           componentType: 'notification',
-          position: 'top-center',
         });
       }
     } catch (error: any) {
@@ -49,7 +48,6 @@ const LoginPage: FC = () => {
         messagePopupType: 'error',
         message: error.data.message,
         componentType: 'notification',
-        position: 'top-center',
       });
     }
   }
