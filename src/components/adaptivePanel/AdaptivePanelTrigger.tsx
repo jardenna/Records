@@ -2,7 +2,7 @@ import { FC, ReactNode } from 'react';
 import { BtnVariant } from '../../types/enums';
 import Button from '../Button';
 
-interface AdaptivePanelTriggerTriggerProps {
+interface AdaptivePanelTriggerProps {
   ariaControls: string;
   ariaExpanded: boolean;
   children: ReactNode;
@@ -12,7 +12,7 @@ interface AdaptivePanelTriggerTriggerProps {
   btnVariant?: BtnVariant;
 }
 
-const AdaptivePanelTrigger: FC<AdaptivePanelTriggerTriggerProps> = ({
+const AdaptivePanelTrigger: FC<AdaptivePanelTriggerProps> = ({
   btnVariant,
   children,
   className,
