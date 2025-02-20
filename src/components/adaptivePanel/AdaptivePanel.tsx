@@ -1,5 +1,4 @@
-import { FC, ReactNode, useRef } from 'react';
-import useClickOutside from '../../hooks/useClickOutside';
+import { FC, ReactNode } from 'react';
 import { BtnVariant } from '../../types/enums';
 import { PrimaryActionBtnProps } from '../modal/Modal';
 import './_dropdown.scss';
@@ -25,11 +24,8 @@ const AdaptivePanel: FC<AdaptivePanelProps> = ({
   isPanel,
   panelVariant,
 }) => {
-  const { isPanelHidden, onTogglePanel, onHidePanel } = usePanel();
-  const panelRef = useRef<HTMLDivElement>(null);
+  const { isPanelHidden, onTogglePanel, onHidePanel, panelRef } = usePanel();
   const ariaControls = !isPanel ? 'dropdown' : 'panel';
-
-  useClickOutside(panelRef, () => onHidePanel());
 
   const handleCallback = () => {
     actionBtn.onClick();
@@ -37,7 +33,7 @@ const AdaptivePanel: FC<AdaptivePanelProps> = ({
   };
 
   return (
-    <div className="dropdown-container">
+    <div className="dropdown-container" ref={panelRef}>
       <DropdownTrigger
         btnVariant={btnVariant}
         onClick={onTogglePanel}
@@ -53,7 +49,6 @@ const AdaptivePanel: FC<AdaptivePanelProps> = ({
           id={ariaControls}
           handleCallback={handleCallback}
           btnLabel={actionBtn.label ?? ''}
-          ref={panelRef}
         >
           {children}
         </Dropdown>
@@ -63,7 +58,6 @@ const AdaptivePanel: FC<AdaptivePanelProps> = ({
         <Panel
           id={ariaControls}
           isPanelHidden={isPanelHidden}
-          ref={panelRef}
           variant={panelVariant}
         >
           {children}

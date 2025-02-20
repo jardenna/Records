@@ -5,7 +5,6 @@ interface DropdownProps {
   btnLabel: string;
   children: ReactNode;
   id: string;
-  ref: React.Ref<HTMLDivElement>;
   handleCallback?: () => void;
 }
 
@@ -14,9 +13,8 @@ const Dropdown: FC<DropdownProps> = ({
   btnLabel,
   handleCallback,
   id,
-  ref = null,
 }) => (
-  <section className="dropdown" ref={ref} id={id}>
+  <section className="dropdown" id={id}>
     {children}
     <Button onClick={handleCallback}>{btnLabel}</Button>
   </section>

@@ -8,7 +8,6 @@ interface PanelProps {
   children: ReactNode;
   id: string;
   isPanelHidden: boolean;
-  ref: React.Ref<HTMLDivElement>;
   className?: string;
   onTogglePanel?: () => void;
   variant?: Variant;
@@ -21,10 +20,8 @@ const Panel: FC<PanelProps> = ({
   className = '',
   id,
   variant = 'right',
-  ref = null,
 }) => (
   <section
-    ref={ref}
     className={`panel ${variant} ${className} ${isPanelHidden ? '' : 'is-active'}`}
     id={id}
   >
