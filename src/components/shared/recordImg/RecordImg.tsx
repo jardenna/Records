@@ -1,5 +1,6 @@
 import { FC } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
+import useWindowDimensions from '../../../hooks/useWindowDimensions ';
 import ErrorBoundaryFallback from '../../ErrorBoundaryFallback';
 import Figure from '../../figure/Figure';
 import './_record-img.scss';
@@ -22,6 +23,7 @@ const RecordImg: FC<RecordImgProps> = ({
   refetch,
 }) => {
   let imageSource = '/images/uploads/default.png';
+  const { isMobileSize } = useWindowDimensions();
 
   if (previewUrl?.trim()) {
     imageSource = previewUrl;
@@ -43,7 +45,7 @@ const RecordImg: FC<RecordImgProps> = ({
               <h2 className="record-img-title text-ellipsis">{title}</h2>
               {Subtitle && (
                 <h3 className="record-img-sub-title">
-                  <span> / </span>
+                  {!isMobileSize && <span> / </span>}
                   {Subtitle}
                 </h3>
               )}

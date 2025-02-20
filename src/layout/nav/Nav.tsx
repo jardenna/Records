@@ -81,7 +81,13 @@ const Nav: FC = () => {
                 isPanel
                 panelVariant="left"
               >
-                <NavItemList navItemsList={navList} ariaLabel={language.main} />
+                <NavItemList
+                  navItemsList={navList}
+                  ariaLabel={language.main}
+                  username={user.username}
+                  logoutActionBtn={logout}
+                  logoutActionBtnLabel={logoutActionBtn.label}
+                />
               </AdaptivePanel>
             ) : (
               <NavItemList navItemsList={navList} ariaLabel={language.main} />
