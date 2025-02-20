@@ -5,6 +5,7 @@ import Icon, { IconName } from '../../components/icons/Icon';
 import { PrimaryActionBtnProps } from '../../components/modal/Modal';
 import useAuth from '../../features/auth/hooks/useAuth';
 import useLanguage from '../../features/language/useLanguage';
+import useWindowDimensions from '../../hooks/useWindowDimensions ';
 import { MainPath } from './enums';
 import NavAuthContainer from './navAuthContainer/NavAuthContainer';
 import NavItemList from './NavItemList';
@@ -14,6 +15,7 @@ const Nav: FC = () => {
   const location = useLocation();
   const { language } = useLanguage();
   const { currentUser, logout } = useAuth();
+  const { isMobileSize } = useWindowDimensions();
 
   const getTitle = (pathname: string): string => {
     if (pathname === `/${MainPath.Records}`) {
@@ -57,14 +59,23 @@ const Nav: FC = () => {
     <article className="main-nav">
       <div className="nav-container container">
         {user && (
-          <AdaptivePanel
-            triggerContent={<Icon iconName={IconName.User} title="user" />}
-            actionBtn={actionBtn}
-            isPanel
-            panelVariant="left"
-          >
-            <NavItemList navItemsList={navList} ariaLabel={language.main} />
-          </AdaptivePanel>
+          <div>
+            {!isMobileSize ? (
+              <AdaptivePanel
+                className="menu-burger"
+                triggerContent={
+                  <span className="menu-burger-item" aria-hidden="true" />
+                }
+                actionBtn={actionBtn}
+                isPanel
+                panelVariant="left"
+              >
+                <NavItemList navItemsList={navList} ariaLabel={language.main} />
+              </AdaptivePanel>
+            ) : (
+              <NavItemList navItemsList={navList} ariaLabel={language.main} />
+            )}
+          </div>
         )}
         <h1>{title}</h1>
         <NavAuthContainer

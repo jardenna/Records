@@ -11,6 +11,7 @@ interface AdaptivePanelProps {
   actionBtn: PrimaryActionBtnProps;
   children: ReactNode;
   btnVariant?: BtnVariant;
+  className?: string;
   isPanel?: boolean;
   panelVariant?: Variant;
   triggerContent?: ReactNode;
@@ -23,6 +24,7 @@ const AdaptivePanel: FC<AdaptivePanelProps> = ({
   triggerContent,
   isPanel,
   panelVariant,
+  className = 'user-btn',
 }) => {
   const { isPanelHidden, onTogglePanel, onHidePanel, panelRef } = usePanel();
   const ariaControls = !isPanel ? 'dropdown' : 'panel';
@@ -37,7 +39,7 @@ const AdaptivePanel: FC<AdaptivePanelProps> = ({
       <DropdownTrigger
         btnVariant={btnVariant}
         onClick={onTogglePanel}
-        className="user-btn"
+        className={className}
         ariaExpanded={!isPanelHidden}
         ariaControls={ariaControls}
       >
