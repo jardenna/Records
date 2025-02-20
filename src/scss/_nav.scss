@@ -4,7 +4,12 @@
   background-color: $color-background;
 
   .panel {
-    top: 231px;
+    top: 259px;
+    padding: 0;
+
+    nav {
+      width: 100%;
+    }
   }
 }
 
@@ -12,6 +17,12 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  height: rem(56px);
+
+  @include max-size($medium) {
+    justify-content: flex-start;
+    gap: 20px;
+  }
 
   .nav-dropdown {
     display: flex;
@@ -32,10 +43,24 @@
   &.container {
     padding: 0 20px;
   }
+
+  .nav-title {
+    @include max-size($medium) {
+      width: 100%;
+    }
+  }
 }
 
 .nav-list {
   display: flex;
+
+  @include max-size($medium) {
+    flex-direction: column;
+
+    li {
+      border-bottom: 1px solid $color-border;
+    }
+  }
 }
 
 .nav-item {

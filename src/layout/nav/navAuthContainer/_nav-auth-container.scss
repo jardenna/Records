@@ -1,8 +1,14 @@
+@use '../../../scss/globals' as *;
+
 .nav-auth-container {
   display: flex;
   justify-content: flex-end;
   gap: 4px;
   align-items: center;
+
+  @include max-size($medium) {
+    width: 100%;
+  }
 
   .nav-item {
     display: flex;
