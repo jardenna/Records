@@ -1,7 +1,12 @@
 import { FC } from 'react';
 import { IconDefaultProps } from './Icon';
 
-const AddIcon: FC<IconDefaultProps> = ({ size, title, className }) => (
+const AddIcon: FC<IconDefaultProps> = ({
+  size,
+  title,
+  className,
+  ariaHidden,
+}) => (
   <svg
     role="img"
     xmlns="http://www.w3.org/2000/svg"
@@ -12,6 +17,7 @@ const AddIcon: FC<IconDefaultProps> = ({ size, title, className }) => (
     fillRule="evenodd"
     strokeLinejoin="round"
     strokeMiterlimit="2"
+    aria-hidden={ariaHidden}
   >
     <title>{title}</title>
     <path

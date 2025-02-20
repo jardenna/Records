@@ -1,7 +1,12 @@
 import { FC } from 'react';
 import { IconDefaultProps } from './Icon';
 
-const EyeIcon: FC<IconDefaultProps> = ({ size, title, className }) => (
+const EyeIcon: FC<IconDefaultProps> = ({
+  size,
+  title,
+  className,
+  ariaHidden,
+}) => (
   <svg
     role="img"
     xmlns="http://www.w3.org/2000/svg"
@@ -14,6 +19,7 @@ const EyeIcon: FC<IconDefaultProps> = ({ size, title, className }) => (
     strokeWidth="2"
     strokeLinecap="round"
     strokeLinejoin="round"
+    aria-hidden={ariaHidden}
   >
     <title>{title}</title>
     <path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0" />

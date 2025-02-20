@@ -50,7 +50,7 @@ const Nav: FC = () => {
 
   const triggerContent = (
     <>
-      <Icon iconName={IconName.User} title="user" />
+      <Icon iconName={IconName.User} title={language.user} ariaHidden />
       {user ? `${language.welcome} ${user.username}` : language.login}
     </>
   );
