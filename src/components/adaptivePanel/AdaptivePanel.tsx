@@ -1,6 +1,6 @@
 import { FC, ReactNode } from 'react';
+import { ActionBtnProps } from '../../layout/nav/Nav';
 import { BtnVariant } from '../../types/enums';
-import { PrimaryActionBtnProps } from '../modal/Modal';
 import './_dropdown.scss';
 import DropdownTrigger from './AdaptivePanelTrigger';
 import Dropdown from './Dropdown';
@@ -8,10 +8,9 @@ import Panel, { Variant } from './Panel';
 import usePanel from './useAdaptivePanel';
 
 interface AdaptivePanelProps {
-  actionBtn: PrimaryActionBtnProps;
+  actionBtn: ActionBtnProps;
   children: ReactNode;
   btnVariant?: BtnVariant;
-  className?: string;
   isPanel?: boolean;
   panelVariant?: Variant;
   triggerContent?: ReactNode;
@@ -24,31 +23,33 @@ const AdaptivePanel: FC<AdaptivePanelProps> = ({
   triggerContent,
   isPanel,
   panelVariant,
-  className = 'user-btn',
 }) => {
   const { isPanelHidden, onTogglePanel, onHidePanel, panelRef } = usePanel();
-  const ariaControls = !isPanel ? 'dropdown' : 'panel';
+  const id = !isPanel ? 'dropdown' : 'panel';
 
   const handleCallback = () => {
-    actionBtn.onClick();
+    if (actionBtn.onClick) {
+      actionBtn.onClick();
+    }
     onHidePanel();
   };
 
   return (
-    <div className="dropdown-container" ref={panelRef}>
+    <div className={`${id}-container`} ref={panelRef}>
       <DropdownTrigger
         btnVariant={btnVariant}
         onClick={onTogglePanel}
-        className={className}
+        className={actionBtn.className || ''}
         ariaExpanded={!isPanelHidden}
-        ariaControls={ariaControls}
+        ariaControls={id}
+        ariaLabel={actionBtn.ariaLabel}
       >
         {triggerContent}
       </DropdownTrigger>
 
       {!isPanelHidden && !isPanel && (
         <Dropdown
-          id={ariaControls}
+          id={id}
           handleCallback={handleCallback}
           btnLabel={actionBtn.label ?? ''}
         >
@@ -57,11 +58,7 @@ const AdaptivePanel: FC<AdaptivePanelProps> = ({
       )}
 
       {isPanel && (
-        <Panel
-          id={ariaControls}
-          isPanelHidden={isPanelHidden}
-          variant={panelVariant}
-        >
+        <Panel id={id} isPanelHidden={isPanelHidden} variant={panelVariant}>
           {children}
         </Panel>
       )}

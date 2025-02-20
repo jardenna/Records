@@ -67,6 +67,7 @@ loginFailed;Login failed;Login mislykkedes
 loginSucceeded;Login succeeded;Login lykkedes
 logout;Log out;Log ud
 main;Main;Primær
+menu;Menu;Menu
 minLength;At least 8 characters;Mindst 8 tegn
 mustBeGreaterEqual;Must be greater than or equal to;Skal være større end eller lig med
 mustHaveLowercase;At least one lowercase letter;Mindst ét lille bogstav

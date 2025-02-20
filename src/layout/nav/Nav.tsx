@@ -2,7 +2,6 @@ import { FC } from 'react';
 import { useLocation } from 'react-router';
 import AdaptivePanel from '../../components/adaptivePanel/AdaptivePanel';
 import Icon, { IconName } from '../../components/icons/Icon';
-import { PrimaryActionBtnProps } from '../../components/modal/Modal';
 import useAuth from '../../features/auth/hooks/useAuth';
 import useLanguage from '../../features/language/useLanguage';
 import useWindowDimensions from '../../hooks/useWindowDimensions ';
@@ -10,6 +9,13 @@ import { MainPath } from './enums';
 import NavAuthContainer from './navAuthContainer/NavAuthContainer';
 import NavItemList from './NavItemList';
 import { navList } from './navList';
+
+export interface ActionBtnProps {
+  ariaLabel?: string;
+  className?: string;
+  label?: string;
+  onClick?: () => void;
+}
 
 const Nav: FC = () => {
   const location = useLocation();
@@ -41,9 +47,15 @@ const Nav: FC = () => {
 
   const title = getTitle(location.pathname);
 
-  const actionBtn: PrimaryActionBtnProps = {
+  const logoutActionBtn: ActionBtnProps = {
     onClick: logout,
     label: language.logout,
+    className: 'user-btn',
+  };
+
+  const actionBtn: ActionBtnProps = {
+    ariaLabel: language.menu,
+    className: 'menu-burger',
   };
 
   const user = currentUser?.user;
@@ -62,7 +74,6 @@ const Nav: FC = () => {
           <div>
             {!isMobileSize ? (
               <AdaptivePanel
-                className="menu-burger"
                 triggerContent={
                   <span className="menu-burger-item" aria-hidden="true" />
                 }
@@ -81,7 +92,7 @@ const Nav: FC = () => {
         <NavAuthContainer
           triggerContent={triggerContent}
           dropdownContent={language.logout}
-          actionBtn={actionBtn}
+          actionBtn={logoutActionBtn}
           user={user || null}
         />
       </div>

@@ -2,13 +2,13 @@ import { FC, ReactNode } from 'react';
 import { NavLink } from 'react-router';
 import { UserRequest } from '../../../app/api/apiTypes';
 import AdaptivePanel from '../../../components/adaptivePanel/AdaptivePanel';
-import { PrimaryActionBtnProps } from '../../../components/modal/Modal';
 import { BtnVariant } from '../../../types/enums';
 import { MainPath } from '../enums';
 import './_nav-auth-container.scss';
+import { ActionBtnProps } from '../Nav';
 
 interface NavAuthContainerProps {
-  actionBtn: PrimaryActionBtnProps;
+  actionBtn: ActionBtnProps;
   dropdownContent: string;
   triggerContent: ReactNode;
   user: UserRequest | null;
