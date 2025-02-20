@@ -1,8 +1,8 @@
 import { FC } from 'react';
 import { Outlet } from 'react-router';
 import Figure from '../../../components/figure/Figure';
-import NavItemList from '../../../layout/nav/Nav';
-import { authItemsList } from '../../../layout/nav/navItemsList';
+import NavItemList from '../../../layout/nav/NavItemList';
+import { authItemsList } from '../../../layout/nav/navList';
 import useLanguage from '../../language/useLanguage';
 
 const AuthLayout: FC = () => {
