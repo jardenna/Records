@@ -19,6 +19,7 @@
 
   @include max-size($small) {
     max-width: 100%;
+    flex-direction: column;
   }
 }
 

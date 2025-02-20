@@ -3,6 +3,10 @@
 .auth {
   display: flex;
   gap: 40px;
+
+  @include max-size($medium) {
+    flex-direction: column;
+  }
 }
 
 .auth-container {
