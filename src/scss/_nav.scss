@@ -2,17 +2,16 @@
 
 .main-nav {
   background-color: $color-background;
+
+  .panel {
+    top: 231px;
+  }
 }
 
 .nav-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
-
-  .nav-title {
-    display: flex;
-    justify-content: center;
-  }
 
   .nav-dropdown {
     display: flex;

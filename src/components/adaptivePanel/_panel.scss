@@ -10,7 +10,7 @@
   min-width: 360px;
   display: flex;
   padding: 20px;
-  right: 0;
+  box-shadow: $box-shadow;
 
   @include transition;
 

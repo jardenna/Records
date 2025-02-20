@@ -20,7 +20,7 @@ const NavAuthContainer: FC<NavAuthContainerProps> = ({
   actionBtn,
   dropdownContent,
 }) => (
-  <div className="flex-1 nav-auth-container">
+  <section className="nav-auth-container">
     {!user ? (
       <NavLink to={MainPath.Login} className="nav-item">
         {triggerContent}
@@ -34,7 +34,7 @@ const NavAuthContainer: FC<NavAuthContainerProps> = ({
         <p>{dropdownContent}</p>
       </AdaptivePanel>
     )}
-  </div>
+  </section>
 );
 
 export default NavAuthContainer;

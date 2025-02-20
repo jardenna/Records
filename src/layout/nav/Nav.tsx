@@ -1,5 +1,6 @@
 import { FC } from 'react';
 import { useLocation } from 'react-router';
+import AdaptivePanel from '../../components/adaptivePanel/AdaptivePanel';
 import Icon, { IconName } from '../../components/icons/Icon';
 import { PrimaryActionBtnProps } from '../../components/modal/Modal';
 import useAuth from '../../features/auth/hooks/useAuth';
@@ -55,14 +56,17 @@ const Nav: FC = () => {
   return (
     <article className="main-nav">
       <div className="nav-container container">
-        <div className="flex-1">
-          {user && (
+        {user && (
+          <AdaptivePanel
+            triggerContent={<Icon iconName={IconName.User} title="user" />}
+            actionBtn={actionBtn}
+            isPanel
+            panelVariant="left"
+          >
             <NavItemList navItemsList={navList} ariaLabel={language.main} />
-          )}
-        </div>
-        <div className="nav-title flex-1">
-          <h1>{title}</h1>
-        </div>
+          </AdaptivePanel>
+        )}
+        <h1>{title}</h1>
         <NavAuthContainer
           triggerContent={triggerContent}
           dropdownContent={language.logout}
