@@ -23,10 +23,20 @@ router.get('/latestSix', getLatestSixRecords);
 router.get('/:recordId', getRecordById);
 
 // Update record
-router.post('/:recordId', handleFileUpload, postCreateOrUpdateRecord);
+router.post(
+  '/:recordId',
+  languageMiddleware,
+  handleFileUpload,
+  postCreateOrUpdateRecord,
+);
 
 // Create record
-router.post('/', handleFileUpload, postCreateOrUpdateRecord);
+router.post(
+  '/',
+  languageMiddleware,
+  handleFileUpload,
+  postCreateOrUpdateRecord,
+);
 
 // Delete record
 router.delete('/delete/:recordId', languageMiddleware, deleteRecord);

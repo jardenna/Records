@@ -1,7 +1,7 @@
 import multer from 'multer';
 import path from 'path';
 
-const fileSize = 1 * 1000 * 1000;
+import { t } from './translator.js';
 
 //Global error message
 export const errorMsg = (error, res) => {
@@ -20,17 +20,17 @@ const storage = multer.diskStorage({
     );
   },
 });
-
+const fileSize = 1 * 1000 * 1000;
 const uploadImage = multer({
   storage: storage,
   limits: { fileSize },
   fileFilter: (req, file, cb) => {
-    checkFileType(file, cb);
+    checkFileType(req, file, cb);
   },
 });
 
 // Check File Type
-function checkFileType(file, cb) {
+function checkFileType(req, file, cb) {
   // Allowed ext
   const filetypes = /jpeg|jpg|png|webp|gif/;
   // Check ext
@@ -46,7 +46,7 @@ function checkFileType(file, cb) {
   } else {
     return cb(
       new Error(
-        `${fileName} could not be uploaded because the file type .${splitFileName} is not supported. You can upload jpeg|jpg|png|webp|gif files below 1MB`,
+        `${fileName} ${t('notBeUploaded', req.lang)}. .${splitFileName} ${t('unsupportedFile', req.lang)}  . ${t('allowedFormats', req.lang)}: JPEG, JPG, PNG, WEBP, GIF.`,
       ),
     );
   }

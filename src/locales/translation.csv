@@ -40,6 +40,7 @@ errorAltText;A really guilty emoji;En meget skyldig emoji
 eye;Eye;Øje
 eyeClosed;Closed eye;Lukket øje
 filter;Filter;Filtrer
+largeFileError;File is too large. Maximum file size: 1MB;Fil er for stor. Maksimal filstørrelse: 1MB
 filtersApplied;Filters applied;Filtre anvendt
 form;Form;Fomular
 goBack;Go back;Gå tilbage
@@ -118,6 +119,9 @@ title;Title;Titel
 to;to;til
 trashCan;Trash can;Papirkurv
 unAuthorizedUser;Unuthorized user;Uautoriseret bruger
+notBeUploaded;could not be uploaded;kunne ikke uploades
+unsupportedFile;is not supported type;er ikke understøttet
+allowedFormats;Allowed formats;Tilladte formater
 updateAlbum;Update album;Opdater album
 upLoadCover;Upload cover;Upload cover
 user;User;Bruger

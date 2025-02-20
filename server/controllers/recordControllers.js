@@ -65,7 +65,9 @@ const postCreateOrUpdateRecord = async (req, res) => {
 
         if (fs.existsSync(oldImagePath)) {
           fs.unlink(oldImagePath, (error) => {
-            console.error('Error deleting old image:', error);
+            if (error) {
+              console.error('Error deleting old image:', error);
+            }
           });
         }
       }
