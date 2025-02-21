@@ -4,7 +4,7 @@
   display: flex;
   gap: 40px;
 
-  @include max-size($medium) {
+  @include max-size($small) {
     flex-direction: column;
   }
 }

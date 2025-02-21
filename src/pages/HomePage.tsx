@@ -7,13 +7,13 @@ const HomePage: FC = () => {
   const { data: records, isLoading, refetch } = useGetLatestSixRecordsQuery();
 
   return (
-    <section aria-label={isLoading ? 'Loading' : undefined}>
+    <div aria-label={isLoading ? 'Loading' : undefined}>
       {isLoading ? (
         <SkeletonList count={6} variant="img" className="grid three-col" />
       ) : (
         <RecordList records={records?.results} refetch={refetch} />
       )}
-    </section>
+    </div>
   );
 };
 

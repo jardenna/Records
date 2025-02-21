@@ -10,7 +10,7 @@ interface HeaderProps {
 }
 const Header: FC<HeaderProps> = ({ ariaLabel }) => (
   <LayoutElement as="header" className="main-header" ariaLabel={ariaLabel}>
-    <article className="hero">
+    <section className="hero">
       <div className="container">
         <div className="logo">
           <Link to={MainPath.Root} className="logo-container">
@@ -19,7 +19,7 @@ const Header: FC<HeaderProps> = ({ ariaLabel }) => (
           </Link>
         </div>
       </div>
-    </article>
+    </section>
     <Nav />
   </LayoutElement>
 );

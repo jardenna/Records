@@ -10,12 +10,12 @@
   min-width: 360px;
   display: flex;
   padding: 20px;
-  box-shadow: $box-shadow;
 
   @include transition;
 
   &.left {
     left: -100%;
+    width: 100%;
 
     &.is-active {
       left: 0;
