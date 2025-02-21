@@ -17,7 +17,10 @@
   height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+
+  fieldset {
+    flex-grow: 1;
+  }
 
   .form-footer {
     justify-content: flex-end;

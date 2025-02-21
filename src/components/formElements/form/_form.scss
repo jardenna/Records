@@ -69,6 +69,10 @@ textarea {
   .error-message {
     font-weight: bold;
     color: $color-danger;
+
+    @include max-size($small) {
+      font-size: rem(12px);
+    }
   }
 
   input[aria-invalid='true'] {

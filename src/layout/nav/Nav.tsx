@@ -1,6 +1,7 @@
 import { FC } from 'react';
 import { useLocation } from 'react-router';
 import AdaptivePanel from '../../components/adaptivePanel/AdaptivePanel';
+import Button from '../../components/Button';
 import Icon, { IconName } from '../../components/icons/Icon';
 import useAuth from '../../features/auth/hooks/useAuth';
 import useLanguage from '../../features/language/useLanguage';
@@ -71,6 +72,10 @@ const Nav: FC = () => {
     return null;
   }
 
+  const handleLogout = () => {
+    logout();
+  };
+
   return (
     <section className="main-nav">
       <div className="nav-container container">
@@ -94,9 +99,9 @@ const Nav: FC = () => {
                   />
                   {language.welcome} {user.username}
                 </div>
-                <button type="button" onClick={() => logout()}>
+                <Button type="button" onClick={handleLogout}>
                   {language.logout}
-                </button>
+                </Button>
               </div>
             </div>
           </AdaptivePanel>

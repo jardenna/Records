@@ -77,6 +77,12 @@ h1 {
       margin-top: 160px;
     }
   }
+
+  .page-container:has(.auth) {
+    @include max-size($small) {
+      margin-top: 112px;
+    }
+  }
 }
 
 a {
