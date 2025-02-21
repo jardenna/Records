@@ -45,6 +45,10 @@ body {
   }
 }
 
+body:has(.panel.is-active) {
+  overflow: hidden;
+}
+
 h1 {
   font-size: rem(28px);
   margin: 0;
@@ -67,6 +71,12 @@ h1 {
   height: 100%;
   display: grid;
   grid-template-rows: max-content 1fr;
+
+  .page-container {
+    @include max-size($small) {
+      margin-top: 160px;
+    }
+  }
 }
 
 a {

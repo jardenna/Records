@@ -6,7 +6,7 @@
   gap: 4px;
   align-items: center;
 
-  @include max-size($medium) {
+  @include max-size($small) {
     width: 100%;
   }
 

@@ -21,7 +21,7 @@ const Nav: FC = () => {
   const location = useLocation();
   const { language } = useLanguage();
   const { currentUser, logout } = useAuth();
-  const { isTabletSize } = useWindowDimensions();
+  const { isMobileSize, height } = useWindowDimensions();
 
   const getTitle = (pathname: string): string => {
     if (pathname === `/${MainPath.Records}`) {
@@ -74,7 +74,7 @@ const Nav: FC = () => {
   return (
     <section className="main-nav">
       <div className="nav-container container">
-        {isTabletSize ? (
+        {isMobileSize ? (
           <AdaptivePanel
             triggerContent={
               <span className="menu-burger-item" aria-hidden="true" />
@@ -83,7 +83,7 @@ const Nav: FC = () => {
             isPanel
             panelVariant="left"
           >
-            <div className="test">
+            <div className="panel-nav" style={{ height: height - 100 }}>
               <NavItemList navItemsList={navList} ariaLabel={language.main} />
               <div className="flex">
                 <div className="user-info">
@@ -107,7 +107,7 @@ const Nav: FC = () => {
         <div className="nav-title">
           <h1>{title}</h1>
         </div>
-        {!isTabletSize && (
+        {!isMobileSize && (
           <NavAuthContainer
             triggerContent={triggerContent}
             dropdownContent={language.logout}

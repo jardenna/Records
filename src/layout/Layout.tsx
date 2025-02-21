@@ -17,7 +17,7 @@ const Layout: FC = () => {
       <SkipLink />
       <Header ariaLabel={language.main} />
       <main id="main">
-        <div className="container">
+        <div className="container page-container">
           <Outlet />
         </div>
       </main>
