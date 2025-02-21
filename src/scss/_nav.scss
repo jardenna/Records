@@ -7,9 +7,29 @@
 .main-nav {
   background-color: $color-background;
 
+  .test {
+    overflow: auto;
+    height: 100%;
+    padding-bottom: 130px;
+  }
+
+  .panel-container {
+    padding: 20px 0;
+  }
+
   .panel {
-    top: 259px;
+    top: 174px;
     padding: 0;
+
+    @include max-size($medium) {
+      flex-direction: column;
+    }
+
+    .user-info {
+      display: flex;
+      align-items: flex-end;
+      gap: 20px;
+    }
 
     nav {
       width: 100%;
@@ -31,7 +51,6 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: rem(56px);
 
   @include max-size($medium) {
     justify-content: flex-start;

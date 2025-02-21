@@ -67,44 +67,56 @@ const Nav: FC = () => {
     </>
   );
 
+  if (!user) {
+    return null;
+  }
+
   return (
-    <article className="main-nav">
+    <section className="main-nav">
       <div className="nav-container container">
-        {user && (
-          <div>
-            {isTabletSize ? (
-              <AdaptivePanel
-                triggerContent={
-                  <span className="menu-burger-item" aria-hidden="true" />
-                }
-                actionBtn={actionBtn}
-                isPanel
-                panelVariant="left"
-              >
-                <NavItemList
-                  navItemsList={navList}
-                  ariaLabel={language.main}
-                  username={user.username}
-                  logoutActionBtn={logout}
-                  logoutActionBtnLabel={logoutActionBtn.label}
-                />
-              </AdaptivePanel>
-            ) : (
+        {isTabletSize ? (
+          <AdaptivePanel
+            triggerContent={
+              <span className="menu-burger-item" aria-hidden="true" />
+            }
+            actionBtn={actionBtn}
+            isPanel
+            panelVariant="left"
+          >
+            <div className="test">
               <NavItemList navItemsList={navList} ariaLabel={language.main} />
-            )}
-          </div>
+              <div className="flex">
+                <div className="user-info">
+                  <Icon
+                    iconName={IconName.User}
+                    title={language.user}
+                    ariaHidden
+                  />
+                  {language.welcome} {user.username}
+                </div>
+                <button type="button" onClick={() => logout()}>
+                  {language.logout}
+                </button>
+              </div>
+            </div>
+          </AdaptivePanel>
+        ) : (
+          <NavItemList navItemsList={navList} ariaLabel={language.main} />
         )}
+
         <div className="nav-title">
           <h1>{title}</h1>
         </div>
-        <NavAuthContainer
-          triggerContent={triggerContent}
-          dropdownContent={language.logout}
-          actionBtn={logoutActionBtn}
-          user={user || null}
-        />
+        {!isTabletSize && (
+          <NavAuthContainer
+            triggerContent={triggerContent}
+            dropdownContent={language.logout}
+            actionBtn={logoutActionBtn}
+            user={user || null}
+          />
+        )}
       </div>
-    </article>
+    </section>
   );
 };
 
