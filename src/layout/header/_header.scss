@@ -1,3 +1,4 @@
+/* stylelint-disable selector-class-pattern */
 @use '../../scss/globals/' as *;
 
 .main-header {
@@ -14,8 +15,34 @@
     background-repeat: no-repeat;
     background-position: bottom center;
     height: rem(200px);
-    display: flex;
-    align-items: center;
+
+    .container {
+      padding-top: 12px;
+      display: flex;
+      justify-content: space-between;
+      height: 100%;
+    }
+
+    .select-box {
+      max-width: rem(72px);
+
+      .select-box__control {
+        background: transparent;
+        border: 0;
+      }
+
+      .select-box__single-value {
+        color: $color-white;
+      }
+
+      .select-box__indicator-separator {
+        display: none;
+      }
+
+      svg {
+        color: $color-white;
+      }
+    }
 
     @include max-size($medium) {
       height: rem(120px);
@@ -26,10 +53,11 @@
     font-family: $font-secondary;
     font-size: rem(52px);
     text-transform: uppercase;
+    display: flex;
+    align-items: flex-end;
 
-    .logo-container {
-      display: flex;
-      flex-direction: column;
+    a {
+      color: $color-white;
     }
 
     .logo-item {
@@ -39,22 +67,12 @@
     }
 
     @include max-size($medium) {
-      display: flex;
-      justify-content: center;
       font-size: rem(40px);
-
-      .logo-container {
-        align-items: center;
-      }
 
       .logo-item {
         padding: 0;
-        margin-top: 8px;
+        display: inline-block;
       }
-    }
-
-    a {
-      color: $color-white;
     }
   }
 }
