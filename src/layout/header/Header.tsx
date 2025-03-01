@@ -1,17 +1,16 @@
 import { FC } from 'react';
 import LanguageSelect from '../../components/LanguageSelect';
-import { Option } from '../../components/selectBox/SelectBox';
+import { Option, SelectedOption } from '../../components/selectBox/SelectBox';
 import LayoutElement from '../LayoutElement';
 import Nav from '../nav/Nav';
 import './_header.scss';
 import Logo from './Logo';
 
-interface HeaderProps {
+export interface HeaderProps {
   ariaLabel: string;
   defaultValue: Option;
   labelText: string;
-  // handleLanguageChange: (selectedLanguage: SelectedLanguage) => void;
-  onLanguageChange: any;
+  onLanguageChange: (selectedLanguage: SelectedOption) => void;
   options: { label: string; value: string | number }[];
 }
 const Header: FC<HeaderProps> = ({

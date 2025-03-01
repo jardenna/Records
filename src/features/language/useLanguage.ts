@@ -7,6 +7,10 @@ import {
   setLanguage,
 } from './languageSlice';
 
+interface Language {
+  value: string;
+}
+
 const useLanguage = () => {
   const dispatch = useAppDispatch();
   const selectedLanguage = useAppSelector(selectSelectedLanguage);
@@ -14,7 +18,7 @@ const useLanguage = () => {
   const [lang, setLang] = useLocalStorage('lang', selectedLanguage);
   const language = useAppSelector(selectLanguage);
 
-  const switchLanguage = (lang: any) => {
+  const switchLanguage = (lang: Language) => {
     setLang(lang.value);
   };
 

@@ -1,10 +1,10 @@
-import React, { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 const useLocalStorage = (
   storageKey: string,
   fallbackState: number | string,
 ) => {
-  const [value, setValue] = React.useState(
+  const [value, setValue] = useState(
     JSON.parse(localStorage.getItem(storageKey) || 'null') ?? fallbackState,
   );
 

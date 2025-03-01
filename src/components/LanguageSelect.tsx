@@ -1,15 +1,10 @@
 import { FC } from 'react';
-import SelectBox, { Option } from './selectBox/SelectBox';
+import { HeaderProps } from '../layout/header/Header';
+import SelectBox from './selectBox/SelectBox';
 
-interface LanguageSelectProps {
-  defaultValue: Option;
-  labelText: string;
-  onLanguageChange: any;
-  // onLanguageChange: (value: SelectedOption) => void;
-  options: { label: string; value: string | number }[];
-}
+type OmittedHeaderProps = Omit<HeaderProps, 'ariaLabel'>;
 
-const LanguageSelect: FC<LanguageSelectProps> = ({
+const LanguageSelect: FC<OmittedHeaderProps> = ({
   onLanguageChange,
   defaultValue,
   options,
