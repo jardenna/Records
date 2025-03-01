@@ -25,7 +25,7 @@ export interface BaseMainTableProps {
   defaultValue: Option;
   endRow: number;
   onSelectCount: (value: SelectedOption) => void;
-  options: { label: string; value: string | number }[];
+  options: Option[];
   startRow: number;
   totalRows: number;
 }
