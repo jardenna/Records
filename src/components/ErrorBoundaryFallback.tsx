@@ -3,7 +3,7 @@ import useLanguage from '../features/language/useLanguage';
 import ErrorContent from './ErrorContent';
 
 export interface FallbackProps {
-  error: any;
+  error: Error;
   resetErrorBoundary: () => void;
 }
 
