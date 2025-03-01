@@ -9,7 +9,7 @@ import DeleteRecordModal from '../DeleteRecordModal';
 import IconBtn from '../IconBtn';
 import Icon, { IconName } from '../icons/Icon';
 import RecordSelect from '../recordSelect/RecordSelect';
-import { SelectedOption } from '../selectBox/SelectBox';
+import { Option, SelectedOption } from '../selectBox/SelectBox';
 import DetailLink from '../shared/DetailLink';
 import SkeletonList from '../skeleton/SkeletonList';
 import Table from '../table/Table';
@@ -22,7 +22,7 @@ interface ModalInfoProps {
   id: string | null;
 }
 export interface BaseMainTableProps {
-  defaultValue: any;
+  defaultValue: Option;
   endRow: number;
   onSelectCount: (value: SelectedOption) => void;
   options: { label: string; value: string | number }[];
