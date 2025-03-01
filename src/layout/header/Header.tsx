@@ -1,5 +1,6 @@
 import { FC } from 'react';
 import { Link } from 'react-router';
+import SelectBox from '../../components/selectBox/SelectBox';
 import LayoutElement from '../LayoutElement';
 import { MainPath } from '../nav/enums';
 import Nav from '../nav/Nav';
@@ -13,11 +14,25 @@ const Header: FC<HeaderProps> = ({ ariaLabel }) => (
     <section className="hero">
       <div className="container">
         <div className="logo">
-          <Link to={MainPath.Root} className="logo-container">
+          <Link to={MainPath.Root}>
             <span>Plade</span>
             <span className="logo-item">samling</span>
           </Link>
         </div>
+        <form>
+          <SelectBox
+            name="limit"
+            options={[
+              { value: 'da', label: 'DK' },
+              { value: 'en', label: 'UK' },
+            ]}
+            id="limit"
+            onChange={() => console.log(12)}
+            labelText="language"
+            inputHasNoLabel
+            defaultValue={{ value: 'da', label: 'DK' }}
+          />
+        </form>
       </div>
     </section>
     <Nav />
