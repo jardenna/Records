@@ -23,6 +23,7 @@ chevronsLeft;Chevrons left;Venstre chevrons
 chevronsRight;Chevrons right;Højre chevrons
 close;Close;Luk
 closeDialog;Close dialog;Luk dialog
+collection;collection;samling
 completed;completed;færdiggjort
 confirmPassword;Confirm password;Gentag adgangskode
 cover;Cover;Cover
@@ -89,7 +90,8 @@ passwordMinLength;Password should be at least 8 characters;Adgangskoden skal væ
 passwordNumber;Password should contain at least one number;Adgangskoden skal indeholde mindst ét tal
 passwordSymbol;Password should contain at least one special character;Adgangskoden skal indeholde mindst ét specialtegn
 passwordUppercase;Password should contain at least one uppercase letter;Adgangskoden skal indeholde mindst ét stort bogstav
-pensil;Pensil can;Blyant
+pensil;Pensil;Blyant
+plade;Record;Plade
 pleaseEnter;Please enter;Indsæt venligst
 pleaseEnterName;Please enter  name;Indsæt venligst navn
 pleaseEnterPassword;Please enter password;Indsæt venligst adgangskode
@@ -105,6 +107,7 @@ reset;Reset;Nulstil
 resetFiltersAndSorting;Reset filters and sorting;Nulstil filtre og sortering
 resultsPerPage;Results per page;Resultater pr side
 retry;Retry;Forsøg igen
+selectLanguage;Select language;Vælg sprog
 showing;Showing;Viser
 signup;Signup;Opret bruger
 signupFailed;Sign up failed;Registrering mislykkedes

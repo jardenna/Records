@@ -80,6 +80,7 @@ const MainTable: FC<MainTableProps> = ({
     paddingTop: padding,
     paddingBottom: padding,
   };
+
   const tableGridIconList = [
     { padding: 4, iconName: IconName.GridSmall, title: 'smallGrid' },
     { padding: 12, iconName: IconName.Grid, title: 'grid' },
