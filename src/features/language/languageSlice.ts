@@ -1,6 +1,7 @@
-import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from '../../app/store';
 import danishLang from '../../locales/da.json';
+import englishLang from '../../locales/en.json';
 
 export type SelectedLanguage = 'en' | 'da';
 
@@ -9,18 +10,14 @@ interface LanguageState {
   selectedLanguage: SelectedLanguage;
 }
 
-// Asynchronous thunk for loading language JSON file depending on selected language
-export const loadLanguage = createAsyncThunk<
-  Record<string, string>,
-  SelectedLanguage
->('language/loadLanguage', async (lang: SelectedLanguage) => {
-  const languages = await import(`../../locales/${lang}.json`);
-  return languages.default;
-});
+const languageFiles: Record<SelectedLanguage, Record<string, string>> = {
+  da: danishLang,
+  en: englishLang,
+};
 
 // Initial state
 const initialState: LanguageState = {
-  selectedLanguage: 'da', // default language
+  selectedLanguage: 'da',
   language: danishLang,
 };
 
@@ -30,15 +27,8 @@ const languageSlice = createSlice({
   reducers: {
     setLanguage: (state, action: PayloadAction<SelectedLanguage>) => {
       state.selectedLanguage = action.payload;
+      state.language = languageFiles[action.payload]; // Load language synchronously
     },
-  },
-  extraReducers: (builder) => {
-    builder.addCase(
-      loadLanguage.fulfilled,
-      (state, action: PayloadAction<Record<string, string>>) => {
-        state.language = action.payload;
-      },
-    );
   },
 });
 
