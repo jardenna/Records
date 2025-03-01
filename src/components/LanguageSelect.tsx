@@ -1,10 +1,11 @@
 import { FC } from 'react';
-import SelectBox, { Option, SelectedOption } from './selectBox/SelectBox';
+import SelectBox, { Option } from './selectBox/SelectBox';
 
 interface LanguageSelectProps {
   defaultValue: Option;
   labelText: string;
-  onLanguageChange: (value: SelectedOption) => void;
+  onLanguageChange: any;
+  // onLanguageChange: (value: SelectedOption) => void;
   options: { label: string; value: string | number }[];
 }
 

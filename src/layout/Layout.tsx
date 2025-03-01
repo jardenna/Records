@@ -1,7 +1,6 @@
 import { FC, ReactNode } from 'react';
 import { Outlet } from 'react-router';
 import SkipLink from '../components/skipLinks/SkipLinks';
-import { SelectedLanguage } from '../features/language/languageSlice';
 import useLanguage from '../features/language/useLanguage';
 import Header from './header/Header';
 
@@ -15,7 +14,7 @@ const Layout: FC = () => {
   const { language } = useLanguage();
   const { switchLanguage, selectedLanguage } = useLanguage();
 
-  const handleLanguageChange = (selectedLanguage: SelectedLanguage) => {
+  const handleLanguageChange = (selectedLanguage: any) => {
     switchLanguage(selectedLanguage);
   };
 
@@ -25,7 +24,9 @@ const Layout: FC = () => {
       <Header
         labelText={language.selectLanguage}
         ariaLabel={language.main}
-        handleLanguageChange={handleLanguageChange}
+        onLanguageChange={(selectedLanguage: any) =>
+          handleLanguageChange(selectedLanguage)
+        }
         defaultValue={{ value: selectedLanguage, label: 'DK' }}
         options={[
           { value: 'da', label: 'DK' },
