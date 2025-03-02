@@ -4,6 +4,7 @@ import Input from '../../../components/formElements/Input';
 import Form from '../../../components/formElements/form/Form';
 import PasswordInput from '../../../components/formElements/password/PasswordInput';
 import { PasswordRulesProps } from '../../../components/formElements/password/PasswordPopupList';
+import { KeyValuePair } from '../../../hooks/useFormValidation';
 import {
   BlurEventType,
   ChangeInputType,
@@ -20,7 +21,7 @@ export interface User {
 }
 
 interface AuthFormProps {
-  errors: any;
+  errors: KeyValuePair<string>;
   isLoading: boolean;
   labelText: string;
   legendText: string;
