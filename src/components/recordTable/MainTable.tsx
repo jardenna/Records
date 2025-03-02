@@ -204,12 +204,14 @@ const MainTable: FC<MainTableProps> = ({
         )}
       </Table>
 
-      <DeleteRecordModal
-        modalId={modalInfo.id}
-        id={id}
-        btnLabel={language.delete}
-        name={modalInfo.artistName}
-      />
+      {id && (
+        <DeleteRecordModal
+          modalId={modalInfo.id}
+          id={id}
+          btnLabel={language.delete}
+          name={modalInfo.artistName}
+        />
+      )}
     </>
   );
 };
