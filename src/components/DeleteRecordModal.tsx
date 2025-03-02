@@ -10,7 +10,7 @@ import Modal, { SecondaryActionBtnProps } from './modal/Modal';
 
 export interface DeleteRecordModalProps {
   btnLabel: string;
-  id: number | string | null;
+  id: any;
   modalId: string | null;
   name: string | null;
   shouldNavigate?: boolean;
@@ -66,11 +66,7 @@ const DeleteRecordModal: FC<DeleteRecordModalProps> = ({
   };
 
   const primaryActionBtn = {
-    onClick: () => {
-      if (typeof id === 'number') {
-        handleDeleteAlbum(id);
-      }
-    },
+    onClick: () => handleDeleteAlbum(id),
     label: btnLabel,
   };
 
