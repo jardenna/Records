@@ -10,7 +10,7 @@ import Modal, { SecondaryActionBtnProps } from './modal/Modal';
 
 export interface DeleteRecordModalProps {
   btnLabel: string;
-  id: any;
+  id: string;
   modalId: string | null;
   name: string | null;
   shouldNavigate?: boolean;
@@ -29,7 +29,7 @@ const DeleteRecordModal: FC<DeleteRecordModalProps> = ({
   const navigate = useNavigate();
   const location = useLocation();
   const { addMessagePopup } = useMessagePopup();
-  const handleDeleteAlbum = async (id: number) => {
+  const handleDeleteAlbum = async () => {
     try {
       const result = await deleteRecord(id).unwrap();
 
@@ -66,7 +66,7 @@ const DeleteRecordModal: FC<DeleteRecordModalProps> = ({
   };
 
   const primaryActionBtn = {
-    onClick: () => handleDeleteAlbum(id),
+    onClick: () => handleDeleteAlbum(),
     label: btnLabel,
   };
 
