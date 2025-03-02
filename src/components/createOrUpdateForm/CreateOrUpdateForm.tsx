@@ -51,28 +51,25 @@ const CreateOrUpdateForm: FC<CreateOrUpdateFormProps> = ({
     cover: recordDetails?.cover ?? '',
   };
 
-  const {
-    onSubmit,
-    onChange,
-    onBlur,
-    values,
-    errors,
-    file,
-    fileName,
-    previewUrl,
-  } = useFormValidation({
-    initialState,
-    callback: handleSubmit,
-    validate,
-    isLoading,
-  });
+  const { onSubmit, onChange, onBlur, values, errors, fileData } =
+    useFormValidation({
+      initialState,
+      callback: handleSubmit,
+      validate,
+      isLoading,
+    });
 
   function validate() {
     return validateUpdate(values, language);
   }
 
   function handleSubmit() {
-    onUpdateRecord(values as Records, file, fileName, previewUrl);
+    onUpdateRecord(
+      values as Records,
+      fileData.file,
+      fileData.name,
+      fileData.preview,
+    );
   }
 
   return (
@@ -204,8 +201,8 @@ const CreateOrUpdateForm: FC<CreateOrUpdateFormProps> = ({
                 />
                 <RecordImg
                   src={recordDetails?.cover || 'default.png'}
-                  previewUrl={previewUrl || null}
-                  title={file?.name || 'Preview'}
+                  previewUrl={fileData.preview || null}
+                  title={fileData.file?.name || language.preview}
                   alt=""
                 />
               </FieldSet>

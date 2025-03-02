@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { BlurEventType, ChangeInputType, FormEventType } from '../types/types';
 
 export interface KeyValuePair<T> {
@@ -32,11 +32,18 @@ function useFormValidation<T extends KeyValuePair<any>>({
   const [errors, setErrors] = useState<KeyValuePair<string>>({});
   const [touched, setTouched] = useState<string[]>([]);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [file, setFile] = useState<File | null>(null);
-  const [fileName, setFileName] = useState('');
   const [isFocused, setIsFocused] = useState(false);
-  const [previewUrl, setPreviewUrl] = useState('');
   const inputRefs = useRef<Record<string, HTMLInputElement | null>>({});
+
+  const [fileData, setFileData] = useState<{
+    file: File | null;
+    name: string;
+    preview: string;
+  }>({
+    file: null,
+    name: '',
+    preview: '',
+  });
 
   useEffect(() => {
     if (isSubmitting) {
@@ -48,13 +55,13 @@ function useFormValidation<T extends KeyValuePair<any>>({
     }
   }, [errors]);
 
-  function uploadFile(file: File) {
-    const tempFileUrl = URL.createObjectURL(file);
-    setPreviewUrl(tempFileUrl);
+  const uploadFile = useCallback((file: File, name: string) => {
+    const preview = URL.createObjectURL(file);
+    setFileData({ file, name, preview });
 
     // Clean up Object URL when done (if using URL.createObjectURL)
-    return () => URL.revokeObjectURL(tempFileUrl);
-  }
+    return () => URL.revokeObjectURL(preview);
+  }, []);
 
   function onChange(event: ChangeInputType) {
     const { name, value, type, checked, files } =
@@ -84,11 +91,11 @@ function useFormValidation<T extends KeyValuePair<any>>({
     if (!touched.includes(name)) {
       setTouched([...touched, name]);
     }
+
     const file = files?.[0];
+
     if (file) {
-      uploadFile(file);
-      setFile(file);
-      setFileName(name);
+      uploadFile(file, name);
     }
 
     // Clear the error message when typing
@@ -175,9 +182,7 @@ function useFormValidation<T extends KeyValuePair<any>>({
     errors,
     onClearAll,
     inputRefs,
-    file,
-    fileName,
-    previewUrl,
+    fileData,
   };
 }
 
