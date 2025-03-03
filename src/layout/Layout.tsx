@@ -1,7 +1,7 @@
 import { FC, ReactNode } from 'react';
 import { Outlet } from 'react-router';
 import SkipLink from '../components/skipLinks/SkipLinks';
-import useLanguage from '../features/language/useLanguage';
+import useLanguage, { languageOptions } from '../features/language/useLanguage';
 import Header from './header/Header';
 
 export interface LayoutElementProps {
@@ -12,6 +12,9 @@ export interface LayoutElementProps {
 
 const Layout: FC = () => {
   const { language, switchLanguage, selectedLanguage } = useLanguage();
+  const selected = languageOptions.find(
+    (option) => option.value === selectedLanguage,
+  );
 
   return (
     <div className="main-container">
@@ -22,12 +25,9 @@ const Layout: FC = () => {
         onLanguageChange={switchLanguage}
         defaultValue={{
           value: selectedLanguage,
-          label: selectedLanguage === 'da' ? 'DK' : 'UK',
+          label: selected ? selected.label : 'DK',
         }}
-        options={[
-          { value: 'da', label: 'DK' },
-          { value: 'en', label: 'UK' },
-        ]}
+        options={languageOptions}
       />
       <main id="main">
         <div className="container page-container">

@@ -7,6 +7,11 @@ import {
   setLanguage,
 } from './languageSlice';
 
+export const languageOptions = [
+  { value: 'da', label: 'DK' },
+  { value: 'en', label: 'UK' },
+];
+
 const useLanguage = () => {
   const dispatch = useAppDispatch();
   const selectedLanguage = useAppSelector(selectSelectedLanguage);
