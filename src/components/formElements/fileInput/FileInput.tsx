@@ -9,7 +9,7 @@ interface FileInputProps {
   labelText: string;
   name: FileUploadNameType;
   onChange: (event: ChangeInputType) => void;
-  value: string;
+  title: string | null;
 }
 
 const FileInput: FC<FileInputProps> = ({
@@ -17,15 +17,16 @@ const FileInput: FC<FileInputProps> = ({
   name,
   id,
   labelText,
-  value,
+  title,
 }) => (
   <div className="file-container">
+    <span className="file-input-info text-ellipsis">{title}</span>
     <Input
       type="file"
       onChange={onChange}
       name={name}
       id={id}
-      value={value}
+      value=""
       labelText={labelText}
     />
   </div>

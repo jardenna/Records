@@ -77,6 +77,7 @@ mustHaveSymbol;At least one special character;Mindst ét specialtegn
 mustHaveUppercase;At least one uppercase letter;Mindst ét stort bogstav
 niceToKnow;Nice to know;Værd at vide
 noAlbumFound;No Albums found;Ingen albums blev fundet
+noFileChosen;No file chosen;Ingen fil valgt
 noInfo;No info;Ikke oplyst
 noUser;User not found. Please sign up first;Bruger ikke fundet. Opret dig først
 numOfRecords;Number of records;Antal lp(er)

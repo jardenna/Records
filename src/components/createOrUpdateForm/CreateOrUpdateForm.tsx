@@ -197,12 +197,11 @@ const CreateOrUpdateForm: FC<CreateOrUpdateFormProps> = ({
                   name="cover"
                   id="cover"
                   labelText={language.upLoadCover}
-                  value=""
+                  title={fileData.file?.name || language.noFileChosen}
                 />
                 <RecordImg
                   src={recordDetails?.cover || 'default.png'}
                   previewUrl={fileData.preview || null}
-                  title={fileData.file?.name || language.preview}
                   alt=""
                 />
               </FieldSet>
