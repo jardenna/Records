@@ -56,6 +56,8 @@ information;Information;Information
 insertCover;Insert cover;Indsæt cover
 invalidEmail;Invalid email;Ugyldig e-mail
 invalidPassword;Invalid password;Ugyldig adgangskode
+hidePassword;Hide password;Skjul adgangskode
+showPassword;Show password;Vis adgangskode
 jumpPagesBack;Jump back;Hop tilbage
 jumpPagesForth;Jump forth;Hop frem
 label;Label;Label
