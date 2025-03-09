@@ -3,9 +3,7 @@ import { Link } from 'react-router';
 import useLanguage from '../../features/language/useLanguage';
 import { MainPath } from '../nav/enums';
 
-interface LogoProps {}
-
-const Logo: FC<LogoProps> = () => {
+const Logo: FC = () => {
   const { language } = useLanguage();
 
   return (

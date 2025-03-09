@@ -26,7 +26,7 @@ const LoginPage: FC = () => {
     callback: handleLoginUser,
     validate: validationLogin,
   });
-  const [loginUser, { isLoading: isLoginLoading }] = useLoginMutation();
+  const [loginUser, { isLoading }] = useLoginMutation();
 
   async function handleLoginUser() {
     try {
@@ -57,7 +57,7 @@ const LoginPage: FC = () => {
       values={values}
       labelText={language.login}
       onSubmit={onSubmit}
-      isLoading={isLoginLoading}
+      isLoading={isLoading}
       legendText={language.userInfo}
       onChange={onChange}
       errors={errors}
