@@ -36,7 +36,6 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use('/', express.static(path.join(__dirname, 'public')));
 
-// Custom routes middleware
 app.use('/api/records', RecordRoutes);
 app.use('/api/auth', authRouter);
 
