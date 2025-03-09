@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import VisuallyHidden from '../../../components/VisuallyHidden';
+import FieldSet from '../../../components/fieldset/FieldSet';
 import Input from '../../../components/formElements/Input';
 import Form from '../../../components/formElements/form/Form';
 import PasswordInput from '../../../components/formElements/password/PasswordInput';
@@ -56,8 +56,7 @@ const AuthForm: FC<AuthFormProps> = ({
       isLoading={isLoading}
       className="auth-form"
     >
-      <fieldset className="flex column">
-        <VisuallyHidden as="legend">{legendText}</VisuallyHidden>
+      <FieldSet legendText={legendText}>
         {values.username !== undefined && (
           <Input
             name="username"
@@ -105,7 +104,7 @@ const AuthForm: FC<AuthFormProps> = ({
             onBlur={onBlur}
           />
         )}
-      </fieldset>
+      </FieldSet>
     </Form>
   );
 };
