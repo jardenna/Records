@@ -44,7 +44,6 @@ module.exports = {
     '@typescript-eslint/no-empty-interface': 'warn',
     '@typescript-eslint/no-var-requires': 'off',
     '@typescript-eslint/no-empty-interface': 'off',
-
     'import/no-extraneous-dependencies': [
       'error',
       {
@@ -58,6 +57,7 @@ module.exports = {
         unnamedComponents: 'arrow-function',
       },
     ],
+    'object-shorthand': ['error', 'always'],
     curly: ['error', 'all'],
     'arrow-body-style': 'warn',
     'react/no-multi-comp': ['error', { ignoreStateless: false }],
