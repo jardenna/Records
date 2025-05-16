@@ -11,7 +11,9 @@ export default defineConfig({
         tsconfigPath: './tsconfig.app.json',
       },
     }),
-    eslint(),
+    eslint({
+      emitWarning: true,
+    }),
   ],
 
   server: {
@@ -27,6 +29,6 @@ export default defineConfig({
     devSourcemap: true,
   },
   build: {
-    outDir: './build',
+    sourcemap: true,
   },
 });

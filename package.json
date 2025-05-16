@@ -17,7 +17,32 @@
     "server": "nodemon server/app.js",
     "translate": "node src/locales/generateTranslations.js"
   },
+  "lint-staged": {
+    "*.{ts, tsx, js}": [
+      "eslint"
+    ],
+    "*.{scss, css}": [
+      "stylelint"
+    ],
+    "*": [
+      "prettier --write --ignore-unknown"
+    ]
+  },
+  "browserslist": [
+    "defaults"
+  ],
   "license": "ISC",
+  "dependencies": {
+    "csv-parser": "^3.2.0",
+    "fs": "^0.0.1-security",
+    "papaparse": "^5.5.2",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "react-error-boundary": "^6.0.0",
+    "react-redux": "^9.2.0",
+    "react-router": "^7.6.0",
+    "react-select": "^5.10.1"
+  },
   "devDependencies": {
     "@reduxjs/toolkit": "^2.8.2",
     "@types/react": "^19.1.4",
@@ -63,30 +88,5 @@
     "vite": "^6.3.5",
     "vite-plugin-checker": "^0.9.3",
     "vite-plugin-eslint2": "^5.0.3"
-  },
-  "lint-staged": {
-    "*.{ts, tsx, js}": [
-      "eslint"
-    ],
-    "*.{scss, css}": [
-      "stylelint"
-    ],
-    "*": [
-      "prettier --write --ignore-unknown"
-    ]
-  },
-  "browserslist": [
-    "defaults"
-  ],
-  "dependencies": {
-    "csv-parser": "^3.2.0",
-    "fs": "^0.0.1-security",
-    "papaparse": "^5.5.2",
-    "react": "^19.1.0",
-    "react-dom": "^19.1.0",
-    "react-error-boundary": "^6.0.0",
-    "react-redux": "^9.2.0",
-    "react-router": "^7.6.0",
-    "react-select": "^5.10.1"
   }
 }
