@@ -19,7 +19,7 @@ const ErrorContent: FC<ErrorContentProps> = ({
 }) => {
   const { language } = useLanguage();
   return (
-    <section className={`error ${className}`}>
+    <section className={`error-content ${className}`}>
       <img
         className="emoji"
         src="/images/sad_smiley.png"
