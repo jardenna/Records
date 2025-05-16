@@ -8,8 +8,8 @@ interface FileInputProps {
   id: string;
   labelText: string;
   name: FileUploadNameType;
-  onChange: (event: ChangeInputType) => void;
   title: string | null;
+  onChange: (event: ChangeInputType) => void;
 }
 
 const FileInput: FC<FileInputProps> = ({

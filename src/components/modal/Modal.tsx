@@ -15,16 +15,16 @@ import useModal from './useModal';
 
 export interface PrimaryActionBtnProps {
   label: string | null;
-  onClick: () => void;
   buttonType?: BtnType;
   className?: string;
   variant?: BtnVariant;
+  onClick: () => void;
 }
 
 export interface SecondaryActionBtnProps {
   label: string | null;
-  onClick?: () => void;
   variant?: BtnVariant;
+  onClick?: () => void;
 }
 
 interface ModalProps {
@@ -72,7 +72,7 @@ const Modal: React.FC<ModalProps> = ({
         onCloseModal={handleClosePopup}
         showCloseIcon={showCloseIcon}
       />
-      {primaryActionBtn?.buttonType !== 'submit' ? (
+      {primaryActionBtn.buttonType !== 'submit' ? (
         <>
           <div className="modal-body">{children}</div>
           <ModalFooter

@@ -22,7 +22,7 @@ const ErrorPage: FC = () => {
       <MetaTags
         description="This is the records page description"
         keywords="records, music, artists"
-        title={`${language.somethingWentWrong}`}
+        title={language.somethingWentWrong}
       />
       <ErrorContent
         onClick={handleGoback}

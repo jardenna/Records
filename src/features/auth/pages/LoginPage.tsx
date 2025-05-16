@@ -32,11 +32,11 @@ const LoginPage: FC = () => {
     try {
       const result = await loginUser(values).unwrap();
 
-      if (result.success === true) {
+      if (result.success) {
         navigate(from, { replace: true });
       }
 
-      if (result.success === false) {
+      if (!result.success) {
         addMessagePopup({
           message: result.message,
           messagePopupType: 'error',

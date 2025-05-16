@@ -12,8 +12,8 @@ interface TableGridIconList {
 
 interface TableGridIconsProps {
   isActive: number;
-  onSetPadding: (id: number) => void;
   tableGridIconList: TableGridIconList[];
+  onSetPadding: (id: number) => void;
 }
 
 const TableGridIcons: FC<TableGridIconsProps> = ({
@@ -30,7 +30,9 @@ const TableGridIcons: FC<TableGridIconsProps> = ({
           iconName={iconName}
           title={language[title]}
           ariaLabel={language[title]}
-          onClick={() => onSetPadding(padding)}
+          onClick={() => {
+            onSetPadding(padding);
+          }}
           className={isActive === padding ? 'is-active' : ''}
           ariaSelected={isActive === padding}
         />

@@ -3,7 +3,6 @@ import { BtnVariant } from '../../types/enums';
 import Button from '../Button';
 
 interface PaginationItemProps {
-  onSetCurrentPage: () => void;
   ariaDescribedby?: string;
   ariaLabel?: string;
   className?: string;
@@ -11,6 +10,7 @@ interface PaginationItemProps {
   disabled?: boolean;
   isBtnSelected?: boolean;
   paginationCount?: number;
+  onSetCurrentPage: () => void;
 }
 
 const PaginationItem: FC<PaginationItemProps> = ({

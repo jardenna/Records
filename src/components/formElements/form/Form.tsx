@@ -9,11 +9,11 @@ import './_form.scss';
 interface FormProps {
   children: ReactNode;
   labelText: string;
-  onSubmit: (event: FormEventType) => void;
   ariaLabel?: string;
   className?: string;
   isLoading?: boolean;
   onCancel?: () => void;
+  onSubmit: (event: FormEventType) => void;
 }
 
 const Form: FC<FormProps> = ({

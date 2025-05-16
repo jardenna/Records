@@ -20,12 +20,12 @@ interface ButtonProps {
   id?: string;
   isLoading?: boolean;
   name?: string;
-  onClick?: (event: ButtonEventType) => void | ((id: string) => void);
-  ref?: (el: HTMLButtonElement | null) => void;
   role?: string;
   tabIndex?: 0 | -1;
   type?: BtnType;
   variant?: BtnVariant;
+  onClick?: (event: ButtonEventType) => void | ((id: string) => void);
+  ref?: (el: HTMLButtonElement | null) => void;
 }
 
 const Button: FC<ButtonProps> = ({

@@ -70,7 +70,7 @@ const RecordTablePage: FC = () => {
     page: selectedPage,
     limit: shownRows,
     sortField: sortField || sortingField,
-    sortOrder: (sortOrder as SortOrder) || sortingOrder,
+    sortOrder: sortingOrder,
     artist: artist || values.artist,
     title: title || values.title,
     label: label || values.label,
@@ -169,9 +169,9 @@ const RecordTablePage: FC = () => {
                 { value: 50, label: '50' },
                 { value: totalCount, label: language.all },
               ]}
-              onSelectCount={(selectedOptions) =>
-                handleSetRowsCount('limit', selectedOptions as Option)
-              }
+              onSelectCount={(selectedOptions) => {
+                handleSetRowsCount('limit', selectedOptions as Option);
+              }}
               isPending={isPending}
               defaultValue={{
                 value: Number(limit) || 10,
@@ -199,7 +199,7 @@ const RecordTablePage: FC = () => {
       ) : (
         <SkeletonList count={8} className="column" variant="secondary" />
       )}
-      {records?.results?.length !== 0 && (
+      {records?.results.length !== 0 && (
         <Pagination
           currentPage={selectedPage}
           totalCount={totalCount}

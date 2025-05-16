@@ -11,8 +11,8 @@ import RecordImg from '../shared/recordImg/RecordImg';
 import './_record-list.scss';
 
 interface RecordListProps {
-  refetch: () => void;
   records?: Records[];
+  refetch: () => void;
 }
 
 const RecordList: FC<RecordListProps> = ({ records, refetch }) => {

@@ -5,8 +5,8 @@ import { PrimaryActionBtnProps, SecondaryActionBtnProps } from './Modal';
 
 interface modalFooterProps {
   primaryActionBtn: PrimaryActionBtnProps;
-  onCloseModal?: () => void;
   secondaryActionBtn?: SecondaryActionBtnProps;
+  onCloseModal?: () => void;
 }
 
 const ModalFooter: FC<modalFooterProps> = ({

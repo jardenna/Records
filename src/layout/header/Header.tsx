@@ -10,8 +10,8 @@ export interface HeaderProps {
   ariaLabel: string;
   defaultValue: Option;
   labelText: string;
-  onLanguageChange: (selectedLanguage: SelectedOption) => void;
   options: { label: string; value: string | number }[];
+  onLanguageChange: (selectedLanguage: SelectedOption) => void;
 }
 const Header: FC<HeaderProps> = ({
   ariaLabel,

@@ -8,10 +8,10 @@ import './_record-img.scss';
 interface RecordImgProps {
   alt: string;
   src: string;
-  Subtitle?: string;
   previewUrl?: string | null;
-  refetch?: () => void;
+  Subtitle?: string;
   title?: string;
+  refetch?: () => void;
 }
 
 const RecordImg: FC<RecordImgProps> = ({

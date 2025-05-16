@@ -5,12 +5,12 @@ import SortBtn from './SortBtn';
 import './scss/_table-actions.scss';
 
 interface RecordTableHeaderProps {
-  onFilterRows: (e: ChangeInputType) => void;
-  onSort: (id: string) => void;
   showIcon: boolean;
   sortOrder: string;
   title: string;
   value: string;
+  onFilterRows: (e: ChangeInputType) => void;
+  onSort: (id: string) => void;
 }
 
 const RecordTableHeader: FC<RecordTableHeaderProps> = ({

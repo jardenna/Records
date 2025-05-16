@@ -11,9 +11,9 @@ export interface RadioListItem {
 interface RadioButtonProps {
   initialChecked: string;
   name: string;
-  onChange: (event: ChangeInputType) => void;
   radioButtonList: RadioListItem[];
   formInfoText?: string;
+  onChange: (event: ChangeInputType) => void;
 }
 
 const RadioButton: FC<RadioButtonProps> = ({

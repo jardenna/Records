@@ -18,7 +18,6 @@ interface SelectBoxProps {
   id: string;
   labelText: string;
   name: string;
-  onChange: (value: SelectedOption) => void;
   options: OptionsOrGroups<Option, GroupBase<Option>>;
   className?: string;
   closeMenuOnSelect?: boolean;
@@ -27,9 +26,10 @@ interface SelectBoxProps {
   inputValue?: string;
   isMulti?: boolean;
   isSearchable?: boolean;
-  onInputChange?: (value: string) => void;
   placeholder?: string;
   required?: boolean;
+  onChange: (value: SelectedOption) => void;
+  onInputChange?: (value: string) => void;
 }
 
 const SelectBox: FC<SelectBoxProps> = ({
@@ -52,7 +52,7 @@ const SelectBox: FC<SelectBoxProps> = ({
 }) => {
   const handleChange = (newValue: SelectedOption) => {
     if (isMulti) {
-      onChange((newValue as Option[]) || []);
+      onChange(newValue as Option[]);
     } else {
       onChange(newValue as Option);
     }

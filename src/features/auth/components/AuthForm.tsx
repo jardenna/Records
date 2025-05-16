@@ -25,12 +25,12 @@ interface AuthFormProps {
   isLoading: boolean;
   labelText: string;
   legendText: string;
-  onBlur: (event: BlurEventType) => void;
-  onChange: (event: ChangeInputType) => void;
-  onSubmit: (event: FormEventType) => void;
   values: User;
   isFocused?: boolean;
+  onBlur: (event: BlurEventType) => void;
+  onChange: (event: ChangeInputType) => void;
   onFocus?: () => void;
+  onSubmit: (event: FormEventType) => void;
   passwordRules?: (value: string) => PasswordRulesProps[];
 }
 

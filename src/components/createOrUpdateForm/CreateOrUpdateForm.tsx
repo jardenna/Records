@@ -17,15 +17,15 @@ import SkeletonGrid from '../skeleton/SkeletonGrid';
 import './_create-update-form.scss';
 
 interface CreateOrUpdateFormProps {
+  title: string;
+  isLoading?: boolean;
+  recordDetails?: OmittedRecordRequest;
   onUpdateRecord: (
     records: Records,
     file: File | null,
     fileName: string,
     previewUrl: string | null,
   ) => void;
-  title: string;
-  isLoading?: boolean;
-  recordDetails?: OmittedRecordRequest;
 }
 
 const CreateOrUpdateForm: FC<CreateOrUpdateFormProps> = ({
@@ -88,6 +88,7 @@ const CreateOrUpdateForm: FC<CreateOrUpdateFormProps> = ({
             onSubmit={onSubmit}
             onCancel={() => navigate(-1)}
             labelText={title}
+            // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
             ariaLabel={isLoading ? 'Loading' : undefined}
             isLoading={isLoading}
             className="create-update-form"

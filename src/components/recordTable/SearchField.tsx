@@ -8,9 +8,9 @@ import { IconName } from '../icons/Icon';
 import VisuallyHidden from '../VisuallyHidden';
 
 interface SearchFieldProps {
-  onFilterRows: (e: ChangeInputType) => void;
   title: string;
   value: string;
+  onFilterRows: (e: ChangeInputType) => void;
 }
 
 const SearchField: FC<SearchFieldProps> = ({ title, value, onFilterRows }) => {
@@ -23,7 +23,9 @@ const SearchField: FC<SearchFieldProps> = ({ title, value, onFilterRows }) => {
     setShowSearchsField(!showSearchsField);
   };
 
-  useClickOutside(SearchFieldRef, () => setShowSearchsField(false));
+  useClickOutside(SearchFieldRef, () => {
+    setShowSearchsField(false);
+  });
   return (
     <div className="position-relative">
       <IconBtn

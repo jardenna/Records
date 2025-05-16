@@ -7,7 +7,6 @@ export interface InputProps {
   id: string;
   labelText: string;
   name: string;
-  onChange: (event: ChangeInputType) => void;
   value: string | number;
   autoComplete?: string;
   autoFocus?: boolean;
@@ -18,12 +17,13 @@ export interface InputProps {
   max?: number;
   maxLength?: number;
   min?: number;
-  onBlur?: (event: BlurEventType) => void;
-  onFocus?: () => void;
   placeholder?: string;
   ref?: RefObject<HTMLInputElement | null>;
   required?: boolean;
   type?: InputType;
+  onBlur?: (event: BlurEventType) => void;
+  onChange: (event: ChangeInputType) => void;
+  onFocus?: () => void;
 }
 
 const Input: FC<InputProps> = ({
@@ -48,7 +48,10 @@ const Input: FC<InputProps> = ({
   autoFocus,
   onFocus,
 }) => {
-  const inputClassName = `${type === 'checkbox' || type === 'radio' ? 'checkbox-radio-container' : 'input-container'}`;
+  const inputClassName =
+    type === 'checkbox' || type === 'radio'
+      ? 'checkbox-radio-container'
+      : 'input-container';
   const handleOnInput = (event: ChangeEvent<HTMLInputElement>) => {
     const inputValue = event.target.value;
     if (maxLength && inputValue.length > maxLength) {
