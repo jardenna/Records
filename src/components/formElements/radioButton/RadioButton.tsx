@@ -34,7 +34,6 @@ const RadioButton: FC<RadioButtonProps> = ({
         checked={initialChecked === radio.id}
         onChange={onChange}
         labelText={radio.labelText}
-        className="visibility-hidden"
       />
     ))}
 

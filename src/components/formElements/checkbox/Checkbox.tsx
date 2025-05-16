@@ -31,7 +31,6 @@ const Checkbox: FC<CheckboxProps> = ({
         checked={values.includes(checkbox.label)}
         id={checkbox.label}
         labelText={checkbox.label}
-        className="visibility-hidden"
       />
     ))}
     {formInfoText && <section className="form-info">{formInfoText}</section>}
