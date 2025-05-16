@@ -5,7 +5,7 @@ const currentYear = new Date().getFullYear();
 const nextYear = currentYear + 1;
 const minimumYear = 1889;
 
-const RecordSchema = mongoose.Schema(
+const RecordSchema = new mongoose.Schema(
   {
     artist: {
       type: String,
