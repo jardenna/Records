@@ -37,7 +37,7 @@ const Nav: FC = () => {
     if (pathname.includes(`/${MainPath.Update}`)) {
       return language.updateAlbum;
     }
-    if (pathname === MainPath.Root) {
+    if (pathname === `/${MainPath.Root}`) {
       return language.home;
     }
     if (pathname === `/${MainPath.Login}`) {
@@ -117,7 +117,7 @@ const Nav: FC = () => {
             triggerContent={triggerContent}
             dropdownContent={language.logout}
             actionBtn={logoutActionBtn}
-            user={user || null}
+            user={user}
           />
         )}
       </div>

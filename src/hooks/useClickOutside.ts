@@ -14,7 +14,7 @@ const useClickOutside = (
 
       if ('current' in containerRefs && containerRefs.current instanceof Map) {
         clickedOutside = Array.from(containerRefs.current.values()).every(
-          (ref) => ref && !ref.contains(event.target as Node),
+          (ref) => !ref.contains(event.target as Node),
         );
       } else if (
         'current' in containerRefs &&

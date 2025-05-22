@@ -42,7 +42,9 @@ const Pagination: FC<PaginationProps> = ({
     <ul className="pagination">
       {/* First Page */}
       <PaginationItem
-        onSetCurrentPage={() => onPaginationAction(PaginationActionEnum.First)}
+        onSetCurrentPage={() => {
+          onPaginationAction(PaginationActionEnum.First);
+        }}
         disabled={currentPage === 1}
         content={
           <IconContent
@@ -55,7 +57,9 @@ const Pagination: FC<PaginationProps> = ({
 
       {/* Prev Page */}
       <PaginationItem
-        onSetCurrentPage={() => onPaginationAction(PaginationActionEnum.Prev)}
+        onSetCurrentPage={() => {
+          onPaginationAction(PaginationActionEnum.Prev);
+        }}
         disabled={currentPage === 1}
         content={
           <IconContent
@@ -69,9 +73,9 @@ const Pagination: FC<PaginationProps> = ({
       {/* Jump Previous */}
       <PaginationItem
         disabled={currentPage < pageLimit}
-        onSetCurrentPage={() =>
-          onPaginationAction(PaginationActionEnum.PrevPaginationItem)
-        }
+        onSetCurrentPage={() => {
+          onPaginationAction(PaginationActionEnum.PrevPaginationItem);
+        }}
         content={
           <IconContent
             iconName={IconName.More}
@@ -85,7 +89,9 @@ const Pagination: FC<PaginationProps> = ({
       {pageRange.map((page) => (
         <PaginationItem
           key={page}
-          onSetCurrentPage={() => onPaginationItemClick(page)}
+          onSetCurrentPage={() => {
+            onPaginationItemClick(page);
+          }}
           paginationCount={page}
           ariaLabel={`${language.page} ${page} ${language.of} ${totalPageCount}`}
           isBtnSelected={page === currentPage}
@@ -96,9 +102,9 @@ const Pagination: FC<PaginationProps> = ({
 
       {/* Jump Next */}
       <PaginationItem
-        onSetCurrentPage={() =>
-          onPaginationAction(PaginationActionEnum.NextPaginationItem)
-        }
+        onSetCurrentPage={() => {
+          onPaginationAction(PaginationActionEnum.NextPaginationItem);
+        }}
         disabled={currentPage > totalPageCount - pageLimit}
         content={
           <IconContent
@@ -111,7 +117,9 @@ const Pagination: FC<PaginationProps> = ({
 
       {/* Next Page */}
       <PaginationItem
-        onSetCurrentPage={() => onPaginationAction(PaginationActionEnum.Next)}
+        onSetCurrentPage={() => {
+          onPaginationAction(PaginationActionEnum.Next);
+        }}
         disabled={currentPage === totalPageCount}
         content={
           <IconContent
@@ -124,7 +132,9 @@ const Pagination: FC<PaginationProps> = ({
 
       {/* Last Page */}
       <PaginationItem
-        onSetCurrentPage={() => onPaginationAction(PaginationActionEnum.Last)}
+        onSetCurrentPage={() => {
+          onPaginationAction(PaginationActionEnum.Last);
+        }}
         disabled={currentPage === totalPageCount}
         className="last-pagination-item"
         content={

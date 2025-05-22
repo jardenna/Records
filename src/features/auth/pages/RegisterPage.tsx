@@ -36,11 +36,11 @@ const RegisterPage: FC = () => {
       const { confirmPassword, ...rest } = values;
 
       const result = await registerUser(rest).unwrap();
-      if (result.success === true) {
+      if (result.success) {
         navigate(MainPath.Root);
       }
 
-      if (result.success === false) {
+      if (!result.success) {
         addMessagePopup({
           message: result.message,
           messagePopupType: 'error',

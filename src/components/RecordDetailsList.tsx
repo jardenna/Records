@@ -6,8 +6,8 @@ import DetailsContent from './details/DetailsContent';
 import ErrorBoundaryFallback from './ErrorBoundaryFallback';
 
 interface RecordDetailsListProps {
-  refetch: () => void;
   selectedRecord: Records | null;
+  refetch: () => void;
 }
 
 const RecordDetailsList: FC<RecordDetailsListProps> = ({
@@ -56,7 +56,7 @@ const RecordDetailsList: FC<RecordDetailsListProps> = ({
             label={language.niceToKnow}
           />
           <DetailsContent
-            text={`${selectedRecord.price.trim()}` || language.noInfo}
+            text={selectedRecord.price.trim() || language.noInfo}
             label={language.price}
             isPrice={!!selectedRecord.price.trim()}
           />

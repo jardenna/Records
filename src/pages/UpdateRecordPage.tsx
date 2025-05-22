@@ -1,4 +1,3 @@
-/* eslint-disable consistent-return */
 import { FC } from 'react';
 import { useLocation, useNavigate, useParams } from 'react-router';
 import { Records } from '../app/api/apiTypes';

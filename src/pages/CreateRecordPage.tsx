@@ -1,4 +1,3 @@
-/* eslint-disable consistent-return */
 import { FC } from 'react';
 import { useNavigate } from 'react-router';
 import { Records } from '../app/api/apiTypes';
@@ -26,9 +25,7 @@ const CreateRecordPage: FC = () => {
         fileName,
       }).unwrap();
 
-      if (result) {
-        navigate(`/${MainPath.Records}`);
-      }
+      navigate(`/${MainPath.Records}`);
 
       addMessagePopup({
         message: language.albumCreated,

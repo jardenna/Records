@@ -1,7 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { useAppDispatch } from '../../app/hooks';
 import { toggleModal } from '../../features/modalSlice';
-import { KeyCode } from '../../types/enums';
 
 const useModal = (modalId: string | null) => {
   const dispatch = useAppDispatch();
@@ -24,7 +23,8 @@ const useModal = (modalId: string | null) => {
           focusableElements.length - 1
         ] as HTMLElement | null;
 
-        if (event.key === KeyCode.Tab) {
+        if (event.key === 'Tab') {
+          // Ensure string comparison
           if (
             event.shiftKey &&
             document.activeElement === firstFocusableElement

@@ -90,26 +90,32 @@ const usePagination = ({
   );
   // Unified pagination handler
   const paginationActions = {
-    [PaginationActionEnum.First]: () => handlePaginationItemClick(1),
-    [PaginationActionEnum.Prev]: () =>
-      handlePaginationItemClick(currentPage - 1),
-    [PaginationActionEnum.Next]: () =>
-      handlePaginationItemClick(currentPage + 1),
-    [PaginationActionEnum.Last]: () =>
-      handlePaginationItemClick(totalPageCount),
-    [PaginationActionEnum.PrevPaginationItem]: () =>
-      handlePaginationItemClick(Math.max(1, currentPage - pageLimit)),
-    [PaginationActionEnum.NextPaginationItem]: () =>
+    [PaginationActionEnum.First]: () => {
+      handlePaginationItemClick(1);
+    },
+    [PaginationActionEnum.Prev]: () => {
+      handlePaginationItemClick(currentPage - 1);
+    },
+    [PaginationActionEnum.Next]: () => {
+      handlePaginationItemClick(currentPage + 1);
+    },
+    [PaginationActionEnum.Last]: () => {
+      handlePaginationItemClick(totalPageCount);
+    },
+    [PaginationActionEnum.PrevPaginationItem]: () => {
+      handlePaginationItemClick(Math.max(1, currentPage - pageLimit));
+    },
+    [PaginationActionEnum.NextPaginationItem]: () => {
       handlePaginationItemClick(
         Math.min(totalPageCount, currentPage + pageLimit),
-      ),
+      );
+    },
   };
 
   const handlePaginationAction = (action: PaginationActionEnum) => {
     const actionHandler = paginationActions[action];
-    if (actionHandler) {
-      actionHandler();
-    }
+
+    actionHandler();
   };
 
   return {

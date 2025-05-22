@@ -24,27 +24,27 @@ interface ModalInfoProps {
 export interface BaseMainTableProps {
   defaultValue: Option;
   endRow: number;
-  onSelectCount: (value: SelectedOption) => void;
   options: Option[];
   startRow: number;
   totalRows: number;
+  onSelectCount: (value: SelectedOption) => void;
 }
 
 interface MainTableProps extends BaseMainTableProps {
   id: string | null;
   isLoading: boolean;
   isPending: boolean;
-  onClearAllSearch: () => void;
-  onFilterRows: (e: ChangeInputType) => void;
-  onOpenModal: (id: string) => void;
-  onSort: (id: string) => void;
-  onViewAlbum: (id: string) => void;
   sortOrder: string;
   tableCaption: string;
   tableData: Records[];
   tableHeaders: string[];
   values: Record<string, string>;
   valuesFromSearch: Record<string, string | number | boolean>;
+  onClearAllSearch: () => void;
+  onFilterRows: (e: ChangeInputType) => void;
+  onOpenModal: (id: string) => void;
+  onSort: (id: string) => void;
+  onViewAlbum: (id: string) => void;
 }
 
 const MainTable: FC<MainTableProps> = ({
@@ -88,7 +88,9 @@ const MainTable: FC<MainTableProps> = ({
   ];
 
   const memoizedOnViewAlbum = useCallback(
-    (id: string) => onViewAlbum(id),
+    (id: string) => {
+      onViewAlbum(id);
+    },
     [onViewAlbum],
   );
 
@@ -164,7 +166,9 @@ const MainTable: FC<MainTableProps> = ({
                         iconName={IconName.Eye}
                         title={language.eye}
                         ariaLabel={language.albumDetails}
-                        onClick={() => memoizedOnViewAlbum(album.id)}
+                        onClick={() => {
+                          memoizedOnViewAlbum(album.id);
+                        }}
                       />
                       <DetailLink
                         btnVariant={BtnVariant.Ghost}
@@ -181,9 +185,9 @@ const MainTable: FC<MainTableProps> = ({
                         className="danger"
                         title={language.trashCan}
                         ariaLabel={language.deleteAlbum}
-                        onClick={() =>
-                          memoizedOnOpenModal(album.id, album.artist)
-                        }
+                        onClick={() => {
+                          memoizedOnOpenModal(album.id, album.artist);
+                        }}
                       />
                     </div>
                   </td>

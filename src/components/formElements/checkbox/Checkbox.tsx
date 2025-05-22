@@ -9,9 +9,9 @@ export interface CheckboxItems {
 
 interface CheckboxProps {
   checkBoxList: CheckboxItems[];
-  onChange: (event: ChangeInputType) => void;
   values: string[];
   formInfoText?: string;
+  onChange: (event: ChangeInputType) => void;
 }
 
 const Checkbox: FC<CheckboxProps> = ({

@@ -5,8 +5,8 @@ import BtnClose from '../BtnClose';
 
 interface ModalHeaderProps {
   modalHeadertext: string;
-  onCloseModal: () => void;
   showCloseIcon?: boolean;
+  onCloseModal: () => void;
 }
 
 const ModalHeader: FC<ModalHeaderProps> = ({

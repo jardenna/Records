@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-dynamic-delete */
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { BlurEventType, ChangeInputType, FormEventType } from '../types/types';
 
@@ -15,10 +16,10 @@ export type FormValues = {
 
 interface FormValidationProps<T extends KeyValuePair<any>> {
   initialState: T;
-  callback?: (values: T) => void;
   isArray?: boolean;
   isLoading?: boolean;
   validate?: any;
+  callback?: (values: T) => void;
 }
 
 function useFormValidation<T extends KeyValuePair<any>>({
@@ -60,7 +61,9 @@ function useFormValidation<T extends KeyValuePair<any>>({
     setFileData({ file, name, preview });
 
     // Clean up Object URL when done (if using URL.createObjectURL)
-    return () => URL.revokeObjectURL(preview);
+    return () => {
+      URL.revokeObjectURL(preview);
+    };
   }, []);
 
   function onChange(event: ChangeInputType) {
@@ -148,8 +151,8 @@ function useFormValidation<T extends KeyValuePair<any>>({
   const scrollToFirstError = () => {
     const errorField = Object.keys(errors)[0];
     if (errorField && inputRefs.current[errorField]) {
-      inputRefs.current[errorField]?.scrollIntoView({ behavior: 'smooth' });
-      inputRefs.current[errorField]?.focus();
+      inputRefs.current[errorField].scrollIntoView({ behavior: 'smooth' });
+      inputRefs.current[errorField].focus();
     }
   };
 

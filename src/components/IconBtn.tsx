@@ -7,10 +7,10 @@ import { IconName } from './icons/Icon';
 interface IconBtnProps {
   ariaLabel: string;
   iconName: IconName;
-  onClick: () => void;
   title: string;
   ariaSelected?: boolean;
   className?: string;
+  onClick: () => void;
 }
 
 const IconBtn: FC<IconBtnProps> = ({
