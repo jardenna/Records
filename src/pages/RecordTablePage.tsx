@@ -156,7 +156,7 @@ const RecordTablePage: FC = () => {
       {!isLoading ? (
         <ErrorBoundary
           FallbackComponent={ErrorBoundaryFallback}
-          onReset={() => refetch}
+          onReset={() => refetch()}
         >
           {records && (
             <MainTable

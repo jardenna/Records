@@ -19,7 +19,9 @@ const RecordDetailsList: FC<RecordDetailsListProps> = ({
   return (
     <ErrorBoundary
       FallbackComponent={ErrorBoundaryFallback}
-      onReset={() => refetch}
+      onReset={() => {
+        refetch();
+      }}
     >
       {selectedRecord && (
         <>

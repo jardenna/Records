@@ -25,14 +25,18 @@ const RecordList: FC<RecordListProps> = ({ records, refetch }) => {
           <li className="record-item" key={record.id}>
             <ErrorBoundary
               FallbackComponent={ErrorBoundaryFallback}
-              onReset={() => refetch}
+              onReset={() => {
+                refetch();
+              }}
             >
               <article>
                 <RecordImg
                   src={record.cover !== '' ? record.cover : ''}
                   title={record.artist}
                   Subtitle={record.title}
-                  refetch={() => refetch}
+                  onReset={() => {
+                    refetch();
+                  }}
                   alt=""
                 />
                 <LayoutElement

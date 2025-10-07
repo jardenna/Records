@@ -98,6 +98,7 @@ const MainTable: FC<MainTableProps> = ({
     id: null,
     artistName: '',
   });
+
   const memoizedOnOpenModal = useCallback(
     (id: string, artistName: string) => {
       setModalInfo({ id, artistName });

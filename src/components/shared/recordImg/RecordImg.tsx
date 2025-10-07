@@ -11,7 +11,7 @@ interface RecordImgProps {
   previewUrl?: string | null;
   Subtitle?: string;
   title?: string;
-  refetch?: () => void;
+  onReset?: () => void;
 }
 
 const RecordImg: FC<RecordImgProps> = ({
@@ -20,7 +20,7 @@ const RecordImg: FC<RecordImgProps> = ({
   src,
   alt,
   previewUrl,
-  refetch,
+  onReset,
 }) => {
   let imageSource = '/images/uploads/default.png';
   const { isMobileSize } = useWindowDimensions();
@@ -35,7 +35,7 @@ const RecordImg: FC<RecordImgProps> = ({
     <div className="record-img-container">
       <ErrorBoundary
         FallbackComponent={ErrorBoundaryFallback}
-        onReset={() => refetch}
+        onReset={onReset}
       >
         <Figure
           src={imageSource}

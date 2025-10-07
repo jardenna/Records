@@ -55,7 +55,7 @@ const DetailsPage: FC = () => {
             alt=""
             title={selectedRecord.artist}
             Subtitle={selectedRecord.title}
-            refetch={() => refetch}
+            onReset={() => refetch}
           />
         )
       )}
