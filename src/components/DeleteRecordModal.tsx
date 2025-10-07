@@ -37,7 +37,6 @@ const DeleteRecordModal: FC<DeleteRecordModalProps> = ({
       if (result) {
         addMessagePopup({
           message: `${name} ${language.albumDeleted}`,
-          messagePopupType: 'success',
         });
         if (result.success === false) {
           handleApiError(result.message, addMessagePopup);

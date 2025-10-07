@@ -45,7 +45,7 @@ const MessagePopupListItem: FC<MessagePopupListItemProps> = ({
   };
 
   const { iconName, title, role } =
-    messagePopupTypeConfig[messagePopup.messagePopupType];
+    messagePopupTypeConfig[messagePopup.messagePopupType || 'success'];
   return (
     <li
       role={role}

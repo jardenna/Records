@@ -41,7 +41,6 @@ const UpdateRecord: FC = () => {
         }
         addMessagePopup({
           message: language.albumUpdated,
-          messagePopupType: 'success',
         });
 
         return result;

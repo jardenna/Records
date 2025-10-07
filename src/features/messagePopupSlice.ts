@@ -15,8 +15,8 @@ export type MessagePopupPosition =
 export interface MessagePopup {
   id: string;
   message: string;
-  messagePopupType: MessagePopupTypes;
   componentType?: ComponentType;
+  messagePopupType?: MessagePopupTypes;
   onClose?: () => void;
 }
 
