@@ -6,10 +6,10 @@ import prettier from 'eslint-plugin-prettier/recommended';
 import react from 'eslint-plugin-react';
 import reactHooks from 'eslint-plugin-react-hooks';
 import reactRefresh from 'eslint-plugin-react-refresh';
+import { defineConfig } from 'eslint/config';
 import tseslint, { configs as tsConfigs } from 'typescript-eslint';
 
-export default tseslint.config(
-  // pluginJs.configs.recommended,
+export default defineConfig(
   {
     languageOptions: {
       parserOptions: {
@@ -32,6 +32,7 @@ export default tseslint.config(
       js.configs.recommended,
       // ts
       ...tseslint.configs.recommended,
+      tseslint.configs.strict,
       // react
       react.configs.flat.recommended,
       // import
@@ -78,7 +79,6 @@ export default tseslint.config(
       '@typescript-eslint/no-duplicate-enum-values': 'warn',
       '@typescript-eslint/no-empty-interface': 'warn',
       '@typescript-eslint/no-floating-promises': 'off',
-      '@typescript-eslint/no-unsafe-assignment': 'off',
       '@typescript-eslint/no-misused-promises': 'off',
       '@typescript-eslint/no-unsafe-argument': 'off',
       '@typescript-eslint/no-unsafe-member-access': 'off',
