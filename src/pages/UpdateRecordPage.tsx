@@ -9,6 +9,7 @@ import {
   useGetRecordByIdQuery,
 } from '../features/records/recordsApiSlice';
 import { MainPath } from '../layout/nav/enums';
+import handleApiError from '../utils/handleApiError';
 
 const UpdateRecord: FC = () => {
   const navigate = useNavigate();
@@ -40,16 +41,11 @@ const UpdateRecord: FC = () => {
         }
         addMessagePopup({
           message: language.albumUpdated,
-          messagePopupType: 'success',
         });
 
         return result;
-      } catch (error: any) {
-        addMessagePopup({
-          messagePopupType: 'error',
-          message: error.data.message,
-          componentType: 'notification',
-        });
+      } catch (error) {
+        handleApiError(error, addMessagePopup);
       }
     }
   }

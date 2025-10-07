@@ -26,7 +26,7 @@ const ErrorPage: FC = () => {
       />
       <ErrorContent
         onClick={handleGoback}
-        errorText={error.data}
+        errorText={error.data as string}
         btnLabel={language.goBack}
       />
     </main>

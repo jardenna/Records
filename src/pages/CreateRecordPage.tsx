@@ -6,6 +6,7 @@ import useMessagePopup from '../components/messagePopup/useMessagePopup';
 import useLanguage from '../features/language/useLanguage';
 import { useCreateOrUpdateRecordMutation } from '../features/records/recordsApiSlice';
 import { MainPath } from '../layout/nav/enums';
+import handleApiError from '../utils/handleApiError';
 
 const CreateRecordPage: FC = () => {
   const navigate = useNavigate();
@@ -29,16 +30,11 @@ const CreateRecordPage: FC = () => {
 
       addMessagePopup({
         message: language.albumCreated,
-        messagePopupType: 'success',
       });
 
       return result;
-    } catch (error: any) {
-      addMessagePopup({
-        messagePopupType: 'error',
-        message: error.data.message,
-        componentType: 'notification',
-      });
+    } catch (error) {
+      handleApiError(error, addMessagePopup);
     }
   };
 

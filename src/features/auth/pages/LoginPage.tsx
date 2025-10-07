@@ -4,6 +4,7 @@ import validationLogin from '../../../components/formElements/validation/validat
 import useMessagePopup from '../../../components/messagePopup/useMessagePopup';
 import useFormValidation from '../../../hooks/useFormValidation';
 import { MainPath } from '../../../layout/nav/enums';
+import handleApiError from '../../../utils/handleApiError';
 import useLanguage from '../../language/useLanguage';
 import { useLoginMutation } from '../authApiSlice';
 import AuthForm from '../components/AuthForm';
@@ -37,18 +38,10 @@ const LoginPage: FC = () => {
       }
 
       if (!result.success) {
-        addMessagePopup({
-          message: result.message,
-          messagePopupType: 'error',
-          componentType: 'notification',
-        });
+        handleApiError(result.message, addMessagePopup);
       }
-    } catch (error: any) {
-      addMessagePopup({
-        messagePopupType: 'error',
-        message: error.data.message,
-        componentType: 'notification',
-      });
+    } catch (error) {
+      handleApiError(error, addMessagePopup);
     }
   }
 
