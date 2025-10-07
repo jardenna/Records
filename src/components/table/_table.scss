@@ -67,7 +67,7 @@ table {
   th,
   td {
     padding: 4px 12px;
-    word-wrap: break-word;
+    overflow-wrap: break-word;
 
     &:first-child {
       border-right: 1px solid $color-border;

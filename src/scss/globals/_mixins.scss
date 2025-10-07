@@ -1,3 +1,4 @@
+/* stylelint-disable block-no-redundant-nested-style-rules */
 @use './colors' as *;
 
 $animation-duration: 0.5s;
@@ -16,12 +17,10 @@ $animation-timing-function: ease-in-out;
 }
 
 @mixin transition($what: all, $time: 0.3s, $how: $animation-timing-function) {
-  & {
-    transition: $what $time $how;
-  }
-
-  @media (prefers-reduced-motion) {
-    transition: none;
+  @media (prefers-reduced-motion: no-preference) {
+    & {
+      transition: $what $time $how;
+    }
   }
 }
 
@@ -30,10 +29,10 @@ $animation-timing-function: ease-in-out;
   $duration: $animation-duration,
   $timing: $animation-timing-function
 ) {
-  animation: $name $duration $timing forwards;
-
-  @media (prefers-reduced-motion) {
-    animation-name: none;
+  @media (prefers-reduced-motion: no-preference) {
+    & {
+      animation: $name $duration $timing forwards;
+    }
   }
 }
 
