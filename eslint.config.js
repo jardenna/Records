@@ -85,6 +85,7 @@ export default defineConfig(
       '@typescript-eslint/restrict-template-expressions': 'off',
       '@typescript-eslint/no-base-to-string': 'off',
       '@typescript-eslint/no-unsafe-call': 'off',
+      '@typescript-eslint/no-unsafe-assignment': 'off',
       'object-shorthand': ['error', 'always'],
       'import/no-extraneous-dependencies': [
         'error',

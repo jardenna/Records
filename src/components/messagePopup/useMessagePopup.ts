@@ -18,7 +18,7 @@ const useMessagePopup = (messagePopupId?: string) => {
 
   const handleAddMessagePopup = ({
     message,
-    messagePopupType,
+    messagePopupType = 'success',
 
     componentType = 'toast',
   }: MessagePopupWithoutId) => {

@@ -4,6 +4,7 @@ import validationSignup from '../../../components/formElements/validation/valida
 import useMessagePopup from '../../../components/messagePopup/useMessagePopup';
 import useFormValidation from '../../../hooks/useFormValidation';
 import { MainPath } from '../../../layout/nav/enums';
+import handleApiError from '../../../utils/handleApiError';
 import passwordRules from '../../../utils/passwordRules';
 import useLanguage from '../../language/useLanguage';
 import { useRegisterMutation } from '../authApiSlice';
@@ -41,18 +42,10 @@ const RegisterPage: FC = () => {
       }
 
       if (!result.success) {
-        addMessagePopup({
-          message: result.message,
-          messagePopupType: 'error',
-          componentType: 'notification',
-        });
+        handleApiError(result.message, addMessagePopup);
       }
-    } catch (error: any) {
-      addMessagePopup({
-        messagePopupType: 'error',
-        message: error.data.message,
-        componentType: 'notification',
-      });
+    } catch (error) {
+      handleApiError(error, addMessagePopup);
     }
   }
 

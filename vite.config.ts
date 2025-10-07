@@ -21,11 +21,6 @@ export default defineConfig({
     host: true,
   },
   css: {
-    preprocessorOptions: {
-      scss: {
-        api: 'modern-compiler',
-      },
-    },
     devSourcemap: true,
   },
   build: {

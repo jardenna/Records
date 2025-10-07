@@ -5,6 +5,7 @@ import useLanguage from '../features/language/useLanguage';
 import { toggleModal } from '../features/modalSlice';
 import { useDeleteRecordMutation } from '../features/records/recordsApiSlice';
 import { MainPath } from '../layout/nav/enums';
+import handleApiError from '../utils/handleApiError';
 import useMessagePopup from './messagePopup/useMessagePopup';
 import Modal, { SecondaryActionBtnProps } from './modal/Modal';
 
@@ -39,11 +40,7 @@ const DeleteRecordModal: FC<DeleteRecordModalProps> = ({
           messagePopupType: 'success',
         });
         if (result.success === false) {
-          addMessagePopup({
-            message: result.message,
-            messagePopupType: 'error',
-            componentType: 'notification',
-          });
+          handleApiError(result.message, addMessagePopup);
         }
 
         if (shouldNavigate) {
@@ -54,12 +51,8 @@ const DeleteRecordModal: FC<DeleteRecordModalProps> = ({
           }
         }
       }
-    } catch (error: any) {
-      addMessagePopup({
-        messagePopupType: 'error',
-        message: error.data.message,
-        componentType: 'notification',
-      });
+    } catch (error) {
+      handleApiError(error, addMessagePopup);
     }
 
     dispatch(toggleModal(null));

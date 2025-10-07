@@ -15,6 +15,7 @@ export const recordsApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     getLatestSixRecords: builder.query<latestSix, void>({
       query: () => endpoints.latestSix,
+
       transformResponse: (responseData: Records[]) => transformId(responseData),
       providesTags: [TagTypesEnum.Records],
     }),
