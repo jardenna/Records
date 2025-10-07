@@ -64,7 +64,7 @@ const usePagination = ({
   useEffect(() => {
     setCurrentPage(1);
 
-    if (totalCount < Number(rowsPerPage)) {
+    if (totalCount < rowsPerPage) {
       searchParams.set('page', '1');
       setSearchParams(searchParams);
     }
