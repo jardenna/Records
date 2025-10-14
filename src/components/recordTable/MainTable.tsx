@@ -23,10 +23,9 @@ interface ModalInfoProps {
 }
 export interface BaseMainTableProps {
   defaultValue: Option;
-  endRow: number;
+  infoText: string;
+  labelText: string;
   options: Option[];
-  startRow: number;
-  totalRows: number;
   onSelectCount: (value: SelectedOption) => void;
 }
 
@@ -61,13 +60,12 @@ const MainTable: FC<MainTableProps> = ({
   valuesFromSearch,
   values,
   onSort,
-  startRow,
-  endRow,
-  totalRows,
   options,
   onSelectCount,
   defaultValue,
   isPending,
+  infoText,
+  labelText,
 }) => {
   const { language } = useLanguage();
   const [padding, setPadding] = useLocalStorage('padding', 12);
@@ -111,12 +109,11 @@ const MainTable: FC<MainTableProps> = ({
     <>
       <div className="table-actions">
         <RecordSelect
+          labelText={labelText}
           defaultValue={defaultValue}
-          endRow={endRow}
           onSelectCount={onSelectCount}
           options={options}
-          startRow={startRow}
-          totalRows={totalRows}
+          infoText={infoText}
         />
         <TableGridIcons
           onSetPadding={handlePadding}

@@ -144,6 +144,7 @@ const RecordTablePage: FC = () => {
     dispatch(toggleModal(null));
     navigate(`/${MainPath.Details}/${id}${location.search}`);
   };
+  const infoText = `${language.showing} ${startRow} ${language.to} ${endRow} ${language.of}  ${totalRows} ${language.albumsSmall}`;
 
   return (
     <section>
@@ -160,6 +161,7 @@ const RecordTablePage: FC = () => {
         >
           {records && (
             <MainTable
+              labelText={language.resultsPerPage}
               options={[
                 {
                   value: defaultOptionValue,
@@ -169,6 +171,7 @@ const RecordTablePage: FC = () => {
                 { value: 50, label: '50' },
                 { value: totalCount, label: language.all },
               ]}
+              infoText={infoText}
               onSelectCount={(selectedOptions) => {
                 handleSetRowsCount('limit', selectedOptions as Option);
               }}
@@ -177,9 +180,6 @@ const RecordTablePage: FC = () => {
                 value: Number(limit) || 10,
                 label: limit || defaultOptionValue.toString(),
               }}
-              endRow={endRow}
-              startRow={startRow}
-              totalRows={totalRows}
               tableCaption={language.albumCollection}
               isLoading={isLoading}
               tableData={records.results}
