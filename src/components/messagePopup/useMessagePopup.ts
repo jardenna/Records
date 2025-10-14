@@ -19,7 +19,6 @@ const useMessagePopup = (messagePopupId?: string) => {
   const handleAddMessagePopup = ({
     message,
     messagePopupType = 'success',
-
     componentType = 'toast',
   }: MessagePopupWithoutId) => {
     dispatch(
